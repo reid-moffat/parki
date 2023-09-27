@@ -12,12 +12,12 @@ const createAccount = onCall((request) => {
                 disabled: false,
             })
             .then(() => `Successfully created new user ${request.data.email}`)
-            .catch((error: { code: string; }) => {
+            .catch((error) => {
                 if (error.code === 'auth/email-already-exists') {
                     throw new HttpsError('already-exists', `Email ${request.data.email} in use`);
                 }
 
-                logger.log(`Error creating new user (not including email in use): ${JSON.stringify(error)}`);
+                logger.log(`Error creating new user (not including email in use): ${error.message} (${error.code})`);
                 throw new HttpsError('internal', `Error creating account - please try again later`);
             });
     }
