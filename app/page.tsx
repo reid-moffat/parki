@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import './firebase/config';
 
 export default function Home() {
     return (
