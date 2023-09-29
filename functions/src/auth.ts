@@ -28,8 +28,7 @@ const createAccount = onCall((request) => {
 );
 
 /**
- * When a user signs up, create a default document for them in firestore
- * and sends them a verification email
+ * When a user signs up, create a default document for them in firestore and send them a verification email
  */
 const onUserSignup = functions.auth.user().onCreate(async (user) => {
     if (user.email == null) {
@@ -39,43 +38,37 @@ const onUserSignup = functions.auth.user().onCreate(async (user) => {
         );
     }
 
-    const promises = [];
-
     // Create a default db document for the user
     const defaultDoc = {
         email: user.email,
     };
-    promises.push(
-        getDoc(`/users/${user.uid}/`)
-            .set(defaultDoc)
-            .then(() => logger.log(`Default db data successfully created for user: ${user.uid}`))
-            .catch((err) => logger.log(`Error creating default db data for ${user.uid}: ${err}`))
-    );
+    await getDoc(`/users/${user.uid}/`)
+        .set(defaultDoc)
+        .then(() => logger.log(`Default db data successfully created for user: ${user.uid}`))
+        .catch((err) => { throw new HttpsError('internal', `Error creating default db data for ${user.uid}: ${err}`); });
 
     // Adds a verification email to the db (will be sent by the 'Trigger Email' extension)
     const verifyLink = await auth
         .generateEmailVerificationLink(user.email)
         .then((link) => link)
-        .catch((err) => `Error generating verification link: ${err}`);
-    promises.push(
-        getCollection('/emails/')
-            .add({
-                to: user.email,
-                message: {
-                    subject: 'Verify your email for qtma-2023-2024',
-                    html: `<p style="font-size: 16px;">Thanks for signing up!</p>
-                           <p style="font-size: 16px;">Verify your account here: ${verifyLink}</p>
-                           <p style="font-size: 12px;">If you didn't sign up, please disregard this email</p>
-                           <p style="font-size: 12px;">Best Regards,</p>
-                           <p style="font-size: 12px;">-The qtma-2023-2024 Team</p>`,
-                },
-            })
-            .then(() => logger.log(`Verification email successfully sent to: ${user.email}`))
-            .catch((err) => logger.log(`Error sending verification email to ${user.email}: ${err}`))
-    );
+        .catch((err) => { throw new HttpsError('internal', `Error generating verification link: ${err}`); });
 
-    return Promise.all(promises)
-        .catch((err) => logger.log(`Error creating user: ${err.message} (${err.code})`));
+    const email = {
+        to: user.email,
+        message: {
+            subject: 'Verify your email for qtma-2023-2024',
+            html: `<p style="font-size: 16px;">Thanks for signing up!</p>
+                       <p style="font-size: 16px;">Verify your account here: ${verifyLink}</p>
+                       <p style="font-size: 12px;">If you didn't sign up, please disregard this email</p>
+                       <p style="font-size: 12px;">Best Regards,</p>
+                       <p style="font-size: 12px;">-The qtma-2023-2024 Team</p>`,
+        }
+    };
+
+    return getCollection('/emails/')
+        .add(email)
+        .then((doc) => logger.log(`Verification email ${doc.id} created for ${user.email}`))
+        .catch((err) => { throw new HttpsError('internal', `Error sending verification email to ${user.email}: ${err}`); });
 });
 
 export { createAccount, onUserSignup };
