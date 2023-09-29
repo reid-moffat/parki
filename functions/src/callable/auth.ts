@@ -1,6 +1,7 @@
 import { HttpsError, onCall } from "firebase-functions/v2/https";
-import { auth, getCollection, verifyIsAuthenticated } from "../helpers/helpers";
+import { auth } from "../helpers/setup";
 import { logger } from "firebase-functions";
+import { getCollection } from "../helpers/helperFunctions";
 
 /**
  * Users must create their accounts through our API (more control & security), calling it from the client is disabled
@@ -34,7 +35,7 @@ const createAccount = onCall((request) => {
  */
 const resetPassword = onCall(async (request) => {
 
-    verifyIsAuthenticated(request);
+    //verifyIsAuthenticated(request);
 
     // @ts-ignore
     const emailAddress = (await auth.getUser(request.auth.uid)).email;

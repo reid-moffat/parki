@@ -1,7 +1,8 @@
 import { HttpsError } from "firebase-functions/v2/https";
 import { logger } from "firebase-functions";
 import * as functions from 'firebase-functions';
-import { auth, getCollection, getDoc } from "../helpers/helpers";
+import { auth } from "../helpers/setup";
+import { getCollection, getDoc } from "../helpers/helperFunctions";
 
 /**
  * When a user signs up, create a default document for them in firestore and send them a verification email
