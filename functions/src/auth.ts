@@ -15,7 +15,7 @@ const createAccount = onCall((request) => {
                 password: request.data.password,
                 disabled: false,
             })
-            .then(() => `Successfully created new user ${request.data.email}`)
+            .then((user) => logger.log(`Successfully created new user ${user.uid} (${request.data.email})`))
             .catch((error) => {
                 if (error.code === 'auth/email-already-exists') {
                     throw new HttpsError('already-exists', `Email ${request.data.email} in use`);
