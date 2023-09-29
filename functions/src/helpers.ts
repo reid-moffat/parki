@@ -1,6 +1,5 @@
 import * as admin from 'firebase-admin';
-import { HttpsError } from "firebase-functions/v2/https";
-import { CallableContext } from "firebase-functions/lib/common/providers/https";
+import { CallableRequest, HttpsError } from "firebase-functions/v2/https";
 
 // Get required services
 admin.initializeApp();
@@ -24,7 +23,7 @@ const getDoc = (path: string) => {
 }
 
 // Check if the requesting user is authenticated
-const verifyIsAuthenticated = (request: CallableContext) => {
+const verifyIsAuthenticated = (request: CallableRequest) => {
     if (!request.auth || !request.auth.uid) {
         throw new HttpsError(
             'unauthenticated',
