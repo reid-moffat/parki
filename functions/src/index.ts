@@ -7,9 +7,9 @@
  * See a full list of supported triggers at https://firebase.google.com/docs/functions
  */
 
-import { createAccount, onUserSignup, resetPassword } from './auth';
+import { createAccount, onUserSignup, resetPassword, beforeSignIn } from './auth';
 
 // Start writing functions
 // https://firebase.google.com/docs/functions/typescript
 
-export { createAccount, onUserSignup, resetPassword };
+export { createAccount, onUserSignup, resetPassword, beforeSignIn };

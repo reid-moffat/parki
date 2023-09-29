@@ -106,4 +106,13 @@ const resetPassword = onCall(async (request) => {
         });
 });
 
-export { createAccount, onUserSignup, resetPassword };
+const beforeSignIn = functions.auth.user().beforeSignIn((user) => {
+    if (!user.emailVerified) {
+        throw new functions.auth.HttpsError(
+            'permission-denied',
+            `The email "${user.email}" has not been verified. Please check your email`
+        );
+    }
+});
+
+export { createAccount, onUserSignup, resetPassword, beforeSignIn };
