@@ -1,5 +1,6 @@
 import * as admin from 'firebase-admin';
 import { HttpsError } from "firebase-functions/v2/https";
+import { CallableContext } from "firebase-functions/lib/common/providers/https";
 
 // Get required services
 admin.initializeApp();
@@ -22,4 +23,14 @@ const getDoc = (path: string) => {
     return db.doc(path);
 }
 
-export { db, auth, getCollection, getDoc };
+// Check if the requesting user is authenticated
+const verifyIsAuthenticated = (request: CallableContext) => {
+    if (!request.auth || !request.auth.uid) {
+        throw new HttpsError(
+            'unauthenticated',
+            `You must be logged in to call the API`
+        );
+    }
+};
+
+export { db, auth, getCollection, getDoc, verifyIsAuthenticated };
