@@ -46,7 +46,7 @@ const onUserSignup = functions.auth.user().onCreate(async (user) => {
         email: user.email,
     };
     promises.push(
-        getDoc(`users/${user.uid}`)
+        getDoc(`/users/${user.uid}/`)
             .set(defaultDoc)
             .then(() => logger.log(`Default db data successfully created for user: ${user.uid}`))
             .catch((err) => logger.log(`Error creating default db data for ${user.uid}: ${err}`))
@@ -58,7 +58,7 @@ const onUserSignup = functions.auth.user().onCreate(async (user) => {
         .then((link) => link)
         .catch((err) => `Error generating verification link: ${err}`);
     promises.push(
-        getCollection('emails')
+        getCollection('/emails/')
             .add({
                 to: user.email,
                 message: {
