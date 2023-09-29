@@ -35,12 +35,8 @@ const createAccount = onCall((request) => {
  */
 const resetPassword = onCall(async (request) => {
 
-    //verifyIsAuthenticated(request);
-
-    // @ts-ignore
-    const emailAddress = (await auth.getUser(request.auth.uid)).email;
-    // @ts-ignore
-    const link = await auth.generatePasswordResetLink(emailAddress);
+    const emailAddress: string = request.data.email;
+    const link: string = await auth.generatePasswordResetLink(emailAddress);
 
     const email = {
         to: emailAddress,
@@ -56,11 +52,11 @@ const resetPassword = onCall(async (request) => {
     return getCollection('/emails/')
         .add(email)
         .then(() => {
-            logger.log(`Password reset email created for ${request.auth?.uid} (${emailAddress})`);
+            logger.log(`Password reset email created for ${emailAddress}`);
             return `Password reset email created for ${emailAddress}`;
         })
         .catch((err) => {
-            logger.log(`Error creating password reset email for ${request.auth?.uid} (${emailAddress})`);
+            logger.log(`Error creating password reset email for ${emailAddress}`);
             return `Error creating password reset email for ${emailAddress}`;
         });
 });
