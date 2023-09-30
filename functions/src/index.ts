@@ -6,5 +6,6 @@
 
 import { onUserSignup,  beforeSignIn } from './triggers/auth';
 import { createAccount, resetPassword } from './callable/auth';
+import { purgeUnverifiedUsers } from './triggers/cron';
 
-export { createAccount, onUserSignup, resetPassword, beforeSignIn };
+export { createAccount, onUserSignup, resetPassword, beforeSignIn, purgeUnverifiedUsers };
