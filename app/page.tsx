@@ -10,9 +10,6 @@ export default function Home() {
             <h1 className="head_text text-center blue_gradient">
                QTMA Parking 
             </h1>
-            <Link href="/hello">
-                Dashboard
-            </Link>
 
 
         </section>
