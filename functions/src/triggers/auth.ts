@@ -71,7 +71,12 @@ const beforeSignIn = functions.auth.user().beforeSignIn((user) => {
  * -Delete user document from firestore
  */
 const onUserDelete = functions.auth.user().onDelete(async (user) => {
-    // TODO
+    return getDoc(`/users/${user.uid}/`)
+        .delete()
+        .then(() => logger.log(`Successfully deleted user database data for user '${user.uid}'`))
+        .catch((err) => {
+            throw new HttpsError('internal', `Error deleting user database data for user '${user.uid}': ${err}`);
+        });
 });
 
 export { beforeCreate, onUserSignup, beforeSignIn, onUserDelete };
