@@ -18,7 +18,7 @@ const getDoc = (path: string) => {
     return db.doc(path);
 }
 
-// Adds email doc to db (which gets sent by an extension)
+// Adds email doc to db (which gets sent by the 'Trigger Email' extension)
 const sendEmail = (emailAddress: string, subject: string, html: string, context: string) => {
     const email = {
         to: emailAddress,

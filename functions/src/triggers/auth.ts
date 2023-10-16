@@ -5,7 +5,16 @@ import { auth } from "../helpers/setup";
 import { getDoc, sendEmail } from "../helpers/helperFunctions";
 
 /**
- * When a user signs up, create a default document for them in firestore and send them a verification email
+ * Logic run before a user can be created (throw errors to block account creation):
+ */
+const beforeCreate = functions.auth.user().beforeCreate(async (user) => {
+    // TODO
+});
+
+/**
+ * Logic run when a new user signs up:
+ * -Create a default document for them in firestore with their email
+ * -Send them a verification email
  */
 const onUserSignup = functions.auth.user().onCreate(async (user) => {
     if (user.email == null) {
@@ -26,7 +35,7 @@ const onUserSignup = functions.auth.user().onCreate(async (user) => {
             throw new HttpsError('internal', `Error creating default db data for ${user.uid}: ${err}`);
         });
 
-    // Adds a verification email to the db (will be sent by the 'Trigger Email' extension)
+    // Create a verification email
     const verifyLink = await auth
         .generateEmailVerificationLink(user.email)
         .then((link) => link)
@@ -45,7 +54,8 @@ const onUserSignup = functions.auth.user().onCreate(async (user) => {
 });
 
 /**
- * Block sign-in attempts from unverified users
+ * Logic run before a user is able to sign in (throw errors here to block sign in):
+ * -User's email must be verified
  */
 const beforeSignIn = functions.auth.user().beforeSignIn((user) => {
     if (!user.emailVerified) {
@@ -56,4 +66,12 @@ const beforeSignIn = functions.auth.user().beforeSignIn((user) => {
     }
 });
 
-export { onUserSignup, beforeSignIn };
+/**
+ * Logic that's run when a user is deleted:
+ * -Delete user document from firestore
+ */
+const onUserDelete = functions.auth.user().onDelete(async (user) => {
+    // TODO
+});
+
+export { beforeCreate, onUserSignup, beforeSignIn, onUserDelete };
