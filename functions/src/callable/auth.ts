@@ -7,28 +7,28 @@ import { getCollection } from "../helpers/helperFunctions";
  * Users must create their accounts through our API (more control & security), calling it from the client is disabled
  */
 const createAccount = onCall((request) => {
-        // Create user (will throw an error if the email is already in use)
-        return auth
-            .createUser({
-                email: request.data.email,
-                emailVerified: false,
-                password: request.data.password,
-                disabled: false,
-            })
-            .then((user) => {
-                logger.log(`Successfully created new user ${user.uid} (${request.data.email})`);
-                return `Successfully created new user ${request.data.email}`;
-            })
-            .catch((error) => {
-                if (error.code === 'auth/email-already-exists') {
-                    throw new HttpsError('already-exists', `Email ${request.data.email} in use`);
-                }
+    // Create user (will throw an error if the email is already in use)
+    return auth
+        .createUser({
+            email: request.data.email,
+            emailVerified: false,
+            password: request.data.password,
+            disabled: false,
+        })
+        .then((user) => {
+            logger.log(`Successfully created new user ${user.uid} (${request.data.email})`);
+            return `Successfully created new user ${request.data.email}`;
+        })
+        .catch((error) => {
+            if (error.code === 'auth/email-already-exists') {
+                logger.warn(`Email ${request.data.email} in use`);
+                throw new HttpsError('already-exists', `Email ${request.data.email} in use`);
+            }
 
-                logger.log(`Error creating new user (not including email in use): ${error.message} (${error.code})`);
-                throw new HttpsError('internal', `Error creating account - please try again later`);
-            });
-    }
-);
+            logger.error(`Error creating new user (not including email in use): ${error.message} (${error.code})`);
+            throw new HttpsError('internal', `Error creating account - please try again later`);
+        });
+});
 
 /**
  * Sends an email to the requesting user with a link to reset their password
@@ -49,6 +49,7 @@ const resetPassword = onCall(async (request) => {
                    <p style="font-size: 12px;">-The qtma-2023-2024 Team</p>`,
         }
     };
+
     return getCollection('/emails/')
         .add(email)
         .then(() => {
