@@ -9,16 +9,16 @@ import { HttpsError } from "firebase-functions/v2/https";
  */
 const purgeUnverifiedUsers = onSchedule('0 0 * * *', async () => {
 
-    const weekAgo = new Date();
-    weekAgo.setDate(weekAgo.getDate() - 7);
-    logger.log(`Getting all unverified user accounts created before ${weekAgo}...`);
+    const thirtyDaysAgo = new Date();
+    thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+    logger.log(`Getting all unverified user accounts created before ${thirtyDaysAgo} (30 days ago)...`);
 
     // Go through users in batches of 1000
     const unverifiedUsers: string[] = [];
     const getUnverifiedUsers = (nextPageToken: string | undefined) => auth.listUsers(1000, nextPageToken)
         .then(async (listUsersResult) => {
             unverifiedUsers.push(...listUsersResult.users
-                .filter((user) => !user.emailVerified && new Date(user.metadata.creationTime) < weekAgo)
+                .filter((user) => !user.emailVerified && new Date(user.metadata.creationTime) < thirtyDaysAgo)
                 .map((user) => user.uid));
 
             if (listUsersResult.pageToken) {
