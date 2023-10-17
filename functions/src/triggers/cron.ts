@@ -4,7 +4,7 @@ import { auth } from '../helpers/setup';
 import { HttpsError } from "firebase-functions/v2/https";
 
 /**
- * Removes users that have been unverified for at least 7 days
+ * Removes users that have been unverified for at least 30 days
  * https://github.com/firebase/functions-samples/blob/main/Node/delete-unused-accounts-cron/functions/index.js
  */
 const purgeUnverifiedUsers = onSchedule('0 0 * * *', async () => {
