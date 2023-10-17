@@ -1,9 +1,30 @@
+"use client";
 import React from 'react'
 import TextBox from '../components/elements/TextBox'
 import Link from 'next/link'
 import { useRef } from "react";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../firebase/config";
+import {useState } from 'react';
 
 const page = () => {
+  //add hook for email and password
+
+  const signin = () => {
+    const email = "18rem8@queensu.ca";
+    const pass = "password12345";
+
+    signInWithEmailAndPassword(auth, email, pass)
+      .then(() =>
+        console.log('success login')
+      )
+      .catch((error) => 
+        console.log(`err signing in ${error}`)
+      )
+
+
+  }
+
   return (
     
     <div
@@ -20,7 +41,7 @@ const page = () => {
           labelText="Password"
           type={"password"}
         />
-        <Link href="" className='black_btn'>Login</Link>
+        <button onClick = {signin} className='black_btn'>Login</button>
       </div>
     </div>
   )
