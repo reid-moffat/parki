@@ -1,13 +1,13 @@
 "use client";
 import React from 'react'
-import TextBox from '../components/elements/TextBox'
+import TextBox from '../../../components/TextBox'
 import Link from 'next/link'
 import { useRef } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../firebase/config";
+import { auth } from "../../../firebase/config";
 import {useState } from 'react';
 
-const page = () => {
+const signInPage = () => {
   //add hook for email and password
 
   const signin = () => {
@@ -32,7 +32,7 @@ const page = () => {
         "flex flex-col justify-center items-center"
       }
     >
-      <div className="px-7 py-4 shadow bg-blue rounded-md flex flex-col gap-2">
+      <div className="px-7 py-4 shadow bg-white rounded-md flex flex-col gap-2">
         <TextBox
           labelText="User Name"
           
@@ -47,4 +47,4 @@ const page = () => {
   )
 }
 
-export default page
+export default signInPage

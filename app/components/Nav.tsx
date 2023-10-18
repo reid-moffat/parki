@@ -23,8 +23,8 @@ const Nav = () => {
 
             <div className='sm:flex hidden'>
                 <div className='flex gap-3 md:gap-5'>
-                    <Link href="/auth" className="black_btn">
-                        Sign In
+                    <Link href="/pages/auth" className="black_btn">
+                        Sign In / Up
                     </Link>
 
                 </div>
