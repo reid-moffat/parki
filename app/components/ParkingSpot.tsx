@@ -8,13 +8,15 @@ const ParkingSpot = () => {
   var spotImgSrc = "../../public/next.svg";
 
   return (
-    <div className="m-5 bg-blue-200 w-3/6 p-5">
+    <div className="m-5 bg-blue-200 w-3/6 p-5 rounded-2xl">
       <Image
       src="/1200px-Parking_icon.png"
       width={100}
       height={100}
       alt="Picture of the author"
     />
+    
+
     </div>
   )
 }

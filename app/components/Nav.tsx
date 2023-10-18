@@ -8,13 +8,13 @@ const Nav = () => {
     const isUserLoggedIn = false;
     return (
 
-
-        <nav className="flex-between w-full mb-10 p-6 ">
+        // remove background on final, currently being used to view spacing
+        <nav className="flex-between w-full mb-2 p-6 bg-orange-200">
             <Link href="/" className='flex gap-2 flex-center'>
-                <Image src="../../public/next.svg"
+                <Image src="/next.svg"
                     alt="QTMA Parking Logo"
-                    width={100}
-                    height={100}
+                    width={50}
+                    height={500}
                     className="object-contain" />
             </Link>
 
