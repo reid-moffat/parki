@@ -2,7 +2,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { useState, useEffect } from 'react'
-import { signIn, signOut, useSession, getProviders } from 'next-auth/react'
 import React from 'react'
 
 const Nav = () => {
@@ -12,10 +11,10 @@ const Nav = () => {
 
         <nav className="flex-between w-full mb-10 p-6 ">
             <Link href="/" className='flex gap-2 flex-center'>
-                <Image src="../assets/images/logo.svg"
+                <Image src="../../public/next.svg"
                     alt="QTMA Parking Logo"
-                    width={30}
-                    height={30}
+                    width={100}
+                    height={100}
                     className="object-contain" />
             </Link>
 
@@ -23,10 +22,9 @@ const Nav = () => {
 
             <div className='sm:flex hidden'>
                 <div className='flex gap-3 md:gap-5'>
-                    <Link href="/pages/auth" className="black_btn">
+                    <Link href="/pages/auth/signIn" className="black_btn">
                         Sign In / Up
                     </Link>
-
                 </div>
 
             </div>
