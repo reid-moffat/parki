@@ -37,7 +37,7 @@ const signInPage = () => {
             console.log(`Error caught: ${error}`);
         });
 
-}
+  }
 
   return (
     
