@@ -3,7 +3,7 @@ import React from 'react'
 import TextBox from '../../../components/TextBox'
 import Link from 'next/link'
 import { useRef } from "react";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { auth } from "../../../firebase/config";
 import {useState } from 'react';
 
@@ -25,6 +25,20 @@ const signInPage = () => {
 
   }
 
+  const signInWithGoogle = async () => {
+    const provider = await new GoogleAuthProvider();
+    signInWithPopup(auth, provider)
+        .then((result) => {
+            const credential = GoogleAuthProvider.credentialFromResult(result);
+            const token = credential.accessToken;
+            const user = result.user;
+            console.log(`Signed in: ${credential} ${user}`);
+        }).catch((error) => {
+            console.log(`Error caught: ${error}`);
+        });
+
+}
+
   return (
     
     <div
@@ -42,6 +56,7 @@ const signInPage = () => {
           type={"password"}
         />
         <button onClick = {signin} className='black_btn'>Login</button>
+        <button onClick={signInWithGoogle}>Sign In With Google</button>
       </div>
     </div>
   )
