@@ -6,23 +6,35 @@ import { useRef } from "react";
 import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { auth } from "../../../firebase/config";
 import {useState } from 'react';
+import { useRouter} from 'next/navigation';
 
-const signInPage = () => {
-  //add hook for email and password
 
+const SignInPage = () => {
+
+  const router = useRouter();
+
+
+  const [email, setEmail] = useState(""); // State for email input
+  const [password, setPassword] = useState(""); // State for password input
+  const [error, setError] = useState(null); // State to hold error messages
+
+
+  
   const signin = () => {
-    const email = "18rem8@queensu.ca";
-    const pass = "password12345";
+    //sample creds
+    //const email = "18rem8@queensu.ca";
+    //const pass = "password12345";
 
-    signInWithEmailAndPassword(auth, email, pass)
-      .then(() =>
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
         console.log('success login')
-      )
-      .catch((error) => 
-        console.log(`err signing in ${error}`)
-      )
-
-
+        router.push('/')
+      })
+      .catch((error) => {
+        console.error(`err signing in: ${error.message}`)
+        setError(error.code)
+      })
   }
 
   const signInWithGoogle = async () => {
@@ -49,17 +61,22 @@ const signInPage = () => {
       <div className="px-7 py-4 shadow bg-white rounded-md flex flex-col gap-2">
         <TextBox
           labelText="User Name"
+          value = {email}
+          onChange={(e) => setEmail(e.target.value)}
           
         />
         <TextBox
           labelText="Password"
           type={"password"}
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
         />
         <button onClick = {signin} className='black_btn'>Login</button>
+        {error && <p className = "text-red-500">{error}</p>}
         <button onClick={signInWithGoogle}>Sign In With Google</button>
       </div>
     </div>
   )
 }
 
-export default signInPage
+export default SignInPage
