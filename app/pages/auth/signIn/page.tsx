@@ -19,7 +19,7 @@ const SignInPage = () => {
   const [error, setError] = useState(null); // State to hold error messages
 
 
-  
+
   const signin = () => {
     //sample creds
     //const email = "18rem8@queensu.ca";
@@ -42,7 +42,7 @@ const SignInPage = () => {
     signInWithPopup(auth, provider)
         .then((result) => {
             const credential = GoogleAuthProvider.credentialFromResult(result);
-            const token = credential.accessToken;
+            //const token = credential.accessToken;
             const user = result.user;
             console.log(`Signed in: ${credential} ${user}`);
         }).catch((error) => {
@@ -52,7 +52,7 @@ const SignInPage = () => {
   }
 
   return (
-    
+
     <div
       className={
         "flex flex-col justify-center items-center"
@@ -63,7 +63,7 @@ const SignInPage = () => {
           labelText="User Name"
           value = {email}
           onChange={(e) => setEmail(e.target.value)}
-          
+
         />
         <TextBox
           labelText="Password"
