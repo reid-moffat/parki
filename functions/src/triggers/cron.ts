@@ -42,32 +42,37 @@ const purgeUnverifiedUsers = onSchedule('0 0 * * *', async () => {
 /**
  * Deletes old email metadata in the db (after 30 days)
  */
-const purgeOldEmails = onSchedule('*/5 * * * *', async () => {
+const purgeExpiredEmails = onSchedule('0 0 * * *', async () => {
 
     const thirtyDaysAgo = new Date();
     thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
     logger.log(`Getting all emails sent before ${thirtyDaysAgo} (30 days ago)...`);
 
-    // Query old emails
-    const oldEmails = await getCollection('/emails/')
+    // Query expired emails
+    const expiredEmails = await getCollection('/emails/')
         .where('delivery.state', '==', 'SUCCESS')
         .where('delivery.endTime', '<=', thirtyDaysAgo)
         .get()
         .then((result) => {
-            logger.info(`Successfully queried ${result.docs.length} old emails`);
+            logger.info(`Successfully queried ${result.docs.length} expired emails`);
             return result.docs;
         })
-        .catch((err) => { throw new HttpsError('internal', `Failed to query old emails: ${err}`); });
+        .catch((err) => { throw new HttpsError('internal', `Failed to query expired emails: ${err}`); });
+
+    if (expiredEmails.length === 0) {
+        logger.info(`No expired emails found, quitting cron...`);
+        return;
+    }
 
     // And delete them concurrently
-    return Promise.all(oldEmails.map((email) => {
+    return Promise.all(expiredEmails.map((email) => {
             const docId = email.id;
             return email.ref.delete()
                 .then(() => logger.info(`Successfully deleted email ${docId}`))
                 .catch((err) => logger.error(`Error deleting email document ${docId}`));
         }))
-        .then(() => logger.info(`Successfully deleted ${oldEmails.length} old emails`))
-        .catch((err) => logger.error(`Error deleting old emails: ${err}`));
+        .then(() => logger.info(`Successfully deleted ${expiredEmails.length} expired emails`))
+        .catch((err) => logger.error(`Error deleting expired emails: ${err}`));
 });
 
-export { purgeUnverifiedUsers, purgeOldEmails };
+export { purgeUnverifiedUsers, purgeExpiredEmails };
