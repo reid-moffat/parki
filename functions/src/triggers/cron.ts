@@ -2,6 +2,7 @@ import { logger } from "firebase-functions";
 import { onSchedule } from 'firebase-functions/v2/scheduler';
 import { auth } from '../helpers/setup';
 import { HttpsError } from "firebase-functions/v2/https";
+import { getCollection } from "../helpers/helperFunctions";
 
 /**
  * Removes users that have been unverified for at least 30 days
@@ -38,4 +39,35 @@ const purgeUnverifiedUsers = onSchedule('0 0 * * *', async () => {
         .catch((err) => logger.error(`Failed to delete unverified user(s): ${err.message} (${err.code})`));
 });
 
-export { purgeUnverifiedUsers };
+/**
+ * Deletes old email metadata in the db (after 30 days)
+ */
+const purgeOldEmails = onSchedule('*/5 * * * *', async () => {
+
+    const thirtyDaysAgo = new Date();
+    thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+    logger.log(`Getting all emails sent before ${thirtyDaysAgo} (30 days ago)...`);
+
+    // Query old emails
+    const oldEmails = await getCollection('/emails/')
+        .where('delivery.state', '==', 'SUCCESS')
+        .where('delivery.endTime', '<=', thirtyDaysAgo)
+        .get()
+        .then((result) => {
+            logger.info(`Successfully queried ${result.docs.length} old emails`);
+            return result.docs;
+        })
+        .catch((err) => { throw new HttpsError('internal', `Failed to query old emails: ${err}`); });
+
+    // And delete them concurrently
+    return Promise.all(oldEmails.map((email) => {
+            const docId = email.id;
+            return email.ref.delete()
+                .then(() => logger.info(`Successfully deleted email ${docId}`))
+                .catch((err) => logger.error(`Error deleting email document ${docId}`));
+        }))
+        .then(() => logger.info(`Successfully deleted ${oldEmails.length} old emails`))
+        .catch((err) => logger.error(`Error deleting old emails: ${err}`));
+});
+
+export { purgeUnverifiedUsers, purgeOldEmails };
