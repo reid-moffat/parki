@@ -6,7 +6,7 @@ import { useRef } from "react";
 import { getFunctions, httpsCallable } from "@firebase/functions";
 import { useState } from 'react';
 
-const signUpPage = () => {
+const SignUpPage = () => {
   // TODO: handle password confirmation
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -22,7 +22,7 @@ const signUpPage = () => {
   }
 
   return (
-    
+
     <div
       className={
         "flex flex-col justify-center items-center"
@@ -49,4 +49,4 @@ const signUpPage = () => {
   )
 }
 
-export default signUpPage
+export default SignUpPage
