@@ -3,8 +3,9 @@ import React from 'react'
 import TextBox from '../../../components/TextBox'
 import Link from 'next/link'
 import { useRef } from "react";
-import { getFunctions, httpsCallable } from "@firebase/functions";
+import { httpsCallable } from "@firebase/functions";
 import { useState } from 'react';
+import { functions } from '../../../firebase/config'
 
 const SignUpPage = () => {
   // TODO: handle password confirmation
@@ -12,7 +13,7 @@ const SignUpPage = () => {
   const [password, setPassword] = useState("");
 
   const handleSignUp = async () => {
-    await httpsCallable(getFunctions(), 'createAccount')({email: email, password: password})
+    await httpsCallable(functions, 'createAccount')({email: email, password: password})
       .then((res) => {
         console.log("account created successfully")
       })
