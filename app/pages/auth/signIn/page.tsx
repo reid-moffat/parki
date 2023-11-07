@@ -73,7 +73,11 @@ const SignInPage = () => {
         />
         <button onClick = {signin} className='black_btn'>Login</button>
         {error && <p className = "text-red-500">{error}</p>}
-        <button onClick={signInWithGoogle}>Sign In With Google</button>
+          <img
+              src={'../../signInWithGoogle.png'}
+              onClick={signInWithGoogle}
+              style={{'cursor': 'pointer', 'borderRadius': '10%', 'border': '2px solid grey', 'width': '250px'}}
+          />
       </div>
     </div>
   )
