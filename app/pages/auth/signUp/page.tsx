@@ -5,7 +5,8 @@ import Link from 'next/link'
 import { useRef } from "react";
 import { httpsCallable } from "@firebase/functions";
 import { useState } from 'react';
-import { functions } from '../../../firebase/config'
+import { auth, functions } from '../../../firebase/config'
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
 const SignUpPage = () => {
   // TODO: handle password confirmation
@@ -21,6 +22,20 @@ const SignUpPage = () => {
         console.log(`Error caught: ${err}`)
       });
   }
+
+    const handleSignUpWithGoogle = async () => {
+        const provider = await new GoogleAuthProvider();
+        signInWithPopup(auth, provider)
+            .then((result) => {
+                const credential = GoogleAuthProvider.credentialFromResult(result);
+                //const token = credential.accessToken;
+                const user = result.user;
+                console.log(`Signed in: ${credential} ${user}`);
+            }).catch((error) => {
+            console.log(`Error caught: ${error}`);
+        });
+
+    }
 
   return (
 
@@ -45,6 +60,11 @@ const SignUpPage = () => {
           type={"password"}
         />
         <button onClick = {handleSignUp} className='black_btn'>Sign Up</button>
+          <img
+              src={'../../signInWithGoogle.png'}
+              onClick={handleSignUpWithGoogle}
+              style={{'cursor': 'pointer', 'borderRadius': '10%', 'border': '2px solid grey', 'width': '250px'}}
+          />
       </div>
     </div>
   )
