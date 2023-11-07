@@ -60,7 +60,7 @@ const SignInPage = () => {
     >
       <div className="px-7 py-4 shadow bg-white rounded-md flex flex-col gap-2">
         <TextBox
-          labelText="User Name"
+          labelText="Email"
           value = {email}
           onChange={(e) => setEmail(e.target.value)}
 

@@ -7,16 +7,20 @@ import { httpsCallable } from "@firebase/functions";
 import { useState } from 'react';
 import { auth, functions } from '../../../firebase/config'
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { useRouter } from "next/navigation";
 
 const SignUpPage = () => {
   // TODO: handle password confirmation
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const router = useRouter();
+
   const handleSignUp = async () => {
-    await httpsCallable(functions, 'createAccount')({email: email, password: password})
+    const result = await httpsCallable(functions, 'createAccount')({email: email, password: password})
       .then((res) => {
-        console.log("account created successfully")
+        console.log("account created successfully");
+          router.push('/pages/auth/signIn');
       })
       .catch((err) => {
         console.log(`Error caught: ${err}`)
@@ -46,7 +50,7 @@ const SignUpPage = () => {
     >
       <div className="px-7 py-4 shadow bg-white rounded-md flex flex-col gap-2">
         <TextBox
-          labelText="User Name"
+          labelText="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
