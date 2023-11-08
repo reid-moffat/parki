@@ -10,36 +10,40 @@ import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { useRouter } from "next/navigation";
 
 const SignUpPage = () => {
-  // TODO: handle password confirmation
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [password2, setPassword2] = useState("");
 
   const router = useRouter();
 
   const handleSignUp = async () => {
+    if (password !== password2) {
+      alert("Password does not match!")
+      return
+    }
     const result = await httpsCallable(functions, 'createAccount')({email: email, password: password})
       .then((res) => {
-        console.log("account created successfully");
-          router.push('/pages/auth/signIn');
+        alert("Successfully created new user! Please check your email and confirm your email.");
+        router.push('/pages/auth/signIn');
       })
       .catch((err) => {
-        console.log(`Error caught: ${err}`)
+        alert(err)
       });
   }
 
-    const handleSignUpWithGoogle = async () => {
-        const provider = await new GoogleAuthProvider();
-        signInWithPopup(auth, provider)
-            .then((result) => {
-                const credential = GoogleAuthProvider.credentialFromResult(result);
-                //const token = credential.accessToken;
-                const user = result.user;
-                console.log(`Signed in: ${credential} ${user}`);
-            }).catch((error) => {
-            console.log(`Error caught: ${error}`);
-        });
+  const handleSignUpWithGoogle = async () => {
+      const provider = await new GoogleAuthProvider();
+      signInWithPopup(auth, provider)
+          .then((result) => {
+              const credential = GoogleAuthProvider.credentialFromResult(result);
+              //const token = credential.accessToken;
+              const user = result.user;
+              console.log(`Signed in: ${credential} ${user}`);
+          }).catch((error) => {
+          console.log(`Error caught: ${error}`);
+      });
 
-    }
+  }
 
   return (
 
@@ -62,6 +66,7 @@ const SignUpPage = () => {
         <TextBox
           labelText="Confirm Password"
           type={"password"}
+          onChange={(e) => setPassword2(e.target.value)}
         />
         <button onClick = {handleSignUp} className='black_btn'>Sign Up</button>
           <img

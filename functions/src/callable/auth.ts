@@ -20,9 +20,17 @@ const createAccount = onCall((request) => {
             return `Successfully created new user ${request.data.email}`;
         })
         .catch((error) => {
+            if (error.code === 'auth/invalid-email') {
+                logger.warn(`Email ${request.data.email} is invalid`);
+                throw new HttpsError('invalid-argument', `Email ${request.data.email} is invalid`);
+            }
+            if (error.code === 'auth/invalid-password') {
+                logger.warn(`Password ${request.data.password} is invalid`);
+                throw new HttpsError('invalid-argument', `Password is invalid. It must be a string with at least six characters.`);
+            }
             if (error.code === 'auth/email-already-exists') {
                 logger.warn(`Email ${request.data.email} in use`);
-                throw new HttpsError('already-exists', `Email ${request.data.email} in use`);
+                throw new HttpsError('already-exists', `Email ${request.data.email} is already in use`);
             }
 
             logger.error(`Error creating new user (not including email in use): ${error.message} (${error.code})`);
