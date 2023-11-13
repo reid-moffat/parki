@@ -1,93 +1,76 @@
 "use client";
-import React from 'react'
+import React, { useState } from 'react'
 import TextBox from '../../../components/TextBox'
 import Link from 'next/link'
-import { useRef } from "react";
-import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { auth } from "../../../firebase/config";
-import {useState } from 'react';
-import { useRouter} from 'next/navigation';
-import nav from "@/app/components/Nav";
+import { useRouter } from 'next/navigation';
 
 
 const SignInPage = () => {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
 
-  const router = useRouter();
+    // Error message to display to the user (e.g. 'Invalid email/password')
+    const [error, setError] = useState(null);
 
+    const router = useRouter();
 
-  const [email, setEmail] = useState(""); // State for email input
-  const [password, setPassword] = useState(""); // State for password input
-  const [error, setError] = useState(null); // State to hold error messages
+    const signin = () => {
+        signInWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                console.log(`Successful login for ${userCredential.user.uid}`)
+                router.push('/')
+            })
+            .catch((error) => {
+                console.error(`Error signing in: ${error.message}`)
+                if (error.code === 'auth/invalid-login-credentials') {
+                    // @ts-ignore
+                    setError("Invalid email/password");
+                } else {
+                    setError(error.code);
+                }
+            })
+    }
 
+    const signInWithGoogle = async () => {
+        await signInWithPopup(auth, new GoogleAuthProvider())
+            .then((result) => {
+                const credential = GoogleAuthProvider.credentialFromResult(result);
+                const user = result.user;
 
+                console.log(`Successfully signed in: ${credential} ${user}`);
+            }).catch((error) => {
+                console.log(`Error caught: ${error}`);
+            });
+    }
 
-  const signin = () => {
-    //sample creds
-    //const email = "18rem8@queensu.ca";
-    //const pass = "password12345";
+    return (
+        <div className={"flex flex-col justify-center items-center"}>
+            <div className="px-7 py-4 shadow bg-white rounded-md flex flex-col gap-2">
+                <TextBox
+                    labelText="Email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                />
+                <TextBox
+                    labelText="Password"
+                    type={"password"}
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                />
 
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        console.log('success login')
-        router.push('/')
-      })
-      .catch((error) => {
-        console.error(`err signing in: ${error.message}`)
-        if (error.code === 'auth/invalid-login-credentials') {
-            // @ts-ignore
-            setError("Invalid email/password");
-        } else {
-            setError(error.code);
-        }
-      })
-  }
-
-  const signInWithGoogle = async () => {
-    const provider = await new GoogleAuthProvider();
-    signInWithPopup(auth, provider)
-        .then((result) => {
-            const credential = GoogleAuthProvider.credentialFromResult(result);
-            //const token = credential.accessToken;
-            const user = result.user;
-            console.log(`Signed in: ${credential} ${user}`);
-        }).catch((error) => {
-            console.log(`Error caught: ${error}`);
-        });
-
-  }
-
-  return (
-
-    <div
-      className={
-        "flex flex-col justify-center items-center"
-      }
-    >
-      <div className="px-7 py-4 shadow bg-white rounded-md flex flex-col gap-2">
-        <TextBox
-          labelText="Email"
-          value = {email}
-          onChange={(e) => setEmail(e.target.value)}
-
-        />
-        <TextBox
-          labelText="Password"
-          type={"password"}
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <Link href="/pages/auth/forgotPassword" className='black_btn'>Forgot password?</Link>
-        <button onClick={signin} className='black_btn'>Login</button>
-        {error && <p className = "text-red-500">{error}</p>}
-          <img
-              src={'../../signInWithGoogle.png'}
-              onClick={signInWithGoogle}
-              style={{'cursor': 'pointer'}}
-          />
-      </div>
-    </div>
-  )
+                <Link href="/pages/auth/forgotPassword" className='black_btn'>Forgot password?</Link>
+                <button onClick={signin} className='black_btn'>Login</button>
+                {error && <p className="text-red-500">{error}</p>}
+                <img
+                    src={'../../signInWithGoogle.png'}
+                    onClick={signInWithGoogle}
+                    style={{'cursor': 'pointer'}}
+                />
+            </div>
+        </div>
+    )
 }
 
-export default SignInPage
+export default SignInPage;
