@@ -34,7 +34,12 @@ const SignInPage = () => {
       })
       .catch((error) => {
         console.error(`err signing in: ${error.message}`)
-        setError(error.code)
+        if (error.code === 'auth/invalid-login-credentials') {
+            // @ts-ignore
+            setError("Invalid email/password");
+        } else {
+            setError(error.code);
+        }
       })
   }
 
