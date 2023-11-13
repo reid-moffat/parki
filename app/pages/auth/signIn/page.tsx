@@ -7,6 +7,7 @@ import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from 
 import { auth } from "../../../firebase/config";
 import {useState } from 'react';
 import { useRouter} from 'next/navigation';
+import nav from "@/app/components/Nav";
 
 
 const SignInPage = () => {
@@ -71,7 +72,8 @@ const SignInPage = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button onClick = {signin} className='black_btn'>Login</button>
+        <Link href="/pages/auth/forgotPassword" className='black_btn'>Forgot password?</Link>
+        <button onClick={signin} className='black_btn'>Login</button>
         {error && <p className = "text-red-500">{error}</p>}
           <img
               src={'../../signInWithGoogle.png'}
