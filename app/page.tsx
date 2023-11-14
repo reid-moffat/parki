@@ -3,6 +3,7 @@ import './firebase/config';
 import Link from 'next/link';
 import type { Route } from 'next';
 import ParkingSpot from './components/ParkingSpot';
+import MapViewButton from './components/buttons/MapView';
 
 export default function Home() {
     return (
@@ -12,6 +13,7 @@ export default function Home() {
                QTMA Parking 
             </h1>
             <ParkingSpot/>
+            <MapViewButton />
 
         </section>
 
