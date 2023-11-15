@@ -1,6 +1,6 @@
 "use client";
-import React, { useState, useRef } from 'react'
-import { MapContainer, TileLayer, Marker } from 'react-leaflet'
+import React, { useRef } from 'react'
+import { MapContainer, TileLayer } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 import style from '../styles/Map.module.css'
 
@@ -18,4 +18,5 @@ function Maps() {
         </MapContainer>
     )
 }
+
 export default Maps;
