@@ -12,7 +12,7 @@ function Maps() {
     return (
         // @ts-ignore
         <MapContainer className={style.map} center={center} zoom={ZOOM_LEVEL} ref={mapRef}>
-            <TileLayer
+            <TileLayer // @ts-ignore
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
             />
