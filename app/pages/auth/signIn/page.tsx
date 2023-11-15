@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { auth } from "../../../firebase/config";
 import { useRouter } from 'next/navigation';
-
+import Image from 'next/image'
 
 const SignInPage = () => {
     const [email, setEmail] = useState("");
@@ -63,10 +63,11 @@ const SignInPage = () => {
                 <Link href="/pages/auth/forgotPassword" className='black_btn'>Forgot password?</Link>
                 <button onClick={signin} className='black_btn'>Login</button>
                 {error && <p className="text-red-500">{error}</p>}
-                <img
+                <Image
                     src={'../../signInWithGoogle.png'}
                     onClick={signInWithGoogle}
                     style={{'cursor': 'pointer'}}
+                    alt={"Sign in with Google"}
                 />
             </div>
         </div>

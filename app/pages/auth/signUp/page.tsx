@@ -5,6 +5,7 @@ import { httpsCallable } from "@firebase/functions";
 import { auth, functions } from '../../../firebase/config'
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { useRouter } from "next/navigation";
+import Image from 'next/image'
 
 const SignUpPage = () => {
     const [email, setEmail] = useState("");
@@ -60,10 +61,11 @@ const SignUpPage = () => {
                 />
 
                 <button onClick={handleSignUp} className='black_btn'>Sign Up</button>
-                <img
+                <Image
                     src={'../../signInWithGoogle.png'}
                     onClick={handleSignUpWithGoogle}
                     style={{'cursor': 'pointer'}}
+                    alt="Sign up with Google"
                 />
             </div>
         </div>
