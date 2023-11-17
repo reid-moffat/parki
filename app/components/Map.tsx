@@ -2,11 +2,11 @@
 import React, { useRef } from 'react'
 import { MapContainer, TileLayer } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
-import style from '../styles/Map.module.css'
+import style from '@/app/styles/Map.module.css'
 
 function Maps() {
-    const center = { lat: 44.229660, lng: -76.494186 };
-    const ZOOM_LEVEL = 17
+    const center = { lat: 44.226795, lng: -76.498151 };
+    const ZOOM_LEVEL = 16
     const mapRef = useRef()
 
     return (
