@@ -1,7 +1,7 @@
 /**
  * Dummy data to populate the map with parking spots
  */
-interface data {
+interface ParkingSpace {
     latitude: number,
     longitude: number,
     address: string,
@@ -16,7 +16,7 @@ enum RentalPeriod {
     MONTHLY,
 }
 
-const dummyData : data[] = [
+const dummyData : ParkingSpace[] = [
     // TODO: Populate this. Note you can hard-code spaces, or randomly generate data
     // (e.g. generate a random rating between 1 and 5, random price, random lat/long, etc)
 ];

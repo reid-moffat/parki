@@ -4,18 +4,13 @@ import Link from 'next/link';
 import type { Route } from 'next';
 import ParkingSpot from './components/ParkingSpot';
 import MapViewButton from './components/buttons/MapView';
+import Maps from "@/app/components/Map";
+import React from "react";
 
 export default function Home() {
     return (
-        <section className="w-full flex-center flex-col">
-            
-            <h1 className="head_text text-center blue_gradient">
-               QTMA Parking 
-            </h1>
-            <ParkingSpot/>
-            <MapViewButton />
-
-        </section>
-
-    )
+        <>
+            <Maps />
+        </>
+    );
 }
