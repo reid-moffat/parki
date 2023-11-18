@@ -6,8 +6,8 @@ import style from '@/app/styles/Map.module.css'
 
 function Maps() {
     const center = { lat: 44.226795, lng: -76.498151 };
-    const ZOOM_LEVEL = 16
-    const mapRef = useRef()
+    const ZOOM_LEVEL = 16;
+    const mapRef = useRef();
 
     return (
         <MapContainer className={style.map} center={center} zoom={ZOOM_LEVEL} ref={mapRef}>
