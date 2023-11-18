@@ -10,7 +10,7 @@ function Maps() {
     const mapRef = useRef();
 
     return (
-        <MapContainer className={style.map} center={center} zoom={ZOOM_LEVEL} ref={mapRef}>
+        <MapContainer className={style.map} center={center} zoom={ZOOM_LEVEL}>
             <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
