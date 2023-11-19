@@ -8,7 +8,7 @@ function CustomMarker(props: any) {
 
 
     let DefaultIcon = L.icon({
-        iconUrl: '/PIN.png',
+        iconUrl: '/pins/PIN.png',
         iconSize:     [38, 39],
     });
 
