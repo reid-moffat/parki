@@ -4,6 +4,8 @@ import { MapContainer, TileLayer } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 import style from '@/app/styles/Map.module.css'
 
+
+
 function Maps() {
     const center = { lat: 44.226795, lng: -76.498151 };
     const ZOOM_LEVEL = 16;
