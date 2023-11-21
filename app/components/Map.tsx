@@ -31,7 +31,7 @@ function Maps() {
                 */}
 
                 {
-                    dummyData.map((data) => <CustomMarker lat={data.latitude} long={data.longitude}/>)
+                    dummyData.map((data, index) => <CustomMarker key={index} lat={data.latitude} long={data.longitude}/>)
                 }
 
             </MapContainer>
