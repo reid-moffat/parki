@@ -17,7 +17,9 @@ function CustomMarker(props: any) {
     return (
         <Marker position={[lat, long]}>
             <Popup>
-                A pretty CSS3 popup. <br /> Easily customizable.
+                {props.address}
+                <br/>
+                ${props.price}
             </Popup>
         </Marker>
     )
