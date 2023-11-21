@@ -4,6 +4,7 @@ import { Inter } from 'next/font/google'
 import Maps from "@/app/components/Map";
 import React from "react";
 import dynamic from 'next/dynamic';
+import SearchBar from './components/SearchBar';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -23,6 +24,9 @@ export default function RootLayout() {
             <body className={inter.className}>
                 <main className='app'>
                     <DynamicHeader />
+                    <div className='flex gap-10 items-center p-6'>
+                        <SearchBar />
+                    </div>
                 </main>
             </body>
         </html>
