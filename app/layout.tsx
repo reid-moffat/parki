@@ -24,7 +24,7 @@ export default function RootLayout() {
             <body className={inter.className}>
                 <main className='app'>
                     <DynamicHeader />
-                    <div className='flex gap-10 items-center p-6'>
+                    <div>
                         <SearchBar />
                     </div>
                 </main>
