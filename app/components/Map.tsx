@@ -12,6 +12,12 @@ function Maps() {
     const ZOOM_LEVEL = 14.5;
     const mapRef = useRef();
 
+    const renderPins = () => {
+        return dummyData.map((data, index) => (
+            <CustomMarker key={index} address={data.address} price={data.price} lat={data.latitude} long={data.longitude}/>
+        ));
+    }
+
     return (
         <>
             <div className={style.header}>
@@ -24,16 +30,7 @@ function Maps() {
                     url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
                 />
 
-
-                {/* This creates a custom marker at specified location points using props with latitute and longitute locations
-                We can take this further by using a database or json file and looping through to create components and
-                and display as many marker components as there are latitute and longitutde pairs in the json file/database
-                */}
-
-                {
-                    dummyData.map((data, index) => <CustomMarker key={index} address={data.address} price={data.price} lat={data.latitude} long={data.longitude}/>)
-                }
-
+                {renderPins()}
             </MapContainer>
         </>
     )
