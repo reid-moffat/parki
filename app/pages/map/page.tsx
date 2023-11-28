@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import style from '@/app/styles/Map.module.css'
 import Image from 'next/image';
 import logo from "@/public/logo.png";
-import bottomBar from "@/public/map/bottom.png";
+import footer from "@/public/map/footer.png";
 
 function useWindowSize() {
     // Initialize state with undefined width/height so server and client renders match
@@ -55,7 +55,7 @@ const MapSelectionPage = () => {
             {/*<Maps/>*/}
         </div>
         <div className={style.footerContainer}>
-            <Image src={bottomBar} alt={"Bottom bar"}/>
+            <Image src={footer} alt={"Bottom bar"}/>
         </div>
         {/*<SearchBar/>*/}
     </div>
