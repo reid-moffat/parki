@@ -1,10 +1,10 @@
 import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import Maps from "@/app/components/Map";
 import React from "react";
 import dynamic from 'next/dynamic';
 import SearchBar from './components/SearchBar';
+import Maps from "@/app/components/Map";
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -23,7 +23,7 @@ export default function RootLayout() {
         <html lang="en">
             <body className={inter.className}>
                 <main className='app'>
-                    <DynamicHeader />
+                    <Maps/>
                     <div>
                         <SearchBar />
                     </div>
