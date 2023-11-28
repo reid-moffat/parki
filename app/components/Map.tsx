@@ -20,10 +20,6 @@ function Maps() {
 
     return (
         <>
-            <div className={style.header}>
-                <text className={style.headerText}>PARKI</text>
-            </div>
-
             <MapContainer className={style.map} center={center} zoom={ZOOM_LEVEL}>
                 <TileLayer
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

@@ -1,3 +1,27 @@
+.logoContainer {
+    height: 15vh;
+}
+
+.logo {
+    margin-left: 35%;
+    padding-top: 8%;
+}
+
+.mapContainer {
+    height: 75vh;
+    z-index: 0;
+
+    margin-left: 5%;
+    margin-right: 5%;
+
+    border-radius: 5%;
+    border: 10px solid green;
+}
+
+.footerContainer {
+    height: 10vh;
+}
+
 .map {
     width: 100vw;
     height: 95vh;
