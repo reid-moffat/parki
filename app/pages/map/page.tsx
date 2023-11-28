@@ -4,6 +4,7 @@ import style from '@/app/styles/Map.module.css'
 import Image from 'next/image';
 import logo from "@/public/logo.png";
 import footer from "@/public/map/footer.png";
+import Maps from "@/app/components/Map";
 
 function useWindowSize() {
     // Initialize state with undefined width/height so server and client renders match
@@ -52,7 +53,7 @@ const MapSelectionPage = () => {
         </div>
 
         <div className={style.mapContainer}>
-            {/*<Maps/>*/}
+            <Maps/>
         </div>
         <div className={style.footerContainer}>
             <Image src={footer} alt={"Bottom bar"}/>
