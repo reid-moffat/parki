@@ -15,7 +15,7 @@ function Maps() {
     const renderPins = () => {
         return dummyData.map((data, index) => (
             <CustomMarker key={index} address={data.address} price={data.price} lat={data.latitude}
-                          long={data.longitude}/>
+                          long={data.longitude} active={true}/>
         ));
     }
 
