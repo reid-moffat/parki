@@ -3,11 +3,13 @@ import React from 'react'
 import style from '@/app/styles/Map.module.css'
 import Image from 'next/image';
 import logo from "@/public/logo.png";
-import Maps from "@/app/components/Map";
 import footer from "@/public/map/bottom.png";
 import profileIcon from "@/public/map/user.png";
 import mapIcon from "@/public/map/map.png";
 import settingsIcon from "@/public/map/settings.png";
+import dynamic from "next/dynamic";
+
+const Map = dynamic(() => import('@/app/components/Map'), { ssr: false });
 
 const MapSelectionPage = () => {
     return (
@@ -20,7 +22,7 @@ const MapSelectionPage = () => {
             </div>
 
             <div className={style.mapContainer}>
-                <Maps/>
+                <Map/>
             </div>
 
             <div className={style.footerContainer}>
