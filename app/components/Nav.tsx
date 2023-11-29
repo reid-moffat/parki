@@ -1,7 +1,5 @@
-
 import Link from 'next/link'
 import Image from 'next/image'
-import { useState, useEffect } from 'react'
 import React from 'react'
 
 const Nav = () => {
@@ -12,10 +10,10 @@ const Nav = () => {
         <nav className="flex-between w-full mb-2 p-6 bg-orange-200">
             <Link href="/" className='flex gap-2 flex-center'>
                 <Image src="/next.svg"
-                    alt="QTMA Parking Logo"
-                    width={50}
-                    height={500}
-                    className="object-contain" />
+                       alt="QTMA Parking Logo"
+                       width={50}
+                       height={500}
+                       className="object-contain"/>
             </Link>
 
             {/* Mobile Navigation */}

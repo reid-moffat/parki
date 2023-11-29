@@ -8,13 +8,14 @@ import dummyData from "@/app/pages/map/dummyData";
 
 
 function Maps() {
-    const center = { lat: 44.226795, lng: -76.495151 };
+    const center = {lat: 44.226795, lng: -76.495151};
     const ZOOM_LEVEL = 14.5;
     const mapRef = useRef();
 
     const renderPins = () => {
         return dummyData.map((data, index) => (
-            <CustomMarker key={index} address={data.address} price={data.price} lat={data.latitude} long={data.longitude}/>
+            <CustomMarker key={index} address={data.address} price={data.price} lat={data.latitude}
+                          long={data.longitude}/>
         ));
     }
 

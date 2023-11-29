@@ -9,7 +9,8 @@ import profileIcon from "@/public/map/user.png";
 import mapIcon from "@/public/map/map.png";
 import settingsIcon from "@/public/map/settings.png";
 
-function useWindowSize() {
+// Gets window dimensions (and updates if they change)
+const useWindowSize = () => {
     // Initialize state with undefined width/height so server and client renders match
     // Learn more here: https://joshwcomeau.com/react/the-perils-of-rehydration/
     const [windowSize, setWindowSize] = useState({
@@ -18,10 +19,7 @@ function useWindowSize() {
     });
 
     useEffect(() => {
-        // only execute all the code below in client side
-        // Handler to call on window resize
         function handleResize() {
-            // Set window width/height to state
             setWindowSize({
                 // @ts-ignore
                 width: window.innerWidth,
@@ -30,15 +28,12 @@ function useWindowSize() {
             });
         }
 
-        // Add event listener
-        window.addEventListener("resize", handleResize);
+        window.addEventListener("resize", handleResize); // Update on window resize
 
-        // Call handler right away so state gets updated with initial window size
+        // Call right away to get initial dimensions, and clean up event listener
         handleResize();
-
-        // Remove event listener on cleanup
         return () => window.removeEventListener("resize", handleResize);
-    }, []); // Empty array ensures that effect is only run on mount
+    }, []);
 
     return windowSize;
 }
@@ -47,27 +42,25 @@ const MapSelectionPage = () => {
     const size = useWindowSize();
 
     return (
-    <div style={{ 'backgroundColor': '#343632' }}>
-        {/*<div className={style.header}>*/}
-        {/*    <text className={style.headerText}>PARKI</text>*/}
-        {/*</div>*/}
-        <div className={style.logoContainer}>
-            {/* @ts-ignore */}
-            <Image className={style.logo} src={logo} width={size.width * 0.25} height={size.height * 0.1} alt="Parki logo"/>
-        </div>
+        <div style={{'backgroundColor': '#343632'}}>
+            <div className={style.logoContainer}>
+                {/* @ts-ignore */}
+                <Image className={style.logo} src={logo} width={size.width * 0.25} height={size.height * 0.1}
+                       alt="Parki logo"/>
+            </div>
 
-        <div className={style.mapContainer}>
-            <Maps/>
+            <div className={style.mapContainer}>
+                <Maps/>
+            </div>
+
+            <div className={style.footerContainer}>
+                <Image src={footer} alt={"Bottom bar"}/>
+                <Image src={profileIcon} alt={"Bottom bar"} className={style.footerProfileIcon}/>
+                <Image src={mapIcon} alt={"Bottom bar"} className={style.footerMapIcon}/>
+                <Image src={settingsIcon} alt={"Bottom bar"} className={style.footerSettingsIcon}/>
+            </div>
         </div>
-        <div className={style.footerContainer}>
-            <Image src={footer} alt={"Bottom bar"}/>
-            <Image src={profileIcon} alt={"Bottom bar"} className={style.footerProfileIcon}/>
-            <Image src={mapIcon} alt={"Bottom bar"} className={style.footerMapIcon}/>
-            <Image src={settingsIcon} alt={"Bottom bar"} className={style.footerSettingsIcon}/>
-        </div>
-        {/*<SearchBar/>*/}
-    </div>
-  )
+    )
 }
 
 export default MapSelectionPage;

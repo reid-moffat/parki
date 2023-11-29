@@ -1,5 +1,5 @@
 import L from "leaflet";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import { Marker, Popup } from "react-leaflet";
 
 
 function CustomMarker(props: any) {
@@ -9,7 +9,7 @@ function CustomMarker(props: any) {
 
     let DefaultIcon = L.icon({
         iconUrl: '/pins/PIN.png',
-        iconSize:     [38, 39],
+        iconSize: [38, 39],
     });
 
     L.Marker.prototype.options.icon = DefaultIcon;

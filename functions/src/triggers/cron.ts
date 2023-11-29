@@ -57,7 +57,9 @@ const purgeExpiredEmails = onSchedule('0 0 * * *', async () => {
             logger.info(`Successfully queried ${result.docs.length} expired emails`);
             return result.docs;
         })
-        .catch((err) => { throw new HttpsError('internal', `Failed to query expired emails: ${err}`); });
+        .catch((err) => {
+            throw new HttpsError('internal', `Failed to query expired emails: ${err}`);
+        });
 
     if (expiredEmails.length === 0) {
         logger.info(`No expired emails found, quitting cron...`);
@@ -66,11 +68,11 @@ const purgeExpiredEmails = onSchedule('0 0 * * *', async () => {
 
     // And delete them concurrently
     return Promise.all(expiredEmails.map((email) => {
-            const docId = email.id;
-            return email.ref.delete()
-                .then(() => logger.info(`Successfully deleted email ${docId}`))
-                .catch((err) => logger.error(`Error deleting email document ${docId}`));
-        }))
+        const docId = email.id;
+        return email.ref.delete()
+            .then(() => logger.info(`Successfully deleted email ${docId}`))
+            .catch((err) => logger.error(`Error deleting email document ${docId}`));
+    }))
         .then(() => logger.info(`Successfully deleted ${expiredEmails.length} expired emails`))
         .catch((err) => logger.error(`Error deleting expired emails: ${err}`));
 });

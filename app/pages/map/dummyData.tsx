@@ -77,6 +77,6 @@ const generateData = (numSpots: number) => {
     return data;
 }
 
-const dummyData : ParkingSpace[] = generateData(30);
+const dummyData: ParkingSpace[] = generateData(30);
 
 export default dummyData;
