@@ -13,7 +13,7 @@ const Map = dynamic(() => import('@/app/components/Map'), { ssr: false });
 
 const MapSelectionPage = () => {
     return (
-        <div style={{'backgroundColor': '#343632'}}>
+        <div className={style.mapPage}>
             <div className={style.headerContainer}>
                 <div className={style.logoContainer}>
                     {/* @ts-ignore */}
