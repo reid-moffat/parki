@@ -39,7 +39,10 @@ const useWindowSize = () => {
 }
 
 const MapSelectionPage = () => {
-    const size = useWindowSize();
+    let size = { width: undefined, height: undefined};
+    if (typeof window !== "undefined") {
+        size = useWindowSize();
+    }
 
     return (
         <div style={{'backgroundColor': '#343632'}}>
