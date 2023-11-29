@@ -3,8 +3,11 @@ import React, { useEffect, useState } from 'react'
 import style from '@/app/styles/Map.module.css'
 import Image from 'next/image';
 import logo from "@/public/logo.png";
-import footer from "@/public/map/footer.png";
 import Maps from "@/app/components/Map";
+import footer from "@/public/map/bottom.png";
+import profileIcon from "@/public/map/user.png";
+import mapIcon from "@/public/map/map.png";
+import settingsIcon from "@/public/map/settings.png";
 
 function useWindowSize() {
     // Initialize state with undefined width/height so server and client renders match
@@ -36,6 +39,7 @@ function useWindowSize() {
         // Remove event listener on cleanup
         return () => window.removeEventListener("resize", handleResize);
     }, []); // Empty array ensures that effect is only run on mount
+
     return windowSize;
 }
 
@@ -57,6 +61,9 @@ const MapSelectionPage = () => {
         </div>
         <div className={style.footerContainer}>
             <Image src={footer} alt={"Bottom bar"}/>
+            <Image src={profileIcon} alt={"Bottom bar"} className={style.footerProfileIcon}/>
+            <Image src={mapIcon} alt={"Bottom bar"} className={style.footerMapIcon}/>
+            <Image src={settingsIcon} alt={"Bottom bar"} className={style.footerSettingsIcon}/>
         </div>
         {/*<SearchBar/>*/}
     </div>

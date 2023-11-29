@@ -23,6 +23,33 @@
     height: 10vh;
 }
 
+.footerProfileIcon {
+    position: absolute;
+    bottom: 1%;
+
+    left: 25%;
+    width: 10%;
+    height: 5%;
+}
+
+.footerMapIcon {
+    position: absolute;
+    bottom: 1%;
+
+    left: 47%;
+    width: 10%;
+    height: 5%;
+}
+
+.footerSettingsIcon {
+    position: absolute;
+    bottom: 1%;
+
+    left: 66%;
+    width: 10%;
+    height: 5%;
+}
+
 .map {
     width: 90vw;
     height: 75vh;
