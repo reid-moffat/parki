@@ -1,9 +1,11 @@
-.logoContainer {
+.headerContainer {
     height: 15vh;
 }
 
-.logo {
-    margin-left: 35%;
+.logoContainer {
+    width: 30%;
+    height: 12%;
+    margin-left: 37%;
     padding-top: 8%;
 }
 
