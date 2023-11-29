@@ -6,13 +6,10 @@ function CustomMarker(props: any) {
     const lat = props.lat;
     const long = props.long;
 
-
-    let DefaultIcon = L.icon({
+    L.Marker.prototype.options.icon = L.icon({
         iconUrl: '/pins/PIN.png',
         iconSize: [38, 39],
     });
-
-    L.Marker.prototype.options.icon = DefaultIcon;
 
     return (
         <Marker position={[lat, long]}>
