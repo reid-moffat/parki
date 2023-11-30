@@ -12,11 +12,10 @@ function Maps({ timeframes }) {
     const mapRef = useRef();
 
     const renderPins = () => {
-        console.log(JSON.stringify(dummyData, null, 4));
         return dummyData
             .filter((item) => timeframes[item.period])
             .map((data, index) => (
-            <CustomMarker key={index} address={data.address} price={data.price} lat={data.latitude}
+                <CustomMarker key={index} address={data.address} price={data.price} lat={data.latitude}
                           long={data.longitude} active={true}/>
         ));
     }
