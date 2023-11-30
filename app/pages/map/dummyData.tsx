@@ -7,6 +7,7 @@ interface ParkingSpace {
     address: string,
     price: number,
     period: RentalPeriod,
+    amenities: string[],
     rating: number, // From 1 to 5 stars (1 decimal place)
 }
 
@@ -15,6 +16,15 @@ enum RentalPeriod {
     HOURLY,
     DAILY,
     MONTHLY,
+}
+
+enum Amenities {
+    Accessible,
+    SelfPark,
+    EVCharging,
+    Covered,
+    OnSiteStaff,
+    Shovelled
 }
 
 // Coordinates ([lat, long]) of real driveways around queens that can be used to test
@@ -34,6 +44,7 @@ const generateData = (numSpots: number) => {
     }
 
     const data: ParkingSpace[] = [];
+    const numAmenities = Object.keys(Amenities).length / 2;
 
     for (let i = 0; i < numSpots; ++i) {
         const random = Math.random();
@@ -48,6 +59,7 @@ const generateData = (numSpots: number) => {
             // @ts-ignore
             price: locations[i][3],
             period: random < 1/3 ? RentalPeriod.HOURLY : ( random < 2/3 ? RentalPeriod.DAILY : RentalPeriod.MONTHLY),
+            amenities: Object.keys(Amenities).filter((item) => isNaN(Number(item)) && Math.random() < 0.3),
             rating: Math.cbrt(Math.random() * 64) + 1, // 1-5, biased towards higher ratings
         };
 
