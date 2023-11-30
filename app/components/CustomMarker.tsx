@@ -17,7 +17,7 @@ function CustomMarker({ lat, long, address, price, active } : MarkerProps) {
     });
 
     return (
-        <Marker position={[lat, long]} >
+        <Marker position={[lat, long]}>
             <Popup>
                 {address}
                 <br/>
