@@ -23,14 +23,25 @@ export enum States {
 
 const MapSelectionPage = () => {
 
-    const [timeframes, setTimeframes] = useState({ Hourly: true, Weekly: true, Monthly: true });
     const [pageState, setPageState] = useState(States.MAP);
+    const [timeframes, setTimeframes] = useState({ Hourly: true, Weekly: true, Monthly: true });
+
+    // Filters
+    const [range, setRange] = useState(30);
+    const [price, setPrice] = useState([0, 200]);
+    const [amenities, setAmenities] = useState({ "Accessible": false,
+        "Self-Park": false, "EV Charging": false, "Covered": false, "On-Site Staff": false, "Shovelling Included": false });
 
     const renderPage = () => {
         switch (pageState) {
             case States.MAP:
                 return (<>
-                    <Map timeframes={timeframes}/>
+                    <Map
+                        timeframes={timeframes}
+                        range={range}
+                        price={price}
+                        amenities={amenities}
+                    />
                     <TopMapMenu
                         setPageState={setPageState}
                         setTimeframes={setTimeframes}
@@ -40,7 +51,17 @@ const MapSelectionPage = () => {
                     />
                 </>);
             case States.FILTERS:
-                return <FilterPage setPageState={setPageState}/>;
+                return (
+                    <FilterPage
+                        setPageState={setPageState}
+                        range={range}
+                        setRange={setRange}
+                        price={price}
+                        setPrice={setPrice}
+                        amenities={amenities}
+                        setAmenities={setAmenities}
+                    />
+                );
             case States.DETAILS:
                 return <DetailsPage setPageState={setPageState}/>;
             default:

@@ -14,12 +14,7 @@ import { FaCarTunnel } from "react-icons/fa6";
 import { IoSnowSharp } from "react-icons/io5";
 
 // @ts-ignore
-const FilterPage = ({ setPageState }) => {
-
-    const [range, setRange] = useState(5);
-    const [price, setPrice] = useState([70, 100]);
-    const [amenities, setAmenities] = useState({ "Accessible": false,
-        "Self-Park": false, "EV Charging": false, "Covered": false, "On-Site Staff": false, "Shovelling Included": false });
+const FilterPage = ({ setPageState, range, setRange, price, setPrice, amenities, setAmenities }) => {
 
     const renderAmenities = () => {
         const allAmenities = [
@@ -41,7 +36,7 @@ const FilterPage = ({ setPageState }) => {
                         className={(isClicked ? "bg-[#343632] text-white" : "bg-[#ffffff]" +
                                 " text-black") +
                             " flex justify-center items-center w-3/6 rounded-full border-black border-2"}
-                        onClick={() => setAmenities((oldState) => ({ ...oldState, [amenity.key as string]: !isClicked }))}
+                        onClick={() => setAmenities((oldState: object) => ({ ...oldState, [amenity.key as string]: !isClicked }))}
                     >
                         <IconContext.Provider value={{ color: '#FF4251' }}>
                             {amenity}
@@ -115,6 +110,16 @@ const FilterPage = ({ setPageState }) => {
                 </div>
             </div>
             {renderAmenities()}
+            <br/>
+
+            <div className="flex justify-center items-center">
+                <div
+                    className="flex justify-center items-center w-3/6 rounded-full text-white bg-[#343632]"
+                    onClick={() => setPageState(States.MAP)}
+                >
+                    Save filters
+                </div>
+            </div>
         </div>
     );
 }
