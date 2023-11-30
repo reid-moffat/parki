@@ -32,7 +32,8 @@ const FilterPage = ({ setPageState }) => {
         ];
 
         return allAmenities.map((amenity) => (
-            <div className="flex justify-center items-center">
+            // @ts-ignore
+            <div className="flex justify-center items-center" key={amenity[1]}>
                 <div
                     className={"flex justify-center items-center w-3/6 rounded-full border-black border-2 " +
                         (amenities[amenity[1]] ? "bg-[#343632] text-white" : "bg-[#ffffff] text-black")}
