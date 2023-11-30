@@ -3,7 +3,7 @@ import Image from 'next/image';
 import car from "@/public/parked_car.jpg";
 import line from "@/public/Line.png";
 import map from "@/public/mapPlaceholder.png";
-import rightArrow from "@/public/icon _chevron right_.png";
+import rightArrow from "@/public/icon_chevron right.png";
 import locationIcon from "@/public/pins/OtherSpot.png";
 
 const Details = () => {
@@ -36,7 +36,7 @@ const Details = () => {
                 <Image src={line} alt={"line_divider_2"}/>
             </div>
             <div className='p-[5%]'>
-                <Image src={map} alt={"abc"} className='border-0 rounded-[1.25rem] h-[8rem] w-[100%] overflow-hidden'/>
+                <Image src={map} alt={"map"} className='border-0 rounded-[1.25rem] h-[8rem] w-[100%] overflow-hidden'/>
 
                 <button className='flex flex-row border-[1px] border-[#343632] w-[100%] rounded-[2.5rem] h-[5%] items-center justify-center'>
                     <text>Availability</text>
@@ -56,7 +56,7 @@ const Details = () => {
                 </div>
                 <button className='flex flex-row border-[1px] border-[#343632] w-[100%] rounded-[2.5rem] h-[5%] items-center justify-center'>
                     <text>Show all 6 reviews</text>
-                    <Image src={rightArrow} alt={"Arrow1"} className='w-[5%] h-[5%]'/>
+                    <Image src={rightArrow} alt={"Arrow2"} className='w-[5%] h-[5%]'/>
                 </button>
             </div>
         </div>
