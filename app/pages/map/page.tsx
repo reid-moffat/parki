@@ -9,26 +9,37 @@ import mapIcon from "@/public/map/map.png";
 import settingsIcon from "@/public/map/settings.png";
 import dynamic from "next/dynamic";
 import TopMapMenu from '@/app/components/TopMapMenu';
+import FilterPage from '@/app/components/Filter';
 
 const Map = dynamic(() => import('@/app/components/Map'), { ssr: false });
 
 const MapSelectionPage = () => {
 
     const [timeframe, setTimeframe] = useState("Monthly");
+    const [showFilters, setShowFilters] = useState(true);
+
+    const map = (<>
+        <Map/>
+        <TopMapMenu 
+            setShowFilters={setShowFilters}
+            setTimeframe={setTimeframe}
+            timeframe={timeframe}
+            location="Queen's Unviersity"
+            date="December 2, 2023"
+        />
+    </>)
+
+    const filter = (
+        <FilterPage setShowFilters={setShowFilters}/>
+    )
 
     return (
         <div className={style.mapPage}>
+            <Image src={logo} alt="Parki logo" className='w-[100vw] h-[8vh] object-contain mt-3 mb-4'/>
 
-            <Map/>
+            { showFilters ? null : map }
 
-            <Image src={logo} alt="Parki logo" className='w-[100vw] h-[8vh] object-contain mt-3 mb-10'/>
-
-            <TopMapMenu 
-                setTimeframe={setTimeframe}
-                timeframe={timeframe}
-                location="Queen's Unviersity"
-                date="December 2, 2023"
-            />
+            { showFilters ? filter : null }
 
             <div className="fixed bottom-0 w-[100vw]">
                 <Image src={footer} alt={"Bottom bar"} style={{ width: '100%' }}/>
