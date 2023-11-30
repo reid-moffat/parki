@@ -12,6 +12,7 @@ interface ParkingSpace {
 
 // The period in which you can rent the spot for
 enum RentalPeriod {
+    HOURLY,
     DAILY,
     MONTHLY,
 }
@@ -35,6 +36,8 @@ const generateData = (numSpots: number) => {
     const data: ParkingSpace[] = [];
 
     for (let i = 0; i < numSpots; ++i) {
+        const random = Math.random();
+
         const dummySpot: ParkingSpace = {
             // @ts-ignore
             latitude: locations[i][0],
@@ -44,7 +47,7 @@ const generateData = (numSpots: number) => {
             address: locations[i][2],
             // @ts-ignore
             price: locations[i][3],
-            period: Math.random() < 0.5 ? RentalPeriod.DAILY : RentalPeriod.MONTHLY,
+            period: random < 1/3 ? RentalPeriod.HOURLY : ( random < 2/3 ? RentalPeriod.DAILY : RentalPeriod.MONTHLY),
             rating: Math.cbrt(Math.random() * 64) + 1, // 1-5, biased towards higher ratings
         };
 
