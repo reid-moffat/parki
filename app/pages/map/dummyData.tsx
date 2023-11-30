@@ -24,12 +24,12 @@ const Amenities = [
 
 // Coordinates ([lat, long]) of real driveways around queens that can be used to test
 const locations = [
-    [44.235401, -76.501610, "137 Nelson St", "110", "Description of the spot #1", 1500],
-    [44.2374356, -76.4994443, "538 Frontenac St", "110", "Description of the spot #2", 1500],
-    [44.2375353, -76.4979271, "400 Alfred St", "110", "Description of the spot #3", 1500],
-    [44.2357522, -76.4954009, "215 Colborne St", "120", "Description of the spot #4", 1200],
-    [44.2382535, -76.4907978, "14 Plum St", "110", "Description of the spot #5", 1800],
-    [44.2342821, -76.5000655, "67 Mack Street", "110", "Description of the spot #6", 1300],
+    [44.235401, -76.501610, "137 Nelson St", "110", "Backyard area with an open spot available", 1500],
+    [44.2374356, -76.4994443, "538 Frontenac St", "110", "Large, secluded backyard area with an easy accessible path in", 1500],
+    [44.2375353, -76.4979271, "400 Alfred St", "110", "Backyard lot accessible from the south", 1500],
+    [44.2357522, -76.4954009, "215 Colborne St", "120", "Backyard area accessible from the side", 1200],
+    [44.2382535, -76.4907978, "14 Plum St", "110", "Backyard lot faccessible from the side", 1800],
+    [44.2342821, -76.5000655, "67 Mack Street", "110", "A backyard, side-accessible lot", 1300],
 ];
 
 const generateData = (numSpots: number) => {

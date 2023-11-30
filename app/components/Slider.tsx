@@ -21,7 +21,7 @@ import dummyData from "../pages/map/dummyData";
 // @ts-ignore
 const Slider = ({ setPageState, setCurrentSpot }) => {
 
-    const handleSwipe = (swiper) => {
+    const handleSwipe = (swiper: { activeIndex: number; }) => {
         setCurrentSpot(dummyData[swiper.activeIndex]);
     }
 
