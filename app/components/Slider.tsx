@@ -1,19 +1,20 @@
-import { Navigation, Pagination, Scrollbar, A11y, EffectCoverflow} from 'swiper/modules';
+import React from 'react';
+import Image from 'next/image';
 
+import { Navigation, Pagination, Scrollbar, A11y} from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { MdStar } from "react-icons/md";
-
+import { Rating } from '@smastrom/react-rating';
+import { MdFavorite, MdChevronLeft, MdChevronRight } from 'react-icons/md';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
-import slide_image from '@/public/parked_car.jpg';
-import Image from 'next/image';
-import data from '../pages/map/dummyData';
-import React from 'react';
-import { Rating } from '@smastrom/react-rating'
 import '@smastrom/react-rating/style.css'
+
+import slide_image from '@/public/parked_car.jpg';
+import data from '../pages/map/dummyData';
+
 
 const Slider = () => {
   console.log(data);
@@ -28,66 +29,49 @@ const Slider = () => {
         depth: 100,
         modifier: 2.5,
       }}
-
       navigation
       // install Swiper modules
       modules={[Navigation, Pagination, Scrollbar, A11y]}
-      spaceBetween={20}
       slidesPerView = {1}
       onSwiper={(swiper) => console.log(swiper)}
       onSlideChange={() => console.log('slide change')}
+      className="h-[20vh] mt-[40vh] mb-0"
     >
 
-{data.map((item) => (
-  <SwiperSlide key={item.address} style={{ position: 'relative' }}>
-    <div
-      style={{
-        position: 'absolute',
-        top: '10px',
-        left: '10px',
-        color: 'white',
-        zIndex: 1,
-      }}
-    >
-      ${item.price}, {item.address}
-    </div>
-    <div style={{ position: 'relative' }}>
-      <Image src={slide_image} alt="slide_image" style={{ width: '80%', borderRadius: '15px' }} />
-      <div
-        style={{
-          position: 'absolute',
-          bottom: '10px',
-          left: '10px',
-          zIndex: 1,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'flex-end',
-        }}
-      >
-        <button
-          style={{
-            backgroundColor: 'red',
-            color: 'white',
-            padding: '10px 20px',
-            borderRadius: '8px',
-            fontSize: '16px',
-            cursor: 'pointer',
-            border: 'none',
-          }}
-        >
-          More Details
-        </button>
-        <Rating style={{ maxWidth: 90 }} value={item.rating} readOnly />
+    {data.map((item) => (
+    <SwiperSlide key={item.address} className="">
+      <Image src={slide_image} alt="slide_image" className="absolute w-[70vw] h-[20vh] mx-[15vw] rounded-xl" />
+      <div className="absolute w-[70vw] h-[20vh] mx-[15vw] rounded-xl bg-black opacity-60"/>
+      <div className="absolute w-[70vw] h-[20vh] mx-[15vw] rounded-xl p-4 overflow-hidden">
+        <div className="flex flex-row">
+          <div>
+            <div className="font-passion text-[#FCF9EF] text-2xl">{item.address}</div>
+            <div className="font-passion text-[#FCF9EF] text-lg -mt-3">Kingston, ON</div>
+            <div className="font-outfit text-[#FCF9EF] text-xs -mt-1">({Math.round(item.distance)}m)</div>
+          </div>
+          <div className="ml-auto text-right">
+            <div className="font-passion text-[#FCF9EF] text-4xl">${item.price}</div>
+            <div className="font-passion text-[#FCF9EF] text-sm -mt-2">{/*item.period*/}per month</div>
+            <Rating style={{ maxWidth: 70 }} value={item.rating} readOnly />
+          </div>
+        </div>
+        <div className="absolute bottom-3">
+          <div className="flex flex-row space-x-2 mb-2">
+            {item.amenities.map((tag, key) => (
+              <div className="px-2 rounded-full bg-[#343632] text-white font-outfit text-[10px] border-[1px] border-[#FCF9EF]">{tag}</div>
+            ))}
+          </div>
+          <div className="flex flex-row items-center">
+            <button className="w-[54vw] py-1 bg-[#FF4251] rounded-full font-passion text-[#FCF9EF] shadow-xl active:opacity-50 duration-75">
+              More Details
+            </button>
+            <div className="border-2 border-[#FCF9EF] rounded-full p-[1vw] ml-2"><MdFavorite size={18} color="#FCF9EF"/></div>
+          </div>
+        </div>
       </div>
-    </div>
-  </SwiperSlide>
-))}
+    </SwiperSlide>
+    ))}
 
-    
-      <div className="slider-controler">
-          
-          <div className="swiper-pagination"></div>
-      </div>
     </Swiper>
   );
 };
