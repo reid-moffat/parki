@@ -2,10 +2,11 @@ import React from 'react';
 import { MdArrowBackIos } from "react-icons/md";
 import { FaFilterCircleXmark } from "react-icons/fa6";
 
-const FilterPage = ({setShowFilters}) => {
+// @ts-ignore
+const FilterPage = ({ setShowFilters }) => {
     return (
         <div className="absolute ml-[2vw] h-[86.5vh] w-[96vw] rounded-xl z-50 bg-[#FCF9EF] text-[#343632]">
-            
+
             <div className="flex flex-row justify-around py-3 text-xl">
                 <MdArrowBackIos onClick={() => setShowFilters(false)}/>
                 <div className="flex items-center font-passion">

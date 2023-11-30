@@ -42,6 +42,7 @@ const generateData = (numSpots: number) => {
             longitude: locations[i][1],
             // @ts-ignore
             address: locations[i][2],
+            // @ts-ignore
             price: locations[i][3],
             period: Math.random() < 0.5 ? RentalPeriod.DAILY : RentalPeriod.MONTHLY,
             rating: Math.cbrt(Math.random() * 64) + 1, // 1-5, biased towards higher ratings
