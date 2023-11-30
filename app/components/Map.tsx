@@ -2,18 +2,20 @@
 import React, { useRef } from 'react'
 import { MapContainer, TileLayer } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
-import style from '@/app/styles/Map.module.css'
 import CustomMarker from './CustomMarker';
 import dummyData from "@/app/pages/map/dummyData";
 
-
-function Maps() {
+// @ts-ignore
+function Maps({ timeframes }) {
     const center = {lat: 44.236524, lng: -76.495791};
     const ZOOM_LEVEL = 14.5;
     const mapRef = useRef();
 
     const renderPins = () => {
-        return dummyData.map((data, index) => (
+        console.log(JSON.stringify(dummyData, null, 4));
+        return dummyData
+            .filter((item) => timeframes[item.period])
+            .map((data, index) => (
             <CustomMarker key={index} address={data.address} price={data.price} lat={data.latitude}
                           long={data.longitude} active={true}/>
         ));
@@ -21,9 +23,9 @@ function Maps() {
 
     return (
         <>
-            <MapContainer 
-                className="absolute ml-[2vw] h-[86.5vh] w-[96vw] rounded-xl -z-50" 
-                center={center} 
+            <MapContainer
+                className="absolute ml-[2vw] h-[86.5vh] w-[96vw] rounded-xl -z-50"
+                center={center}
                 zoom={ZOOM_LEVEL}
             >
                 <TileLayer

@@ -9,27 +9,27 @@ interface Timeframes {
 }
 
 // @ts-ignore
-const TopMapMenu = ({setPageState, setTimeframe, timeframe, location, date}) => {
+const TopMapMenu = ({setPageState, setTimeframes, timeframes, location, date}) => {
     return (
         <div className="mt-[4vh] mx-[10%] font-passion">
             <div className="flex flex-row justify-around bg-[#343632] rounded-xl px-3 py-1 text-[#FCF9EF]">
                 <div
-                    className={"w-min px-2 rounded-full duration-200" + (timeframe.Hourly ? " bg-[#FF4251]" : "")}
-                    onClick={() => setTimeframe((oldState: Timeframes) => ({ ...oldState, Hourly: !oldState.Hourly }))}
+                    className={"w-min px-2 rounded-full duration-200" + (timeframes.Hourly ? " bg-[#FF4251]" : "")}
+                    onClick={() => setTimeframes((oldState: Timeframes) => ({ ...oldState, Hourly: !oldState.Hourly }))}
                 >
                     Hourly
                 </div>
 
                 <div
-                    className={"w-min px-2 rounded-full duration-200" + (timeframe.Weekly ? " bg-[#FF4251]" : "")}
-                    onClick={() => setTimeframe((oldState: Timeframes) => ({ ...oldState, Weekly: !oldState.Weekly }))}
+                    className={"w-min px-2 rounded-full duration-200" + (timeframes.Weekly ? " bg-[#FF4251]" : "")}
+                    onClick={() => setTimeframes((oldState: Timeframes) => ({ ...oldState, Weekly: !oldState.Weekly }))}
                 >
                     Weekly
                 </div>
 
                 <div
-                    className={"w-min px-2 rounded-full duration-200" + (timeframe.Monthly ? " bg-[#FF4251]" : "")}
-                    onClick={() => setTimeframe((oldState: Timeframes) => ({ ...oldState, Monthly: !oldState.Monthly }))}
+                    className={"w-min px-2 rounded-full duration-200" + (timeframes.Monthly ? " bg-[#FF4251]" : "")}
+                    onClick={() => setTimeframes((oldState: Timeframes) => ({ ...oldState, Monthly: !oldState.Monthly }))}
                 >
                     Monthly
                 </div>

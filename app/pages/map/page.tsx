@@ -22,18 +22,18 @@ export enum States {
 
 const MapSelectionPage = () => {
 
-    const [timeframe, setTimeframe] = useState({ Hourly: true, Weekly: true, Monthly: true });
+    const [timeframes, setTimeframes] = useState({ Hourly: true, Weekly: true, Monthly: true });
     const [pageState, setPageState] = useState(States.MAP);
 
     const renderPage = () => {
         switch (pageState) {
             case States.MAP:
                 return (<>
-                    <Map/>
+                    <Map timeframes={timeframes}/>
                     <TopMapMenu
                         setPageState={setPageState}
-                        setTimeframe={setTimeframe}
-                        timeframe={timeframe}
+                        setTimeframes={setTimeframes}
+                        timeframes={timeframes}
                         location="Queen's Unviersity"
                         date="December 2, 2023"
                     />
