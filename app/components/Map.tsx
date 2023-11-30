@@ -31,6 +31,7 @@ function Maps({ timeframes, range, price, amenities }) {
                 className="absolute ml-[2vw] h-[86.5vh] w-[96vw] rounded-xl -z-50"
                 center={center}
                 zoom={ZOOM_LEVEL}
+                zoomControl={false}
             >
                 <TileLayer
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
