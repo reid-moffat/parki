@@ -3,6 +3,7 @@ import { MdArrowBackIos } from "react-icons/md";
 import { FaFilterCircleXmark } from "react-icons/fa6";
 import { LuClock5 } from "react-icons/lu";
 import { States } from "@/app/pages/map/page";
+import Slider from '@mui/material/Slider';
 import Divider from "@/public/Line.png";
 import Image from 'next/image';
 import { FaWheelchair } from "react-icons/fa";
@@ -62,14 +63,13 @@ const FilterPage = ({ setPageState }) => {
             <div className="text-center">
                 Within <span className="text-blue-500">25</span> km
             </div>
-            [Distance slider]
+            <Slider defaultValue={30} aria-label="Disabled slider" />
 
             <div className="text-center">
-                Price Range:
-                <p/>
+                Price Range:<p/>
                 $<span className="text-blue-500">0</span> to $<span className="text-blue-500">5</span>
             </div>
-            [Price slider]
+            <Slider defaultValue={30} aria-label="Disabled slider" />
             <br/><br/><br/>
 
             <div className="flex justify-center items-center">
