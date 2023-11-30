@@ -47,7 +47,7 @@ const MapSelectionPage = () => {
                         setPageState={setPageState}
                         setTimeframes={setTimeframes}
                         timeframes={timeframes}
-                        location="Queen's Unviersity"
+                        location="Queen's University"
                         date="December 2, 2023"
                     />
                     <Slider setPageState={setPageState} setCurrentSpot={setCurrentSpot}/>
