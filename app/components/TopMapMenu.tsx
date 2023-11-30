@@ -6,7 +6,7 @@ import { MdCalendarToday, MdLocationPin, MdFilterAlt } from "react-icons/md";
 const TopMapMenu = ({setTimeframe, timeframe, location, date}) => {
 
     return (
-        <div className="mt-[5%] mx-[10%] font-passion">
+        <div className="mt-0 mx-[10%] font-passion">
             <div className="flex flex-row justify-around bg-[#343632] rounded-xl px-3 py-1 text-[#FCF9EF]">
                 <div className={"w-min px-2 rounded-full duration-200" + (timeframe=="Hourly" ? " bg-[#FF4251]" : "")} onClick={() => setTimeframe("Hourly")}>Hourly</div>
                 <div className={"w-min px-2 rounded-full duration-200" + (timeframe=="Weekly" ? " bg-[#FF4251]" : "")} onClick={() => setTimeframe("Weekly")}>Weekly</div>

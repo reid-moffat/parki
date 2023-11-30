@@ -17,17 +17,11 @@ const MapSelectionPage = () => {
     const [timeframe, setTimeframe] = useState("Monthly");
 
     return (
-        <>
         <div className={style.mapPage}>
 
             <Map/>
 
-            <div className={style.headerContainer}>
-                <div className={style.logoContainer}>
-                    {/* @ts-ignore */}
-                    <Image src={logo} alt="Parki logo"/>
-                </div>
-            </div>
+            <Image src={logo} alt="Parki logo" className='w-[100vw] h-[8vh] object-contain mt-3 mb-10'/>
 
             <TopMapMenu 
                 setTimeframe={setTimeframe}
@@ -43,7 +37,6 @@ const MapSelectionPage = () => {
                 <Image src={settingsIcon} alt={"Bottom bar"} className={style.footerSettingsIcon}/>
             </div>
         </div>
-        </>
     )
 }
 
