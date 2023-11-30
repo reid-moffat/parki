@@ -15,10 +15,16 @@ import '@smastrom/react-rating/style.css'
 
 import slide_image from '@/public/parked_car.jpg';
 import data from '../pages/map/dummyData';
+import dummyData from "../pages/map/dummyData";
 
 
 // @ts-ignore
-const Slider = ({ setPageState }) => {
+const Slider = ({ setPageState, setCurrentSpot }) => {
+
+    const handleSwipe = (swiper) => {
+        setCurrentSpot(dummyData[swiper.activeIndex]);
+    }
+
   return (
     <Swiper
       effect={'coverflow'}
@@ -35,6 +41,7 @@ const Slider = ({ setPageState }) => {
       modules={[Navigation, Pagination, Scrollbar, A11y]}
       slidesPerView = {1}
       className="h-[20vh] mt-[40vh] mb-0"
+      onActiveIndexChange={handleSwipe}
     >
 
     {data.map((item) => (

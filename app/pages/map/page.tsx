@@ -50,7 +50,7 @@ const MapSelectionPage = () => {
                         location="Queen's Unviersity"
                         date="December 2, 2023"
                     />
-                    <Slider setPageState={setPageState} />
+                    <Slider setPageState={setPageState} setCurrentSpot={setCurrentSpot}/>
                 </>);
             case States.FILTERS:
                 return (
