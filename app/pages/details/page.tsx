@@ -7,10 +7,7 @@ import footer from "@/public/map/bottom.png";
 import profileIcon from "@/public/map/user.png";
 import mapIcon from "@/public/map/map.png";
 import settingsIcon from "@/public/map/settings.png";
-import dynamic from "next/dynamic";
 import Details from '@/app/components/Details';
-
-const Map = dynamic(() => import('@/app/components/Map'), { ssr: false });
 
 const DetailsPage = () => {
     return (

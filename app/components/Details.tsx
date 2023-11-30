@@ -3,7 +3,7 @@ import Image from 'next/image';
 import car from "@/public/parked_car.jpg";
 import line from "@/public/Line.png";
 import map from "@/public/mapPlaceholder.png";
-import rightArrow from "@/public/icon_chevron right.png";
+import rightArrow from "@/public/icon_chevron_right.png";
 import locationIcon from "@/public/pins/OtherSpot.png";
 
 const Details = () => {
@@ -28,9 +28,6 @@ const Details = () => {
             </div>
             <div className='p-[5%]'>
                 <text>Amenities</text>
-                <div>
-                    
-                </div>
             </div>
             <div className='flex justify-center'>
                 <Image src={line} alt={"line_divider_2"}/>
