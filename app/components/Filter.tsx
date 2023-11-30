@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { MdArrowBackIos } from "react-icons/md";
 import { FaFilterCircleXmark } from "react-icons/fa6";
 import { LuClock5 } from "react-icons/lu";
@@ -80,7 +80,7 @@ const FilterPage = ({ setPageState, range, setRange, price, setPrice, amenities,
             </div>
             <br/>
             <div className="text-center">
-                Within <span className="text-blue-500">{range * 100 < 1000 ? (range * 100) + "m" : (range / 10) + "km"}</span>
+                Within <span className="text-blue-500">{range * 100 < 1000 ? (range * 100) + "m" : (range === 30 ? "any distance" : (range / 10) + "km")}</span>
             </div>
             <div className="flex justify-center items-center">
                 <div className="w-5/6">
@@ -90,7 +90,7 @@ const FilterPage = ({ setPageState, range, setRange, price, setPrice, amenities,
 
             <div className="text-center">
                 Price Range:<p/>
-                $<span className="text-blue-500">{price[0]}</span> to $<span className="text-blue-500">{price[1]}</span>
+                $<span className="text-blue-500">{price[0]}</span> to $<span className="text-blue-500">{price[1] < 200 ? price[1] : "Infinite"}</span>
             </div>
             <div className="flex justify-center items-center">
                 <div className="w-5/6">
@@ -111,15 +111,6 @@ const FilterPage = ({ setPageState, range, setRange, price, setPrice, amenities,
             </div>
             {renderAmenities()}
             <br/>
-
-            <div className="flex justify-center items-center">
-                <div
-                    className="flex justify-center items-center w-3/6 rounded-full text-white bg-[#343632]"
-                    onClick={() => setPageState(States.MAP)}
-                >
-                    Save filters
-                </div>
-            </div>
         </div>
     );
 }
