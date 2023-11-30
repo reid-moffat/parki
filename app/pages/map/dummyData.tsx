@@ -23,12 +23,12 @@ enum Amenities {
 
 // Coordinates ([lat, long]) of real driveways around queens that can be used to test
 const locations = [
-    [44.235401, -76.501610, "137 Nelson St", "110"],
-    [44.2374356, -76.4994443, "538 Frontenac St", "110"],
-    [44.2375353, -76.4979271, "400 Alfred St", "110"],
-    [44.2357522, -76.4954009, "215 Colborne St", "120"],
-    [44.2382535, -76.4907978, "14 Plum St", "110"],
-    [44.2342821, -76.5000655, "67 Mack Street", "110"],
+    [44.235401, -76.501610, "137 Nelson St", 1500, "110"],
+    [44.2374356, -76.4994443, "538 Frontenac St", 1500, "110"],
+    [44.2375353, -76.4979271, "400 Alfred St", 1500, "110"],
+    [44.2357522, -76.4954009, "215 Colborne St", 1200, "120"],
+    [44.2382535, -76.4907978, "14 Plum St", 1800, "110"],
+    [44.2342821, -76.5000655, "67 Mack Street", 1300, "110"],
 ];
 
 const generateData = (numSpots: number) => {
@@ -54,9 +54,10 @@ const generateData = (numSpots: number) => {
             longitude: locations[i][1],
             // @ts-ignore
             address: locations[i][2],
-            distance: Math.random() * 500 + 500,
             // @ts-ignore
-            price: locations[i][3],
+            distance: locations[i][3],
+            // @ts-ignore
+            price: locations[i][4],
             period: spotPeriods,
             amenities: Object.keys(Amenities).filter((item) => isNaN(Number(item)) && Math.random() < 0.3),
             rating: Math.cbrt(Math.random() * 64) + 1, // 1-5, biased towards higher ratings
