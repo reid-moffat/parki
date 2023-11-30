@@ -41,12 +41,6 @@ const MapSelectionPage = () => {
 
             { showFilters ? filter : null }
 
-            <div className="fixed bottom-0 w-[100vw]">
-                <Image src={footer} alt={"Bottom bar"} style={{ width: '100%' }}/>
-                <Image src={profileIcon} alt={"Bottom bar"} className={style.footerProfileIcon}/>
-                <Image src={mapIcon} alt={"Bottom bar"} className={style.footerMapIcon}/>
-                <Image src={settingsIcon} alt={"Bottom bar"} className={style.footerSettingsIcon}/>
-            </div>
         </div>
     )
 }

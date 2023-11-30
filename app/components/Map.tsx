@@ -22,7 +22,7 @@ function Maps() {
     return (
         <>
             <MapContainer 
-                className="absolute ml-[2vw] h-[78.5vh] w-[96vw] rounded-xl -z-50" 
+                className="absolute ml-[2vw] h-[86.5vh] w-[96vw] rounded-xl -z-50" 
                 center={center} 
                 zoom={ZOOM_LEVEL}
             >
