@@ -9,6 +9,7 @@ import mapIcon from "@/public/map/map.png";
 import settingsIcon from "@/public/map/settings.png";
 import dynamic from "next/dynamic";
 
+const Slide = dynamic(() => import('@/app/components/Slider'), { ssr: false });
 const Map = dynamic(() => import('@/app/components/Map'), { ssr: false });
 
 const MapSelectionPage = () => {
@@ -20,10 +21,16 @@ const MapSelectionPage = () => {
                     <Image src={logo} alt="Parki logo"/>
                 </div>
             </div>
-
+            
             <div className={style.mapContainer}>
-                <Map/>
+                    <Map/>
             </div>
+
+            <div>
+                <Slide/>
+            </div>
+
+
 
             <div className={style.footerContainer}>
                 <Image src={footer} alt={"Bottom bar"} style={{ width: '100%' }}/>
