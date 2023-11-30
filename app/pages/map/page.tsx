@@ -16,7 +16,7 @@ const Map = dynamic(() => import('@/app/components/Map'), { ssr: false });
 const MapSelectionPage = () => {
 
     const [timeframe, setTimeframe] = useState("Monthly");
-    const [showFilters, setShowFilters] = useState(true);
+    const [showFilters, setShowFilters] = useState(false);
 
     const map = (<>
         <Map/>

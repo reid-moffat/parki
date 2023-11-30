@@ -8,7 +8,7 @@ import dummyData from "@/app/pages/map/dummyData";
 
 
 function Maps() {
-    const center = {lat: 44.226795, lng: -76.495151};
+    const center = {lat: 44.236524, lng: -76.495791};
     const ZOOM_LEVEL = 14.5;
     const mapRef = useRef();
 
