@@ -1,15 +1,20 @@
 /**
- * Import function triggers from their respective submodules:
+ * All firebase functions must be exported from this file to be able to be deployed
  *
- * import {onCall} from "firebase-functions/v2/https";
- * import {onDocumentWritten} from "firebase-functions/v2/firestore";
- *
- * See a full list of supported triggers at https://firebase.google.com/docs/functions
+ * Don't write functions here to avoid clogging it up, write in another file then import & export here
  */
 
-import { createAccount } from './auth';
+import { beforeCreate, beforeSignIn, onUserDelete, onUserSignup } from './triggers/auth';
+import { createAccount, resetPassword } from './callable/auth';
+import { purgeExpiredEmails, purgeUnverifiedUsers } from './triggers/cron';
 
-// Start writing functions
-// https://firebase.google.com/docs/functions/typescript
-
-export { createAccount };
+export {
+    createAccount,
+    beforeCreate,
+    onUserSignup,
+    resetPassword,
+    beforeSignIn,
+    onUserDelete,
+    purgeUnverifiedUsers,
+    purgeExpiredEmails
+};
