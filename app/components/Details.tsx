@@ -21,7 +21,7 @@ const Details = () => {
                     <Image src={locationIcon} alt={"Location_Icon"} className='w-[5%] h-[5%]'/>
                     Kingston, ON
                 </div>
-                Here is my parking spot. Wow! It's such a cool parking spot. It has these things! Here is an important thing to know.
+                Here is my parking spot. Wow! It{"'"}s such a cool parking spot. It has these things! Here is an important thing to know.
             </div>
             <div className='flex justify-center'>
                 <Image src={line} alt={"line_divider_1"} />
