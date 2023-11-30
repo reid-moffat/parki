@@ -20,7 +20,8 @@ const DetailsPage = () => {
                     </div>
                 </div >
                 <div className='h-[85%] pt-[35%] pl-[5%] pr-[5%]'>
-                    <Details/>
+                    {/* <Details/> */}
+                    details
                 </div>
             </div>
 

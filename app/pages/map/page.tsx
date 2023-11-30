@@ -10,7 +10,7 @@ import settingsIcon from "@/public/map/settings.png";
 import dynamic from "next/dynamic";
 import TopMapMenu from '@/app/components/TopMapMenu';
 import FilterPage from '@/app/components/Filter';
-import DetailsPage from "@/app/pages/details/page";
+import DetailsPage from "@/app/components/Details";
 
 const Map = dynamic(() => import('@/app/components/Map'), { ssr: false });
 
@@ -41,7 +41,7 @@ const MapSelectionPage = () => {
             case States.FILTERS:
                 return <FilterPage setPageState={setPageState}/>;
             case States.DETAILS:
-                return <DetailsPage/>;
+                return <DetailsPage setPageState={setPageState}/>;
             default:
                 throw new Error("Invalid page state: " + pageState);
         }
