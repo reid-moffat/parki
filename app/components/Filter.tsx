@@ -23,27 +23,27 @@ const FilterPage = ({ setPageState }) => {
 
     const renderAmenities = () => {
         const allAmenities = [
-            [<FaWheelchair/>, "Accessible"],
-            [<MdLocalParking/>, "Self-Park"],
-            [<RiBattery2ChargeLine/>, "EV Charging"],
-            [<FaCarTunnel/>, "Covered"],
-            [<FaWheelchair/>, "On-Site Staff"],
-            [<IoSnowSharp/>, "Shovelling Included"],
+            <FaWheelchair key={"Accessible"}/>,
+            <MdLocalParking key={"Self-Park"}/>,
+            <RiBattery2ChargeLine key={"EV Charging"}/>,
+            <FaCarTunnel key={"Covered"}/>,
+            <FaWheelchair key={"On-Site Staff"}/>,
+            <IoSnowSharp key={"Shovelling Included"}/>,
         ];
 
         return allAmenities.map((amenity) => (
             // @ts-ignore
-            <div className="flex justify-center items-center" key={amenity[1]}>
+            <div className="flex justify-center items-center" key={amenity.key}>
                 <div
                     className={"flex justify-center items-center w-3/6 rounded-full border-black border-2 " +
-                        (amenities[amenity[1]] ? "bg-[#343632] text-white" : "bg-[#ffffff] text-black")}
-                    onClick={() => setAmenities((oldState) => ({ ...oldState, [amenity[1]]: !oldState[amenity[1]] }))}
+                        (amenities[amenity.key] ? "bg-[#343632] text-white" : "bg-[#ffffff] text-black")}
+                    onClick={() => setAmenities((oldState) => ({ ...oldState, [amenity.key]: !oldState[amenity.key] }))}
                 >
                     <IconContext.Provider value={{ color: '#FF4251' }}>
-                        {amenity[0]}
+                        {amenity}
                     </IconContext.Provider>
                     &nbsp;
-                    {amenity[1]}
+                    {amenity.key}
                 </div>
                 <br/><br/>
             </div>
@@ -97,13 +97,18 @@ const FilterPage = ({ setPageState }) => {
                     <Slider value={price} onChange={handlePriceUpdate} min={0} max={200} color="error" />
                 </div>
             </div>
-            <br/><br/><br/>
+            <br/><br/>
 
             <div className="flex justify-center items-center">
                 <Image src={Divider} alt={"Divider"}/>
             </div>
-            <br/><br/>
+            <br/>
 
+            <div className="flex justify-center items-center">
+                <div className="w-5/6 font-bold">
+                    Amenities
+                </div>
+            </div>
             {renderAmenities()}
         </div>
     );
