@@ -6,14 +6,19 @@ import CustomMarker from './CustomMarker';
 import dummyData from "@/app/pages/map/dummyData";
 
 // @ts-ignore
-function Maps({ timeframes }) {
-    const center = {lat: 44.236524, lng: -76.495791};
+function Maps({ timeframes, range, price, amenities }) {
+    const center = { lat: 44.236524, lng: -76.495791 };
     const ZOOM_LEVEL = 14.5;
     const mapRef = useRef();
 
     const renderPins = () => {
         return dummyData
-            .filter((item) => item.period.some((period) => timeframes[period]))
+            .filter((item) => {
+                return item.period.some((period) => timeframes[period]) &&
+                    item.distance <= range * 100 &&
+                    item.price >= price[0] && item.price <= price[1] &&
+                    Object.keys(amenities).every((amenity: string) => amenities[amenity] !== true || item.amenities.includes(amenity));
+            })
             .map((data, index) => (
                 <CustomMarker key={index} address={data.address} price={data.price} lat={data.latitude}
                           long={data.longitude} active={true}/>

@@ -5,6 +5,7 @@ interface ParkingSpace {
     latitude: number,
     longitude: number,
     address: string,
+    distance: number,
     price: number,
     period: string[],
     amenities: string[],
@@ -53,6 +54,7 @@ const generateData = (numSpots: number) => {
             longitude: locations[i][1],
             // @ts-ignore
             address: locations[i][2],
+            distance: Math.random() * 500 + 500,
             // @ts-ignore
             price: locations[i][3],
             period: spotPeriods,
