@@ -21,7 +21,11 @@ function Maps() {
 
     return (
         <>
-            <MapContainer className={style.map} center={center} zoom={ZOOM_LEVEL}>
+            <MapContainer 
+                className="absolute mt-[15vh] ml-[2vw] h-[76vh] w-[96vw] rounded-xl -z-50" 
+                center={center} 
+                zoom={ZOOM_LEVEL}
+            >
                 <TileLayer
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                     url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
