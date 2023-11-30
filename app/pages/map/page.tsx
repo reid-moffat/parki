@@ -22,7 +22,7 @@ export enum States {
 
 const MapSelectionPage = () => {
 
-    const [timeframe, setTimeframe] = useState("Monthly");
+    const [timeframe, setTimeframe] = useState({ Hourly: true, Weekly: true, Monthly: true });
     const [pageState, setPageState] = useState(States.MAP);
 
     const renderPage = () => {
@@ -42,6 +42,8 @@ const MapSelectionPage = () => {
                 return <FilterPage setPageState={setPageState}/>;
             case States.DETAILS:
                 return <DetailsPage/>;
+            default:
+                throw new Error("Invalid page state: " + pageState);
         }
     }
 
