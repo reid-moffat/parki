@@ -6,7 +6,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
-import slide_image from '../../public/parked_car.jpg';
+import slide_image from '@/public/parked_car.jpg';
 import Image from 'next/image';
 const Slider = () => {
   return (
