@@ -25,10 +25,11 @@ function CustomMarker({ lat, long, address, price, active } : MarkerProps) {
     const iconMarkup = renderToStaticMarkup(<i className=" fa fa-map-marker-alt fa-3x" />);
     const customMarkerIcon = L.divIcon({
         className: 'my-div-icon',
-        html: `<div style="position: relative;height: 38px; width: 39px;"> <img style="height: 38px; width: 39px;" src="pins/ActiveSpot.png" alt="Active Spot"> <div style="position: absolute; top: 18%; width: 80%; text-align: center; color:white; font-family: sans-serif;">$${price}</div> </div>`
-        
-        // '<img style="width:38px;" class="my-div-image" src="/pins/ActiveSpot.png"/>'+
-        //       '<span style="position:absolute;" class="my-div-span">$99</span>'
+        html: `<div style="position: relative;height: 38px; width: 39px;transform: translateY(-20px) ;">\
+         <img style="height: 38px; width: 39px;" src="pins/ActiveSpot.png" alt="Active Spot"> \
+         <div style="position: absolute; top: 18%; width: 80%; text-align: center; color:white; font-family: sans-serif;">\
+         $${price}</div> </div>`
+    
     });
     
 
