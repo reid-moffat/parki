@@ -31,23 +31,28 @@ const FilterPage = ({ setPageState }) => {
             <IoSnowSharp key={"Shovelling Included"}/>,
         ];
 
-        return allAmenities.map((amenity) => (
+        return allAmenities.map((amenity) => {
             // @ts-ignore
-            <div className="flex justify-center items-center" key={amenity.key}>
-                <div
-                    className={"flex justify-center items-center w-3/6 rounded-full border-black border-2 " +
-                        (amenities[amenity.key] ? "bg-[#343632] text-white" : "bg-[#ffffff] text-black")}
-                    onClick={() => setAmenities((oldState) => ({ ...oldState, [amenity.key]: !oldState[amenity.key] }))}
-                >
-                    <IconContext.Provider value={{ color: '#FF4251' }}>
-                        {amenity}
-                    </IconContext.Provider>
-                    &nbsp;
-                    {amenity.key}
+            const isClicked = amenities[amenity.key];
+
+            return (
+                <div className="flex justify-center items-center" key={amenity.key}>
+                    <div
+                        className={(isClicked ? "bg-[#343632] text-white" : "bg-[#ffffff]" +
+                                " text-black") +
+                            " flex justify-center items-center w-3/6 rounded-full border-black border-2"}
+                        onClick={() => setAmenities((oldState) => ({ ...oldState, [amenity.key as string]: !isClicked }))}
+                    >
+                        <IconContext.Provider value={{ color: '#FF4251' }}>
+                            {amenity}
+                        </IconContext.Provider>
+                        &nbsp;
+                        {amenity.key as string}
+                    </div>
+                    <br/><br/>
                 </div>
-                <br/><br/>
-            </div>
-        ));
+            )
+        });
     }
 
     const handleRangeUpdate = (event: Event, newValue: number) => {
