@@ -3,10 +3,9 @@ import Image from 'next/image';
 import car from "@/public/parked_car.jpg";
 import line from "@/public/Line.png";
 import map from "@/public/mapPlaceholder.png";
-import rightArrow from "@/public/icon_chevron_right.png";
-import leftArrow from "@/public/icon_chevron_left.png";
 import locationIcon from "@/public/pins/OtherSpot.png";
 import { States } from "@/app/pages/map/page";
+import { MdArrowBackIos, MdArrowForwardIos } from "react-icons/md";
 
 // @ts-ignore
 const DetailsPage = ({ setPageState }) => {
@@ -14,10 +13,10 @@ const DetailsPage = ({ setPageState }) => {
     <div className='ml-[2vw] h-[86.5vh] w-[96vw] rounded-xl z-50 bg-[#FCF9EF] text-[#343632] font-passion overflow-y-scroll no-scrollbar'>
         <div className='bg-[#FCF9EF] border-0 rounded-t-xl h-[100%] pb-[40rem]'>
             <div>
+                <Image src={car} alt={"Parking_Lot_pic"} className='border-0 rounded-xl overflow-hidden'/>
                 <div>
-                    <Image src={car} alt={"Parking_Lot_pic"} className='border-0 rounded-xl overflow-hidden'/>
+                    <MdArrowBackIos onClick={() => setPageState(States.MAP)}/>
                 </div>
-                <Image src={leftArrow} alt={"Left_Arrow"} onClick={() => setPageState(States.MAP)}/>
             </div>
             <div className='p-5 px-8'>
                 <div className='text-[1.75rem] font-normal'>163 Union Street</div>
@@ -40,10 +39,10 @@ const DetailsPage = ({ setPageState }) => {
             </div>
             <div className='p-[5%]'>
                 <Image src={map} alt={"map"} className='border-0 rounded-[1.25rem] h-[8rem] w-[100%] overflow-hidden'/>
-
+                <br/>
                 <button className='flex flex-row border-[1px] border-[#343632] w-[100%] rounded-[2.5rem] h-[5%] items-center justify-center font-outfit'>
                     Availability
-                    <Image src={rightArrow} alt={"Arrow1"} className='w-[5%] h-[5%]'/>
+                    <MdArrowForwardIos className='w-[5%] h-[5%]'/>
                 </button>
             </div>
             <div className='flex justify-center'>
@@ -59,10 +58,10 @@ const DetailsPage = ({ setPageState }) => {
                 </div>
                 <button className='flex flex-row border-[1px] border-[#343632] w-[100%] rounded-[2.5rem] h-[5%] items-center justify-center font-outfit'>
                     Show all 6 reviews
-                    <Image src={rightArrow} alt={"Arrow2"} className='w-[5%] h-[5%]'/>
+                    <MdArrowForwardIos className='w-[5%] h-[5%]'/>
                 </button>
             </div>
-            <br/><br/><br/><br/>
+            <br/><br/><br/><br/><br/>
         </div>
         <div className='absolute w-[96vw] pl-[5%] pr-[5%] bottom-[4.5vw] flex flex-row h-[8%] bg-[#ff4251] rounded-b-xl justify-between items-center'>
             <div className='text-[#FCF9EF] text-[1.75rem] font-normal'>$12/day</div>
