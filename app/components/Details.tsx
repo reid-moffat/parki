@@ -4,10 +4,45 @@ import car from "@/public/parked_car.jpg";
 import line from "@/public/Line.png";
 import locationIcon from "@/public/pins/OtherSpot.png";
 import { States } from "@/app/pages/map/page";
-import { MdArrowBackIos, MdArrowForwardIos } from "react-icons/md";
+import { MdArrowBackIos, MdArrowForwardIos, MdLocalParking } from "react-icons/md";
+import { FaWheelchair } from "react-icons/fa";
+import { RiBattery2ChargeLine } from "react-icons/ri";
+import { FaCarTunnel } from "react-icons/fa6";
+import { IoSnowSharp } from "react-icons/io5";
+import { IconContext } from "react-icons";
 
 // @ts-ignore
 const DetailsPage = ({ setPageState, spotData }) => {
+
+    const renderAmenities = () => {
+        const allAmenities = [
+            <FaWheelchair key={"Accessible"}/>,
+            <MdLocalParking key={"Self-Park"}/>,
+            <RiBattery2ChargeLine key={"EV Charging"}/>,
+            <FaCarTunnel key={"Covered"}/>,
+            <FaWheelchair key={"On-Site Staff"}/>,
+            <IoSnowSharp key={"Shovelling Included"}/>,
+        ];
+
+        return allAmenities.filter((amenity) => spotData.amenities.includes(amenity.key))
+            .map((amenity) => {
+            return (
+                <div className="flex justify-center items-center" key={amenity.key}>
+                    <div
+                        className={"bg-[#343632] text-white flex justify-center items-center w-3/6 rounded-full border-black border-2"}
+                    >
+                        <IconContext.Provider value={{ color: '#FF4251' }}>
+                            {amenity}
+                        </IconContext.Provider>
+                        &nbsp;
+                        {amenity.key as string}
+                    </div>
+                    <br/><br/>
+                </div>
+            )
+        });
+    }
+
   return (
     <div className='ml-[2vw] h-[86.5vh] w-[96vw] rounded-xl z-50 bg-[#FCF9EF] text-[#343632] font-passion overflow-y-scroll no-scrollbar'>
         <div className='bg-[#FCF9EF] border-0 rounded-t-xl h-[100%] pb-[40rem]'>
@@ -35,9 +70,7 @@ const DetailsPage = ({ setPageState, spotData }) => {
             <div className='p-5 text-[1.5rem] font-normal'>
                 Amenities
             </div>
-            {spotData.amenities.map((amenity: any, key: React.Key | null | undefined) => (
-                <div key={key} className="px-2 rounded-full bg-[#343632] text-white font-outfit text-[10px] border-[1px] border-[#FCF9EF]">{amenity}</div>
-            ))}
+            {renderAmenities()}
             {/* <div className='flex justify-center'>
                 <Image src={line} alt={"line_divider_2"} className='w-[85vw]'/>
             </div>
