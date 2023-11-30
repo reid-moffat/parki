@@ -7,7 +7,7 @@ import { States } from "@/app/pages/map/page";
 import { MdArrowBackIos, MdArrowForwardIos } from "react-icons/md";
 
 // @ts-ignore
-const DetailsPage = ({ setPageState }) => {
+const DetailsPage = ({ setPageState, spotData }) => {
   return (
     <div className='ml-[2vw] h-[86.5vh] w-[96vw] rounded-xl z-50 bg-[#FCF9EF] text-[#343632] font-passion overflow-y-scroll no-scrollbar'>
         <div className='bg-[#FCF9EF] border-0 rounded-t-xl h-[100%] pb-[40rem]'>
@@ -19,13 +19,13 @@ const DetailsPage = ({ setPageState }) => {
             <Image src={car} alt={"Parking_Lot_pic"} className='border-0 rounded-xl overflow-hidden'/>
 
             <div className='p-5'>
-                <div className='text-[1.75rem] font-normal'>163 Union Street</div>
+                <div className='text-[1.75rem] font-normal'>{spotData.address}</div>
                 <div className='flex flex-row w-[100%] items-center -mt-3'>
                     <Image src={locationIcon} alt={"Location_Icon"} className='w-[5%] h-[5%] mr-3'/>
                     <div className='text-[1.25rem]'>Kingston, ON</div>
                 </div>
                 <div className='text-[1rem] font-outfit mt-3'>
-                    Here is my parking spot. Wow! It{"'"}s such a cool parking spot. It has these things! Here is an important thing to know.
+                    {spotData.description}
                 </div>
             </div>
 
@@ -35,6 +35,9 @@ const DetailsPage = ({ setPageState }) => {
             <div className='p-5 text-[1.5rem] font-normal'>
                 Amenities
             </div>
+            {spotData.amenities.map((amenity: any, key: React.Key | null | undefined) => (
+                <div key={key} className="px-2 rounded-full bg-[#343632] text-white font-outfit text-[10px] border-[1px] border-[#FCF9EF]">{amenity}</div>
+            ))}
             {/* <div className='flex justify-center'>
                 <Image src={line} alt={"line_divider_2"} className='w-[85vw]'/>
             </div>
@@ -53,12 +56,12 @@ const DetailsPage = ({ setPageState }) => {
                 <div className='flex flex-row justify-between items-center'>
                     <div className='text-[1.5rem] font-normal'>Reviews</div>
                     <div className="flex items-center">
-                        <div className='text-[1.125rem] font-bold mr-1'>4.0</div>
+                        <div className='text-[1.125rem] font-bold mr-1'>{Math.floor(spotData.rating * 10) / 10}</div>
                         stars
                     </div>
                 </div>
                 <button className='flex flex-row border-[1px] border-[#343632] w-[100%] rounded-[2.5rem] h-[5%] items-center justify-center font-outfit'>
-                    Show all 6 reviews
+                    Show all {Math.floor(Math.random() * 20)} reviews
                     <MdArrowForwardIos className='w-[4%] h-[4%] ml-2'/>
                 </button>
             </div>

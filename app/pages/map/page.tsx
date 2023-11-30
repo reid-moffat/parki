@@ -3,15 +3,12 @@ import React, { useState } from 'react'
 import style from '@/app/styles/Map.module.css'
 import Image from 'next/image';
 import logo from "@/public/logo.png";
-import footer from "@/public/map/bottom.png";
-import profileIcon from "@/public/map/user.png";
-import mapIcon from "@/public/map/map.png";
-import settingsIcon from "@/public/map/settings.png";
 import dynamic from "next/dynamic";
 import TopMapMenu from '@/app/components/TopMapMenu';
 import FilterPage from '@/app/components/Filter';
 import DetailsPage from "@/app/components/Details";
 import Slider from '@/app/components/Slider';
+import dummyData from "@/app/pages/map/dummyData";
 
 const Slide = dynamic(() => import('@/app/components/Slider'), { ssr: false });
 const Map = dynamic(() => import('@/app/components/Map'), { ssr: false });
@@ -32,6 +29,9 @@ const MapSelectionPage = () => {
     const [price, setPrice] = useState([0, 200]);
     const [amenities, setAmenities] = useState({ "Accessible": false,
         "Self-Park": false, "EV Charging": false, "Covered": false, "On-Site Staff": false, "Shovelling Included": false });
+
+     // Details
+    const [currentSpot, setCurrentSpot] = useState(dummyData[Math.floor(Math.random() * dummyData.length)]);
 
     const renderPage = () => {
         switch (pageState) {
@@ -65,7 +65,7 @@ const MapSelectionPage = () => {
                     />
                 );
             case States.DETAILS:
-                return <DetailsPage setPageState={setPageState}/>;
+                return <DetailsPage setPageState={setPageState} spotData={currentSpot}/>;
             default:
                 throw new Error("Invalid page state: " + pageState);
         }

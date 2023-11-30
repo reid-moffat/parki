@@ -18,7 +18,7 @@ import data from '../pages/map/dummyData';
 
 
 // @ts-ignore
-const Slider = ({setPageState}) => {
+const Slider = ({ setPageState }) => {
   return (
     <Swiper
       effect={'coverflow'}

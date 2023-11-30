@@ -5,8 +5,9 @@ interface ParkingSpace {
     latitude: number,
     longitude: number,
     address: string,
-    distance: number,
     price: number,
+    description: string,
+    distance: number,
     period: string[],
     amenities: string[],
     rating: number, // From 1 to 5 stars (1 decimal place)
@@ -23,12 +24,12 @@ const Amenities = [
 
 // Coordinates ([lat, long]) of real driveways around queens that can be used to test
 const locations = [
-    [44.235401, -76.501610, "137 Nelson St", "110", 1500],
-    [44.2374356, -76.4994443, "538 Frontenac St", "110", 1500],
-    [44.2375353, -76.4979271, "400 Alfred St", "110", 1500],
-    [44.2357522, -76.4954009, "215 Colborne St", "120", 1200],
-    [44.2382535, -76.4907978, "14 Plum St", "110", 1800],
-    [44.2342821, -76.5000655, "67 Mack Street", "110", 1300],
+    [44.235401, -76.501610, "137 Nelson St", "110", "Description of the spot #1", 1500],
+    [44.2374356, -76.4994443, "538 Frontenac St", "110", "Description of the spot #2", 1500],
+    [44.2375353, -76.4979271, "400 Alfred St", "110", "Description of the spot #3", 1500],
+    [44.2357522, -76.4954009, "215 Colborne St", "120", "Description of the spot #4", 1200],
+    [44.2382535, -76.4907978, "14 Plum St", "110", "Description of the spot #5", 1800],
+    [44.2342821, -76.5000655, "67 Mack Street", "110", "Description of the spot #6", 1300],
 ];
 
 const generateData = (numSpots: number) => {
@@ -56,13 +57,16 @@ const generateData = (numSpots: number) => {
             address: locations[i][2],
             // @ts-ignore
             price: locations[i][3],
-            period: ["Monthly"],
-            amenities: Object.keys(Amenities).filter((item) => isNaN(Number(item)) && Math.random() < 0.3),
             // @ts-ignore
-            distance: locations[i][4],
+            description: locations[i][4],
+            period: ["Monthly"],
+            amenities: Amenities.filter((item) => Math.random() < 0.3),
+            // @ts-ignore
+            distance: locations[i][5],
             // @ts-ignore
             rating: Math.cbrt(Math.random() * 64) + 1, // 1-5, biased towards higher ratings
         };
+        dummySpot.amenities.length = 3; // Max 3 amenities (FE is buggy with more)
 
         data.push(dummySpot);
     }
