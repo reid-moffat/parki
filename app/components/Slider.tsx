@@ -52,12 +52,12 @@ const Slider = () => {
       ${item.price}, {item.address}
     </div>
     <div style={{ position: 'relative' }}>
-      <Image src={slide_image} alt="slide_image" />
+      <Image src={slide_image} alt="slide_image" style={{ width: '80%', borderRadius: '15px' }} />
       <div
         style={{
           position: 'absolute',
           bottom: '10px',
-          right: '10px',
+          left: '10px',
           zIndex: 1,
           display: 'flex',
           flexDirection: 'column',
@@ -83,15 +83,7 @@ const Slider = () => {
   </SwiperSlide>
 ))}
 
-      <SwiperSlide>
-        <Image src ={slide_image} alt = "slide_image" />
-      </SwiperSlide>
-      <SwiperSlide>
-        <Image src ={slide_image} alt = "slide_image" />
-      </SwiperSlide>
-      <SwiperSlide>
-       <Image src ={slide_image} alt = "slide_image" />
-      </SwiperSlide>
+    
       <div className="slider-controler">
           
           <div className="swiper-pagination"></div>
