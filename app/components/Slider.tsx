@@ -5,6 +5,7 @@ import { Navigation, Pagination, Scrollbar, A11y} from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Rating } from '@smastrom/react-rating';
 import { MdFavorite, MdChevronLeft, MdChevronRight } from 'react-icons/md';
+import { States } from "@/app/pages/map/page";
 
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -16,9 +17,7 @@ import slide_image from '@/public/parked_car.jpg';
 import data from '../pages/map/dummyData';
 
 
-const Slider = () => {
-  console.log(data);
-
+const Slider = ({setPageState}) => {
   return (
     <Swiper
       effect={'coverflow'}
@@ -33,8 +32,6 @@ const Slider = () => {
       // install Swiper modules
       modules={[Navigation, Pagination, Scrollbar, A11y]}
       slidesPerView = {1}
-      onSwiper={(swiper) => console.log(swiper)}
-      onSlideChange={() => console.log('slide change')}
       className="h-[20vh] mt-[40vh] mb-0"
     >
 
@@ -58,11 +55,14 @@ const Slider = () => {
         <div className="absolute bottom-3">
           <div className="flex flex-row space-x-2 mb-2">
             {item.amenities.map((tag, key) => (
-              <div className="px-2 rounded-full bg-[#343632] text-white font-outfit text-[10px] border-[1px] border-[#FCF9EF]">{tag}</div>
+              <div key={key} className="px-2 rounded-full bg-[#343632] text-white font-outfit text-[10px] border-[1px] border-[#FCF9EF]">{tag}</div>
             ))}
           </div>
           <div className="flex flex-row items-center">
-            <button className="w-[54vw] py-1 bg-[#FF4251] rounded-full font-passion text-[#FCF9EF] shadow-xl active:opacity-50 duration-75">
+            <button 
+              className="w-[54vw] py-1 bg-[#FF4251] rounded-full font-passion text-[#FCF9EF] shadow-xl active:opacity-50 duration-75"
+              onClick={() => setPageState(States.DETAILS)}
+            >
               More Details
             </button>
             <div className="border-2 border-[#FCF9EF] rounded-full p-[1vw] ml-2"><MdFavorite size={18} color="#FCF9EF"/></div>

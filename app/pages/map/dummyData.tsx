@@ -57,7 +57,7 @@ const generateData = (numSpots: number) => {
             distance: Math.random() * 500 + 500,
             // @ts-ignore
             price: locations[i][3],
-            period: spotPeriods,
+            period: ["Monthly"],
             amenities: Object.keys(Amenities).filter((item) => isNaN(Number(item)) && Math.random() < 0.3),
             rating: Math.cbrt(Math.random() * 64) + 1, // 1-5, biased towards higher ratings
         };

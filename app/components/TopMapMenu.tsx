@@ -79,12 +79,6 @@ const TopMapMenu = ({setPageState, setTimeframes, timeframes, location, date}) =
                 <MdFilterAlt size={16} color="#FCF9EF" className="mr-1"/>
                 Filter
             </div>
-            <div
-                className="flex flex-row items-center bg-[#FF4251] w-max pl-8 pr-10 py-1 rounded-full mt-3 mx-auto text-[#FCF9EF] shadow-xl active:opacity-50 duration-75"
-                onClick={() => setPageState(States.DETAILS)}
-            >
-                More Details {"("} temp button{")"}
-            </div>
         </div>
     )
 

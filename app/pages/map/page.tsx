@@ -25,7 +25,7 @@ export enum States {
 const MapSelectionPage = () => {
 
     const [pageState, setPageState] = useState(States.MAP);
-    const [timeframes, setTimeframes] = useState({ Hourly: true, Weekly: true, Monthly: true });
+    const [timeframes, setTimeframes] = useState({ Hourly: false, Weekly: false, Monthly: true });
 
     // Filters
     const [range, setRange] = useState(30);
@@ -50,7 +50,7 @@ const MapSelectionPage = () => {
                         location="Queen's Unviersity"
                         date="December 2, 2023"
                     />
-                    <Slider />
+                    <Slider setPageState={setPageState} />
                 </>);
             case States.FILTERS:
                 return (
