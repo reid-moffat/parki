@@ -16,18 +16,18 @@ const Details = () => {
                 </div>
             </div>
             <div className='p-[5%]'>
-                <text className='text-[#343632] text-[1.75rem] font-normal'>163 Union Street</text>
+                <div className='text-[#343632] text-[1.75rem] font-normal'>163 Union Street</div>
                 <div className='flex flex-row w-[100%] items-start'>
                     <Image src={locationIcon} alt={"Location_Icon"} className='w-[5%] h-[5%]'/>
-                    <text>Kingston, ON</text>
+                    Kingston, ON
                 </div>
-                <text>Here is my parking spot. Wow! It's such a cool parking spot. It has these things! Here is an important thing to know.</text>
+                Here is my parking spot. Wow! It's such a cool parking spot. It has these things! Here is an important thing to know.
             </div>
             <div className='flex justify-center'>
                 <Image src={line} alt={"line_divider_1"} />
             </div>
             <div className='p-[5%]'>
-                <text>Amenities</text>
+                Amenities
             </div>
             <div className='flex justify-center'>
                 <Image src={line} alt={"line_divider_2"}/>
@@ -36,7 +36,7 @@ const Details = () => {
                 <Image src={map} alt={"map"} className='border-0 rounded-[1.25rem] h-[8rem] w-[100%] overflow-hidden'/>
 
                 <button className='flex flex-row border-[1px] border-[#343632] w-[100%] rounded-[2.5rem] h-[5%] items-center justify-center'>
-                    <text>Availability</text>
+                    Availability
                     <Image src={rightArrow} alt={"Arrow1"} className='w-[5%] h-[5%]'/>
                 </button>
             </div>
@@ -45,20 +45,20 @@ const Details = () => {
             </div>
             <div className='p-[5%]'>
                 <div className='flex flex-row justify-between items-center'>
-                    <text>Reviews</text>
+                    Reviews
                     <div>
-                        <text>4.0</text>
-                        <text>stars</text>
+                        4.0
+                        stars
                     </div>
                 </div>
                 <button className='flex flex-row border-[1px] border-[#343632] w-[100%] rounded-[2.5rem] h-[5%] items-center justify-center'>
-                    <text>Show all 6 reviews</text>
+                    Show all 6 reviews
                     <Image src={rightArrow} alt={"Arrow2"} className='w-[5%] h-[5%]'/>
                 </button>
             </div>
         </div>
         <div className='absolute w-[90%] pl-[5%] pr-[5%] bottom-[10%] flex flex-row h-[7%] bg-[#ff4251] rounded-b-[1.25rem] justify-between items-center'>
-            <text className='text-[#FCF9EF] text-[1.75rem] font-normal'>$12/day</text>
+            <div className='text-[#FCF9EF] text-[1.75rem] font-normal'>$12/day</div>
             <button className='flex bg-[#343632] text-[#FCF9EF] pl-[10%] pr-[10%] pt-[3%] pb-[3%] rounded-[2.5rem]'>RESERVE</button>
         </div>
     </div>
