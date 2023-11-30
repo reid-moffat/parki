@@ -37,9 +37,15 @@ const generateData = (numSpots: number) => {
     }
 
     const data: ParkingSpace[] = [];
-    const numAmenities = Object.keys(Amenities).length / 2;
+    const periods: string[] = ["Hourly", "Weekly", "Monthly"];
 
     for (let i = 0; i < numSpots; ++i) {
+
+        // Each spot needs at least 1 period
+        const defaultPeriod = periods[Math.floor(Math.random() * periods.length)];
+        const spotPeriods = periods.filter((period) => period !== defaultPeriod && Math.random() < 0.2);
+        spotPeriods.push(defaultPeriod);
+
         const dummySpot: ParkingSpace = {
             // @ts-ignore
             latitude: locations[i][0],
@@ -49,7 +55,7 @@ const generateData = (numSpots: number) => {
             address: locations[i][2],
             // @ts-ignore
             price: locations[i][3],
-            period: ["Hourly", "Weekly", "Monthly"].filter(() => Math.random() < 0.5),
+            period: spotPeriods,
             amenities: Object.keys(Amenities).filter((item) => isNaN(Number(item)) && Math.random() < 0.3),
             rating: Math.cbrt(Math.random() * 64) + 1, // 1-5, biased towards higher ratings
         };
