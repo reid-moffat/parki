@@ -33,6 +33,10 @@ const MapSelectionPage = () => {
                 date="December 1, 2023"
             />
 
+            <div className = {style.slideContainer}>
+                <Slide/>
+            </div>
+
             <div className="fixed bottom-0 w-[100vw]">
                 <Image src={footer} alt={"Bottom bar"} style={{ width: '100%' }}/>
                 <Image src={profileIcon} alt={"Bottom bar"} className={style.footerProfileIcon}/>
