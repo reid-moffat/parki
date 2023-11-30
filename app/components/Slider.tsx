@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { Navigation, Pagination, Scrollbar, A11y} from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Rating } from '@smastrom/react-rating';
-import { MdFavorite, MdChevronLeft, MdChevronRight } from 'react-icons/md';
+import { MdFavorite } from 'react-icons/md';
 import { States } from "@/app/pages/map/page";
 
 import 'swiper/css';
@@ -17,6 +17,7 @@ import slide_image from '@/public/parked_car.jpg';
 import data from '../pages/map/dummyData';
 
 
+// @ts-ignore
 const Slider = ({setPageState}) => {
   return (
     <Swiper
@@ -59,7 +60,7 @@ const Slider = ({setPageState}) => {
             ))}
           </div>
           <div className="flex flex-row items-center">
-            <button 
+            <button
               className="w-[54vw] py-1 bg-[#FF4251] rounded-full font-passion text-[#FCF9EF] shadow-xl active:opacity-50 duration-75"
               onClick={() => setPageState(States.DETAILS)}
             >

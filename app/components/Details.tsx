@@ -2,7 +2,6 @@ import React from 'react'
 import Image from 'next/image';
 import car from "@/public/parked_car.jpg";
 import line from "@/public/Line.png";
-import map from "@/public/mapPlaceholder.png";
 import locationIcon from "@/public/pins/OtherSpot.png";
 import { States } from "@/app/pages/map/page";
 import { MdArrowBackIos, MdArrowForwardIos } from "react-icons/md";
