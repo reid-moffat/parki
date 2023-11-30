@@ -111,15 +111,6 @@ const FilterPage = ({ setPageState, range, setRange, price, setPrice, amenities,
             </div>
             {renderAmenities()}
             <br/>
-
-            <div className="flex justify-center items-center">
-                <div
-                    className="flex justify-center items-center w-3/6 rounded-full text-white bg-[#343632]"
-                    onClick={() => setPageState(States.MAP)}
-                >
-                    Save filters
-                </div>
-            </div>
         </div>
     );
 }
