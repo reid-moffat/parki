@@ -13,7 +13,7 @@ function Maps({ timeframes }) {
 
     const renderPins = () => {
         return dummyData
-            .filter((item) => timeframes[item.period])
+            .filter((item) => item.period.some((period) => timeframes[period]))
             .map((data, index) => (
                 <CustomMarker key={index} address={data.address} price={data.price} lat={data.latitude}
                           long={data.longitude} active={true}/>
