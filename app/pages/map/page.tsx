@@ -10,39 +10,49 @@ import settingsIcon from "@/public/map/settings.png";
 import dynamic from "next/dynamic";
 import TopMapMenu from '@/app/components/TopMapMenu';
 import FilterPage from '@/app/components/Filter';
+import DetailsPage from "@/app/components/Details";
 
 const Slide = dynamic(() => import('@/app/components/Slider'), { ssr: false });
 const Map = dynamic(() => import('@/app/components/Map'), { ssr: false });
 
+export enum States {
+    MAP,
+    FILTERS,
+    DETAILS,
+}
+
 const MapSelectionPage = () => {
 
-    const [timeframe, setTimeframe] = useState("Monthly");
-    const [showFilters, setShowFilters] = useState(false);
+    const [timeframes, setTimeframes] = useState({ Hourly: true, Weekly: true, Monthly: true });
+    const [pageState, setPageState] = useState(States.MAP);
 
-    const map = (<>
-        <Map/>
-        <TopMapMenu 
-            setShowFilters={setShowFilters}
-            setTimeframe={setTimeframe}
-            timeframe={timeframe}
-            location="Queen's Unviersity"
-            date="December 2, 2023"
-        />
-        <Slide/>
-    </>)
-
-    const filter = (
-        <FilterPage setShowFilters={setShowFilters}/>
-    )
+    const renderPage = () => {
+        switch (pageState) {
+            case States.MAP:
+                return (<>
+                    <Map timeframes={timeframes}/>
+                    <TopMapMenu
+                        setPageState={setPageState}
+                        setTimeframes={setTimeframes}
+                        timeframes={timeframes}
+                        location="Queen's Unviersity"
+                        date="December 2, 2023"
+                    />
+                </>);
+            case States.FILTERS:
+                return <FilterPage setPageState={setPageState}/>;
+            case States.DETAILS:
+                return <DetailsPage setPageState={setPageState}/>;
+            default:
+                throw new Error("Invalid page state: " + pageState);
+        }
+    }
 
     return (
         <div className={style.mapPage}>
             <Image src={logo} alt="Parki logo" className='w-[100vw] h-[8vh] object-contain mt-3 mb-4'/>
 
-            { showFilters ? null : map }
-
-            { showFilters ? filter : null }
-
+            {renderPage()}
         </div>
     )
 }

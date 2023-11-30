@@ -8,7 +8,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
-import slide_image from '../../public/parked_car.jpg';
+import slide_image from '@/public/parked_car.jpg';
 import Image from 'next/image';
 import data from '../pages/map/dummyData';
 import React from 'react';

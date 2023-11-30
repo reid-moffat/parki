@@ -6,14 +6,18 @@ interface ParkingSpace {
     longitude: number,
     address: string,
     price: number,
-    period: RentalPeriod,
+    period: string[],
+    amenities: string[],
     rating: number, // From 1 to 5 stars (1 decimal place)
 }
 
-// The period in which you can rent the spot for
-enum RentalPeriod {
-    DAILY,
-    MONTHLY,
+enum Amenities {
+    Accessible,
+    SelfPark,
+    EVCharging,
+    Covered,
+    OnSiteStaff,
+    Shovelled
 }
 
 // Coordinates ([lat, long]) of real driveways around queens that can be used to test
@@ -33,8 +37,15 @@ const generateData = (numSpots: number) => {
     }
 
     const data: ParkingSpace[] = [];
+    const periods: string[] = ["Hourly", "Weekly", "Monthly"];
 
     for (let i = 0; i < numSpots; ++i) {
+
+        // Each spot needs at least 1 period
+        const defaultPeriod = periods[Math.floor(Math.random() * periods.length)];
+        const spotPeriods = periods.filter((period) => period !== defaultPeriod && Math.random() < 0.2);
+        spotPeriods.push(defaultPeriod);
+
         const dummySpot: ParkingSpace = {
             // @ts-ignore
             latitude: locations[i][0],
@@ -42,8 +53,10 @@ const generateData = (numSpots: number) => {
             longitude: locations[i][1],
             // @ts-ignore
             address: locations[i][2],
+            // @ts-ignore
             price: locations[i][3],
-            period: Math.random() < 0.5 ? RentalPeriod.DAILY : RentalPeriod.MONTHLY,
+            period: spotPeriods,
+            amenities: Object.keys(Amenities).filter((item) => isNaN(Number(item)) && Math.random() < 0.3),
             rating: Math.cbrt(Math.random() * 64) + 1, // 1-5, biased towards higher ratings
         };
 
