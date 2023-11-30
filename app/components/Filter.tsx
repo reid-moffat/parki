@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { MdArrowBackIos } from "react-icons/md";
 import { FaFilterCircleXmark } from "react-icons/fa6";
 import { LuClock5 } from "react-icons/lu";
@@ -15,6 +15,10 @@ import { IoSnowSharp } from "react-icons/io5";
 
 // @ts-ignore
 const FilterPage = ({ setPageState }) => {
+
+    const [range, setRange] = useState(5);
+    const [price, setPrice] = useState([70, 100]);
+
     const renderAmenities = () => {
         const amenities = [
             [<FaWheelchair/>, "Accessible"],
@@ -39,6 +43,14 @@ const FilterPage = ({ setPageState }) => {
         ));
     }
 
+    const handleRangeUpdate = (event: Event, newValue: number) => {
+        setRange(newValue);
+    }
+
+    const handlePriceUpdate = (event: Event, newValue: number[]) => {
+        setPrice(newValue);
+    }
+
     return (
         <div className="absolute ml-[2vw] h-[86.5vh] w-[96vw] rounded-xl z-50 bg-[#FCF9EF] text-[#343632]">
 
@@ -61,15 +73,23 @@ const FilterPage = ({ setPageState }) => {
             </div>
             <br/>
             <div className="text-center">
-                Within <span className="text-blue-500">25</span> km
+                Within <span className="text-blue-500">{range * 100 < 1000 ? (range * 100) + "m" : (range / 10) + "km"}</span>
             </div>
-            <Slider defaultValue={30} aria-label="Disabled slider" />
+            <div className="flex justify-center items-center">
+                <div className="w-5/6">
+                    <Slider value={range} onChange={handleRangeUpdate} min={0} max={30} color="error" />
+                </div>
+            </div>
 
             <div className="text-center">
                 Price Range:<p/>
-                $<span className="text-blue-500">0</span> to $<span className="text-blue-500">5</span>
+                $<span className="text-blue-500">{price[0]}</span> to $<span className="text-blue-500">{price[1]}</span>
             </div>
-            <Slider defaultValue={30} aria-label="Disabled slider" />
+            <div className="flex justify-center items-center">
+                <div className="w-5/6">
+                    <Slider value={price} onChange={handlePriceUpdate} min={0} max={200} color="error" />
+                </div>
+            </div>
             <br/><br/><br/>
 
             <div className="flex justify-center items-center">
