@@ -55,12 +55,12 @@ const FilterPage = ({ setPageState }) => {
         });
     }
 
-    const handleRangeUpdate = (event: Event, newValue: number) => {
-        setRange(newValue);
+    const handleRangeUpdate = (event: Event, newValue: number | number[]) => {
+        setRange(newValue as number);
     }
 
-    const handlePriceUpdate = (event: Event, newValue: number[]) => {
-        setPrice(newValue);
+    const handlePriceUpdate = (event: Event, newValue: number | number[]) => {
+        setPrice(newValue as number[]);
     }
 
     return (
