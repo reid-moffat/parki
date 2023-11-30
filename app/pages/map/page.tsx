@@ -20,7 +20,7 @@ const MapSelectionPage = () => {
 
     const map = (<>
         <Map/>
-        <TopMapMenu 
+        <TopMapMenu
             setShowFilters={setShowFilters}
             setTimeframe={setTimeframe}
             timeframe={timeframe}
