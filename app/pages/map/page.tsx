@@ -1,5 +1,5 @@
 "use client";
-import React from 'react'
+import React, { useState } from 'react'
 import style from '@/app/styles/Map.module.css'
 import Image from 'next/image';
 import logo from "@/public/logo.png";
@@ -13,6 +13,9 @@ import TopMapMenu from '@/app/components/TopMapMenu';
 const Map = dynamic(() => import('@/app/components/Map'), { ssr: false });
 
 const MapSelectionPage = () => {
+
+    const [timeframe, setTimeframe] = useState("Monthly");
+
     return (
         <>
         <div className={style.mapPage}>
@@ -27,9 +30,10 @@ const MapSelectionPage = () => {
             </div>
 
             <TopMapMenu 
-                timeframe="Monthly"
+                setTimeframe={setTimeframe}
+                timeframe={timeframe}
                 location="Queen's Unviersity"
-                date="December 1, 2023"
+                date="December 2, 2023"
             />
 
             <div className="fixed bottom-0 w-[100vw]">
