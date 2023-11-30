@@ -30,6 +30,7 @@ const Slider = ({setPageState}) => {
         modifier: 2.5,
       }}
       navigation
+      loop
       // install Swiper modules
       modules={[Navigation, Pagination, Scrollbar, A11y]}
       slidesPerView = {1}
