@@ -1,8 +1,8 @@
-// @ts-ignore
 import React from 'react';
 
 import { MdCalendarToday, MdLocationPin, MdFilterAlt } from "react-icons/md";
 
+// @ts-ignore
 const TopMapMenu = ({setShowFilters, setTimeframe, timeframe, location, date}) => {
 
     return (
@@ -23,7 +23,7 @@ const TopMapMenu = ({setShowFilters, setTimeframe, timeframe, location, date}) =
                     {date}
                 </div>
             </div>
-            <div 
+            <div
                 className="flex flex-row items-center bg-[#FF4251] w-min pl-8 pr-10 py-1 rounded-full mt-3 mx-auto text-[#FCF9EF] shadow-xl active:opacity-50 duration-75"
                 onClick={() => setShowFilters(true)}
             >
