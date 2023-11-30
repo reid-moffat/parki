@@ -17,7 +17,7 @@ function Maps({ timeframes, range, price, amenities }) {
                 return item.period.some((period) => timeframes[period]) &&
                     item.distance <= range * 100 &&
                     item.price >= price[0] && item.price <= price[1] &&
-                    Object.keys(amenities).every((amenity: string) => amenities[amenity] !== true || item.amenities.includes(amenity));
+                    Object.keys(amenities).every((amenity: string) => amenities[amenity] === false || item.amenities.includes(amenity));
             })
             .map((data, index) => (
                 <CustomMarker key={index} address={data.address} price={data.price} lat={data.latitude}
