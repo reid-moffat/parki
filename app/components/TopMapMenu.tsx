@@ -1,9 +1,9 @@
 import React from 'react';
-
 import { MdCalendarToday, MdLocationPin, MdFilterAlt } from "react-icons/md";
+import { States } from "@/app/pages/map/page";
 
 // @ts-ignore
-const TopMapMenu = ({setShowFilters, setTimeframe, timeframe, location, date}) => {
+const TopMapMenu = ({setPageState, setTimeframe, timeframe, location, date}) => {
 
     return (
         <div className="mt-[4vh] mx-[10%] font-passion">
@@ -25,7 +25,7 @@ const TopMapMenu = ({setShowFilters, setTimeframe, timeframe, location, date}) =
             </div>
             <div
                 className="flex flex-row items-center bg-[#FF4251] w-min pl-8 pr-10 py-1 rounded-full mt-3 mx-auto text-[#FCF9EF] shadow-xl active:opacity-50 duration-75"
-                onClick={() => setShowFilters(true)}
+                onClick={() => setPageState(States.FILTERS)}
             >
                 <MdFilterAlt size={16} color="#FCF9EF" className="mr-1"/>
                 Filter
