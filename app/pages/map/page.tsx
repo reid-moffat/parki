@@ -11,7 +11,9 @@ import dynamic from "next/dynamic";
 import TopMapMenu from '@/app/components/TopMapMenu';
 import FilterPage from '@/app/components/Filter';
 import DetailsPage from "@/app/components/Details";
+import Slider from '@/app/components/Slider';
 
+const Slide = dynamic(() => import('@/app/components/Slider'), { ssr: false });
 const Map = dynamic(() => import('@/app/components/Map'), { ssr: false });
 
 export enum States {
@@ -23,7 +25,7 @@ export enum States {
 const MapSelectionPage = () => {
 
     const [pageState, setPageState] = useState(States.MAP);
-    const [timeframes, setTimeframes] = useState({ Hourly: true, Weekly: true, Monthly: true });
+    const [timeframes, setTimeframes] = useState({ Hourly: false, Weekly: false, Monthly: true });
 
     // Filters
     const [range, setRange] = useState(30);
@@ -48,6 +50,7 @@ const MapSelectionPage = () => {
                         location="Queen's Unviersity"
                         date="December 2, 2023"
                     />
+                    <Slider setPageState={setPageState} />
                 </>);
             case States.FILTERS:
                 return (

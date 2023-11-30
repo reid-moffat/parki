@@ -55,11 +55,11 @@ const generateData = (numSpots: number) => {
             // @ts-ignore
             address: locations[i][2],
             // @ts-ignore
+            price: locations[i][3],
+            period: ["Monthly"],
+            amenities: Object.keys(Amenities).filter((item) => isNaN(Number(item)) && Math.random() < 0.3),
             distance: locations[i][3],
             // @ts-ignore
-            price: locations[i][4],
-            period: spotPeriods,
-            amenities: Amenities.filter(() => Math.random() < 0.3),
             rating: Math.cbrt(Math.random() * 64) + 1, // 1-5, biased towards higher ratings
         };
 

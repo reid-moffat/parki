@@ -27,6 +27,18 @@
     border-radius: 5%;
 
     overflow: hidden;
+    /* position:; */
+}
+
+.slideContainer {
+    z-index: 1;
+
+    margin-left: 5%;
+    margin-right: 5%;
+
+    border-radius: 5%;
+    bottom: 0;
+
 }
 
 .footerContainer {
