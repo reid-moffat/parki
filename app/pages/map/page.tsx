@@ -1,6 +1,6 @@
 "use client";
-import React from 'react'
-import style from '@/app/styles/Map.module.css'
+import React from 'react';
+import style from '@/app/styles/Map.module.css';
 import Image from 'next/image';
 import logo from "@/public/logo.png";
 import footer from "@/public/map/bottom.png";
