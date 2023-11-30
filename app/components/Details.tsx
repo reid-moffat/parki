@@ -62,6 +62,7 @@ const DetailsPage = ({ setPageState }) => {
                     <Image src={rightArrow} alt={"Arrow2"} className='w-[5%] h-[5%]'/>
                 </button>
             </div>
+            <br/><br/><br/><br/>
         </div>
         <div className='absolute w-[96vw] pl-[5%] pr-[5%] bottom-[4.5vw] flex flex-row h-[8%] bg-[#ff4251] rounded-b-xl justify-between items-center'>
             <div className='text-[#FCF9EF] text-[1.75rem] font-normal'>$12/day</div>
