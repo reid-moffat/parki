@@ -35,15 +35,13 @@ function Maps({ timeframes, range, price, amenities }) {
             >
                 <TileLayer
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                    url='https://tiles.stadiamaps.com/tiles/osm_bright/{z}/{x}/{y}.png'
+                    url='https://tile.openstreetmap.org/{z}/{x}/{y}.png'
 
-                    // this is the original we need to use this for remote deployemnt all other works locally
+                    // Original style - ugly, but free
+                    // url='https://tile.openstreetmap.org/{z}/{x}/{y}.png'
+
+                    // Stadia map style - pretty, but paid
                     // url='https://tiles.stadiamaps.com/tiles/osm_bright/{z}/{x}/{y}.png'
-
-                    // uncoment this and comment out the line above these are mulitple styles we must pay for some of this if we wish to publish this
-                    // url='https://tiles.stadiamaps.com/tiles/outdoors/{z}/{x}/{y}.png'
-                    // url='https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}.png'
-                    // url='https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}.png'
                 />
 
                 {renderPins()}
