@@ -35,7 +35,7 @@ function Maps({ timeframes, range, price, amenities }) {
             >
                 <TileLayer
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                    url='https://tile.openstreetmap.org/{z}/{x}/{y}.png'
+                    url='https://tiles.stadiamaps.com/tiles/osm_bright/{z}/{x}/{y}.png'
 
                     // Original style - ugly, but free
                     // url='https://tile.openstreetmap.org/{z}/{x}/{y}.png'
