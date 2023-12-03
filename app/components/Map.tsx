@@ -6,8 +6,8 @@ import CustomMarker from './CustomMarker';
 import dummyData from "@/app/pages/map/dummyData";
 
 // @ts-ignore
-function Maps({ timeframes, range, price, amenities }) {
-    const center = { lat: 44.236524, lng: -76.495791 };
+function Maps({timeframes, range, price, amenities}) {
+    const center = {lat: 44.236524, lng: -76.495791};
     const ZOOM_LEVEL = 14.5;
     const mapRef = useRef();
 
@@ -21,8 +21,8 @@ function Maps({ timeframes, range, price, amenities }) {
             })
             .map((data, index) => (
                 <CustomMarker key={index} address={data.address} price={data.price} lat={data.latitude}
-                          long={data.longitude} active={true}/>
-        ));
+                              long={data.longitude} active={true}/>
+            ));
     }
 
     return (

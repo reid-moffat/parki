@@ -10,8 +10,8 @@ import DetailsPage from "@/app/components/Details";
 import Slider from '@/app/components/Slider';
 import dummyData from "@/app/pages/map/dummyData";
 
-const Slide = dynamic(() => import('@/app/components/Slider'), { ssr: false });
-const Map = dynamic(() => import('@/app/components/Map'), { ssr: false });
+const Slide = dynamic(() => import('@/app/components/Slider'), {ssr: false});
+const Map = dynamic(() => import('@/app/components/Map'), {ssr: false});
 
 export enum States {
     MAP,
@@ -22,15 +22,17 @@ export enum States {
 const MapSelectionPage = () => {
 
     const [pageState, setPageState] = useState(States.MAP);
-    const [timeframes, setTimeframes] = useState({ Hourly: false, Weekly: false, Monthly: true });
+    const [timeframes, setTimeframes] = useState({Hourly: false, Weekly: false, Monthly: true});
 
     // Filters
     const [range, setRange] = useState(30);
     const [price, setPrice] = useState([0, 200]);
-    const [amenities, setAmenities] = useState({ "Accessible": false,
-        "Self-Park": false, "EV Charging": false, "Covered": false, "On-Site Staff": false, "Shovelling Included": false });
+    const [amenities, setAmenities] = useState({
+        "Accessible": false,
+        "Self-Park": false, "EV Charging": false, "Covered": false, "On-Site Staff": false, "Shovelling Included": false
+    });
 
-     // Details
+    // Details
     const [currentSpot, setCurrentSpot] = useState(dummyData[Math.floor(Math.random() * dummyData.length)]);
 
     const renderPage = () => {

@@ -1,6 +1,6 @@
 import React from 'react';
-import { MdArrowBackIos } from "react-icons/md";
-import { FaFilterCircleXmark } from "react-icons/fa6";
+import { MdArrowBackIos, MdLocalParking } from "react-icons/md";
+import { FaCarTunnel, FaFilterCircleXmark } from "react-icons/fa6";
 import { LuClock5 } from "react-icons/lu";
 import { States } from "@/app/pages/map/page";
 import Slider from '@mui/material/Slider';
@@ -8,13 +8,11 @@ import Divider from "@/public/Line.png";
 import Image from 'next/image';
 import { FaWheelchair } from "react-icons/fa";
 import { IconContext } from 'react-icons';
-import { MdLocalParking } from "react-icons/md";
 import { RiBattery2ChargeLine } from "react-icons/ri";
-import { FaCarTunnel } from "react-icons/fa6";
 import { IoSnowSharp } from "react-icons/io5";
 
 // @ts-ignore
-const FilterPage = ({ setPageState, range, setRange, price, setPrice, amenities, setAmenities }) => {
+const FilterPage = ({setPageState, range, setRange, price, setPrice, amenities, setAmenities}) => {
 
     const renderAmenities = () => {
         const allAmenities = [
@@ -36,9 +34,12 @@ const FilterPage = ({ setPageState, range, setRange, price, setPrice, amenities,
                         className={(isClicked ? "bg-[#343632] text-white" : "bg-[#ffffff]" +
                                 " text-black") +
                             " flex justify-center items-center w-3/6 rounded-full border-black border-2"}
-                        onClick={() => setAmenities((oldState: object) => ({ ...oldState, [amenity.key as string]: !isClicked }))}
+                        onClick={() => setAmenities((oldState: object) => ({
+                            ...oldState,
+                            [amenity.key as string]: !isClicked
+                        }))}
                     >
-                        <IconContext.Provider value={{ color: '#FF4251' }}>
+                        <IconContext.Provider value={{color: '#FF4251'}}>
                             {amenity}
                         </IconContext.Provider>
                         &nbsp;
@@ -80,21 +81,23 @@ const FilterPage = ({ setPageState, range, setRange, price, setPrice, amenities,
             </div>
             <br/>
             <div className="text-center">
-                Within <span className="text-blue-500">{range * 100 < 1000 ? (range * 100) + "m" : (range === 30 ? "any distance" : (range / 10) + "km")}</span>
+                Within <span
+                className="text-blue-500">{range * 100 < 1000 ? (range * 100) + "m" : (range === 30 ? "any distance" : (range / 10) + "km")}</span>
             </div>
             <div className="flex justify-center items-center">
                 <div className="w-5/6">
-                    <Slider value={range} onChange={handleRangeUpdate} min={0} max={30} color="error" />
+                    <Slider value={range} onChange={handleRangeUpdate} min={0} max={30} color="error"/>
                 </div>
             </div>
 
             <div className="text-center">
                 Price Range:<p/>
-                $<span className="text-blue-500">{price[0]}</span> to $<span className="text-blue-500">{price[1] < 200 ? price[1] : "Infinite"}</span>
+                $<span className="text-blue-500">{price[0]}</span> to $<span
+                className="text-blue-500">{price[1] < 200 ? price[1] : "Infinite"}</span>
             </div>
             <div className="flex justify-center items-center">
                 <div className="w-5/6">
-                    <Slider value={price} onChange={handlePriceUpdate} min={0} max={200} color="error" />
+                    <Slider value={price} onChange={handlePriceUpdate} min={0} max={200} color="error"/>
                 </div>
             </div>
             <br/><br/>

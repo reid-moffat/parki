@@ -8,11 +8,11 @@ const inter = Inter({subsets: ['latin']})
 export default function RootLayout() {
     return (
         <html lang="en">
-            <body className={inter.className}>
-                <main className='app'>
-                    <MapSelectionPage/>
-                </main>
-            </body>
+        <body className={inter.className}>
+        <main className='app'>
+            <MapSelectionPage/>
+        </main>
+        </body>
         </html>
     )
 }

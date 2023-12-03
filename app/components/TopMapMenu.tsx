@@ -1,5 +1,5 @@
 import React from 'react';
-import { MdCalendarToday, MdLocationPin, MdFilterAlt } from "react-icons/md";
+import { MdCalendarToday, MdFilterAlt, MdLocationPin } from "react-icons/md";
 import { States } from "@/app/pages/map/page";
 
 interface Timeframes {
@@ -18,19 +18,19 @@ const TopMapMenu = ({setPageState, setTimeframes, timeframes, location, date}) =
                 if (timeframes.Hourly === true && numActive === 1) {
                     return;
                 }
-                setTimeframes((oldState: Timeframes) => ({ ...oldState, Hourly: !oldState.Hourly }));
+                setTimeframes((oldState: Timeframes) => ({...oldState, Hourly: !oldState.Hourly}));
                 break;
             case "Weekly":
                 if (timeframes.Weekly === true && numActive === 1) {
                     return;
                 }
-                setTimeframes((oldState: Timeframes) => ({ ...oldState, Weekly: !oldState.Weekly }));
+                setTimeframes((oldState: Timeframes) => ({...oldState, Weekly: !oldState.Weekly}));
                 break;
             case "Monthly":
                 if (timeframes.Monthly === true && numActive === 1) {
                     return;
                 }
-                setTimeframes((oldState: Timeframes) => ({ ...oldState, Monthly: !oldState.Monthly }));
+                setTimeframes((oldState: Timeframes) => ({...oldState, Monthly: !oldState.Monthly}));
                 break;
             default:
                 throw new Error(`Invalid time frame: ${timeFrame}`);
@@ -67,7 +67,7 @@ const TopMapMenu = ({setPageState, setTimeframes, timeframes, location, date}) =
                         <MdLocationPin size={20} color="#FF4251" className="mr-2"/>
                         {location}
                     </div>
-                    <div className=" border-t-[1px] my-1" />
+                    <div className=" border-t-[1px] my-1"/>
                     <div className="flex flex-row items-center">
                         <MdCalendarToday size={20} color="#FF4251" className="mr-2"/>
                         {date}
