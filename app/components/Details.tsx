@@ -76,7 +76,7 @@ const DetailsPage = ({setPageState, spotData}) => {
                 <Image src={line} alt={"line_divider_2"} className='w-[85vw]'/>
             </div>
             <div className='p-[5%]'>
-                <Image src={footer} alt={"footer"} className='border-0 rounded-[1.25rem] h-[8rem] w-[100%] overflow-hidden'/>
+                <Image src={map} alt={"map"} className='border-0 rounded-[1.25rem] h-[8rem] w-[100%] overflow-hidden'/>
                 <br/>
                 <button className='flex flex-row border-[1px] border-[#343632] w-[100%] rounded-[2.5rem] h-[5%] items-center justify-center font-outfit'>
                     Availability

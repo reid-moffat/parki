@@ -1,7 +1,6 @@
 import L from "leaflet";
 import { renderToStaticMarkup } from "react-dom/server";
 import { Marker, Popup } from "react-leaflet";
-import Icon2 from "../../public/pins/ActiveSpot.png";
 
 interface MarkerProps {
     lat: number,
@@ -11,24 +10,39 @@ interface MarkerProps {
     active: boolean, // If this is the pin the user is currently on
 }
 
-function CustomMarker({lat, long, address, price}: MarkerProps) {
+const text = L.divIcon({html: 'Your HTML text here'});
+
+
+function CustomMarker({lat, long, address, price, active}: MarkerProps) {
+
+    // L.Marker.prototype.options.icon = L.icon({
+    //     iconUrl: active ? '/pins/ActiveSpot.png' : '/pins/OtherSpot.png',
+    //     iconSize: [38, 39],
+
+    // });
+
 
     const iconMarkup = renderToStaticMarkup(<i className=" fa fa-map-marker-alt fa-3x"/>);
     const customMarkerIcon = L.divIcon({
         className: 'my-div-icon',
         html: `<div style="position: relative;height: 38px; width: 39px;transform: translateY(-20px) ;">\
-         <img style="height: 38px; width: 39px;" src={"../../public/pins/ActiveSpot.png"} alt="Active Spot"> \
+         <img style="height: 38px; width: 39px;" src="pins/ActiveSpot.png" alt="Active Spot"> \
          <div style="position: absolute; top: 18%; width: 80%; text-align: center; color:white; font-family: sans-serif;">\
          $${price}</div> </div>`
+
     });
 
+
     return (
+
+
         <Marker position={[lat, long]} icon={customMarkerIcon}>
             <Popup>
                 {address}
                 <br/>
                 ${price}
             </Popup>
+
         </Marker>
     )
 }

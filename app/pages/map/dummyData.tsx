@@ -1,5 +1,5 @@
 /**
- * Dummy data to populate the footer with parking spots
+ * Dummy data to populate the map with parking spots
  */
 interface ParkingSpace {
     latitude: number,
