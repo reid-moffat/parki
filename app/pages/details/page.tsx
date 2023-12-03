@@ -3,10 +3,10 @@ import React from 'react'
 import style from '@/app/styles/Map.module.css'
 import Image from 'next/image';
 import logo from "@/public/logo.png";
-import footer from "@/public/map/bottom.png";
-import profileIcon from "@/public/map/user.png";
-import mapIcon from "@/public/map/map.png";
-import settingsIcon from "@/public/map/settings.png";
+import footer from "@/public/footer/bottom.png";
+import profileIcon from "@/public/footer/user.png";
+import mapIcon from "@/public/footer/map.png";
+import settingsIcon from "@/public/footer/settings.png";
 
 const DetailsPage = () => {
     return (
