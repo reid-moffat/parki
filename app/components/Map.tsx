@@ -40,7 +40,7 @@ function Maps({timeframes, range, price, amenities}) {
                     // Original style - ugly, but free
                     // url='https://tile.openstreetmap.org/{z}/{x}/{y}.png'
 
-                    // Stadia map style - pretty, but paid
+                    // Stadia footer style - pretty, but paid
                     // url='https://tiles.stadiamaps.com/tiles/osm_bright/{z}/{x}/{y}.png'
                 />
 
