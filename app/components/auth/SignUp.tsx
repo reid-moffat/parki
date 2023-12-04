@@ -17,7 +17,7 @@ const SignUpPage = () => {
     const handleSignUp = async () => {
         if (password !== passwordConfirm) {
             alert("Password does not match!")
-            return
+            return;
         }
 
         await httpsCallable(functions, 'createAccount')({email: email, password: password})

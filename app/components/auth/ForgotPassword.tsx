@@ -1,8 +1,8 @@
 "use client";
 import React, { useState } from 'react'
-import TextBox from '../../../components/auth/TextBox'
+import TextBox from './TextBox'
 import { httpsCallable } from "@firebase/functions";
-import { functions } from '../../../firebase/config'
+import { functions } from '../../firebase/config'
 
 const ForgotPasswordPage = () => {
     const [email, setEmail] = useState("");

@@ -7,7 +7,7 @@ import TopMapMenu from '@/app/components/map/TopMapMenu';
 import FilterPage from '@/app/components/map/Filter';
 import DetailsPage from "@/app/components/map/Details";
 import Slider from '@/app/components/map/Slider';
-import dummyData from "@/app/pages/map/dummyData";
+import dummyData from "@/app/pages/dummyData";
 
 const Map = dynamic(() => import('@/app/components/map/Map'), {ssr: false});
 

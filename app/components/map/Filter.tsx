@@ -2,7 +2,7 @@ import React from 'react';
 import { MdArrowBackIos, MdLocalParking } from "react-icons/md";
 import { FaCarTunnel, FaFilterCircleXmark } from "react-icons/fa6";
 import { LuClock5 } from "react-icons/lu";
-import { States } from "@/app/pages/map/page";
+import { States } from "@/app/pages/MapPage";
 import Slider from '@mui/material/Slider';
 import Divider from "@/public/Line.png";
 import Image from 'next/image';

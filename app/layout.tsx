@@ -1,7 +1,7 @@
 import './globals.css'
 import { Inter } from 'next/font/google'
 import React from "react";
-import MapSelectionPage from "@/app/pages/map/page";
+import MapSelectionPage from "@/app/pages/MapPage";
 
 const inter = Inter({subsets: ['latin']})
 

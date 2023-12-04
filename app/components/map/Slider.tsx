@@ -5,7 +5,7 @@ import { A11y, Navigation, Pagination, Scrollbar } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Rating } from '@smastrom/react-rating';
 import { MdFavorite } from 'react-icons/md';
-import { States } from "@/app/pages/map/page";
+import { States } from "@/app/pages/MapPage";
 
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -14,8 +14,8 @@ import 'swiper/css/scrollbar';
 import '@smastrom/react-rating/style.css'
 
 import slide_image from '@/public/parked_car.jpg';
-import data from '../../pages/map/dummyData';
-import dummyData from '../../pages/map/dummyData';
+import data from '../../pages/dummyData';
+import dummyData from '../../pages/dummyData';
 
 
 // @ts-ignore

@@ -3,7 +3,7 @@ import React, { useRef } from 'react'
 import { MapContainer, TileLayer } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 import CustomMarker from './CustomMarker';
-import dummyData from "@/app/pages/map/dummyData";
+import dummyData from "@/app/pages/dummyData";
 
 // @ts-ignore
 function Maps({timeframes, range, price, amenities}) {
