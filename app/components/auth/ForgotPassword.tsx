@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 import TextBox from './TextBox'
 import { httpsCallable } from "@firebase/functions";
-import { functions } from '../../firebase/config'
+import { functions } from '@/app/config/config'
 
 const ForgotPasswordPage = () => {
     const [email, setEmail] = useState("");

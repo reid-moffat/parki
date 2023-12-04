@@ -14,8 +14,8 @@ import 'swiper/css/scrollbar';
 import '@smastrom/react-rating/style.css'
 
 import slide_image from '@/public/parked_car.jpg';
-import data from '../../pages/dummyData';
-import dummyData from '../../pages/dummyData';
+import data from '../../config/dummyData';
+import dummyData from '../../config/dummyData';
 
 
 // @ts-ignore
