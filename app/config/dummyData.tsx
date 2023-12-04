@@ -26,7 +26,7 @@ const Amenities = [
 
 const dummyData: ParkingSpace[] = spotData.map((spot) => ({
         ...spot,
-        amenities: Amenities.filter((item) => Math.random() < 0.3),
+        amenities: Amenities.sort(() => 0.5 - Math.random()).slice(0, Math.floor(Math.random() * 4)),
         rating: Math.floor((Math.pow(Math.random() * 256, 1/4) + 1) * 10) / 10,
 }));
 
