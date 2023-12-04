@@ -3,14 +3,13 @@ import React, { useState } from 'react'
 import Image from 'next/image';
 import logo from "@/public/logo.png";
 import dynamic from "next/dynamic";
-import TopMapMenu from '@/app/components/TopMapMenu';
-import FilterPage from '@/app/components/Filter';
-import DetailsPage from "@/app/components/Details";
-import Slider from '@/app/components/Slider';
+import TopMapMenu from '@/app/components/map/TopMapMenu';
+import FilterPage from '@/app/components/map/Filter';
+import DetailsPage from "@/app/components/map/Details";
+import Slider from '@/app/components/map/Slider';
 import dummyData from "@/app/pages/map/dummyData";
 
-const Slide = dynamic(() => import('@/app/components/Slider'), {ssr: false});
-const Map = dynamic(() => import('@/app/components/Map'), {ssr: false});
+const Map = dynamic(() => import('@/app/components/map/Map'), {ssr: false});
 
 export enum States {
     MAP,

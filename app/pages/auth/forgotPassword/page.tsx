@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from 'react'
-import TextBox from '../../../components/TextBox'
+import TextBox from '../../../components/auth/TextBox'
 import { httpsCallable } from "@firebase/functions";
 import { functions } from '../../../firebase/config'
 
