@@ -10,7 +10,7 @@ interface ParkingSpace {
     description: string,
     price: number,
     distance: number,
-    period: string[],
+    period: string,
     amenities: string[],
     rating: number,
 }

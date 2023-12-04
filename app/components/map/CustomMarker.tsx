@@ -1,15 +1,8 @@
 import L from "leaflet";
 import { Marker, Popup } from "react-leaflet";
 
-interface MarkerProps {
-    lat: number,
-    long: number,
-    address: string,
-    price: number,
-    active: boolean, // If this is the pin the user is currently on
-}
-
-function CustomMarker({ lat, long, address, price }: MarkerProps) {
+// @ts-ignore
+function CustomMarker({ lat, long, address, price, period }) {
 
     const customMarkerIcon = L.divIcon({
         className: 'my-div-icon',
@@ -24,7 +17,7 @@ function CustomMarker({ lat, long, address, price }: MarkerProps) {
             <Popup>
                 {address}
                 <br/>
-                ${price}
+                ${price} per {period}
             </Popup>
         </Marker>
     )

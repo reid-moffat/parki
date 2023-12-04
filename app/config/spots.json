@@ -6,7 +6,7 @@
         "price": 110,
         "description": "Backyard area with an open spot available",
         "distance": 1500,
-        "period": ["Monthly"]
+        "period": "Monthly"
     },
     {
         "address": "538 Frontenac St",
@@ -15,7 +15,7 @@
         "price": 110,
         "description": "Large, secluded backyard area with an easy accessible path in",
         "distance": 1500,
-        "period": ["Monthly"]
+        "period": "Monthly"
     },
     {
         "address": "400 Alfred St",
@@ -24,7 +24,7 @@
         "price": 110,
         "description": "Backyard lot accessible from the south",
         "distance": 1500,
-        "period": ["Monthly"]
+        "period": "Monthly"
     },
     {
         "address": "215 Colborne St",
@@ -33,7 +33,7 @@
         "price": 120,
         "description": "Backyard area accessible from the side",
         "distance": 1200,
-        "period": ["Monthly"]
+        "period": "Monthly"
     },
     {
         "address": "14 Plum St",
@@ -42,7 +42,7 @@
         "price": 110,
         "description": "Backyard lot accessible from the side",
         "distance": 1800,
-        "period": ["Monthly"]
+        "period": "Monthly"
     },
     {
         "address": "67 Mack Street",
@@ -51,6 +51,6 @@
         "price": 110,
         "description": "A backyard, side-accessible lot",
         "distance": 1300,
-        "period": ["Monthly"]
+        "period": "Monthly"
     }
 ]
