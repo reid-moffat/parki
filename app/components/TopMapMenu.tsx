@@ -62,6 +62,7 @@ const TopMapMenu = ({setPageState, setTimeframes, timeframes, location, date}) =
                         Monthly
                     </div>
                 </div>
+
                 <div className="bg-[#FCF9EF] rounded-xl px-3 py-1 mt-2 shadow-xl text-[#343632]">
                     <div className="flex flex-row items-center">
                         <MdLocationPin size={20} color="#FF4251" className="mr-2"/>
@@ -73,6 +74,7 @@ const TopMapMenu = ({setPageState, setTimeframes, timeframes, location, date}) =
                         {date}
                     </div>
                 </div>
+
                 <div
                     className="flex flex-row items-center bg-[#FF4251] w-min pl-8 pr-10 py-1 rounded-full mt-3 mx-auto text-[#FCF9EF] shadow-xl active:opacity-50 duration-75"
                     onClick={() => setPageState(States.FILTERS)}
