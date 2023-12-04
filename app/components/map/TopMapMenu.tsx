@@ -1,6 +1,6 @@
 import React from 'react';
-import { MdCalendarToday, MdLocationPin, MdFilterAlt } from "react-icons/md";
-import { States } from "@/app/pages/map/page";
+import { MdCalendarToday, MdFilterAlt, MdLocationPin } from "react-icons/md";
+import { States } from "@/app/pages/MapPage";
 
 interface Timeframes {
     Hourly: boolean,
@@ -18,19 +18,19 @@ const TopMapMenu = ({setPageState, setTimeframes, timeframes, location, date}) =
                 if (timeframes.Hourly === true && numActive === 1) {
                     return;
                 }
-                setTimeframes((oldState: Timeframes) => ({ ...oldState, Hourly: !oldState.Hourly }));
+                setTimeframes((oldState: Timeframes) => ({...oldState, Hourly: !oldState.Hourly}));
                 break;
             case "Weekly":
                 if (timeframes.Weekly === true && numActive === 1) {
                     return;
                 }
-                setTimeframes((oldState: Timeframes) => ({ ...oldState, Weekly: !oldState.Weekly }));
+                setTimeframes((oldState: Timeframes) => ({...oldState, Weekly: !oldState.Weekly}));
                 break;
             case "Monthly":
                 if (timeframes.Monthly === true && numActive === 1) {
                     return;
                 }
-                setTimeframes((oldState: Timeframes) => ({ ...oldState, Monthly: !oldState.Monthly }));
+                setTimeframes((oldState: Timeframes) => ({...oldState, Monthly: !oldState.Monthly}));
                 break;
             default:
                 throw new Error(`Invalid time frame: ${timeFrame}`);
@@ -62,17 +62,19 @@ const TopMapMenu = ({setPageState, setTimeframes, timeframes, location, date}) =
                         Monthly
                     </div>
                 </div>
+
                 <div className="bg-[#FCF9EF] rounded-xl px-3 py-1 mt-2 shadow-xl text-[#343632]">
                     <div className="flex flex-row items-center">
                         <MdLocationPin size={20} color="#FF4251" className="mr-2"/>
                         {location}
                     </div>
-                    <div className=" border-t-[1px] my-1" />
+                    <div className=" border-t-[1px] my-1"/>
                     <div className="flex flex-row items-center">
                         <MdCalendarToday size={20} color="#FF4251" className="mr-2"/>
                         {date}
                     </div>
                 </div>
+
                 <div
                     className="flex flex-row items-center bg-[#FF4251] w-min pl-8 pr-10 py-1 rounded-full mt-3 mx-auto text-[#FCF9EF] shadow-xl active:opacity-50 duration-75"
                     onClick={() => setPageState(States.FILTERS)}

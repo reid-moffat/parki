@@ -3,10 +3,10 @@ import React, { useRef } from 'react'
 import { MapContainer, TileLayer } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 import CustomMarker from './CustomMarker';
-import dummyData from "@/app/pages/map/dummyData";
+import dummyData from "@/app/config/dummyData";
 
 // @ts-ignore
-function Maps({ timeframes, range, price, amenities }) {
+function Maps({timeframes, range, price, amenities}) {
     const center = { lat: 44.236524, lng: -76.495791 };
     const ZOOM_LEVEL = 14.5;
     const mapRef = useRef();
@@ -14,15 +14,19 @@ function Maps({ timeframes, range, price, amenities }) {
     const renderPins = () => {
         return dummyData
             .filter((item) => {
-                return item.period.some((period) => timeframes[period]) &&
+                return timeframes[item.period] === true &&
                     (range === 30 || item.distance <= range * 100) &&
                     (price[1] === 200 || (item.price >= price[0] && item.price <= price[1])) &&
                     Object.keys(amenities).every((amenity: string) => amenities[amenity] === false || item.amenities.includes(amenity));
             })
-            .map((data, index) => (
-                <CustomMarker key={index} address={data.address} price={data.price} lat={data.latitude}
-                          long={data.longitude} active={true}/>
-        ));
+            .map((data, index) => {
+
+
+                return (
+                    <CustomMarker key={index} lat={data.latitude} long={data.longitude}
+                              address={data.address} price={data.price} period={data.period}/>
+                );
+            });
     }
 
     return (

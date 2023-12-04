@@ -1,8 +1,8 @@
 "use client";
 import React, { useState } from 'react'
-import TextBox from '../../../components/TextBox'
+import TextBox from '@/app/components/auth/TextBox'
 import { httpsCallable } from "@firebase/functions";
-import { auth, functions } from '../../../firebase/config'
+import { auth, functions } from '@/app/config/firebase'
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { useRouter } from "next/navigation";
 import Image from 'next/image'
@@ -17,7 +17,7 @@ const SignUpPage = () => {
     const handleSignUp = async () => {
         if (password !== passwordConfirm) {
             alert("Password does not match!")
-            return
+            return;
         }
 
         await httpsCallable(functions, 'createAccount')({email: email, password: password})

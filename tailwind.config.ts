@@ -15,9 +15,9 @@ const config: Config = {
             },
             fontFamily: {
                 passion: ['"Passion One"'],
-                outfit: ['"Outfit"']            
+                outfit: ['"Outfit"']
             }
-        },
+        }
     },
     plugins: [],
 }

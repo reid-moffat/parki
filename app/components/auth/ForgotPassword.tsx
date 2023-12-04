@@ -1,8 +1,8 @@
 "use client";
 import React, { useState } from 'react'
-import TextBox from '../../../components/TextBox'
+import TextBox from './TextBox'
 import { httpsCallable } from "@firebase/functions";
-import { functions } from '../../../firebase/config'
+import { functions } from '@/app/config/firebase'
 
 const ForgotPasswordPage = () => {
     const [email, setEmail] = useState("");
@@ -18,11 +18,7 @@ const ForgotPasswordPage = () => {
     }
 
     return (
-        <div
-            className={
-                "flex flex-col justify-center items-center"
-            }
-        >
+        <div className={"flex flex-col justify-center items-center"}>
             <div className="px-7 py-4 shadow bg-white rounded-md flex flex-col gap-2">
                 <TextBox
                     labelText="Email"
