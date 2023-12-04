@@ -24,7 +24,7 @@ function Maps({timeframes, range, price, amenities}) {
 
                 return (
                     <CustomMarker key={index} lat={data.latitude} long={data.longitude}
-                              address={data.address} price={data.price} period={data.period.toLowerCase().slice(0, data.period.length - 2)}/>
+                              address={data.address} price={data.price} period={data.period}/>
                 );
             });
     }

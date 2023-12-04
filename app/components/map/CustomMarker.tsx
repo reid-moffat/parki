@@ -17,7 +17,7 @@ function CustomMarker({ lat, long, address, price, period }) {
             <Popup>
                 {address}
                 <br/>
-                ${price} per {period}
+                ${price} per {period.toLowerCase().slice(0, period.length - 2)}
             </Popup>
         </Marker>
     )
