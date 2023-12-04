@@ -18,11 +18,7 @@ const ForgotPasswordPage = () => {
     }
 
     return (
-        <div
-            className={
-                "flex flex-col justify-center items-center"
-            }
-        >
+        <div className={"flex flex-col justify-center items-center"}>
             <div className="px-7 py-4 shadow bg-white rounded-md flex flex-col gap-2">
                 <TextBox
                     labelText="Email"

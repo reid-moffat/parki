@@ -4,12 +4,11 @@ import { FaCarTunnel, FaFilterCircleXmark } from "react-icons/fa6";
 import { LuClock5 } from "react-icons/lu";
 import { States } from "@/app/pages/MapPage";
 import Slider from '@mui/material/Slider';
-import Divider from "@/public/Line.png";
-import Image from 'next/image';
 import { FaWheelchair } from "react-icons/fa";
 import { IconContext } from 'react-icons';
 import { RiBattery2ChargeLine } from "react-icons/ri";
 import { IoSnowSharp } from "react-icons/io5";
+import Divider from "@/app/components/helpers/Divider";
 
 // @ts-ignore
 const FilterPage = ({setPageState, range, setRange, price, setPrice, amenities, setAmenities}) => {
@@ -102,11 +101,9 @@ const FilterPage = ({setPageState, range, setRange, price, setPrice, amenities, 
             </div>
             <br/><br/>
 
-            <div className="flex justify-center items-center">
-                <Image src={Divider} alt={"Divider"}/>
-            </div>
-            <br/>
+            <Divider/>
 
+            <br/>
             <div className="flex justify-center items-center">
                 <div className="w-5/6 font-bold">
                     Amenities

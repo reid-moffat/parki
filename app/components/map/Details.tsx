@@ -10,6 +10,7 @@ import { RiBattery2ChargeLine } from "react-icons/ri";
 import { FaCarTunnel } from "react-icons/fa6";
 import { IoSnowSharp } from "react-icons/io5";
 import { IconContext } from "react-icons";
+import Divider from "@/app/components/helpers/Divider";
 
 // @ts-ignore
 const DetailsPage = ({setPageState, spotData}) => {
@@ -65,33 +66,20 @@ const DetailsPage = ({setPageState, spotData}) => {
                     </div>
                 </div>
 
-                <div className='flex justify-center'>
-                    <Image src={line} alt={"line_divider_1"} className='w-[85vw]'/>
-                </div>
+                <Divider/>
+
                 <div className='p-5 text-[1.5rem] font-normal'>
                     Amenities
                 </div>
                 {renderAmenities()}
-                {/* <div className='flex justify-center'>
-                <Image src={line} alt={"line_divider_2"} className='w-[85vw]'/>
-            </div>
-            <div className='p-[5%]'>
-                <Image src={map} alt={"map"} className='border-0 rounded-[1.25rem] h-[8rem] w-[100%] overflow-hidden'/>
-                <br/>
-                <button className='flex flex-row border-[1px] border-[#343632] w-[100%] rounded-[2.5rem] h-[5%] items-center justify-center font-outfit'>
-                    Availability
-                    <MdArrowForwardIos className='w-[5%] h-[5%]'/>
-                </button>
-            </div> */}
-                <div className='flex justify-center'>
-                    <Image src={line} alt={"line_divider_3"} className='w-[85vw]'/>
-                </div>
+
+                <Divider/>
+
                 <div className='p-[5%]'>
                     <div className='flex flex-row justify-between items-center'>
                         <div className='text-[1.5rem] font-normal'>Reviews</div>
                         <div className="flex items-center">
-                            <div
-                                className='text-[1.125rem] font-bold mr-1'>{spotData.rating}</div>
+                            <div className='text-[1.125rem] font-bold mr-1'>{spotData.rating}</div>
                             stars
                         </div>
                     </div>
@@ -105,8 +93,7 @@ const DetailsPage = ({setPageState, spotData}) => {
             </div>
             <div
                 className='absolute w-[96vw] pl-[5%] pr-[5%] bottom-[4.5vw] flex flex-row h-[8%] bg-[#ff4251] rounded-b-xl justify-between items-center'>
-                <div className='text-[#FCF9EF] text-[1.75rem] font-normal'>$110/month</div>
-                {/* <button className='flex bg-[#343632] text-3xl text-[#FCF9EF] px-[10%] py-[1%] rounded-full font-normal'>RESERVE</button> */}
+                <div className='text-[#FCF9EF] text-[1.75rem] font-normal'>${spotData.price}/month</div>
             </div>
         </div>
     )
