@@ -1,6 +1,5 @@
 "use client";
 import React, { useState } from 'react'
-import style from '@/app/styles/Map.module.css'
 import Image from 'next/image';
 import logo from "@/public/logo.png";
 import dynamic from "next/dynamic";
