@@ -91,7 +91,7 @@ const DetailsPage = ({setPageState, spotData}) => {
                         <div className='text-[1.5rem] font-normal'>Reviews</div>
                         <div className="flex items-center">
                             <div
-                                className='text-[1.125rem] font-bold mr-1'>{Math.floor(spotData.rating * 10) / 10}</div>
+                                className='text-[1.125rem] font-bold mr-1'>{spotData.rating}</div>
                             stars
                         </div>
                     </div>
