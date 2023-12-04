@@ -1,7 +1,5 @@
 "use client";
 import React, { useState } from 'react'
-import Image from 'next/image';
-import logo from "@/public/logo.png";
 import dynamic from "next/dynamic";
 import TopMapMenu from '@/app/components/map/TopMapMenu';
 import FilterPage from '@/app/components/map/Filter';
@@ -67,17 +65,11 @@ const MapSelectionPage = () => {
             case States.DETAILS:
                 return <DetailsPage setPageState={setPageState} spotData={currentSpot}/>;
             default:
-                throw new Error("Invalid page state: " + pageState);
+                throw new Error(`Invalid page state: ${pageState}`);
         }
     }
 
-    return (
-        <div style={{ backgroundColor: '#343632', position: 'absolute', height: '100vh', width: '100vw', 'zIndex': '10' }}>
-            <Image src={logo} alt="Parki logo" className='w-[100vw] h-[8vh] object-contain mt-3 mb-4'/>
-
-            {renderPage()}
-        </div>
-    )
+    return renderPage();
 }
 
 export default MapSelectionPage;

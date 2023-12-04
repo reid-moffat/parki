@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 
+// TODO
 const Profile = () => {
-
     return (
-        <div></div>
+        <div>
+            Profile page
+        </div>
     );
 }
 
