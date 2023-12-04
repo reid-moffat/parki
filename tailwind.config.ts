@@ -17,7 +17,7 @@ const config: Config = {
                 passion: ['"Passion One"'],
                 outfit: ['"Outfit"']
             }
-        },
+        }
     },
     plugins: [],
 }
