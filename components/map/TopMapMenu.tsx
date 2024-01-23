@@ -1,6 +1,6 @@
 import React from 'react';
 import { MdCalendarToday, MdFilterAlt, MdLocationPin } from "react-icons/md";
-import { States } from "@/app/map/page";
+import { States } from "@/app/map/states";
 
 interface Timeframes {
     Hourly: boolean,

@@ -8,14 +8,9 @@ import Slider from '@/components/map/Slider';
 import dummyData from "@/config/dummyData";
 import logo from "@/public/logo.png";
 import Image from "next/image";
+import { States } from "@/app/map/states";
 
 const Map = dynamic(() => import('@/components/map/Map'), {ssr: false});
-
-export enum States {
-    MAP,
-    FILTERS,
-    DETAILS,
-}
 
 const MapPage = () => {
 

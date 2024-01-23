@@ -2,7 +2,7 @@ import React from 'react';
 import { MdArrowBackIos, MdLocalParking } from "react-icons/md";
 import { FaCarTunnel, FaFilterCircleXmark } from "react-icons/fa6";
 import { LuClock5 } from "react-icons/lu";
-import { States } from "@/app/map/page";
+import { States } from "@/app/map/states";
 import Slider from '@mui/material/Slider';
 import { FaWheelchair } from "react-icons/fa";
 import { IconContext } from 'react-icons';
