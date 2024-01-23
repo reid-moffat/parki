@@ -1,15 +1,15 @@
 "use client";
 import React, { useState } from 'react'
 import dynamic from "next/dynamic";
-import TopMapMenu from '@/app/components/map/TopMapMenu';
-import FilterPage from '@/app/components/map/Filter';
-import DetailsPage from "@/app/components/map/Details";
-import Slider from '@/app/components/map/Slider';
-import dummyData from "@/app/config/dummyData";
+import TopMapMenu from '@/components/map/TopMapMenu';
+import FilterPage from '@/components/map/Filter';
+import DetailsPage from "@/components/map/Details";
+import Slider from '@/components/map/Slider';
+import dummyData from "@/config/dummyData";
 import logo from "@/public/logo.png";
 import Image from "next/image";
 
-const Map = dynamic(() => import('@/app/components/map/Map'), {ssr: false});
+const Map = dynamic(() => import('@/components/map/Map'), {ssr: false});
 
 export enum States {
     MAP,

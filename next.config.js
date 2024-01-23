@@ -1,4 +1,15 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
+const nextConfig = {
+    async redirects() {
+        // The root page automatically routes to the map
+        return [
+            {
+                source: '/',
+                destination: '/map',
+                permanent: true,
+            },
+        ]
+    }
+}
 
-module.exports = nextConfig
+module.exports = nextConfig;
