@@ -24,6 +24,7 @@ const Amenities = [
     "Shovelling Included",
 ];
 
+// Generate parking spot from dummy data with random amenities & rating
 const dummyData: ParkingSpace[] = spotData.map((spot) => ({
         ...spot,
         amenities: Amenities.sort(() => 0.5 - Math.random()).slice(0, Math.floor(Math.random() * 4)),
