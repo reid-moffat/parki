@@ -2,7 +2,6 @@
 import React, { useState } from 'react'
 import dynamic from "next/dynamic";
 import TopMapMenu from '@/components/map/TopMapMenu';
-import FilterPage from '@/components/map/Filter';
 import DetailsPage from "@/components/map/Details";
 import Slider from '@/components/map/Slider';
 import dummyData from "@/config/dummyData";
@@ -31,33 +30,8 @@ const MapPage = () => {
         switch (pageState) {
             case States.MAP:
                 return (<>
-                    <Map
-                        timeframes={timeframes}
-                        range={range}
-                        price={price}
-                        amenities={amenities}
-                    />
-                    <TopMapMenu
-                        setPageState={setPageState}
-                        setTimeframes={setTimeframes}
-                        timeframes={timeframes}
-                        location="Queen's University"
-                        date="February 2, 2024"
-                    />
-                    <Slider setPageState={setPageState} setCurrentSpot={setCurrentSpot}/>
+
                 </>);
-            case States.FILTERS:
-                return (
-                    <FilterPage
-                        setPageState={setPageState}
-                        range={range}
-                        setRange={setRange}
-                        price={price}
-                        setPrice={setPrice}
-                        amenities={amenities}
-                        setAmenities={setAmenities}
-                    />
-                );
             case States.DETAILS:
                 return <DetailsPage setPageState={setPageState} spotData={currentSpot}/>;
             default:
@@ -69,7 +43,20 @@ const MapPage = () => {
         <div style={{ backgroundColor: '#343632', position: 'absolute', height: '100vh', width: '100vw', zIndex: '10' }}>
             <Image src={logo} alt="Parki logo" className='w-[100vw] h-[8vh] object-contain mt-3 mb-4'/>
 
-            {renderPage()}
+            <Map
+                timeframes={timeframes}
+                range={range}
+                price={price}
+                amenities={amenities}
+            />
+            <TopMapMenu
+                setPageState={setPageState}
+                setTimeframes={setTimeframes}
+                timeframes={timeframes}
+                location="Queen's University"
+                date="February 2, 2024"
+            />
+            <Slider setPageState={setPageState} setCurrentSpot={setCurrentSpot}/>
         </div>
     );
 }

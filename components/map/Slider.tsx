@@ -12,10 +12,11 @@ import 'swiper/css/scrollbar';
 import '@smastrom/react-rating/style.css'
 import slide_image from '@/public/parked_car.jpg';
 import dummyData from '@/config/dummyData';
+import Link from "next/link";
 
 
 // @ts-ignore
-const Slider = ({setPageState, setCurrentSpot}) => {
+const Slider = ({ setCurrentSpot }) => {
 
     const swiperSlides = () => {
         return dummyData.map((item) => (
@@ -47,14 +48,15 @@ const Slider = ({setPageState, setCurrentSpot}) => {
                             ))}
                         </div>
                         <div className="flex flex-row items-center">
-                            <button
-                                className="w-[54vw] py-1 bg-[#FF4251] rounded-full font-passion text-[#FCF9EF] shadow-xl active:opacity-50 duration-75"
-                                onClick={() => setPageState(States.DETAILS)}
+                            <Link
+                                className="w-[54vw] py-1 bg-[#FF4251] rounded-full font-passion text-[#FCF9EF] shadow-xl active:opacity-50 duration-75 text-center"
+                                href={{ pathname: '/map/details', query: { spotData: JSON.stringify(item) } }}
                             >
                                 More Details
-                            </button>
-                            <div className="border-2 border-[#FCF9EF] rounded-full p-[1vw] ml-2"><MdFavorite
-                                size={18} color="#FCF9EF"/></div>
+                            </Link>
+                            <div className="border-2 border-[#FCF9EF] rounded-full p-[1vw] ml-2">
+                                <MdFavorite size={18} color="#FCF9EF"/>
+                            </div>
                         </div>
                     </div>
                 </div>
