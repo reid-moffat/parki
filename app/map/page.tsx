@@ -6,13 +6,12 @@ import Slider from '@/components/map/Slider';
 import dummyData from "@/config/dummyData";
 import logo from "@/public/logo.png";
 import Image from "next/image";
-import { States } from "@/app/map/states";
 
 const Map = dynamic(() => import('@/components/map/Map'), {ssr: false});
 
-const MapPage = () => {
+// @ts-ignore
+const MapPage = ({ searchParams }) => {
 
-    const [pageState, setPageState] = useState(States.MAP);
     const [timeframes, setTimeframes] = useState({Hourly: false, Weekly: false, Monthly: true});
 
     // Filters
@@ -25,17 +24,6 @@ const MapPage = () => {
     // Details
     const [currentSpot, setCurrentSpot] = useState(dummyData[Math.floor(Math.random() * dummyData.length)]);
 
-    const renderPage = () => {
-        switch (pageState) {
-            case States.MAP:
-                return (<>
-
-                </>);
-            default:
-                throw new Error(`Invalid page state: ${pageState}`);
-        }
-    }
-
     return (
         <div style={{ backgroundColor: '#343632', position: 'absolute', height: '100vh', width: '100vw', zIndex: '10' }}>
             <Image src={logo} alt="Parki logo" className='w-[100vw] h-[8vh] object-contain mt-3 mb-4'/>
@@ -47,13 +35,12 @@ const MapPage = () => {
                 amenities={amenities}
             />
             <TopMapMenu
-                setPageState={setPageState}
                 setTimeframes={setTimeframes}
                 timeframes={timeframes}
                 location="Queen's University"
                 date="February 2, 2024"
             />
-            <Slider setPageState={setPageState} setCurrentSpot={setCurrentSpot}/>
+            <Slider setCurrentSpot={setCurrentSpot}/>
         </div>
     );
 }

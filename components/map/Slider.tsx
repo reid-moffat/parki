@@ -4,7 +4,6 @@ import { A11y, Navigation, Pagination, Scrollbar } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Rating } from '@smastrom/react-rating';
 import { MdFavorite } from 'react-icons/md';
-import { States } from "@/app/map/states";
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';

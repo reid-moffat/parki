@@ -1,6 +1,5 @@
 import React from 'react';
 import { MdCalendarToday, MdFilterAlt, MdLocationPin } from "react-icons/md";
-import { States } from "@/app/map/states";
 import Link from "next/link";
 
 interface Timeframes {
@@ -10,7 +9,7 @@ interface Timeframes {
 }
 
 // @ts-ignore
-const TopMapMenu = ({setPageState, setTimeframes, timeframes, location, date}) => {
+const TopMapMenu = ({ setTimeframes, timeframes, location, date }) => {
     const updateTimeframes = (timeFrame: string) => {
         const numActive = Object.values(timeframes).reduce((a: number, key) => a + (key ? 1 : 0), 0);
 
