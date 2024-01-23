@@ -1,4 +1,4 @@
-import * as spotData from "./spots.json";
+import spotData from "./spots.json";
 
 /**
  * Dummy data to populate the map with parking spots
