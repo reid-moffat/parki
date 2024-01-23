@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import { A11y, Navigation, Pagination, Scrollbar } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -15,7 +15,7 @@ import Link from "next/link";
 
 
 // @ts-ignore
-const Slider = ({ setCurrentSpot }) => {
+const Slider = () => {
 
     const swiperSlides = () => {
         return dummyData.map((item) => (
@@ -63,10 +63,6 @@ const Slider = ({ setCurrentSpot }) => {
         ))
     };
 
-    const handleSwipe = (swiper: { activeIndex: number; }) => {
-        setCurrentSpot(dummyData[swiper.activeIndex]);
-    };
-
     return (
         <Swiper
             effect={'coverflow'}
@@ -82,7 +78,6 @@ const Slider = ({ setCurrentSpot }) => {
             modules={[Navigation, Pagination, Scrollbar, A11y]}
             slidesPerView={1}
             className="h-[20vh] mt-[40vh] mb-0"
-            onActiveIndexChange={handleSwipe}
         >
             {swiperSlides()}
         </Swiper>

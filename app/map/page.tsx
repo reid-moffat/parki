@@ -21,9 +21,6 @@ const MapPage = ({ searchParams }) => {
         "Accessible": false, "Self-Park": false, "EV Charging": false, "Covered": false, "On-Site Staff": false, "Shovelling Included": false
     });
 
-    // Details
-    const [currentSpot, setCurrentSpot] = useState(dummyData[Math.floor(Math.random() * dummyData.length)]);
-
     return (
         <div style={{ backgroundColor: '#343632', position: 'absolute', height: '100vh', width: '100vw', zIndex: '10' }}>
             <Image src={logo} alt="Parki logo" className='w-[100vw] h-[8vh] object-contain mt-3 mb-4'/>
@@ -40,7 +37,7 @@ const MapPage = ({ searchParams }) => {
                 location="Queen's University"
                 date="February 2, 2024"
             />
-            <Slider setCurrentSpot={setCurrentSpot}/>
+            <Slider/>
         </div>
     );
 }
