@@ -2,7 +2,6 @@
 import React, { useState } from 'react'
 import dynamic from "next/dynamic";
 import TopMapMenu from '@/components/map/TopMapMenu';
-import DetailsPage from "@/components/map/Details";
 import Slider from '@/components/map/Slider';
 import dummyData from "@/config/dummyData";
 import logo from "@/public/logo.png";
@@ -32,8 +31,6 @@ const MapPage = () => {
                 return (<>
 
                 </>);
-            case States.DETAILS:
-                return <DetailsPage setPageState={setPageState} spotData={currentSpot}/>;
             default:
                 throw new Error(`Invalid page state: ${pageState}`);
         }
