@@ -1,8 +1,8 @@
 "use client";
 import React, { useState } from 'react'
-import TextBox from '@/app/components/auth/TextBox'
+import TextBox from '@/components/auth/TextBox'
 import { httpsCallable } from "@firebase/functions";
-import { auth, functions } from '@/app/config/firebase'
+import { auth, functions } from '@/config/firebase'
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { useRouter } from "next/navigation";
 import Image from 'next/image'

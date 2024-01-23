@@ -3,14 +3,14 @@ import Image from 'next/image';
 import car from "@/public/parked_car.jpg";
 import line from "@/public/Line.png";
 import locationIcon from "@/public/pins/OtherSpot.png";
-import { States } from "@/app/pages/map/page";
+import { States } from "@/app/map/page";
 import { MdArrowBackIos, MdArrowForwardIos, MdLocalParking } from "react-icons/md";
 import { FaWheelchair } from "react-icons/fa";
 import { RiBattery2ChargeLine } from "react-icons/ri";
 import { FaCarTunnel } from "react-icons/fa6";
 import { IoSnowSharp } from "react-icons/io5";
 import { IconContext } from "react-icons";
-import Divider from "@/app/components/helpers/Divider";
+import Divider from "@/components/helpers/Divider";
 
 // @ts-ignore
 const DetailsPage = ({setPageState, spotData}) => {

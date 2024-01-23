@@ -2,13 +2,13 @@ import React from 'react';
 import { MdArrowBackIos, MdLocalParking } from "react-icons/md";
 import { FaCarTunnel, FaFilterCircleXmark } from "react-icons/fa6";
 import { LuClock5 } from "react-icons/lu";
-import { States } from "@/app/pages/map/page";
+import { States } from "@/app/map/page";
 import Slider from '@mui/material/Slider';
 import { FaWheelchair } from "react-icons/fa";
 import { IconContext } from 'react-icons';
 import { RiBattery2ChargeLine } from "react-icons/ri";
 import { IoSnowSharp } from "react-icons/io5";
-import Divider from "@/app/components/helpers/Divider";
+import Divider from "@/components/helpers/Divider";
 
 // @ts-ignore
 const FilterPage = ({setPageState, range, setRange, price, setPrice, amenities, setAmenities}) => {
