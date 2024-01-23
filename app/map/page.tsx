@@ -3,7 +3,6 @@ import React, { useState } from 'react'
 import dynamic from "next/dynamic";
 import TopMapMenu from '@/components/map/TopMapMenu';
 import Slider from '@/components/map/Slider';
-import dummyData from "@/config/dummyData";
 import logo from "@/public/logo.png";
 import Image from "next/image";
 
@@ -15,11 +14,9 @@ const MapPage = ({ searchParams }) => {
     const [timeframes, setTimeframes] = useState({Hourly: false, Weekly: false, Monthly: true});
 
     // Filters
-    const [range, setRange] = useState(30);
-    const [price, setPrice] = useState([0, 200]);
-    const [amenities, setAmenities] = useState({
-        "Accessible": false, "Self-Park": false, "EV Charging": false, "Covered": false, "On-Site Staff": false, "Shovelling Included": false
-    });
+    const range = searchParams.range ?? 30;
+    const price = searchParams.price ?? [0, 200];
+    const amenities = searchParams.amenities ?? [];
 
     return (
         <div style={{ backgroundColor: '#343632', position: 'absolute', height: '100vh', width: '100vw', zIndex: '10' }}>

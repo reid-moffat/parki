@@ -17,7 +17,7 @@ function Maps({timeframes, range, price, amenities}) {
                 return timeframes[item.period] === true &&
                     (range === 30 || item.distance <= range * 100) &&
                     (price[1] === 200 || (item.price >= price[0] && item.price <= price[1])) &&
-                    Object.keys(amenities).every((amenity: string) => amenities[amenity] === false || item.amenities.includes(amenity));
+                    amenities.every((amenity: string) => item.amenities.includes(amenity));
             })
             .map((data, index) => {
 
