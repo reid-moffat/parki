@@ -1,6 +1,7 @@
 import React from 'react';
 import { MdCalendarToday, MdFilterAlt, MdLocationPin } from "react-icons/md";
 import { States } from "@/app/map/states";
+import Link from "next/link";
 
 interface Timeframes {
     Hourly: boolean,
@@ -75,13 +76,13 @@ const TopMapMenu = ({setPageState, setTimeframes, timeframes, location, date}) =
                     </div>
                 </div>
 
-                <div
+                <Link
                     className="flex flex-row items-center bg-[#FF4251] w-min pl-8 pr-10 py-1 rounded-full mt-3 mx-auto text-[#FCF9EF] shadow-xl active:opacity-50 duration-75"
-                    onClick={() => setPageState(States.FILTERS)}
+                    href={{ pathname: '/map/filter', search: 'search' }}
                 >
                     <MdFilterAlt size={16} color="#FCF9EF" className="mr-1"/>
                     Filter
-                </div>
+                </Link>
             </div>
         </div>
     )
