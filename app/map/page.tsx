@@ -33,6 +33,9 @@ const MapPage = ({ searchParams }) => {
                 timeframes={timeframes}
                 location="Queen's University"
                 date="February 2, 2024"
+                range={range}
+                price={price}
+                amenities={amenities}
             />
             <Slider/>
         </div>

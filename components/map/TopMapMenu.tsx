@@ -9,7 +9,7 @@ interface Timeframes {
 }
 
 // @ts-ignore
-const TopMapMenu = ({ setTimeframes, timeframes, location, date }) => {
+const TopMapMenu = ({ setTimeframes, timeframes, location, date, range, price, amenities }) => {
     const updateTimeframes = (timeFrame: string) => {
         const numActive = Object.values(timeframes).reduce((a: number, key) => a + (key ? 1 : 0), 0);
 
@@ -77,15 +77,14 @@ const TopMapMenu = ({ setTimeframes, timeframes, location, date }) => {
 
                 <Link
                     className="flex flex-row items-center bg-[#FF4251] w-min pl-8 pr-10 py-1 rounded-full mt-3 mx-auto text-[#FCF9EF] shadow-xl active:opacity-50 duration-75"
-                    href={{ pathname: '/map/filter', search: 'search' }}
+                    href={{ pathname: '/map/filter', query: { range, price, amenities } }}
                 >
                     <MdFilterAlt size={16} color="#FCF9EF" className="mr-1"/>
                     Filter
                 </Link>
             </div>
         </div>
-    )
-
+    );
 }
 
 export default TopMapMenu;

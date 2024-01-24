@@ -16,15 +16,15 @@ import Link from 'next/link';
 // @ts-ignore
 const FilterPage = ({ searchParams  }) => {
 
-    const [range, setRange] = useState(30);
-    const [price, setPrice] = useState([0, 200]);
+    const [range, setRange] = useState(searchParams.range ?? 30);
+    const [price, setPrice] = useState(searchParams.price ?? [0, 200]);
     const [amenities, setAmenities] = useState({
-        "Accessible": false,
-        "Self-Park": false,
-        "EV Charging": false,
-        "Covered": false,
-        "On-Site Staff": false,
-        "Shovelling Included": false
+        "Accessible": searchParams.amenities?.includes("Accessible"),
+        "Self-Park": searchParams.amenities?.includes("Self-Park"),
+        "EV Charging": searchParams.amenities?.includes("EV Charging"),
+        "Covered": searchParams.amenities?.includes("Covered"),
+        "On-Site Staff": searchParams.amenities?.includes("On-Site Staff"),
+        "Shovelling Included": searchParams.amenities?.includes("Shovelling Included")
     });
 
     const renderAmenities = () => {
@@ -72,18 +72,6 @@ const FilterPage = ({ searchParams  }) => {
 
     const handlePriceUpdate = (event: Event, newValue: number | number[]) => {
         setPrice(newValue as number[]);
-    }
-
-    // Turns filters into a JSON string to return to the map page
-    const packageFilters = () => {
-        const filters = {
-            range: range,
-            price: price,
-            // @ts-ignore
-            amenities: Object.keys(amenities).filter((amenity) => amenities[amenity])
-        };
-
-        return JSON.stringify(filters);
     }
 
     return (
