@@ -16,9 +16,6 @@ import Link from 'next/link';
 // @ts-ignore
 const FilterPage = ({ searchParams  }) => {
 
-    // @ts-ignore
-    console.log("Params: " + JSON.stringify(searchParams, null, 4));
-
     const [range, setRange] = useState(30);
     const [price, setPrice] = useState([0, 200]);
     const [amenities, setAmenities] = useState({
@@ -31,7 +28,7 @@ const FilterPage = ({ searchParams  }) => {
     });
 
     const renderAmenities = () => {
-        const allAmenities = [
+        const allAmenities: React.JSX.Element[] = [
             <FaWheelchair key={"Accessible"}/>,
             <MdLocalParking key={"Self-Park"}/>,
             <RiBattery2ChargeLine key={"EV Charging"}/>,
@@ -41,7 +38,6 @@ const FilterPage = ({ searchParams  }) => {
         ];
 
         return allAmenities.map((amenity) => {
-            // @ts-ignore
             const isClicked = amenities[amenity.key];
 
             return (
@@ -50,16 +46,12 @@ const FilterPage = ({ searchParams  }) => {
                         className={(isClicked ? "bg-[#343632] text-white" : "bg-[#ffffff]" +
                                 " text-black") +
                             " flex justify-center items-center w-3/6 rounded-full border-black border-2"}
+                        // @ts-ignore
                         onClick={() => setAmenities((oldState: object) => ({
-                            "Accessible": false,
-                            "Self-Park": false,
-                            "EV Charging": false,
-                            "Covered": false,
-                            "On-Site Staff": false,
-                            "Shovelling Included": false
-                            // ...oldState,
-                            // [amenity.key as string]: !isClicked
+                            ...oldState,
+                            [amenity.key as string]: !isClicked
                         }))}
+
                     >
                         <IconContext.Provider value={{color: '#FF4251'}}>
                             {amenity}
