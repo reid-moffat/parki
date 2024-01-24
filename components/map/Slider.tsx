@@ -4,7 +4,6 @@ import { A11y, Navigation, Pagination, Scrollbar } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Rating } from '@smastrom/react-rating';
 import { MdFavorite } from 'react-icons/md';
-import { States } from "@/app/map/states";
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -12,10 +11,11 @@ import 'swiper/css/scrollbar';
 import '@smastrom/react-rating/style.css'
 import slide_image from '@/public/parked_car.jpg';
 import dummyData from '@/config/dummyData';
+import Link from "next/link";
 
 
 // @ts-ignore
-const Slider = ({setPageState, setCurrentSpot}) => {
+const Slider = () => {
 
     const swiperSlides = () => {
         return dummyData.map((item) => (
@@ -47,23 +47,20 @@ const Slider = ({setPageState, setCurrentSpot}) => {
                             ))}
                         </div>
                         <div className="flex flex-row items-center">
-                            <button
-                                className="w-[54vw] py-1 bg-[#FF4251] rounded-full font-passion text-[#FCF9EF] shadow-xl active:opacity-50 duration-75"
-                                onClick={() => setPageState(States.DETAILS)}
+                            <Link
+                                className="w-[54vw] py-1 bg-[#FF4251] rounded-full font-passion text-[#FCF9EF] shadow-xl active:opacity-50 duration-75 text-center"
+                                href={{ pathname: '/map/details', query: { spotData: JSON.stringify(item) } }}
                             >
                                 More Details
-                            </button>
-                            <div className="border-2 border-[#FCF9EF] rounded-full p-[1vw] ml-2"><MdFavorite
-                                size={18} color="#FCF9EF"/></div>
+                            </Link>
+                            <div className="border-2 border-[#FCF9EF] rounded-full p-[1vw] ml-2">
+                                <MdFavorite size={18} color="#FCF9EF"/>
+                            </div>
                         </div>
                     </div>
                 </div>
             </SwiperSlide>
         ))
-    };
-
-    const handleSwipe = (swiper: { activeIndex: number; }) => {
-        setCurrentSpot(dummyData[swiper.activeIndex]);
     };
 
     return (
@@ -81,7 +78,6 @@ const Slider = ({setPageState, setCurrentSpot}) => {
             modules={[Navigation, Pagination, Scrollbar, A11y]}
             slidesPerView={1}
             className="h-[20vh] mt-[40vh] mb-0"
-            onActiveIndexChange={handleSwipe}
         >
             {swiperSlides()}
         </Swiper>
