@@ -5,6 +5,7 @@ import TopMapMenu from '@/components/map/TopMapMenu';
 import Slider from '@/components/map/Slider';
 import logo from "@/public/logo.png";
 import Image from "next/image";
+import BottomBar from "@/components/helpers/BottomBar";
 
 const Map = dynamic(() => import('@/components/map/Map'), {ssr: false});
 
@@ -20,7 +21,7 @@ const MapPage = ({ searchParams }) => {
 
     return (
         <div style={{ backgroundColor: '#343632', position: 'absolute', height: '100vh', width: '100vw', zIndex: '10' }}>
-            <Image src={logo} alt="Parki logo" className='w-[100vw] h-[8vh] object-contain mt-3 mb-4'/>
+            <Image src={logo} alt="Parki logo" className='w-[120vw] h-[8vh] object-contain mt-3 mb-4'/>
 
             <Map
                 timeframes={timeframes}
