@@ -16,7 +16,7 @@ const MapPage = ({ searchParams }) => {
     // Filters
     const range = searchParams.range ?? 30;
     const price = searchParams.price ?? [0, 200];
-    const amenities = searchParams.amenities ?? [];
+    const amenities = (typeof searchParams.amenities === 'string' ? [searchParams.amenities] : searchParams.amenities) ?? [];
 
     return (
         <div style={{ backgroundColor: '#343632', position: 'absolute', height: '100vh', width: '100vw', zIndex: '10' }}>

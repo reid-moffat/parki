@@ -38,6 +38,7 @@ const FilterPage = ({ searchParams  }) => {
         ];
 
         return allAmenities.map((amenity) => {
+            // @ts-ignore
             const isClicked = amenities[amenity.key];
 
             return (
@@ -73,6 +74,18 @@ const FilterPage = ({ searchParams  }) => {
         setPrice(newValue as number[]);
     }
 
+    // Turns filters into a JSON string to return to the map page
+    const packageFilters = () => {
+        const filters = {
+            range: range,
+            price: price,
+            // @ts-ignore
+            amenities: Object.keys(amenities).filter((amenity) => amenities[amenity])
+        };
+
+        return JSON.stringify(filters);
+    }
+
     return (
         <div style={{backgroundColor: '#343632', position: 'absolute', height: '100vh', width: '100vw', zIndex: '10'}}>
             <Image src={logo} alt="Parki logo" className='w-[100vw] h-[8vh] object-contain mt-3 mb-4'/>
@@ -80,7 +93,15 @@ const FilterPage = ({ searchParams  }) => {
         <div className="absolute ml-[2vw] h-[86.5vh] w-[96vw] rounded-xl z-50 bg-[#FCF9EF] text-[#343632]">
 
         <div className="flex flex-row justify-around py-3 text-xl">
-            <Link href={{pathname: '/map'}}>
+            <Link href={{
+                pathname: '/map',
+                query: {
+                    range,
+                    price,
+                    // @ts-ignore
+                    amenities: Object.keys(amenities).filter((amenity) => amenities[amenity])
+                }
+            }}>
                 <MdArrowBackIos/>
             </Link>
                 <div className="flex items-center font-passion">
