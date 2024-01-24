@@ -8,9 +8,9 @@ import spots from "@/public/footer/spots.png";
 
 const BottomBar = () => {
 
-    const getFooterImage = () => {
-        const path = usePathname();
+    const path = usePathname();
 
+    const getFooterImage = () => {
         if (path.startsWith("/profile")) {
             return profile;
         } else if (path.startsWith("/map")) {
