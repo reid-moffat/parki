@@ -20,8 +20,6 @@ function Maps({timeframes, range, price, amenities}) {
                     amenities.every((amenity: string) => item.amenities.includes(amenity));
             })
             .map((data, index) => {
-
-
                 return (
                     <CustomMarker key={index} lat={data.latitude} long={data.longitude}
                               address={data.address} price={data.price} period={data.period}/>

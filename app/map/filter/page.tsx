@@ -87,7 +87,7 @@ const FilterPage = ({ searchParams  }) => {
                     range,
                     price,
                     // @ts-ignore
-                    amenities: Object.keys(amenities).filter((amenity) => amenities[amenity])
+                    amenities: Object.keys(amenities).filter((amenity: string) => amenities[amenity])
                 }
             }}>
                 <MdArrowBackIos/>

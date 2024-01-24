@@ -1,10 +1,9 @@
 import React from 'react';
 
-// TODO
 const Profile = () => {
     return (
         <div>
-            Profile page
+            Profile page (once user is signed in)
         </div>
     );
 }
