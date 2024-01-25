@@ -2,14 +2,18 @@
 import React from 'react';
 import { usePathname } from "next/navigation";
 import Image from "next/image";
-import profile from "@/public/footer/profile.png";
-import profileIcon from "@/public/footer/profileIcon.png";
-import map from "@/public/footer/map.png";
-import mapIcon from "@/public/footer/mapIcon.png";
-import spots from "@/public/footer/spots.png";
-import spotsIcon from "@/public/footer/spotsIcon.png";
 import Link from "next/link";
 import { StaticImport } from 'next/dist/shared/lib/get-img-props';
+
+import profile from "@/public/footer/profileBottomBar.png";
+import profileIconOff from "@/public/footer/profileIconOff.png";
+import profileIconOn from "@/public/footer/profileIconOn.png";
+import map from "@/public/footer/mapBottomBar.png";
+import mapIconOff from "@/public/footer/mapIconOff.png";
+import mapIconOn from "@/public/footer/mapIconOn.png";
+import spots from "@/public/footer/spotsBottomBar.png";
+import spotsIconOff from "@/public/footer/spotsIconOff.png";
+import spotsIconOn from "@/public/footer/spotsIconOn.png";
 
 const BottomBar = () => {
 
@@ -35,21 +39,21 @@ const BottomBar = () => {
                 />
                 <Link href={"/profile"}>
                     <Image
-                        src={profileIcon}
+                        src={profileIconOff}
                         alt={"Profile icon"}
                         className={"fixed bottom-2 left-20 w-11"}
                     />
                 </Link>
                 <div className={"fixed w-screen bottom-3 flex items-center justify-center"}>
                     <Image
-                        src={mapIcon}
+                        src={mapIconOn}
                         alt={"Map icon"}
                         className={"w-10"}
                     />
                 </div>
                 <Link href={"/spots"}>
                     <Image
-                        src={spotsIcon}
+                        src={spotsIconOff}
                         alt={"Spots icon"}
                         className={"fixed bottom-2 right-20 w-11"}
                     />
