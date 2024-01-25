@@ -31,32 +31,66 @@ const BottomBar = () => {
         throw new Error("Unknown current site path (in BottomBar.tsx): " + path);
     }
 
+    const getIcon = (iconName: string) => {
+        let icon;
+        switch (iconName) {
+            case "profile":
+                icon = (
+                    <Image
+                        src={path.startsWith("/profile") ? profileIconOn : profileIconOff}
+                        alt={"Profile icon - click to see your profile"}
+                        className={"fixed bottom-2 left-20 w-11"}
+                    />
+                );
+                if (path.startsWith("/profile")) {
+                    return icon;
+                }
+                return <Link href={"/profile"}>{icon}</Link>;
+            case "map":
+                icon = (
+                    <Image
+                        src={path.startsWith("/map") ? mapIconOn : mapIconOff}
+                        alt={"Map icon - click to see your map"}
+                        className={"w-10"}
+                    />
+                );
+                if (path.startsWith("/map")) {
+                    return (
+                        <div className={"fixed w-screen bottom-3 flex items-center justify-center"}>
+                            {icon}
+                        </div>
+                    );
+                }
+                return (
+                    <div className={"fixed w-screen bottom-3 flex items-center justify-center"}>
+                        <Link href={"/map"}>{icon}</Link>
+                    </div>
+                );
+            case "spots":
+                icon = (
+                    <Image
+                        src={path.startsWith("/spots") ? spotsIconOn : spotsIconOff}
+                        alt={"Spots icon - click to see your spots"}
+                        className={"fixed bottom-2 right-20 w-11"}
+                    />
+                );
+                if (path.startsWith("/spots")) {
+                    return icon;
+                }
+                return <Link href={"/spots"}>{icon}</Link>;
+            default:
+                throw new Error("Unknown icon name (in BottomBar.tsx): " + icon);
+        }
+    }
+
     return (
         <div className="fixed bottom-0 w-full">
             <Image src={image} alt={"Bottom bar"}/>
 
             {/* Map icon goes first since it's contained in a div and will override the profile onCLick otherwise */}
-            <div className={"fixed w-screen bottom-3 flex items-center justify-center"}>
-                <Image
-                    src={path.startsWith("/map") ? mapIconOn : mapIconOff}
-                    alt={"Map icon - click to go to the spots map"}
-                    className={"w-10"}
-                />
-            </div>
-            <Link href={"/profile"}>
-                <Image
-                    src={path.startsWith("/profile") ? profileIconOn : profileIconOff}
-                    alt={"Profile icon - click to go to your profile"}
-                    className={"fixed bottom-2 left-20 w-11"}
-                />
-            </Link>
-            <Link href={"/spots"}>
-                <Image
-                    src={path.startsWith("/spots") ? spotsIconOn : spotsIconOff}
-                    alt={"Spots icon - click to see your spots"}
-                    className={"fixed bottom-2 right-20 w-11"}
-                />
-            </Link>
+            {getIcon("map")}
+            {getIcon("profile")}
+            {getIcon("spots")}
         </div>
     );
 }
