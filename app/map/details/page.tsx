@@ -12,6 +12,7 @@ import { IconContext } from "react-icons";
 import Divider from "@/components/helpers/Divider";
 import Link from "next/link";
 import logo from "@/public/logo.png";
+import BottomBar from "@/components/helpers/BottomBar";
 
 // @ts-ignore
 const DetailsPage = ({ searchParams }) => {
@@ -52,10 +53,10 @@ const DetailsPage = ({ searchParams }) => {
             <Image src={logo} alt="Parki logo" className='w-[100vw] h-[8vh] object-contain mt-3 mb-4'/>
 
             <div
-                className='ml-[2vw] h-[86.5vh] w-[96vw] rounded-xl z-50 bg-[#FCF9EF] text-[#343632] font-passion overflow-y-scroll no-scrollbar'>
+                className='ml-[2vw] h-[79.5vh] w-[96vw] rounded-xl z-50 bg-[#FCF9EF] text-[#343632] font-passion overflow-y-scroll no-scrollbar'>
                 <div className='bg-[#FCF9EF] border-0 rounded-t-xl h-[100%] pb-[40rem]'>
 
-                    <Link className="absolute pl-2 py-2 m-3 border-2 rounded-full" href={{ pathname: "/map" }}>
+                    <Link className="absolute pl-2 py-2 m-3 border-2 rounded-full" href={{pathname: "/map"}}>
                         <MdArrowBackIos color="#FCF9EF"/>
                     </Link>
 
@@ -78,6 +79,7 @@ const DetailsPage = ({ searchParams }) => {
                         Amenities
                     </div>
                     {renderAmenities()}
+                    <br/>
 
                     <Divider/>
 
@@ -98,10 +100,11 @@ const DetailsPage = ({ searchParams }) => {
                     <br/><br/><br/><br/><br/>
                 </div>
                 <div
-                    className='absolute w-[96vw] pl-[5%] pr-[5%] bottom-[4.5vw] flex flex-row h-[8%] bg-[#ff4251] rounded-b-xl justify-between items-center'>
+                    className='absolute w-[96vw] pl-[5%] pr-[5%] bottom-[20vw] flex flex-row h-[8%] bg-[#ff4251] rounded-b-xl justify-between items-center'>
                     <div className='text-[#FCF9EF] text-[1.75rem] font-normal'>${spotData.price}/month</div>
                 </div>
             </div>
+            <BottomBar/>
         </div>
     )
 }
