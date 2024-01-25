@@ -19,6 +19,7 @@ const BottomBar = () => {
 
     const path = usePathname();
 
+    // Verify path + get background of bottom bar
     let image: StaticImport;
     if (path.startsWith("/profile")) {
         image = profile;
@@ -27,44 +28,35 @@ const BottomBar = () => {
     } else if (path.startsWith("/spots")) {
         image = spots;
     } else {
-        throw new Error("Unknown path (in BottomBar.tsx): " + path);
-    }
-
-    const getFooterImage = () => {
-        return (
-            <>
-                <Image
-                    src={image}
-                    alt={"Bottom bar"}
-                />
-                <Link href={"/profile"}>
-                    <Image
-                        src={profileIconOff}
-                        alt={"Profile icon"}
-                        className={"fixed bottom-2 left-20 w-11"}
-                    />
-                </Link>
-                <div className={"fixed w-screen bottom-3 flex items-center justify-center"}>
-                    <Image
-                        src={mapIconOn}
-                        alt={"Map icon"}
-                        className={"w-10"}
-                    />
-                </div>
-                <Link href={"/spots"}>
-                    <Image
-                        src={spotsIconOff}
-                        alt={"Spots icon"}
-                        className={"fixed bottom-2 right-20 w-11"}
-                    />
-                </Link>
-            </>
-        );
+        throw new Error("Unknown current site path (in BottomBar.tsx): " + path);
     }
 
     return (
         <div className="fixed bottom-0 w-full">
-            {getFooterImage()}
+            <Image src={image} alt={"Bottom bar"}/>
+
+            {/* Map icon goes first since it's contained in a div and will override the profile onCLick otherwise */}
+            <div className={"fixed w-screen bottom-3 flex items-center justify-center"}>
+                <Image
+                    src={path.startsWith("/map") ? mapIconOn : mapIconOff}
+                    alt={"Map icon - click to go to the spots map"}
+                    className={"w-10"}
+                />
+            </div>
+            <Link href={"/profile"}>
+                <Image
+                    src={path.startsWith("/profile") ? profileIconOn : profileIconOff}
+                    alt={"Profile icon - click to go to your profile"}
+                    className={"fixed bottom-2 left-20 w-11"}
+                />
+            </Link>
+            <Link href={"/spots"}>
+                <Image
+                    src={path.startsWith("/spots") ? spotsIconOn : spotsIconOff}
+                    alt={"Spots icon - click to see your spots"}
+                    className={"fixed bottom-2 right-20 w-11"}
+                />
+            </Link>
         </div>
     );
 }
