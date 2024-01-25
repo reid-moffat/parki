@@ -39,6 +39,7 @@ const MapPage = ({ searchParams }) => {
                 amenities={amenities}
             />
             <Slider/>
+            <BottomBar/>
         </div>
     );
 }

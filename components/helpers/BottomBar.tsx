@@ -23,7 +23,7 @@ const BottomBar = () => {
     }
 
     return (
-        <Image src={getFooterImage()} alt={"Bottom bar"} className="w-[100vw] h-[10vh] object-fill"/>
+        <Image src={getFooterImage()} alt={"Bottom bar"} className="fixed bottom-0 w-full"/>
     );
 }
 
