@@ -39,7 +39,7 @@ const BottomBar = () => {
                     <Image
                         src={path.startsWith("/profile") ? profileIconOn : profileIconOff}
                         alt={"Profile icon - click to see your profile"}
-                        className={"fixed bottom-2 left-20 w-11"}
+                        className={"fixed bottom-3 left-20 w-10"}
                     />
                 );
                 if (path.startsWith("/profile")) {
@@ -71,7 +71,7 @@ const BottomBar = () => {
                     <Image
                         src={path.startsWith("/spots") ? spotsIconOn : spotsIconOff}
                         alt={"Spots icon - click to see your spots"}
-                        className={"fixed bottom-2 right-20 w-11"}
+                        className={"fixed bottom-3 right-20 w-10"}
                     />
                 );
                 if (path.startsWith("/spots")) {
