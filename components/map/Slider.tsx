@@ -77,7 +77,7 @@ const Slider = () => {
             loop
             modules={[Navigation, Pagination, Scrollbar, A11y]}
             slidesPerView={1}
-            className="h-[20vh] mt-[40vh] mb-0"
+            className="h-[20vh] mt-[34vh] mb-0"
         >
             {swiperSlides()}
         </Swiper>
