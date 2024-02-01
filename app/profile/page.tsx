@@ -18,6 +18,7 @@ const Profile = () => {
                     Sign in
                 </Link>
             </div>
+            hello
 
             <BottomBar/>
         </div>
