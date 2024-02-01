@@ -47,7 +47,7 @@ const SignInPage = () => {
 
     return (
         <div className={"flex flex-col justify-center items-center"}>
-            <div className="px-7 py-4 shadow bg-white rounded-md flex flex-col gap-2">
+            {/* <div className="px-7 py-4 shadow bg-white rounded-md flex flex-col gap-2"> */}
                 <TextBox
                     labelText="Email"
                     value={email}
@@ -60,16 +60,16 @@ const SignInPage = () => {
                     onChange={(e) => setPassword(e.target.value)}
                 />
 
-                <Link href="/pages/auth/forgotPassword" className='black_btn'>Forgot password?</Link>
-                <button onClick={signin} className='black_btn'>Login</button>
+                <Link href="/profile/forgotPassword" className='black_btn'>Forgot password?</Link>
+                <button onClick={signin} className='black_btn'>Sign In</button>
                 {error && <p className="text-red-500">{error}</p>}
-                <Image
+                {/* <Image
                     src={'../../signInWithGoogle.png'}
                     onClick={signInWithGoogle}
                     style={{'cursor': 'pointer'}}
                     alt={"Sign in with Google"}
-                />
-            </div>
+                /> */}
+            {/* </div> */}
         </div>
     )
 }
