@@ -65,7 +65,7 @@ const Search = () => {
                     <Image src={X} alt={"Clear search query"} className={"w-[4vw] h-[4vw] mt-[2vh] ml-[7vw]"} onClick={() => setQuery("")}/>
                 </div>
 
-                {adresses.filter((address) => address.street.includes(query) || address.city.includes(query)).map((address, index) =>
+                {adresses.filter((address) => address.street.includes(query) || address.city.includes(query)).map((address) =>
                     <>
                         <div className={"inline-flex mt-[1vh]"}>
                             <Image
