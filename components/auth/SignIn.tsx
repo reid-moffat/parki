@@ -62,7 +62,12 @@ const SignInPage = () => {
                 />
 
                 <Link href="/profile/forgotPassword" className='w-100vw underline flex-end'>Forgot password?</Link>
-                <button onClick={signin} className='w-full bg-[#FF4251] rounded-full text-[#FCF9EF] '>Sign In</button>
+                {/* TODO onclick go to the profile page */}
+                {/*  for future reference:
+                <Link href="/about">
+      <a onClick={handleClick}>About</a>
+    </Link> */}
+                <button onClick={signin} className='w-full bg-[#FF4251] py-3 rounded-[20px] text-[#FCF9EF] '>Sign In</button>
                 {error && <p className="text-red-500">{error}</p>}
                 {/* <Image
                     src={'../../signInWithGoogle.png'}

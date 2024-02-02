@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import TextBox from './TextBox'
 import { httpsCallable } from "@firebase/functions";
 import { functions } from '@/config/firebase'
+import Link from 'next/link'
 
 const ForgotPasswordPage = () => {
     const [email, setEmail] = useState("");
@@ -25,7 +26,10 @@ const ForgotPasswordPage = () => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                 />
-                <button onClick={handleSendResetEmail} className='black_btn'>Send Instructions</button>
+                {/* <button onClick={handleSendResetEmail} className='black_btn'>Send Instructions</button> */}
+                <Link href="/profile/checkEmailPwd" onClick={handleSendResetEmail} className='black_btn'>
+                    Send Instructions
+                </Link>
             </div>
         </div>
     )
