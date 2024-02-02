@@ -19,14 +19,14 @@ const Profile = () => {
                 <Image src={parkilogo} alt="" className='parki-logo'/>
             </div>
             <div className='button-container'>
-                <Link 
+                <Link
                     className='create-account'
                     href={{ pathname: '/profile/signUp'}}
                 >
                     Create Account
                 </Link>
                 <Link
-                    className='sign-in'/*USED MANUAL CSS, THIS TALIWIND IS BETTER --> className="flex flex-row items-center bg-transparent w-4/5 py-2 rounded-lg mt-3 mx-auto text-[#FCF9EF] border-2 border-[#FCF9EF]"*/ 
+                    className='w-full p-2 text-white cursor-pointer text-center rounded-2xl mt-2 border-solid border-2 border-[#FCF9EF]'
                     href={{ pathname: '/profile/signIn' }}
                 >
                     Sign in
