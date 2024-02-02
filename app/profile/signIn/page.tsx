@@ -14,16 +14,15 @@ const SignIn = () => {
             <Image src={logo} alt="Parki logo" className='w-[120vw] h-[8vh] object-contain mt-3 mb-4'/>
 
             <div className="absolute ml-[2vw] h-[79.5vh] w-[96vw] rounded-xl z-50 bg-[#FCF9EF] text-[#343632]">
-                <div className="flex flex-row justify-around py-3 text-xl">
+                <div className="flex flex-row justify-left py-3 pl-10 pt-5 text-xl">
                     <Link href={{
                         pathname: '/profile'
                     }}>
                         <MdArrowBackIos/>
                     </Link>
-                    <MdArrowBackIos color="transparent"/>
                 </div>
 
-                <div className="text-center font-bold">
+                <div className="text-center text-3xl font-bold pt-10">
                     Welcome Back!
                 </div>
 

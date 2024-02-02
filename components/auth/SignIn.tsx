@@ -46,22 +46,23 @@ const SignInPage = () => {
     }
 
     return (
-        <div className={"flex flex-col justify-center items-center"}>
-            {/* <div className="px-7 py-4 shadow bg-white rounded-md flex flex-col gap-2"> */}
+        <div className={"flex flex-col justify-center items-center w-100vw"}>
+            <div className="w-full px-10 bg-transparent flex flex-col gap-2">
                 <TextBox
-                    labelText="Email"
+                    className='py-2'
                     value={email}
+                    placeholder='Email'
                     onChange={(e) => setEmail(e.target.value)}
                 />
                 <TextBox
-                    labelText="Password"
+                    placeholder='Password'
                     type={"password"}
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                 />
 
-                <Link href="/profile/forgotPassword" className='black_btn'>Forgot password?</Link>
-                <button onClick={signin} className='black_btn'>Sign In</button>
+                <Link href="/profile/forgotPassword" className='w-100vw underline flex-end'>Forgot password?</Link>
+                <button onClick={signin} className='w-full bg-[#FF4251] rounded-full text-[#FCF9EF] '>Sign In</button>
                 {error && <p className="text-red-500">{error}</p>}
                 {/* <Image
                     src={'../../signInWithGoogle.png'}
@@ -69,7 +70,7 @@ const SignInPage = () => {
                     style={{'cursor': 'pointer'}}
                     alt={"Sign in with Google"}
                 /> */}
-            {/* </div> */}
+            </div>
         </div>
     )
 }
