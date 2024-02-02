@@ -15,7 +15,7 @@ const Search = () => {
 
     const [query, setQuery] = useState("");
 
-    const adresses = [
+    const adresses: { street: string, city: string }[] = [
         {
             street: '1 Queen St',
             city: 'Kingston, ON',
@@ -27,6 +27,22 @@ const Search = () => {
         {
             street: '3 Queen St',
             city: 'Ottawa, ON',
+        },
+        {
+            street: '5 Queen St',
+            city: 'Montreal, QC',
+        },
+        {
+            street: '7 Queen St',
+            city: 'Vancouver, BC',
+        },
+        {
+            street: '23 Union street',
+            city: 'London, ON',
+        },
+        {
+            street: '21 Westside street',
+            city: 'London, ON',
         }
     ];
 
@@ -49,7 +65,7 @@ const Search = () => {
                     <Image src={X} alt={"Clear search query"} className={"w-[4vw] h-[4vw] mt-[2vh] ml-[7vw]"} onClick={() => setQuery("")}/>
                 </div>
 
-                {adresses.map((address, index) =>
+                {adresses.filter((address) => address.street.includes(query) || address.city.includes(query)).map((address, index) =>
                     <>
                         <div className={"inline-flex mt-[1vh]"}>
                             <Image
@@ -57,12 +73,12 @@ const Search = () => {
                                 alt={"Clock icon"}
                                 className={"w-[8vw] h-[9vw] mt-[2vh] ml-[8vw] mb-[2vh]"}
                             />
-                            <div className={"w-[40vw] ml-[10vw] mt-[1vh]"}>
+                            <div className={"w-[50vw] ml-[10vw] mt-[1vh]"}>
                                 {address.street}
                                 <br/>
                                 {address.city}
                             </div>
-                            <Image src={Arrow} alt={"Arrow icon"} className={"w-[7vw] h-[7vw] mt-[2vh] ml-[16vw]"}/>
+                            <Image src={Arrow} alt={"Arrow icon"} className={"w-[7vw] h-[7vw] mt-[2vh] ml-[6vw]"}/>
                         </div>
                         <Image src={Line} alt={"Line icon"} className={"w-[80vw] ml-[8vw]"}/>
                     </>
