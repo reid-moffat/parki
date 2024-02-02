@@ -41,7 +41,7 @@ const Search = () => {
                     </Link>
                     <input
                         type="text"
-                        className={"w-[55vw] ml-[8vw] mt-[1vh] mb-[1vh] bg-[#FCF9EF]"}
+                        className={"w-[55vw] ml-[8vw] mt-[1vh] mb-[1vh] bg-[#FCF9EF] outline-none"}
                         placeholder={"Search..."}
                         value={query}
                         onChange={(e) => setQuery(e.target.value)}
