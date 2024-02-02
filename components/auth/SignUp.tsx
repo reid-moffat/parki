@@ -5,7 +5,8 @@ import { httpsCallable } from "@firebase/functions";
 import { auth, functions } from '@/config/firebase'
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { useRouter } from "next/navigation";
-import Image from 'next/image'
+import Image from 'next/image';
+import Link from 'next/link';
 
 const SignUpPage = () => {
     const [email, setEmail] = useState("");
@@ -42,25 +43,32 @@ const SignUpPage = () => {
     }
 
     return (
-        <div className={"flex flex-col justify-center items-center"}>
-            <div className="px-7 py-4 shadow bg-white rounded-md flex flex-col gap-2">
+        <div className={"flex flex-col justify-center items-center w-100vw"}>
+            <div className="w-full px-10 bg-transparent flex flex-col gap-5">
+
                 <TextBox
-                    labelText="Email"
                     value={email}
+                    placeholder='Email'
                     onChange={(e) => setEmail(e.target.value)}
                 />
                 <TextBox
-                    labelText="Password"
                     type={"password"}
+                    placeholder='Password'
                     onChange={(e) => setPassword(e.target.value)}
                 />
                 <TextBox
-                    labelText="Confirm Password"
                     type={"password"}
+                    placeholder='Confirm Password'
                     onChange={(e) => setPasswordConfirm(e.target.value)}
                 />
+                <button onClick={handleSignUp} className='create-account'>Sign Up</button>
+                
+                <div className='flex justify-center items-center'>
+                    Already have an account?&nbsp;
+                    <Link href="/profile/signIn" className='text-blue-500 flex-end'>Sign in</Link>
 
-                <button onClick={handleSignUp} className='black_btn'>Sign Up</button>
+
+                </div>
                 {/*<Image
                     src={'@/public/signInWithGoogle.png'}
                     onClick={handleSignUpWithGoogle}
