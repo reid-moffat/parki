@@ -61,12 +61,12 @@ const SignUpPage = () => {
                 />
 
                 <button onClick={handleSignUp} className='black_btn'>Sign Up</button>
-                <Image
-                    src={'../../signInWithGoogle.png'}
+                {/*<Image
+                    src={'@/public/signInWithGoogle.png'}
                     onClick={handleSignUpWithGoogle}
                     style={{'cursor': 'pointer'}}
                     alt="Sign up with Google"
-                />
+    />*/}
             </div>
         </div>
     )
