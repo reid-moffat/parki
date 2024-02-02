@@ -30,6 +30,7 @@ const MapPage = ({ searchParams }) => {
                 amenities={amenities}
             />
             <TopMapMenu
+                // @ts-ignore
                 setTimeframes={setTimeframes}
                 timeframes={timeframes}
                 location="Queen's University"
