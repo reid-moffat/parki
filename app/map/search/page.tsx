@@ -8,7 +8,7 @@ import X from "@/public/search/x.png";
 import Back from "@/public/search/back.png";
 import Map from "@/public/search/map.png";
 import Arrow from "@/public/search/arrow.png";
-import Line from "@/public/line.png";
+import Line from "@/public/Line.png";
 import Link from "next/link";
 
 const Search = () => {
