@@ -24,7 +24,7 @@ const SignUpPage = () => {
         await httpsCallable(functions, 'createAccount')({email: email, password: password})
             .then((res) => {
                 alert("Successfully created new user! Please check your email and confirm your email.");
-                router.push('/pages/auth/signIn');
+                router.push('/profile/signUp/confirmEmail');
             })
             .catch((err) => {
                 alert(err)

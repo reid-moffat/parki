@@ -22,7 +22,7 @@ const SignUp = () => {
                         <MdArrowBackIos/>
                     </Link>
                 </div>
-                <div className="text-center text-3xl font-bold pt-10">
+                <div className="text-center text-3xl font-bold pt-10 mb-8">
                     Create Account
                 </div>
 
