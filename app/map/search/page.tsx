@@ -78,7 +78,13 @@ const Search = () => {
                                 <br/>
                                 {address.city}
                             </div>
-                            <Image src={Arrow} alt={"Arrow icon"} className={"w-[7vw] h-[7vw] mt-[2vh] ml-[6vw]"}/>
+                            <Link href={{ pathname: "/map", query: { street: address.street, city: address.city } }}>
+                                <Image
+                                    src={Arrow}
+                                    alt={"Select this address"}
+                                    className={"w-[7vw] h-[7vw] mt-[2vh] ml-[6vw]"}
+                                />
+                            </Link>
                         </div>
                         <Image src={Line} alt={"Line icon"} className={"w-[80vw] ml-[8vw]"}/>
                     </>
