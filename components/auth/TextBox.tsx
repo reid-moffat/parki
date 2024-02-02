@@ -22,7 +22,7 @@ const TextBox = React.forwardRef<HTMLInputElement, IProps>(
                     <input
                         id="txt"
                         autoComplete="off"
-                        className={`border-none disabled:border-slate-100 w-full block outline-none py-2 px-1 transition-all text-xs lg:text-sm xl:text-base  bg-[#4472CA] bg-opacity-20
+                        className={`border-none rounded-[20px] disabled:border-slate-100 w-full block outline-none py-3 px-1 transition-all text-xs lg:text-sm xl:text-base  bg-[#4472CA] bg-opacity-20
               ${error && "border-red-500 border  animate-shake"} ${
                             children ? "rounded-r-md" : "rounded-md"
                         }`}
