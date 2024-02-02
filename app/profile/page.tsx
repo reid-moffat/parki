@@ -34,7 +34,7 @@ const Profile = () => {
             </div>
         </div>
         <h2 className='conditions-text'>
-                   By continuing, you confirm you've read and agreed to our Terms and Conditions and Privacy Policy
+                   By continuing, you confirm you've read and agreed to our <Link style={{color:"#5dafde"}} href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Terms and Conditions</Link> and <Link style={{color:"#5dafde"}} href="https://www.linkedin.com/in/gcarkner/">Privacy Policy</Link>
                </h2>
         <BottomBar/>
         </div>
