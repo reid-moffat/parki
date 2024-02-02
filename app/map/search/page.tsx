@@ -5,7 +5,6 @@ import Image from "next/image";
 
 import X from "@/public/search/x.png";
 import Back from "@/public/search/back.png";
-import Clock from "@/public/search/clock.png";
 import Map from "@/public/search/map.png";
 import Arrow from "@/public/search/arrow.png";
 import Line from "@/public/line.png";
@@ -31,7 +30,7 @@ const Search = () => {
         <div style={{ backgroundColor: '#343632', position: 'absolute', height: '100vh', width: '100vw', zIndex: '10' }}>
             <Image src={logo} alt="Parki logo" className='w-[120vw] h-[8vh] object-contain mt-3 mb-4'/>
 
-            <div className="ml-[2vw] h-[79.5vh] w-[96vw] pt-[2vh] rounded-xl bg-[#FCF9EF]">
+            <div className="ml-[2vw] h-[79.5vh] w-[96vw] pt-[2vh] rounded-xl bg-[#FCF9EF] font-mono">
                 <div className="ml-[4vw] h-[6vh] w-[88vw] rounded-[2rem] border-black border-solid border-[1px]">
                     <Image src={Back} alt={"Go back"} className={"w-[2vw] float-left"}/>
                     <input type="text" className={"bg-black pl-[20vw]"}/>
@@ -40,12 +39,20 @@ const Search = () => {
 
                 {adresses.map((address, index) =>
                     <>
-                        <Image src={index === 0 ? Clock : Map} alt={"Clock icon"} className={"w-[2vw]"}/>
-                        {address.street}
-                        <br/>
-                        {address.city}
-                        <Image src={Arrow} alt={"Arrow icon"} className={"w-[2vw]"}/>
-                        <Image src={Line} alt={"Line icon"} className={"w-[2vw]"}/>
+                        <div className={"inline-flex"}>
+                            <Image
+                                src={Map}
+                                alt={"Clock icon"}
+                                className={"w-[8vw] h-[9vw] mt-[2vh] ml-[8vw] mb-[2vh]"}
+                            />
+                            <div className={"w-[50vw] ml-[10vw] mt-[1vh]"}>
+                                {address.street}
+                                <br/>
+                                {address.city}
+                            </div>
+                            <Image src={Arrow} alt={"Arrow icon"} className={"w-[7vw] h-[7vw] mt-[2vh] ml-auto"}/>
+                        </div>
+                        <Image src={Line} alt={"Line icon"} className={"w-[80vw] ml-[8vw]"}/>
                     </>
                 )}
             </div>
