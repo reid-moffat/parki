@@ -6,6 +6,7 @@ import Link from "next/link";
 import { MdArrowBackIos } from "react-icons/md";
 import SignInPage from '@/components/auth/SignIn';
 
+
 const SignIn = () => {
     return (
         <div style={{ backgroundColor: '#343632', position: 'absolute', height: '100vh', width: '100vw', zIndex: '10' }}>
