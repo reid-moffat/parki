@@ -28,27 +28,25 @@ function Maps({timeframes, range, price, amenities}) {
     }
 
     return (
-        <>
-            <MapContainer
-                className="absolute ml-[2vw] h-[79.5vh] w-[96vw] rounded-xl -z-50"
-                center={center}
-                zoom={ZOOM_LEVEL}
-                zoomControl={false}
-            >
-                <TileLayer
-                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                    url='https://tiles.stadiamaps.com/tiles/osm_bright/{z}/{x}/{y}.png'
+        <MapContainer
+            className="absolute ml-[2vw] h-[79.5vh] w-[96vw] rounded-xl -z-50"
+            center={center}
+            zoom={ZOOM_LEVEL}
+            zoomControl={false}
+        >
+            <TileLayer
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                url='https://tiles.stadiamaps.com/tiles/osm_bright/{z}/{x}/{y}.png'
 
-                    // Original style - ugly, but free
-                    // url='https://tile.openstreetmap.org/{z}/{x}/{y}.png'
+                // Original style - ugly, but free
+                // url='https://tile.openstreetmap.org/{z}/{x}/{y}.png'
 
-                    // Stadia map style - pretty, but paid
-                    // url='https://tiles.stadiamaps.com/tiles/osm_bright/{z}/{x}/{y}.png'
-                />
+                // Stadia map style - pretty, but paid
+                // url='https://tiles.stadiamaps.com/tiles/osm_bright/{z}/{x}/{y}.png'
+            />
 
-                {renderPins()}
-            </MapContainer>
-        </>
+            {renderPins()}
+        </MapContainer>
     )
 }
 
