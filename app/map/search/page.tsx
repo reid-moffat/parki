@@ -43,7 +43,19 @@ const Search = () => {
         {
             street: '21 Westside street',
             city: 'London, ON',
-        }
+        },
+        {
+            street: '26 Eastside street',
+            city: 'Milton, ON',
+        },
+        {
+            street: '22 Southside street',
+            city: 'Orillia, ON',
+        },
+        {
+            street: '25 Northside street',
+            city: 'Huntsville, ON',
+        },
     ];
 
     return (
@@ -65,34 +77,37 @@ const Search = () => {
                     <Image src={X} alt={"Clear search query"} className={"w-[4vw] h-[4vw] mt-[2vh] ml-[7vw]"} onClick={() => setQuery("")}/>
                 </div>
 
-                {adresses
-                    .filter((address) =>
-                        address.street.toLowerCase().includes(query.toLowerCase()) || address.city.toLowerCase().includes(query.toLowerCase())
-                    )
-                    .map((address) =>
-                    <>
-                        <div className={"inline-flex mt-[1vh]"}>
-                            <Image
-                                src={Map}
-                                alt={"Clock icon"}
-                                className={"w-[8vw] h-[9vw] mt-[2vh] ml-[8vw] mb-[2vh]"}
-                            />
-                            <div className={"w-[50vw] ml-[10vw] mt-[1vh]"}>
-                                {address.street}
-                                <br/>
-                                {address.city}
-                            </div>
-                            <Link href={{ pathname: "/map", query: { street: address.street, city: address.city } }}>
-                                <Image
-                                    src={Arrow}
-                                    alt={"Select this address"}
-                                    className={"w-[7vw] h-[7vw] mt-[2vh] ml-[6vw]"}
-                                />
-                            </Link>
-                        </div>
-                        <Image src={Line} alt={"Line icon"} className={"w-[80vw] ml-[8vw]"}/>
-                    </>
-                )}
+                <div className={"h-[65vh] overflow-y-scroll"}>
+                    {adresses
+                        .filter((address) =>
+                            address.street.toLowerCase().includes(query.toLowerCase()) || address.city.toLowerCase().includes(query.toLowerCase())
+                        )
+                        .map((address) =>
+                            <>
+                                <div className={"inline-flex mt-[1vh]"}>
+                                    <Image
+                                        src={Map}
+                                        alt={"Clock icon"}
+                                        className={"w-[8vw] h-[9vw] mt-[2vh] ml-[8vw] mb-[2vh]"}
+                                    />
+                                    <div className={"w-[50vw] ml-[10vw] mt-[1vh]"}>
+                                        {address.street}
+                                        <br/>
+                                        {address.city}
+                                    </div>
+                                    <Link href={{ pathname: "/map", query: { street: address.street, city: address.city } }}>
+                                        <Image
+                                            src={Arrow}
+                                            alt={"Select this address"}
+                                            className={"w-[7vw] h-[7vw] mt-[2vh] ml-[6vw]"}
+                                        />
+                                    </Link>
+                                </div>
+                                <Image src={Line} alt={"Line icon"} className={"w-[80vw] ml-[8vw]"}/>
+                            </>
+                        )}
+                </div>
+
             </div>
             <BottomBar/>
         </div>
