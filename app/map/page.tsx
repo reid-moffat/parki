@@ -31,6 +31,7 @@ const MapPage = ({ searchParams }) => {
                 range={range}
                 price={price}
                 amenities={amenities}
+                currentSpotInfo={spotInfo}
                 onMarkerClick={setSpotInfo}
             />
             <TopMapMenu
