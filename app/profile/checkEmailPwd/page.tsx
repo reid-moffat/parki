@@ -6,7 +6,7 @@ import Link from "next/link";
 import { MdArrowBackIos } from "react-icons/md";
 import ForgotPasswordPage from '@/components/auth/ForgotPassword';
 
-const ForgotPassword = () => {
+const CheckEmailPwdPage = () => {
     return (
         <div style={{ backgroundColor: '#343632', position: 'absolute', height: '100vh', width: '100vw', zIndex: '10' }}>
             <Image src={logo} alt="Parki logo" className='w-[120vw] h-[8vh] object-contain mt-3 mb-4'/>
@@ -22,14 +22,24 @@ const ForgotPassword = () => {
                 </div>
 
                 <div className="text-center text-3xl font-bold pt-10">
-                    Forgot Password
+                    Check your Email!
                 </div>
 
                 <div className="text-center text-md pt-10">
-                Enter the email associated with your account and we’ll send an email with instructions to reset your password
+                We’ve sent password recovery instructions to your email.
                 </div>
 
-                <ForgotPasswordPage/>
+                <div className='w-full px-10 bg-transparent flex flex-col gap-2'>
+                    <Link href="/profile" className='w-full bg-[#FF4251] py-3 rounded-[20px] text-[#FCF9EF]'>
+                        Open Email
+                    </Link>
+
+                    <Link href="/profile/signIn" className='w-full bg-[#FF4251] py-3 rounded-[20px] text-[#FCF9EF]'>
+                        Back to Login
+                    </Link>
+
+                </div>
+
                 
             </div>
 
@@ -38,4 +48,4 @@ const ForgotPassword = () => {
     );
 }
 
-export default ForgotPassword;
+export default CheckEmailPwdPage;

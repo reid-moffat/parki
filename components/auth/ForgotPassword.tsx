@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import TextBox from './TextBox'
 import { httpsCallable } from "@firebase/functions";
 import { functions } from '@/config/firebase'
+import Link from 'next/link'
 
 const ForgotPasswordPage = () => {
     const [email, setEmail] = useState("");
@@ -19,13 +20,16 @@ const ForgotPasswordPage = () => {
 
     return (
         <div className={"flex flex-col justify-center items-center"}>
-            <div className="px-7 py-4 shadow bg-white rounded-md flex flex-col gap-2">
+            <div className="w-full px-10 bg-transparent flex flex-col gap-2">
                 <TextBox
-                    labelText="Email"
+                    placeholder="Email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                 />
-                <button onClick={handleSendResetEmail} className='black_btn'>Send reset link</button>
+                {/* <button onClick={handleSendResetEmail} className='black_btn'>Send Instructions</button> */}
+                <Link href="/profile/checkEmailPwd" onClick={handleSendResetEmail} className='black_btn'>
+                    Send Instructions
+                </Link>
             </div>
         </div>
     )
