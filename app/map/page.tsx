@@ -6,6 +6,8 @@ import Slider from '@/components/map/Slider';
 import logo from "@/public/logo.png";
 import Image from "next/image";
 import BottomBar from "@/components/helpers/BottomBar";
+import Spot from '@/components/map/Spot';
+
 
 const Map = dynamic(() => import('@/components/map/Map'), {ssr: false});
 
@@ -13,6 +15,7 @@ const Map = dynamic(() => import('@/components/map/Map'), {ssr: false});
 const MapPage = ({ searchParams }) => {
 
     const [timeframes, setTimeframes] = useState({Hourly: false, Weekly: false, Monthly: true});
+    const [spotInfo, setSpotInfo] = useState();
 
     // Filters
     const range = searchParams.range ?? 30;
@@ -28,19 +31,19 @@ const MapPage = ({ searchParams }) => {
                 range={range}
                 price={price}
                 amenities={amenities}
+                onMarkerClick={setSpotInfo}
             />
             <TopMapMenu
-                // @ts-ignore
-                setTimeframes={setTimeframes}
-                timeframes={timeframes}
                 location="Queen's University"
-                date="February 2, 2024"
                 range={range}
                 price={price}
                 amenities={amenities}
             />
-            <Slider/>
-            <BottomBar/>
+            { spotInfo ? <Spot spot={spotInfo} /> : null }
+            {/* <Slider/> */}
+            <div className="mt-auto">
+                <BottomBar/>
+            </div>
         </div>
     );
 }

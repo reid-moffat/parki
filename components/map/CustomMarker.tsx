@@ -2,7 +2,7 @@ import L from "leaflet";
 import { Marker, Popup } from "react-leaflet";
 
 // @ts-ignore
-function CustomMarker({ lat, long, address, price, period }) {
+function CustomMarker({ lat, long, address, price, period, onClick }) {
 
     const customMarkerIcon = L.divIcon({
         className: 'my-div-icon',
@@ -13,12 +13,21 @@ function CustomMarker({ lat, long, address, price, period }) {
     });
 
     return (
-        <Marker position={[lat, long]} icon={customMarkerIcon}>
-            <Popup>
+        <Marker 
+            position={[lat, long]} 
+            icon={customMarkerIcon}
+            eventHandlers={{
+                click: (e) => {
+                    // TODO - indicate that this pin is selected
+                    onClick(address)
+                },
+            }}
+        >
+            {/* <Popup>
                 {address}
                 <br/>
                 ${price} per {period.toLowerCase().slice(0, period.length - 2)}
-            </Popup>
+            </Popup> */}
         </Marker>
     )
 }

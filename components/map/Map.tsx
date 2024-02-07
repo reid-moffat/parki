@@ -6,10 +6,20 @@ import CustomMarker from './CustomMarker';
 import dummyData from "@/config/dummyData";
 
 // @ts-ignore
-function Maps({timeframes, range, price, amenities}) {
+function Maps({timeframes, range, price, amenities, onMarkerClick}) {
     const center = { lat: 44.236524, lng: -76.495791 };
     const ZOOM_LEVEL = 14.5;
     const mapRef = useRef();
+
+    //@ts-ignore
+    const handleMarkerClick = (address) => {
+        const spotData = dummyData.find((spot) => {
+            return spot.address === address
+        })
+        // function sets spotInfo state variable in map/page.tsx
+        if (spotData)
+            onMarkerClick(spotData)
+    }
 
     const renderPins = () => {
         return dummyData
@@ -22,7 +32,7 @@ function Maps({timeframes, range, price, amenities}) {
             .map((data, index) => {
                 return (
                     <CustomMarker key={index} lat={data.latitude} long={data.longitude}
-                              address={data.address} price={data.price} period={data.period}/>
+                              address={data.address} price={data.price} period={data.period} onClick={handleMarkerClick}/>
                 );
             });
     }
