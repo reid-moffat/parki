@@ -1,7 +1,7 @@
 import React from 'react';
-import { MdFilterAlt, MdSearch } from "react-icons/md";
+import { MdSearch } from "react-icons/md";
+import { FaFilterCircleXmark } from "react-icons/fa6";
 import Link from "next/link";
-
 
 const TopMapMenu = ({
     location, range, price, amenities
@@ -22,12 +22,11 @@ const TopMapMenu = ({
             </Link>
 
             <Link
-                className="flex flex-row w-min h-min items-center bg-[#FF4251] p-2 rounded-full mx-auto text-[#FCF9EF] active:opacity-50 duration-75 shadow-xl"
+                className="flex flex-row w-min h-min items-center bg-[#FF4251] p-[0.7rem] rounded-full mx-auto text-[#FCF9EF] active:opacity-50 duration-75 shadow-xl"
                 href={{ pathname: '/map/filter', query: { range, price, amenities } }}
             >
-                <MdFilterAlt size={24} color="#FCF9EF"/>
+                <FaFilterCircleXmark alt="filter" size={22}/>
             </Link>
-
         </div>
     );
 }
