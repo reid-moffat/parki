@@ -41,7 +41,6 @@ const MapPage = ({ searchParams }) => {
                 amenities={amenities}
             />
             { spotInfo ? <Spot spot={spotInfo} /> : null }
-            {/* <Slider/> */}
             <div className="mt-auto">
                 <BottomBar/>
             </div>

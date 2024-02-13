@@ -17,8 +17,6 @@ import BottomBar from "@/components/helpers/BottomBar";
 // @ts-ignore
 const DetailsPage = ({ searchParams }) => {
 
-    const spotData = JSON.parse(searchParams.spotData);
-
     const renderAmenities = () => {
         const allAmenities = [
             <FaWheelchair key={"Accessible"}/>,
@@ -29,7 +27,7 @@ const DetailsPage = ({ searchParams }) => {
             <IoSnowSharp key={"Shovelling Included"}/>,
         ];
 
-        return allAmenities.filter((amenity) => spotData.amenities.includes(amenity.key))
+        return allAmenities.filter((amenity) => searchParams.amenities.includes(amenity.key))
             .map((amenity) => {
                 return (
                     <div className="flex justify-center items-center" key={amenity.key}>
@@ -63,13 +61,13 @@ const DetailsPage = ({ searchParams }) => {
                     <Image src={car} alt={"Parking_Lot_pic"} className='border-0 rounded-xl overflow-hidden'/>
 
                     <div className='p-5'>
-                        <div className='text-[1.75rem] font-normal'>{spotData.address}</div>
+                        <div className='text-[1.75rem] font-normal'>{searchParams.address}</div>
                         <div className='flex flex-row w-[100%] items-center -mt-3'>
                             <Image src={locationIcon} alt={"Location_Icon"} className='w-[5%] h-[5%] mr-3'/>
                             <div className='text-[1.25rem]'>Kingston, ON</div>
                         </div>
                         <div className='text-[1rem] font-outfit mt-3'>
-                            {spotData.description}
+                            {searchParams.description}
                         </div>
                     </div>
 
@@ -87,7 +85,7 @@ const DetailsPage = ({ searchParams }) => {
                         <div className='flex flex-row justify-between items-center'>
                             <div className='text-[1.5rem] font-normal'>Reviews</div>
                             <div className="flex items-center">
-                                <div className='text-[1.125rem] font-bold mr-1'>{spotData.rating}</div>
+                                <div className='text-[1.125rem] font-bold mr-1'>{searchParams.rating}</div>
                                 stars
                             </div>
                         </div>
@@ -101,7 +99,7 @@ const DetailsPage = ({ searchParams }) => {
                 </div>
                 <div
                     className='absolute w-[96vw] pl-[5%] pr-[5%] bottom-[20vw] flex flex-row h-[8%] bg-[#ff4251] rounded-b-xl justify-between items-center'>
-                    <div className='text-[#FCF9EF] text-[1.75rem] font-normal'>${spotData.price}/month</div>
+                    <div className='text-[#FCF9EF] text-[1.75rem] font-normal'>${searchParams.price}/month</div>
                 </div>
             </div>
             <BottomBar/>
