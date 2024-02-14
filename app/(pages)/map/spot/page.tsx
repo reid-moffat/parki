@@ -25,7 +25,7 @@ const DetailsPage = ({searchParams}) => {
             <IoSnowSharp key={"Shovelling Included"}/>,
         ];
 
-        return allAmenities.filter((amenity) => searchParams.amenities.includes(amenity.key))
+        return allAmenities.filter((amenity) => searchParams.amenities?.includes(amenity.key))
             .map((amenity) => {
                 return (
                     <div className="flex justify-center items-center" key={amenity.key}>
