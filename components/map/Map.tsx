@@ -41,7 +41,7 @@ function Maps({timeframes, range, price, amenities, currentSpotInfo, onMarkerCli
 
     return (
         <MapContainer
-            className="absolute ml-[2vw] h-[79.5vh] w-[96vw] rounded-xl -z-50"
+            className="absolute h-[79.5vh] w-[96vw] rounded-xl z-10"
             center={center}
             zoom={ZOOM_LEVEL}
             zoomControl={false}

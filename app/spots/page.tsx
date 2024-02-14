@@ -4,7 +4,7 @@ import React from 'react';
 // @ts-ignore
 const SpotsPage = ({searchParams}) => {
     return (
-        <div className="absolute ml-[2vw] h-[79.5vh] w-[96vw] rounded-xl z-50 bg-[#FCF9EF] text-[#343632]">
+        <div>
             <div className="flex flex-row justify-left py-3 pl-10 pt-5 text-xl">
             </div>
             <div className="text-center text-3xl font-bold pt-10 mx-6 p-6">

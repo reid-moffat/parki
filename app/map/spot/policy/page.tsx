@@ -19,8 +19,7 @@ const PolicyPage = ({searchParams}) => {
     }
 
     return (
-        <div
-            className='ml-[2vw] h-[79.5vh] w-[96vw] rounded-xl z-50 bg-[#FCF9EF] text-[#343632] font-outfit overflow-y-scroll no-scrollbar'>
+        <>
             <div className='flex text-3xl font-bold p-8'>
                 <Link href="/map">
                     <MdOutlineArrowBackIos className='w-10 h-10 mr-2'/>
@@ -64,7 +63,7 @@ const PolicyPage = ({searchParams}) => {
                     CONFIRM
                 </Link>
             </div>
-        </div>
+        </>
     );
 }
 

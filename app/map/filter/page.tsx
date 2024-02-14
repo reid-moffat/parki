@@ -73,7 +73,7 @@ const FilterPage = ({searchParams}) => {
     }
 
     return (
-        <div className="absolute ml-[2vw] h-[79.5vh] w-[96vw] rounded-xl z-50 bg-[#FCF9EF] text-[#343632]">
+        <>
             <div className="flex flex-row justify-around py-3 text-xl">
                 <Link href={{
                     pathname: '/map',
@@ -134,7 +134,7 @@ const FilterPage = ({searchParams}) => {
             </div>
             {renderAmenities()}
             <br/>
-        </div>
+        </>
     );
 }
 

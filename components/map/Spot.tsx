@@ -8,7 +8,7 @@ const Spot = ({ spot } : { spot: any }) => {
     const TEMP_IMAGE = "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Blue_Disc_Parking_Area_Markings_Blue_Paint.JPG/1200px-Blue_Disc_Parking_Area_Markings_Blue_Paint.JPG";
 
     return (
-        <div className="bg-[#FCF9EF] p-6 rounded-2xl shadow-xl mx-[2vw] mt-[33vh] z-100">
+        <div className="absolute bg-[#FCF9EF] p-6 rounded-2xl shadow-xl mx-[2vw] mt-[33vh] z-50">
             <div
                 className="h-[20vh] p-4 rounded-xl border-2 text-white"
                 style={{

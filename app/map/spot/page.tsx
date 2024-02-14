@@ -46,7 +46,7 @@ const DetailsPage = ({searchParams}) => {
 
     return (
         <div
-            className='ml-[2vw] h-[79.5vh] w-[96vw] rounded-xl z-50 bg-[#FCF9EF] text-[#343632] font-passion overflow-y-scroll no-scrollbar'>
+            className='h-[79.5vh] rounded-xl font-passion overflow-y-scroll no-scrollbar'>
             <div className='bg-[#FCF9EF] border-0 rounded-t-xl h-[100%] pb-[40rem]'>
 
                 <Link className="absolute pl-2 py-2 m-3 border-2 rounded-full" href={{pathname: "/map"}}>

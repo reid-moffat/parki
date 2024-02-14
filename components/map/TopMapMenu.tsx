@@ -9,10 +9,9 @@ const TopMapMenu = ({
     location: string, range: number, price: number, amenities: any
 }) => {
     return (
-        <div className="flex justify-center items-center pt-4 px-6 space-x-4">
-
+        <div className="absolute flex items-center pt-4 px-6 space-x-4 z-20">
             <Link
-                className="flex h-min w-full bg-white rounded-full px-3 py-2 shadow-xl text-[#343632] cursor-pointer"
+                className="h-min w-[70vw] bg-white rounded-full px-3 py-2 shadow-xl text-[#343632] cursor-pointer"
                 href="/map/search"
             >
                 <div className="flex flex-row items-center">

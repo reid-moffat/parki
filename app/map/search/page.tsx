@@ -57,9 +57,9 @@ const Search = () => {
     ];
 
     return (
-        <div className="ml-[2vw] h-[79.5vh] w-[96vw] pt-[2vh] rounded-xl bg-[#FCF9EF] font-mono">
+        <>
             <div
-                className="ml-[4vw] h-[6vh] w-[88vw] rounded-[2rem] border-black border-solid border-[1px] inline-flex">
+                className="ml-[4vw] mt-6 h-[6vh] w-[88vw] rounded-[2rem] border-black border-solid border-[1px] inline-flex font-mono">
                 <Link href={"/map"}>
                     <Image src={Back} alt={"Go back"} className={"w-[3vw] h-[3vh] ml-[6vw] mt-[1.5vh]"}/>
                 </Link>
@@ -74,7 +74,7 @@ const Search = () => {
                        onClick={() => setQuery("")}/>
             </div>
 
-            <div className={"h-[65vh] overflow-y-scroll"}>
+            <div className="h-[65vh] overflow-y-scroll font-mono">
                 {adresses
                     .filter((address) =>
                         address.street.toLowerCase().includes(query.toLowerCase()) || address.city.toLowerCase().includes(query.toLowerCase())
@@ -104,8 +104,7 @@ const Search = () => {
                         </>
                     )}
             </div>
-
-        </div>
+        </>
     );
 }
 
