@@ -76,73 +76,67 @@ const FilterPage = ({searchParams}) => {
     }
 
     return (
-        <div style={{backgroundColor: '#343632', position: 'absolute', height: '100vh', width: '100vw', zIndex: '10'}}>
-            <Image src={logo} alt="Parki logo" className='w-[100vw] h-[8vh] object-contain mt-3 mb-4'/>
-
-            <div className="absolute ml-[2vw] h-[79.5vh] w-[96vw] rounded-xl z-50 bg-[#FCF9EF] text-[#343632]">
-                <div className="flex flex-row justify-around py-3 text-xl">
-                    <Link href={{
-                        pathname: '/map',
-                        query: {
-                            range,
-                            price,
-                            // @ts-ignore
-                            amenities: Object.keys(amenities).filter((amenity: string) => amenities[amenity])
-                        }
-                    }}>
-                        <MdArrowBackIos/>
-                    </Link>
-                    <div className="flex items-center font-passion">
-                        <FaFilterCircleXmark className="mr-1"/>
-                        Filter
-                    </div>
-                    <MdArrowBackIos color="transparent"/>
+        <div className="absolute ml-[2vw] h-[79.5vh] w-[96vw] rounded-xl z-50 bg-[#FCF9EF] text-[#343632]">
+            <div className="flex flex-row justify-around py-3 text-xl">
+                <Link href={{
+                    pathname: '/map',
+                    query: {
+                        range,
+                        price,
+                        // @ts-ignore
+                        amenities: Object.keys(amenities).filter((amenity: string) => amenities[amenity])
+                    }
+                }}>
+                    <MdArrowBackIos/>
+                </Link>
+                <div className="flex items-center font-passion">
+                    <FaFilterCircleXmark className="mr-1"/>
+                    Filter
                 </div>
-
-                <div className="text-center font-bold">
-                    Parking Ending On
-                </div>
-                <div className="flex justify-center items-center">
-                    <div className="flex justify-center items-center w-3/6 rounded-full text-white bg-[#343632]">
-                        <LuClock5/> &nbsp; December 20, 2023
-                    </div>
-                </div>
-                <br/>
-                <div className="text-center">
-                    Within <span
-                    className="text-blue-500">{range * 100 < 1000 ? (range * 100) + "m" : (range === 30 ? "any distance" : (range / 10) + "km")}</span>
-                </div>
-                <div className="flex justify-center items-center">
-                    <div className="w-5/6">
-                        <Slider value={range} onChange={handleRangeUpdate} min={0} max={30} color="error"/>
-                    </div>
-                </div>
-
-                <div className="text-center">
-                    Price Range:<p/>
-                    $<span className="text-blue-500">{price[0]}</span> to $<span
-                    className="text-blue-500">{price[1] < 200 ? price[1] : "Infinite"}</span>
-                </div>
-                <div className="flex justify-center items-center">
-                    <div className="w-5/6">
-                        <Slider value={price} onChange={handlePriceUpdate} min={0} max={200} color="error"/>
-                    </div>
-                </div>
-                <br/>
-
-                <Divider/>
-
-                <br/>
-                <div className="flex justify-center items-center">
-                    <div className="w-5/6 font-bold">
-                        Amenities
-                    </div>
-                </div>
-                {renderAmenities()}
-                <br/>
+                <MdArrowBackIos color="transparent"/>
             </div>
 
-            <BottomBar/>
+            <div className="text-center font-bold">
+                Parking Ending On
+            </div>
+            <div className="flex justify-center items-center">
+                <div className="flex justify-center items-center w-3/6 rounded-full text-white bg-[#343632]">
+                    <LuClock5/> &nbsp; December 20, 2023
+                </div>
+            </div>
+            <br/>
+            <div className="text-center">
+                Within <span
+                className="text-blue-500">{range * 100 < 1000 ? (range * 100) + "m" : (range === 30 ? "any distance" : (range / 10) + "km")}</span>
+            </div>
+            <div className="flex justify-center items-center">
+                <div className="w-5/6">
+                    <Slider value={range} onChange={handleRangeUpdate} min={0} max={30} color="error"/>
+                </div>
+            </div>
+
+            <div className="text-center">
+                Price Range:<p/>
+                $<span className="text-blue-500">{price[0]}</span> to $<span
+                className="text-blue-500">{price[1] < 200 ? price[1] : "Infinite"}</span>
+            </div>
+            <div className="flex justify-center items-center">
+                <div className="w-5/6">
+                    <Slider value={price} onChange={handlePriceUpdate} min={0} max={200} color="error"/>
+                </div>
+            </div>
+            <br/>
+
+            <Divider/>
+
+            <br/>
+            <div className="flex justify-center items-center">
+                <div className="w-5/6 font-bold">
+                    Amenities
+                </div>
+            </div>
+            {renderAmenities()}
+            <br/>
         </div>
     );
 }

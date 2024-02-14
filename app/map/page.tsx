@@ -23,9 +23,7 @@ const MapPage = ({ searchParams }) => {
     const amenities = (typeof searchParams.amenities === 'string' ? [searchParams.amenities] : searchParams.amenities) ?? [];
 
     return (
-        <div style={{ backgroundColor: '#343632', position: 'absolute', height: '100vh', width: '100vw', zIndex: '10' }}>
-            <Image src={logo} alt="Parki logo" className='w-[120vw] h-[8vh] object-contain mt-3 mb-4'/>
-
+        <>
             <Map
                 timeframes={timeframes}
                 range={range}
@@ -41,10 +39,7 @@ const MapPage = ({ searchParams }) => {
                 amenities={amenities}
             />
             { spotInfo ? <Spot spot={spotInfo} /> : null }
-            <div className="mt-auto">
-                <BottomBar/>
-            </div>
-        </div>
+        </>
     );
 }
 
