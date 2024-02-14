@@ -49,7 +49,7 @@ const Slider = () => {
                         <div className="flex flex-row items-center">
                             <Link
                                 className="w-[54vw] py-1 bg-[#FF4251] rounded-full font-passion text-[#FCF9EF] shadow-xl active:opacity-50 duration-75 text-center"
-                                href={{ pathname: '/map/spot', query: { spotData: JSON.stringify(item) } }}
+                                href='/map/spot'
                             >
                                 More Details
                             </Link>

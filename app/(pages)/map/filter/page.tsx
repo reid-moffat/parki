@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from 'react';
+import React from 'react';
 import { MdArrowBackIos, MdLocalParking } from "react-icons/md";
 import { FaCarTunnel, FaFilterCircleXmark } from "react-icons/fa6";
 import { LuClock5 } from "react-icons/lu";
@@ -10,20 +10,16 @@ import { RiBattery2ChargeLine } from "react-icons/ri";
 import { IoSnowSharp } from "react-icons/io5";
 import Divider from "@/components/helpers/Divider";
 import Link from 'next/link';
+import { useDispatch, useSelector } from "react-redux";
+import { getRange, setRange, getPrice, setPrice, getAmenities, updateAmenity } from "@/app/GlobalRedux/Features/filters";
 
-// @ts-ignore
-const FilterPage = ({searchParams}) => {
+const FilterPage = () => {
 
-    const [range, setRange] = useState(searchParams.range ?? 30);
-    const [price, setPrice] = useState(searchParams.price ?? [0, 200]);
-    const [amenities, setAmenities] = useState({
-        "Accessible": searchParams.amenities?.includes("Accessible"),
-        "Self-Park": searchParams.amenities?.includes("Self-Park"),
-        "EV Charging": searchParams.amenities?.includes("EV Charging"),
-        "Covered": searchParams.amenities?.includes("Covered"),
-        "On-Site Staff": searchParams.amenities?.includes("On-Site Staff"),
-        "Shovelling Included": searchParams.amenities?.includes("Shovelling Included")
-    });
+    const dispatch = useDispatch();
+
+    const range = useSelector(getRange);
+    const price = useSelector(getPrice);
+    const amenities = useSelector(getAmenities);
 
     const renderAmenities = () => {
         const allAmenities: React.JSX.Element[] = [
@@ -35,7 +31,7 @@ const FilterPage = ({searchParams}) => {
             <IoSnowSharp key={"Shovelling Included"}/>,
         ];
 
-        return allAmenities.map((amenity) => {
+        return allAmenities.map((amenity : React.JSX.Element) => {
             // @ts-ignore
             const isClicked = amenities[amenity.key];
 
@@ -45,12 +41,7 @@ const FilterPage = ({searchParams}) => {
                         className={(isClicked ? "bg-[#343632] text-white" : "bg-[#ffffff]" +
                                 " text-black") +
                             " flex justify-center items-center w-3/6 rounded-full border-black border-2"}
-                        // @ts-ignore
-                        onClick={() => setAmenities((oldState: object) => ({
-                            ...oldState,
-                            [amenity.key as string]: !isClicked
-                        }))}
-
+                        onClick={() => dispatch(updateAmenity(amenity.key))}
                     >
                         <IconContext.Provider value={{color: '#FF4251'}}>
                             {amenity}
@@ -64,26 +55,10 @@ const FilterPage = ({searchParams}) => {
         });
     }
 
-    const handleRangeUpdate = (event: Event, newValue: number | number[]) => {
-        setRange(newValue as number);
-    }
-
-    const handlePriceUpdate = (event: Event, newValue: number | number[]) => {
-        setPrice(newValue as number[]);
-    }
-
     return (
         <>
             <div className="flex flex-row justify-around py-3 text-xl">
-                <Link href={{
-                    pathname: '/map',
-                    query: {
-                        range,
-                        price,
-                        // @ts-ignore
-                        amenities: Object.keys(amenities).filter((amenity: string) => amenities[amenity])
-                    }
-                }}>
+                <Link href='/map'>
                     <MdArrowBackIos/>
                 </Link>
                 <div className="flex items-center font-passion">
@@ -108,7 +83,7 @@ const FilterPage = ({searchParams}) => {
             </div>
             <div className="flex justify-center items-center">
                 <div className="w-5/6">
-                    <Slider value={range} onChange={handleRangeUpdate} min={0} max={30} color="error"/>
+                    <Slider value={range} onChange={(_, newValue) => dispatch(setRange(newValue))} min={0} max={30} color="error"/>
                 </div>
             </div>
 
@@ -119,7 +94,7 @@ const FilterPage = ({searchParams}) => {
             </div>
             <div className="flex justify-center items-center">
                 <div className="w-5/6">
-                    <Slider value={price} onChange={handlePriceUpdate} min={0} max={200} color="error"/>
+                    <Slider value={price} onChange={(_, newValue) => dispatch(setPrice(newValue))} min={0} max={200} color="error"/>
                 </div>
             </div>
             <br/>

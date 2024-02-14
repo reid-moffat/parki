@@ -14,13 +14,13 @@ const Welcome = () => {
                 <div className='button-container'>
                     <Link
                         className='create-account'
-                        href={{pathname: '/profile/signUp'}}
+                        href='/profile/signUp'
                     >
                         Create Account
                     </Link>
                     <Link
                         className='w-full p-2 text-white cursor-pointer text-center rounded-2xl mt-2 border-solid border-2 border-[#FCF9EF]'
-                        href={{pathname: '/profile/signIn'}}
+                        href='/profile/signIn'
                     >
                         Sign in
                     </Link>

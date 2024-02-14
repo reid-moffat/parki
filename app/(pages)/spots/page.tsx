@@ -1,8 +1,7 @@
 "use client";
 import React from 'react';
 
-// @ts-ignore
-const SpotsPage = ({searchParams}) => {
+const SpotsPage = () => {
     return (
         <div>
             <div className="flex flex-row justify-left py-3 pl-10 pt-5 text-xl">

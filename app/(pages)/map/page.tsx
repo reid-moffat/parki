@@ -1,40 +1,23 @@
 "use client";
-import React, { useState } from 'react'
+import React from 'react'
 import dynamic from "next/dynamic";
 import TopMapMenu from '@/components/map/TopMapMenu';
 import Spot from '@/components/map/Spot';
+import { useSelector } from "react-redux";
+import { currentSpotExists } from "@/app/GlobalRedux/Features/currentSpot";
 
 
 const Map = dynamic(() => import('@/components/map/Map'), {ssr: false});
 
-// @ts-ignore
-const MapPage = ({searchParams}) => {
+const MapPage = () => {
 
-    const [timeframes, setTimeframes] = useState({Hourly: false, Weekly: false, Monthly: true});
-    const [spotInfo, setSpotInfo] = useState();
-
-    // Filters
-    const range = searchParams.range ?? 30;
-    const price = searchParams.price ?? [0, 200];
-    const amenities = (typeof searchParams.amenities === 'string' ? [searchParams.amenities] : searchParams.amenities) ?? [];
+    const currentSpotSelected = useSelector(currentSpotExists);
 
     return (
         <>
-            <Map
-                timeframes={timeframes}
-                range={range}
-                price={price}
-                amenities={amenities}
-                currentSpotInfo={spotInfo}
-                onMarkerClick={setSpotInfo}
-            />
-            <TopMapMenu
-                location="Queen's University"
-                range={range}
-                price={price}
-                amenities={amenities}
-            />
-            {spotInfo ? <Spot spot={spotInfo}/> : null}
+            <Map/>
+            <TopMapMenu/>
+            {currentSpotSelected && <Spot/>}
         </>
     );
 }

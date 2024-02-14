@@ -1,17 +1,19 @@
 "use client";
-import React, { useState } from 'react';
+import React from 'react';
 import Image from "next/image";
-
 import X from "@/public/search/x.png";
 import Back from "@/public/search/back.png";
 import Map from "@/public/search/map.png";
 import Arrow from "@/public/search/arrow.png";
 import Line from "@/public/Line.png";
 import Link from "next/link";
+import { useDispatch, useSelector } from "react-redux";
+import { set, clear, getValue } from "@/app/GlobalRedux/Features/search";
 
 const Search = () => {
 
-    const [query, setQuery] = useState("");
+    const dispatch = useDispatch();
+    const query = useSelector(getValue);
 
     const adresses: { street: string, city: string }[] = [
         {
@@ -60,7 +62,7 @@ const Search = () => {
         <>
             <div
                 className="ml-[4vw] mt-6 h-[6vh] w-[88vw] rounded-[2rem] border-black border-solid border-[1px] inline-flex font-mono">
-                <Link href={"/map"}>
+                <Link href="/map">
                     <Image src={Back} alt={"Go back"} className={"w-[3vw] h-[3vh] ml-[6vw] mt-[1.5vh]"}/>
                 </Link>
                 <input
@@ -68,10 +70,10 @@ const Search = () => {
                     className={"w-[55vw] ml-[8vw] mt-[1vh] mb-[1vh] bg-[#FCF9EF] outline-none"}
                     placeholder={"Search..."}
                     value={query}
-                    onChange={(e) => setQuery(e.target.value)}
+                    onChange={(e) => dispatch(set(e.target.value))}
                 />
                 <Image src={X} alt={"Clear search query"} className={"w-[4vw] h-[4vw] mt-[2vh] ml-[7vw]"}
-                       onClick={() => setQuery("")}/>
+                       onClick={() => dispatch(clear())}/>
             </div>
 
             <div className="h-[65vh] overflow-y-scroll font-mono">
@@ -92,7 +94,7 @@ const Search = () => {
                                     <br/>
                                     {address.city}
                                 </div>
-                                <Link href={{pathname: "/map", query: {street: address.street, city: address.city}}}>
+                                <Link href="/map">
                                     <Image
                                         src={Arrow}
                                         alt={"Select this address"}
