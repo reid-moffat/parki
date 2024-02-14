@@ -1,11 +1,8 @@
 import '../globals.css'
-import { Inter } from 'next/font/google'
 import React from "react";
 import Image from "next/image";
 import logo from "@/public/logo.png";
 import BottomBar from "@/components/helpers/BottomBar";
-
-const inter = Inter({subsets: ['latin']})
 
 export default function Layout({ children }: { children: React.ReactNode }) {
     return (
