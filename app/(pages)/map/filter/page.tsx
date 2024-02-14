@@ -10,9 +10,15 @@ import { RiBattery2ChargeLine } from "react-icons/ri";
 import { IoSnowSharp } from "react-icons/io5";
 import Divider from "@/components/helpers/Divider";
 import Link from 'next/link';
+import { increment } from "@/app/GlobalRedux/Features/counter/counterSlice";
+import { useDispatch, useSelector } from "react-redux";
+import type { RootState } from "@/app/GlobalRedux/store";
 
 // @ts-ignore
 const FilterPage = ({searchParams}) => {
+
+    const dispatch = useDispatch();
+    const count = useSelector((state: RootState) => state.counter.value);
 
     const [range, setRange] = useState(searchParams.range ?? 30);
     const [price, setPrice] = useState(searchParams.price ?? [0, 200]);

@@ -1,17 +1,20 @@
 "use client";
-import React, { useState } from 'react';
+import React from 'react';
 import Image from "next/image";
-
 import X from "@/public/search/x.png";
 import Back from "@/public/search/back.png";
 import Map from "@/public/search/map.png";
 import Arrow from "@/public/search/arrow.png";
 import Line from "@/public/Line.png";
 import Link from "next/link";
+import { useDispatch, useSelector } from "react-redux";
+import type { RootState } from '@/app/GlobalRedux/store';
+import { set, clear } from "@/app/GlobalRedux/Features/search/searchSlice";
 
 const Search = () => {
 
-    const [query, setQuery] = useState("");
+    const dispatch = useDispatch();
+    const query = useSelector((state: RootState) => state.search.value);
 
     const adresses: { street: string, city: string }[] = [
         {
@@ -68,10 +71,10 @@ const Search = () => {
                     className={"w-[55vw] ml-[8vw] mt-[1vh] mb-[1vh] bg-[#FCF9EF] outline-none"}
                     placeholder={"Search..."}
                     value={query}
-                    onChange={(e) => setQuery(e.target.value)}
+                    onChange={(e) => dispatch(set(e.target.value))}
                 />
                 <Image src={X} alt={"Clear search query"} className={"w-[4vw] h-[4vw] mt-[2vh] ml-[7vw]"}
-                       onClick={() => setQuery("")}/>
+                       onClick={() => dispatch(clear())}/>
             </div>
 
             <div className="h-[65vh] overflow-y-scroll font-mono">
