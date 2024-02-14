@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from 'react';
+import React from 'react';
 import { MdArrowBackIos, MdLocalParking } from "react-icons/md";
 import { FaCarTunnel, FaFilterCircleXmark } from "react-icons/fa6";
 import { LuClock5 } from "react-icons/lu";
@@ -20,15 +20,6 @@ const FilterPage = () => {
     const range = useSelector(getRange);
     const price = useSelector(getPrice);
     const amenities = useSelector(getAmenities);
-
-    // const [amenities, setAmenities] = useState({
-    //     "Accessible": searchParams.amenities?.includes("Accessible"),
-    //     "Self-Park": searchParams.amenities?.includes("Self-Park"),
-    //     "EV Charging": searchParams.amenities?.includes("EV Charging"),
-    //     "Covered": searchParams.amenities?.includes("Covered"),
-    //     "On-Site Staff": searchParams.amenities?.includes("On-Site Staff"),
-    //     "Shovelling Included": searchParams.amenities?.includes("Shovelling Included")
-    // });
 
     const renderAmenities = () => {
         const allAmenities: React.JSX.Element[] = [
@@ -67,15 +58,7 @@ const FilterPage = () => {
     return (
         <>
             <div className="flex flex-row justify-around py-3 text-xl">
-                <Link href={{
-                    pathname: '/map',
-                    query: {
-                        range,
-                        price,
-                        // @ts-ignore
-                        amenities: Object.keys(amenities).filter((amenity: string) => amenities[amenity])
-                    }
-                }}>
+                <Link href='/map'>
                     <MdArrowBackIos/>
                 </Link>
                 <div className="flex items-center font-passion">

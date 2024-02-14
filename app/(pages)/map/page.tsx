@@ -7,8 +7,7 @@ import Spot from '@/components/map/Spot';
 
 const Map = dynamic(() => import('@/components/map/Map'), {ssr: false});
 
-// @ts-ignore
-const MapPage = ({searchParams}) => {
+const MapPage = () => {
 
     const [timeframes, setTimeframes] = useState({Hourly: false, Weekly: false, Monthly: true});
     const [spotInfo, setSpotInfo] = useState();

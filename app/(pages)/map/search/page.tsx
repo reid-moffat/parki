@@ -62,7 +62,7 @@ const Search = () => {
         <>
             <div
                 className="ml-[4vw] mt-6 h-[6vh] w-[88vw] rounded-[2rem] border-black border-solid border-[1px] inline-flex font-mono">
-                <Link href={"/map"}>
+                <Link href="/map">
                     <Image src={Back} alt={"Go back"} className={"w-[3vw] h-[3vh] ml-[6vw] mt-[1.5vh]"}/>
                 </Link>
                 <input
@@ -94,7 +94,7 @@ const Search = () => {
                                     <br/>
                                     {address.city}
                                 </div>
-                                <Link href={{pathname: "/map", query: {street: address.street, city: address.city}}}>
+                                <Link href="/map">
                                     <Image
                                         src={Arrow}
                                         alt={"Select this address"}

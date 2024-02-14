@@ -22,7 +22,7 @@ const TopMapMenu = ({
 
             <Link
                 className="flex flex-row w-min h-min items-center bg-[#FF4251] p-[0.7rem] rounded-full mx-auto text-[#FCF9EF] active:opacity-50 duration-75 shadow-xl"
-                href={{ pathname: '/map/filter', query: { range, price, amenities } }}
+                href='/map/filter'
             >
                 <FaFilterCircleXmark size={22} title={"Filter spots"}/>
             </Link>

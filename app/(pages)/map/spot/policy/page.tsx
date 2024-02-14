@@ -7,8 +7,7 @@ import Link from "next/link";
 import { MdOutlineArrowBackIos } from "react-icons/md";
 import { FaToggleOff, FaToggleOn } from "react-icons/fa";
 
-// @ts-ignore
-const PolicyPage = ({searchParams}) => {
+const PolicyPage = () => {
 
     const [toggle, setToggle] = React.useState(false);
 

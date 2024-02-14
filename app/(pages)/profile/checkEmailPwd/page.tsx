@@ -6,9 +6,7 @@ const CheckEmailPwdPage = () => {
     return (
         <>
             <div className="flex flex-row justify-around py-3 pl-10 pt-5 text-xl">
-                <Link href={{
-                    pathname: '/profile/signIn'
-                }}>
+                <Link href='/profile/signIn'>
                     <MdArrowBackIos/>
                 </Link>
                 <MdArrowBackIos color="transparent"/>

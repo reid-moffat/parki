@@ -45,7 +45,7 @@ const BottomBar = () => {
                 if (path.startsWith("/profile")  || path === "/"  || path === "/_not-found") {
                     return icon;
                 }
-                return <Link href={"/profile"}>{icon}</Link>;
+                return <Link href="/profile">{icon}</Link>;
             case "map":
                 icon = (
                     <Image
@@ -63,7 +63,7 @@ const BottomBar = () => {
                 }
                 return (
                     <div className={"fixed w-screen bottom-3 flex items-center justify-center"}>
-                        <Link href={"/map"}>{icon}</Link>
+                        <Link href="/map">{icon}</Link>
                     </div>
                 );
             case "spots":
@@ -77,7 +77,7 @@ const BottomBar = () => {
                 if (path.startsWith("/spots")) {
                     return icon;
                 }
-                return <Link href={"/spots"}>{icon}</Link>;
+                return <Link href="/spots">{icon}</Link>;
             default:
                 throw new Error("Unknown icon name (in BottomBar.tsx): " + icon);
         }

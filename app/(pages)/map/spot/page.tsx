@@ -12,8 +12,7 @@ import { IconContext } from "react-icons";
 import Divider from "@/components/helpers/Divider";
 import Link from "next/link";
 
-// @ts-ignore
-const DetailsPage = ({searchParams}) => {
+const DetailsPage = () => {
 
     const renderAmenities = () => {
         const allAmenities = [
@@ -49,7 +48,7 @@ const DetailsPage = ({searchParams}) => {
             className='h-[79.5vh] rounded-xl font-passion overflow-y-scroll no-scrollbar'>
             <div className='bg-[#FCF9EF] border-0 rounded-t-xl h-[100%] pb-[40rem]'>
 
-                <Link className="absolute pl-2 py-2 m-3 border-2 rounded-full" href={{pathname: "/map"}}>
+                <Link className="absolute pl-2 py-2 m-3 border-2 rounded-full" href="/map">
                     <MdArrowBackIos color="#FCF9EF"/>
                 </Link>
 
