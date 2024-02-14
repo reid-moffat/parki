@@ -1,5 +1,5 @@
 import React from 'react';
-import '../globals.css'
+import '../../globals.css'
 import { redirect } from 'next/navigation';
 import { auth } from "@/config/firebase";
 
