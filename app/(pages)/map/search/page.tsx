@@ -8,7 +8,7 @@ import Arrow from "@/public/search/arrow.png";
 import Line from "@/public/Line.png";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
-import { set, clear, getValue } from "@/app/GlobalRedux/Features/search/searchSlice";
+import { set, clear, getValue } from "@/app/GlobalRedux/Features/searchSlice";
 
 const Search = () => {
 
