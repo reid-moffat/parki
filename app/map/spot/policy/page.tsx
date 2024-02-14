@@ -2,8 +2,8 @@
 import Image from "next/image";
 import logo from "@/public/logo.png";
 import React from "react";
-import Respect from "@/public/spot/Respect.png";
-import Duration from "@/public/spot/Duration.png";
+import Respect from "@/public/spot/respect.png";
+import Duration from "@/public/spot/duration.png";
 import BottomBar from "@/components/helpers/BottomBar";
 import Link from "next/link";
 import { MdOutlineArrowBackIos } from "react-icons/md";
