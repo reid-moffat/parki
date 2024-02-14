@@ -8,7 +8,7 @@ import ForgotPasswordPage from '@/components/auth/ForgotPassword';
 
 const ForgotPassword = () => {
     return (
-        <div style={{ backgroundColor: '#343632', position: 'absolute', height: '100vh', width: '100vw', zIndex: '10' }}>
+        <div style={{backgroundColor: '#343632', position: 'absolute', height: '100vh', width: '100vw', zIndex: '10'}}>
             <Image src={logo} alt="Parki logo" className='w-[120vw] h-[8vh] object-contain mt-3 mb-4'/>
 
             <div className="absolute ml-[2vw] h-[79.5vh] w-[96vw] rounded-xl z-50 bg-[#FCF9EF] text-[#343632]">
@@ -26,11 +26,12 @@ const ForgotPassword = () => {
                 </div>
 
                 <div className="text-center text-md pt-10">
-                Enter the email associated with your account and we’ll send an email with instructions to reset your password
+                    Enter the email associated with your account and we’ll send an email with instructions to reset your
+                    password
                 </div>
 
                 <ForgotPasswordPage/>
-                
+
             </div>
 
             <BottomBar/>

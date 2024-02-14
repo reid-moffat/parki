@@ -4,11 +4,10 @@ import logo from "@/public/logo.png";
 import Image from "next/image";
 import Link from "next/link";
 import { MdArrowBackIos } from "react-icons/md";
-import ForgotPasswordPage from '@/components/auth/ForgotPassword';
 
 const CheckEmailPwdPage = () => {
     return (
-        <div style={{ backgroundColor: '#343632', position: 'absolute', height: '100vh', width: '100vw', zIndex: '10' }}>
+        <div style={{backgroundColor: '#343632', position: 'absolute', height: '100vh', width: '100vw', zIndex: '10'}}>
             <Image src={logo} alt="Parki logo" className='w-[120vw] h-[8vh] object-contain mt-3 mb-4'/>
 
             <div className="absolute ml-[2vw] h-[79.5vh] w-[96vw] rounded-xl z-50 bg-[#FCF9EF] text-[#343632]">
@@ -26,7 +25,7 @@ const CheckEmailPwdPage = () => {
                 </div>
 
                 <div className="text-center text-md pt-10">
-                We’ve sent password recovery instructions to your email.
+                    We’ve sent password recovery instructions to your email.
                 </div>
 
                 <div className='w-full px-10 bg-transparent flex flex-col gap-2'>
@@ -40,7 +39,7 @@ const CheckEmailPwdPage = () => {
 
                 </div>
 
-                
+
             </div>
 
             <BottomBar/>

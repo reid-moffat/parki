@@ -11,11 +11,9 @@ import { IoSnowSharp } from "react-icons/io5";
 import { IconContext } from "react-icons";
 import Divider from "@/components/helpers/Divider";
 import Link from "next/link";
-import logo from "@/public/logo.png";
-import BottomBar from "@/components/helpers/BottomBar";
 
 // @ts-ignore
-const DetailsPage = ({ searchParams }) => {
+const DetailsPage = ({searchParams}) => {
 
     const renderAmenities = () => {
         const allAmenities = [
@@ -98,7 +96,8 @@ const DetailsPage = ({ searchParams }) => {
                 className='absolute w-[96vw] pl-[5%] pr-[5%] bottom-[20vw] flex flex-row h-[8%] bg-[#ff4251] rounded-b-xl justify-between items-center'
             >
                 <div className='text-[#FCF9EF] text-[1.75rem] font-normal'>${searchParams.price}/month</div>
-                <Link href='/map/spot/policy' className='text-white text-xl bg-[#343632] p-2 rounded-xl ps-8 pe-8'>RESERVE</Link>
+                <Link href='/map/spot/policy'
+                      className='text-white text-xl bg-[#343632] p-2 rounded-xl ps-8 pe-8'>RESERVE</Link>
             </div>
         </div>
     )

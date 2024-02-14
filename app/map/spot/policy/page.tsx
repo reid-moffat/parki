@@ -1,16 +1,14 @@
 "use client";
 import Image from "next/image";
-import logo from "@/public/logo.png";
 import React from "react";
 import Respect from "@/public/spot/respect.png";
 import Duration from "@/public/spot/duration.png";
-import BottomBar from "@/components/helpers/BottomBar";
 import Link from "next/link";
 import { MdOutlineArrowBackIos } from "react-icons/md";
 import { FaToggleOff, FaToggleOn } from "react-icons/fa";
 
 // @ts-ignore
-const PolicyPage = ({ searchParams }) => {
+const PolicyPage = ({searchParams}) => {
 
     const [toggle, setToggle] = React.useState(false);
 
@@ -21,7 +19,8 @@ const PolicyPage = ({ searchParams }) => {
     }
 
     return (
-        <div className='ml-[2vw] h-[79.5vh] w-[96vw] rounded-xl z-50 bg-[#FCF9EF] text-[#343632] font-outfit overflow-y-scroll no-scrollbar'>
+        <div
+            className='ml-[2vw] h-[79.5vh] w-[96vw] rounded-xl z-50 bg-[#FCF9EF] text-[#343632] font-outfit overflow-y-scroll no-scrollbar'>
             <div className='flex text-3xl font-bold p-8'>
                 <Link href="/map">
                     <MdOutlineArrowBackIos className='w-10 h-10 mr-2'/>

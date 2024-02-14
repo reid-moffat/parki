@@ -9,10 +9,7 @@ import { IconContext } from 'react-icons';
 import { RiBattery2ChargeLine } from "react-icons/ri";
 import { IoSnowSharp } from "react-icons/io5";
 import Divider from "@/components/helpers/Divider";
-import Image from "next/image";
-import logo from "@/public/logo.png";
 import Link from 'next/link';
-import BottomBar from "@/components/helpers/BottomBar";
 
 // @ts-ignore
 const FilterPage = ({searchParams}) => {

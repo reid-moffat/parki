@@ -1,7 +1,5 @@
 "use client";
 import React, { useState } from 'react';
-import BottomBar from "@/components/helpers/BottomBar";
-import logo from "@/public/logo.png";
 import Image from "next/image";
 
 import X from "@/public/search/x.png";
@@ -60,7 +58,8 @@ const Search = () => {
 
     return (
         <div className="ml-[2vw] h-[79.5vh] w-[96vw] pt-[2vh] rounded-xl bg-[#FCF9EF] font-mono">
-            <div className="ml-[4vw] h-[6vh] w-[88vw] rounded-[2rem] border-black border-solid border-[1px] inline-flex">
+            <div
+                className="ml-[4vw] h-[6vh] w-[88vw] rounded-[2rem] border-black border-solid border-[1px] inline-flex">
                 <Link href={"/map"}>
                     <Image src={Back} alt={"Go back"} className={"w-[3vw] h-[3vh] ml-[6vw] mt-[1.5vh]"}/>
                 </Link>
@@ -71,7 +70,8 @@ const Search = () => {
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
                 />
-                <Image src={X} alt={"Clear search query"} className={"w-[4vw] h-[4vw] mt-[2vh] ml-[7vw]"} onClick={() => setQuery("")}/>
+                <Image src={X} alt={"Clear search query"} className={"w-[4vw] h-[4vw] mt-[2vh] ml-[7vw]"}
+                       onClick={() => setQuery("")}/>
             </div>
 
             <div className={"h-[65vh] overflow-y-scroll"}>
@@ -92,7 +92,7 @@ const Search = () => {
                                     <br/>
                                     {address.city}
                                 </div>
-                                <Link href={{ pathname: "/map", query: { street: address.street, city: address.city } }}>
+                                <Link href={{pathname: "/map", query: {street: address.street, city: address.city}}}>
                                     <Image
                                         src={Arrow}
                                         alt={"Select this address"}
