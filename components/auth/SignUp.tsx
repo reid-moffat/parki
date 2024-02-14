@@ -61,8 +61,8 @@ const SignUpPage = () => {
                     placeholder='Confirm Password'
                     onChange={(e) => setPasswordConfirm(e.target.value)}
                 />
-                <button onClick={handleSignUp} className='create-account'>Sign Up</button>
-                
+                <button onClick={handleSignUp} className='bg-[#FF4251] rounded-2xl text-white p-2'>Sign Up</button>
+
                 <div className='flex justify-center items-center'>
                     Already have an account?&nbsp;
                     <Link href="/profile/signIn" className='text-blue-500 flex-end'>Sign in</Link>
