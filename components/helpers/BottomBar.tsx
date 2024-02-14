@@ -21,7 +21,7 @@ const BottomBar = () => {
 
     // Verify path + get background of bottom bar
     let image: StaticImport;
-    if (path.startsWith("/profile")) {
+    if (path.startsWith("/profile") || path === "/") {
         image = profile;
     } else if (path.startsWith("/map")) {
         image = map;
@@ -42,7 +42,7 @@ const BottomBar = () => {
                         className={"fixed bottom-3 left-[5.4rem] w-10"}
                     />
                 );
-                if (path.startsWith("/profile")) {
+                if (path.startsWith("/profile")  || path === "/") {
                     return icon;
                 }
                 return <Link href={"/profile"}>{icon}</Link>;
