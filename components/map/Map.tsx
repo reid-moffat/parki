@@ -6,7 +6,7 @@ import CustomMarker from './CustomMarker';
 import dummyData from "@/config/dummyData";
 import { useDispatch, useSelector } from "react-redux";
 import { getRange, getPrice, getAmenities } from "@/app/GlobalRedux/Features/filters";
-import { getSpot, setSpot } from "@/app/GlobalRedux/Features/currentSpot";
+import { getSpot, updateSpot, clearSpot } from "@/app/GlobalRedux/Features/currentSpot";
 
 function Maps() {
     const center = { lat: 44.236524, lng: -76.495791 };
@@ -26,9 +26,9 @@ function Maps() {
 
         // Closes the map marker if the current spot is clicked, or opens/updates it if a new spot is clicked
         if (spotData && spotData.address === currentSpot?.address) {
-            dispatch(setSpot(null));
+            dispatch(clearSpot());
         } else if (spotData) {
-            dispatch(setSpot(spotData));
+            dispatch(updateSpot(spotData));
         }
     }
 

@@ -60,14 +60,12 @@ const DetailsPage = () => {
                 <Image src={car} alt={"Parking_Lot_pic"} className='border-0 rounded-xl overflow-hidden'/>
 
                 <div className='p-5'>
-                    { /* @ts-ignore */ }
                     <div className='text-[1.75rem] font-normal'>{currentSpot.address}</div>
                     <div className='flex flex-row w-[100%] items-center -mt-3'>
                         <Image src={locationIcon} alt={"Location_Icon"} className='w-[5%] h-[5%] mr-3'/>
                         <div className='text-[1.25rem]'>Kingston, ON</div>
                     </div>
                     <div className='text-[1rem] font-outfit mt-3'>
-                        { /* @ts-ignore */ }
                         {currentSpot.description}
                     </div>
                 </div>
@@ -86,7 +84,6 @@ const DetailsPage = () => {
                     <div className='flex flex-row justify-between items-center'>
                         <div className='text-[1.5rem] font-normal'>Reviews</div>
                         <div className="flex items-center">
-                            { /* @ts-ignore */ }
                             <div className='text-[1.125rem] font-bold mr-1'>{currentSpot.rating}</div>
                             stars
                         </div>
@@ -102,7 +99,6 @@ const DetailsPage = () => {
             <div
                 className='absolute w-[96vw] pl-[5%] pr-[5%] bottom-[20vw] flex flex-row h-[8%] bg-[#ff4251] rounded-b-xl justify-between items-center'
             >
-                { /* @ts-ignore */ }
                 <div className='text-[#FCF9EF] text-[1.75rem] font-normal'>${currentSpot.price}/month</div>
                 <Link href='/map/spot/policy'
                       className='text-white text-xl bg-[#343632] p-2 rounded-xl ps-8 pe-8'>RESERVE</Link>

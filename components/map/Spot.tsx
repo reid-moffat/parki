@@ -19,22 +19,17 @@ const Spot = () => {
             >
                 <div className="flex flex-row mb-auto">
                     <div>
-                        { /* @ts-ignore */}
                         <div className="text-2xl font-bold">{currentSpot.address}</div>
                         <div>Kingston, ON</div>
                     </div>
                     <div className="ml-auto">
-                        { /* @ts-ignore */}
                         <div className="text-3xl font-bold">${currentSpot.price}</div>
-                        { /* @ts-ignore */}
                         <div className="text-sm">{currentSpot.period}</div>
                     </div>
                 </div>
                 <div className="flex flex-row mt-[8vh]">
-                    { /* @ts-ignore */}
                     <div className="text-xs">{currentSpot.distance}m</div>
                     <div className="flex ml-auto space-x-2 items-center">
-                        { /* @ts-ignore */}
                         {currentSpot.amenities.map((amenity, key) => (
                             <div key={key} className="text-[10px] border-[1px] border-block rounded-full px-2">{amenity}</div>
                         ))}

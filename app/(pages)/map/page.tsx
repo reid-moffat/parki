@@ -4,20 +4,20 @@ import dynamic from "next/dynamic";
 import TopMapMenu from '@/components/map/TopMapMenu';
 import Spot from '@/components/map/Spot';
 import { useSelector } from "react-redux";
-import { getSpot } from "@/app/GlobalRedux/Features/currentSpot";
+import { currentSpotExists } from "@/app/GlobalRedux/Features/currentSpot";
 
 
 const Map = dynamic(() => import('@/components/map/Map'), {ssr: false});
 
 const MapPage = () => {
 
-    const currentSpot = useSelector(getSpot);
+    const currentSpotSelected = useSelector(currentSpotExists);
 
     return (
         <>
             <Map/>
             <TopMapMenu/>
-            {currentSpot && <Spot/>}
+            {currentSpotSelected && <Spot/>}
         </>
     );
 }

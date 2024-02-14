@@ -12,25 +12,37 @@ export interface CurrentSpotState {
         period: string,
         amenities: string[],
         rating: number,
-    } | null
+    }
 }
 
 const initialState: CurrentSpotState = {
-    spot: null
+    spot: {
+        address: "",
+        latitude: 0,
+        longitude: 0,
+        description: "",
+        price: 0,
+        distance: 0,
+        period: "",
+        amenities: [],
+        rating: 0,
+    }
 }
 
 export const CurrentSpot = createSlice({
     name: 'currentSpot',
     initialState,
     reducers: {
-        setSpot: (state, action) => { state.spot = action.payload }
+        updateSpot: (state, action) => { state.spot = action.payload },
+        clearSpot: (state) => { state.spot = initialState.spot },
     },
     selectors: {
         getSpot: (state) => state.spot,
+        currentSpotExists: (state) => state.spot.address !== ""
     }
 })
 
-export const { setSpot } = CurrentSpot.actions;
-export const { getSpot } = CurrentSpot.selectors;
+export const { updateSpot, clearSpot } = CurrentSpot.actions;
+export const { getSpot, currentSpotExists } = CurrentSpot.selectors;
 
 export default CurrentSpot.reducer;
