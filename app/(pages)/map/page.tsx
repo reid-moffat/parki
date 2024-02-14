@@ -1,22 +1,23 @@
 "use client";
-import React, { useState } from 'react'
+import React from 'react'
 import dynamic from "next/dynamic";
 import TopMapMenu from '@/components/map/TopMapMenu';
 import Spot from '@/components/map/Spot';
+import { useSelector } from "react-redux";
+import { getSpot } from "@/app/GlobalRedux/Features/currentSpot";
 
 
 const Map = dynamic(() => import('@/components/map/Map'), {ssr: false});
 
 const MapPage = () => {
 
-    const [spotInfo, setSpotInfo] = useState();
-
+    const currentSpot = useSelector(getSpot);
 
     return (
         <>
-            <Map currentSpotInfo={spotInfo} onMarkerClick={setSpotInfo}/>
-            <TopMapMenu location="Queen's University"/>
-            {spotInfo ? <Spot spot={spotInfo}/> : null}
+            <Map/>
+            <TopMapMenu/>
+            {currentSpot && <Spot/>}
         </>
     );
 }

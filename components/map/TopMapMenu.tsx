@@ -3,8 +3,7 @@ import { MdSearch } from "react-icons/md";
 import { FaFilterCircleXmark } from "react-icons/fa6";
 import Link from "next/link";
 
-// @ts-ignore
-const TopMapMenu = ({ location }) => {
+const TopMapMenu = () => {
     return (
         <div className="absolute flex items-center pt-4 px-6 space-x-4 z-20">
             <Link
@@ -13,7 +12,7 @@ const TopMapMenu = ({ location }) => {
             >
                 <div className="flex flex-row items-center">
                     <MdSearch size={24} color="#FF4251" className="mr-2"/>
-                    {location}
+                    Queen's University
                 </div>
             </Link>
 

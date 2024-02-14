@@ -4,11 +4,11 @@ import { MapContainer, TileLayer } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 import CustomMarker from './CustomMarker';
 import dummyData from "@/config/dummyData";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getRange, getPrice, getAmenities } from "@/app/GlobalRedux/Features/filters";
+import { getSpot, setSpot } from "@/app/GlobalRedux/Features/currentSpot";
 
-// @ts-ignore
-function Maps({ currentSpotInfo, onMarkerClick }) {
+function Maps() {
     const center = { lat: 44.236524, lng: -76.495791 };
     const ZOOM_LEVEL = 14.5;
     const mapRef = useRef();
@@ -18,14 +18,17 @@ function Maps({ currentSpotInfo, onMarkerClick }) {
     const price = useSelector(getPrice);
     const amenities = useSelector(getAmenities);
 
+    const dispatch = useDispatch();
+    const currentSpot = useSelector(getSpot);
+
     const handleMarkerClick = (address: string) => {
         const spotData = dummyData.find((spot) => spot.address === address);
 
         // Closes the map marker if the current spot is clicked, or opens/updates it if a new spot is clicked
-        if (spotData && spotData.address === currentSpotInfo?.address) {
-            onMarkerClick(undefined);
+        if (spotData && spotData.address === currentSpot?.address) {
+            dispatch(setSpot(null));
         } else if (spotData) {
-            onMarkerClick(spotData);
+            dispatch(setSpot(spotData));
         }
     }
 
