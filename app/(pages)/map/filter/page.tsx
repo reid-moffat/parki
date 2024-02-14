@@ -11,7 +11,7 @@ import { IoSnowSharp } from "react-icons/io5";
 import Divider from "@/components/helpers/Divider";
 import Link from 'next/link';
 import { useDispatch, useSelector } from "react-redux";
-import { getRange, setRange, getPrice, setPrice, getAmenities, updateAmenity } from "@/app/GlobalRedux/Features/filtersSlice";
+import { getRange, setRange, getPrice, setPrice, getAmenities, updateAmenity } from "@/app/GlobalRedux/Features/filters";
 
 const FilterPage = () => {
 

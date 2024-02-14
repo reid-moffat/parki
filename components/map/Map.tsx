@@ -5,7 +5,7 @@ import 'leaflet/dist/leaflet.css'
 import CustomMarker from './CustomMarker';
 import dummyData from "@/config/dummyData";
 import { useSelector } from "react-redux";
-import { getRange, getPrice, getAmenities } from "@/app/GlobalRedux/Features/filtersSlice";
+import { getRange, getPrice, getAmenities } from "@/app/GlobalRedux/Features/filters";
 
 // @ts-ignore
 function Maps({ currentSpotInfo, onMarkerClick }) {

@@ -27,7 +27,7 @@ const initialState: FiltersState = {
     },
 }
 
-export const filtersSlice = createSlice({
+export const filters = createSlice({
     name: 'filters',
     initialState,
     reducers: {
@@ -45,7 +45,7 @@ export const filtersSlice = createSlice({
     }
 })
 
-export const { setRange, setPrice, updateAmenity } = filtersSlice.actions;
-export const { getRange, getPrice, getAmenities } = filtersSlice.selectors;
+export const { setRange, setPrice, updateAmenity } = filters.actions;
+export const { getRange, getPrice, getAmenities } = filters.selectors;
 
-export default filtersSlice.reducer;
+export default filters.reducer;
