@@ -59,7 +59,8 @@ const PolicyPage = ({searchParams}) => {
             </div>
 
             <div className='flex justify-center mt-8'>
-                <Link href="/map/spot/booking" className='rounded-2xl bg-[#FF4251] p-2 text-white text-xl ps-20 pe-20'>
+                <Link href="/map/spot/booking" className={'rounded-2xl bg-[#FF4251] p-2 text-white text-xl ps-20' +
+                    ' pe-20' + (toggle ? "" : " pointer-events-none")}>
                     CONFIRM
                 </Link>
             </div>
