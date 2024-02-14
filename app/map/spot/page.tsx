@@ -98,8 +98,10 @@ const DetailsPage = ({ searchParams }) => {
                     <br/><br/><br/><br/><br/>
                 </div>
                 <div
-                    className='absolute w-[96vw] pl-[5%] pr-[5%] bottom-[20vw] flex flex-row h-[8%] bg-[#ff4251] rounded-b-xl justify-between items-center'>
+                    className='absolute w-[96vw] pl-[5%] pr-[5%] bottom-[20vw] flex flex-row h-[8%] bg-[#ff4251] rounded-b-xl justify-between items-center'
+                >
                     <div className='text-[#FCF9EF] text-[1.75rem] font-normal'>${searchParams.price}/month</div>
+                    <Link href='/map/spot/policy' className='text-white text-xl bg-[#343632] p-2 rounded-xl ps-8 pe-8'>RESERVE</Link>
                 </div>
             </div>
             <BottomBar/>

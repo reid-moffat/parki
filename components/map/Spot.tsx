@@ -41,7 +41,7 @@ const Spot = ({ spot } : { spot: any }) => {
             </div>
             <Link
                 className="flex justify-center bg-[#FF4251] py-3 text-2xl font-passion font-medium text-[#FCF9EF] text-center shadow-xl rounded-2xl active:opacity-50 duration-75"
-                href={{ pathname: '/map/details', query: spot }}
+                href={{ pathname: '/map/spot', query: spot }}
             >
                 More Details
             </Link>
