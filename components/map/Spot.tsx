@@ -8,11 +8,11 @@ const Spot = ({ spot } : { spot: any }) => {
     const TEMP_IMAGE = "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Blue_Disc_Parking_Area_Markings_Blue_Paint.JPG/1200px-Blue_Disc_Parking_Area_Markings_Blue_Paint.JPG";
 
     return (
-        <div className="bg-[#FCF9EF] p-6 rounded-2xl shadow-xl mx-[2vw] mt-[33vh] z-100">
-            <div 
-                className="h-[20vh] p-4 rounded-xl border-2 text-white" 
-                style={{ 
-                    backgroundImage: "linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6) ), "+"url("+TEMP_IMAGE+")", 
+        <div className="absolute bg-[#FCF9EF] p-6 rounded-2xl shadow-xl mx-[2vw] mt-[33vh] z-50">
+            <div
+                className="h-[20vh] p-4 rounded-xl border-2 text-white"
+                style={{
+                    backgroundImage: "linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6) ), "+"url("+TEMP_IMAGE+")",
                     backgroundSize: "cover"
                 }}
             >
@@ -37,11 +37,11 @@ const Spot = ({ spot } : { spot: any }) => {
                 </div>
             </div>
             <div className="text-md mt-2 mb-2">
-                Here is my parking spot. Just a two minute walk from Goodes Hall. Here is an important thing to know... 
+                Here is my parking spot. Just a two minute walk from Goodes Hall. Here is an important thing to know...
             </div>
             <Link
                 className="flex justify-center bg-[#FF4251] py-3 text-2xl font-passion font-medium text-[#FCF9EF] text-center shadow-xl rounded-2xl active:opacity-50 duration-75"
-                href={{ pathname: '/map/details'}}
+                href={{ pathname: '/map/spot', query: spot }}
             >
                 More Details
             </Link>

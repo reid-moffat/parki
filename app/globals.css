@@ -133,45 +133,45 @@
 /*login page css - Lukas (im so sorry for how shit this is)*/
 
 
-.entire-container{
+.entire-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-   
- }
- 
- 
- .parki-logo-div {
+
+}
+
+
+.parki-logo-div {
     justify-content: center;
     align-items: center;
     background-repeat: no-repeat;
     justify-content: center;
     display: flex;
- 
- 
- }
- 
- 
- .parki-logo {
+
+
+}
+
+
+.parki-logo {
     max-width: 80%;
     min-width: 50%;
     padding-left: 15%;
     padding-right: 15%;
     padding-top: 50%;
- }
- 
- 
- .button-container {
+}
+
+
+.button-container {
     padding-top: 40%;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 16px; /* Adjust the gap as needed */
-     width: 80%;
+    width: 80%;
     margin: 0 auto;
- }
- 
- .create-account {
+}
+
+.create-account {
     text-align: center;
     width: 100%;
     padding: 10px;
@@ -183,17 +183,15 @@
     border: 3px solid black;
     cursor: pointer;
     transition: background-color 0.3s ease;
- }
- 
- 
- .create-account:hover {
-  background-color: white; /* Change color on hover, adjust as needed */
- }
- 
- 
- 
- 
- .sign-in {
+}
+
+
+.create-account:hover {
+    background-color: white; /* Change color on hover, adjust as needed */
+}
+
+
+.sign-in {
     width: 100%;
     padding: 10px;
     background-color: #343632; /* Assuming brightred is a custom color you define */
@@ -202,18 +200,17 @@
     cursor: pointer;
     border-radius: 20px;
     text-align: center;
- }
- 
- 
- .sign-in:hover {
+}
+
+
+.sign-in:hover {
     background-color: white; /* Change color on hover, adjust as needed */
-  }
- 
- 
- .conditions-text {
+}
+
+
+.conditions-text {
     text-align: center;
     padding-top: 10%;
     padding: 10%;
     color: white;
- }
- 
+}
