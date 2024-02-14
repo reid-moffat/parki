@@ -4,15 +4,21 @@ import { MapContainer, TileLayer } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 import CustomMarker from './CustomMarker';
 import dummyData from "@/config/dummyData";
+import { useSelector } from "react-redux";
+import { getRange, getPrice, getAmenities } from "@/app/GlobalRedux/Features/filtersSlice";
 
 // @ts-ignore
-function Maps({timeframes, range, price, amenities, currentSpotInfo, onMarkerClick}) {
+function Maps({ currentSpotInfo, onMarkerClick }) {
     const center = { lat: 44.236524, lng: -76.495791 };
     const ZOOM_LEVEL = 14.5;
     const mapRef = useRef();
 
-    //@ts-ignore
-    const handleMarkerClick = (address) => {
+    // Filters
+    const range = useSelector(getRange);
+    const price = useSelector(getPrice);
+    const amenities = useSelector(getAmenities);
+
+    const handleMarkerClick = (address: string) => {
         const spotData = dummyData.find((spot) => spot.address === address);
 
         // Closes the map marker if the current spot is clicked, or opens/updates it if a new spot is clicked
@@ -26,10 +32,9 @@ function Maps({timeframes, range, price, amenities, currentSpotInfo, onMarkerCli
     const renderPins = () => {
         return dummyData
             .filter((item) => {
-                return timeframes[item.period] === true &&
-                    (range === 30 || item.distance <= range * 100) &&
+                return (range === 30 || item.distance <= range * 100) &&
                     (price[1] === 200 || (item.price >= price[0] && item.price <= price[1])) &&
-                    amenities.every((amenity: string) => item.amenities.includes(amenity));
+                    Object.entries(amenities).every((amenity: [string, boolean]) => !amenity[1] || item.amenities.includes(amenity[0]));
             })
             .map((data, index) => {
                 return (

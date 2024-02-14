@@ -3,11 +3,8 @@ import { MdSearch } from "react-icons/md";
 import { FaFilterCircleXmark } from "react-icons/fa6";
 import Link from "next/link";
 
-const TopMapMenu = ({
-    location, range, price, amenities
-}: {
-    location: string, range: number, price: number, amenities: any
-}) => {
+// @ts-ignore
+const TopMapMenu = ({ location }) => {
     return (
         <div className="absolute flex items-center pt-4 px-6 space-x-4 z-20">
             <Link
