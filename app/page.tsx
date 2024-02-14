@@ -1,9 +1,7 @@
+import './globals.css'
 import React from 'react';
-import BottomBar from "@/components/helpers/BottomBar";
 import Link from "next/link";
-
-import '../globals.css'
-import parkilogo from '../../public/logo.png';
+import parkilogo from '../public/logo.png';
 import Image from 'next/image';
 
 const Welcome = () => {
