@@ -10,9 +10,9 @@ import { RiBattery2ChargeLine } from "react-icons/ri";
 import { IoSnowSharp } from "react-icons/io5";
 import Divider from "@/components/helpers/Divider";
 import Link from 'next/link';
-import { increment } from "@/app/GlobalRedux/Features/counter/counterSlice";
 import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "@/app/GlobalRedux/store";
+import { increment } from "@/app/GlobalRedux/Features/counter/counterSlice";
 
 // @ts-ignore
 const FilterPage = ({searchParams}) => {

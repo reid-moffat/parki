@@ -15,9 +15,13 @@ export const searchSlice = createSlice({
     reducers: {
         set: (state, action) => { state.value = action.payload },
         clear: (state) => { state.value = "" },
+    },
+    selectors: {
+        getValue: (state) => state.value,
     }
 })
 
 export const { set, clear } = searchSlice.actions;
+export const { getValue } = searchSlice.selectors;
 
 export default searchSlice.reducer;
