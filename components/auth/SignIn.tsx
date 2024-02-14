@@ -67,7 +67,8 @@ const SignInPage = () => {
                 <Link href="/about">
       <a onClick={handleClick}>About</a>
     </Link> */}
-                <button onClick={signin} className='w-full bg-[#FF4251] py-3 rounded-[20px] text-[#FCF9EF] '>Sign In</button>
+                <button onClick={signin} className='w-full bg-[#FF4251] py-3 rounded-[20px] text-[#FCF9EF] '>Sign In
+                </button>
                 {error && <p className="text-red-500">{error}</p>}
                 {/* <Image
                     src={'../../signInWithGoogle.png'}
@@ -75,6 +76,11 @@ const SignInPage = () => {
                     style={{'cursor': 'pointer'}}
                     alt={"Sign in with Google"}
                 /> */}
+
+                <div className='flex justify-center items-center'>
+                    Don't have an account?&nbsp;
+                    <Link href="/profile/signUp" className='text-blue-500 flex-end'>Sign up</Link>
+                </div>
             </div>
         </div>
     )
