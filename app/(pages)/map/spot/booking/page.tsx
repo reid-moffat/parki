@@ -39,12 +39,12 @@ const Booking = () => {
             <div className="ml-6 mb-2 font-bold">
                 Select Date
             </div>
-            <div className="flex border-solid border-black border-2 rounded-2xl m-2 ml-6 mr-6">
+            <Link href="/map/spot/booking/dates" className="flex border-solid border-black border-2 rounded-2xl m-2 ml-6 mr-6">
                 <CiSquarePlus className="m-4" size={30}/>
                 <div className="font-bold m-4 ml-16">
                     Add Day(s)
                 </div>
-            </div>
+            </Link>
 
             <div className='flex justify-center mt-8'>
                 <Link href="/map/spot/booking/review" className={'rounded-2xl bg-[#FF4251] p-2 text-white text-xl' +
