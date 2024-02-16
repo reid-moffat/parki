@@ -17,6 +17,7 @@ import { getSpot } from "@/app/GlobalRedux/Features/currentSpot";
 const DetailsPage = () => {
 
     const currentSpot = useSelector(getSpot);
+    const TEMP_IMAGE = "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Blue_Disc_Parking_Area_Markings_Blue_Paint.JPG/1200px-Blue_Disc_Parking_Area_Markings_Blue_Paint.JPG";
 
     const renderAmenities = () => {
         const allAmenities = [
@@ -32,9 +33,9 @@ const DetailsPage = () => {
         return allAmenities.filter((amenity) => currentSpot.amenities?.includes(amenity.key))
             .map((amenity) => {
                 return (
-                    <div className="flex justify-center items-center" key={amenity.key}>
+                    <div className="flex" key={amenity.key}>
                         <div
-                            className={"bg-[#343632] text-white flex justify-center items-center w-3/6 rounded-full border-black border-2"}
+                            className={"bg-[#343632] text-white text-sm font-light flex justify-center items-center w-[100vw] rounded-full m-1 py-1"}
                         >
                             <IconContext.Provider value={{color: '#FF4251'}}>
                                 {amenity}
@@ -42,59 +43,85 @@ const DetailsPage = () => {
                             &nbsp;
                             {amenity.key as string}
                         </div>
-                        <br/><br/>
                     </div>
                 )
             });
     }
 
     return (
-        <div
-            className='h-[79.5vh] rounded-xl font-passion overflow-y-scroll no-scrollbar'>
+        <div className='h-[79.5vh] rounded-xl overflow-y-scroll no-scrollbar'>
             <div className='bg-[#FCF9EF] border-0 rounded-t-xl h-[100%] pb-[40rem]'>
 
-                <Link className="absolute pl-2 py-2 m-3 border-2 rounded-full" href="/map">
-                    <MdArrowBackIos color="#FCF9EF"/>
-                </Link>
+                <div className="flex flex-row justify-left py-3 pl-10 pt-5 text-xl">
+                    <Link href='/map' className='pt-5'>
+                        <MdArrowBackIos/>
+                    </Link>
+                </div>
 
-                <Image src={car} alt={"Parking_Lot_pic"} className='border-0 rounded-xl overflow-hidden'/>
+                <div className="text-center text-3xl font-bold">
+                Parking Details
+                </div>
 
-                <div className='p-5'>
-                    <div className='text-[1.75rem] font-normal'>{currentSpot.address}</div>
-                    <div className='flex flex-row w-[100%] items-center -mt-3'>
-                        <Image src={locationIcon} alt={"Location_Icon"} className='w-[5%] h-[5%] mr-3'/>
-                        <div className='text-[1.25rem]'>Kingston, ON</div>
+                <div className='flex flex-row items-center justify-center py-2'>
+                    <Image src={car} alt={"Parking_Lot_pic"} className='w-[80vw] h-[20vh] border-0 rounded-xl overflow-hidden'/>
+                </div>
+
+                <div className='flex flex-col w-[80vw] mx-auto '>
+                    <div className='text-2xl font-bold'>{currentSpot.address}</div>
+                    <div className='flex flex-row w-[100%] items-center'>
+                        <Image src={locationIcon} alt={"Location_Icon"} className='w-[5%] h-[5%] mr-1'/>
+                        <div className='text-md'>Kingston, ON</div>
                     </div>
-                    <div className='text-[1rem] font-outfit mt-3'>
+                    <div className='text-sm my-1 mb-2'>
                         {currentSpot.description}
                     </div>
                 </div>
 
-                <Divider/>
-
-                <div className='p-5 text-[1.5rem] font-normal'>
-                    Amenities
+                <div className='w-[80vw] mx-auto'>
+                    <Divider/>
                 </div>
-                {renderAmenities()}
+                
+
+                <div className='flex flex-col w-[80vw] mx-auto'>
+                    <div className='text-md font-bold py-3'>Amenities</div>
+                    <div className='grid grid-cols-2'>
+                         {renderAmenities()}
+                    </div>
+                </div>
+                
                 <br/>
 
-                <Divider/>
+                <div className='w-[80vw] mx-auto'>
+                    <Divider/>
+                </div>
 
-                <div className='p-[5%]'>
+                <div className='flex flex-col w-[80vw] mx-auto py-3'>
+                    <button
+                        className='flex flex-row border-[1px] border-[#343632] w-[100%] rounded-[2.5rem] h-[5%] items-center justify-center font-normal py-1'>
+                        Availability
+                        <MdArrowForwardIos className='w-[4%] h-[4%] ml-2'/>
+                    </button>
+                </div>
+
+                <div className='w-[80vw] mx-auto'>
+                    <Divider/>
+                </div>
+
+                <div className='flex flex-col w-[80vw] mx-auto'>
                     <div className='flex flex-row justify-between items-center'>
-                        <div className='text-[1.5rem] font-normal'>Reviews</div>
+                        <div className='text-md font-bold py-3'>Reviews</div>
                         <div className="flex items-center">
                             <div className='text-[1.125rem] font-bold mr-1'>{currentSpot.rating}</div>
                             stars
                         </div>
                     </div>
                     <button
-                        className='flex flex-row border-[1px] border-[#343632] w-[100%] rounded-[2.5rem] h-[5%] items-center justify-center font-outfit'>
+                        className='flex flex-row border-[1px] border-[#343632] w-[100%] rounded-[2.5rem] h-[5%] items-center justify-center font-normal py-1'>
                         Show all {Math.floor(Math.random() * 20)} reviews
                         <MdArrowForwardIos className='w-[4%] h-[4%] ml-2'/>
                     </button>
                 </div>
-                <br/><br/><br/><br/><br/>
+                <br/><br/><br/><br/>
             </div>
             <div
                 className='absolute w-[96vw] pl-[5%] pr-[5%] bottom-[20vw] flex flex-row h-[8%] bg-[#ff4251] rounded-b-xl justify-between items-center'

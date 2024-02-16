@@ -5,6 +5,7 @@ import { MdArrowBackIos } from "react-icons/md";
 import TextBox from "@/components/auth/TextBox";
 import { httpsCallable } from "@firebase/functions";
 import { functions } from "@/config/firebase";
+import { redirect } from "next/navigation";
 
 const ForgotPassword = () => {
 
@@ -13,9 +14,10 @@ const ForgotPassword = () => {
     const handleSendResetEmail = async () => {
         await httpsCallable(functions, 'resetPassword')({email: email})
             .then((res) => {
-                alert("Password reset email sent! Please check your email");
+                console.log("Password reset email sent! Please check your email");
             })
             .catch((err) => {
+                console.log(err);
                 alert(err);
             });
     }

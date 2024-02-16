@@ -80,7 +80,7 @@ const SignIn = () => {
                     </Link> */}
                     <button onClick={signin} className='w-full bg-[#FF4251] py-3 rounded-2xl text-[#FCF9EF] font-bold font-3xl'>SIGN IN
                     </button>
-                    {error && <p className="text-red-500">{error}</p>}
+                    
                     {/* <Image
                     src={'../../signInWithGoogle.png'}
                     onClick={signInWithGoogle}
@@ -92,6 +92,7 @@ const SignIn = () => {
                         Don't have an account?&nbsp;
                         <Link href="/profile/signUp" className='text-blue-500 flex-end text-sm underline'>Sign up</Link>
                     </div>
+                    {error && <p className="text-red-500">{error}</p>}
                 </div>
             </div>
         </>
