@@ -15,9 +15,6 @@ const BookingDates = () => {
             if (num > maxDays) {
                 num = num - maxDays;
             }
-            if (num < 10) {
-                return <>{num}</>;
-            }
             return num;
         }
 
@@ -63,15 +60,15 @@ const BookingDates = () => {
             ["February", 28, 29, 31],
             ["March", 25, 31, 29],
             ["April", 31, 30, 31],
-            ["May", 28, 31, 20],
-            ["June", 26, 30, 31],
-            ["July", 30, 31, 30],
-            ["August", 28, 31, 31],
-            ["September", 1, 30, 31],
-            ["October", 29, 31, 30],
-            ["November", 27, 30, 31],
-            ["December", 1, 31, 30],
-            ["January", 29, 31, 31]
+            // ["May", 28, 31, 20],
+            // ["June", 26, 30, 31],
+            // ["July", 30, 31, 30],
+            // ["August", 28, 31, 31],
+            // ["September", 1, 30, 31],
+            // ["October", 29, 31, 30],
+            // ["November", 27, 30, 31],
+            // ["December", 1, 31, 30],
+            // ["January", 29, 31, 31]
         ];
 
         return (
@@ -99,6 +96,14 @@ const BookingDates = () => {
                         <Image src={Line} alt={"Dividing line"} className="mt-4 mb-4"/>
                     </div>
                 )}
+                {numMonths < 12 &&
+                    <div
+                        className="rounded-2xl bg-[#FF4251] p-2 text-center text-white text-xl ml-20 mr-20"
+                        onClick={() => setNumMonths(numMonths + 3)}
+                    >
+                        More months
+                    </div>
+                }
             </div>
         );
     }
