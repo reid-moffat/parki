@@ -95,6 +95,18 @@ const DetailsPage = () => {
                     <Divider/>
                 </div>
 
+                <div className='flex flex-col w-[80vw] mx-auto py-3'>
+                    <button
+                        className='flex flex-row border-[1px] border-[#343632] w-[100%] rounded-[2.5rem] h-[5%] items-center justify-center font-normal py-1'>
+                        Availability
+                        <MdArrowForwardIos className='w-[4%] h-[4%] ml-2'/>
+                    </button>
+                </div>
+
+                <div className='w-[80vw] mx-auto'>
+                    <Divider/>
+                </div>
+
                 <div className='flex flex-col w-[80vw] mx-auto'>
                     <div className='flex flex-row justify-between items-center'>
                         <div className='text-md font-bold py-3'>Reviews</div>
@@ -109,7 +121,7 @@ const DetailsPage = () => {
                         <MdArrowForwardIos className='w-[4%] h-[4%] ml-2'/>
                     </button>
                 </div>
-                <br/><br/><br/><br/><br/>
+                <br/><br/><br/><br/>
             </div>
             <div
                 className='absolute w-[96vw] pl-[5%] pr-[5%] bottom-[20vw] flex flex-row h-[8%] bg-[#ff4251] rounded-b-xl justify-between items-center'
