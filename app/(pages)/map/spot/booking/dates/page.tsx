@@ -56,54 +56,140 @@ const BookingDates = () => {
         const month = new Date().getMonth();
         const day = new Date().getDate();
 
-        const monthDataa: [string, number, number, number][] = [
-            ["February", 28, 29, 31],
-            ["March", 25, 31, 29],
-            ["April", 31, 30, 31],
-            // ["May", 28, 31, 20],
-            // ["June", 26, 30, 31],
-            // ["July", 30, 31, 30],
-            // ["August", 28, 31, 31],
-            // ["September", 1, 30, 31],
-            // ["October", 29, 31, 30],
-            // ["November", 27, 30, 31],
-            // ["December", 1, 31, 30],
-            // ["January", 29, 31, 31]
-        ];
+
+        const monthData = {
+            0: {
+                name: "January",
+                days: 31
+            },
+            1: {
+                name: "February",
+                days: 28,
+            },
+            2: {
+                name: "March",
+                days: 31,
+            },
+            3: {
+                name: "April",
+                days: 30,
+            },
+            4: {
+                name: "May",
+                days: 31,
+            },
+            5: {
+                name: "June",
+                days: 30,
+            },
+            6: {
+                name: "July",
+                days: 31,
+            },
+            7: {
+                name: "August",
+                days: 31,
+            },
+            8: {
+                name: "September",
+                days: 30,
+            },
+            9: {
+                name: "October",
+                days: 31,
+            },
+            10: {
+                name: "November",
+                days: 30,
+            },
+            11: {
+                name: "December",
+                days: 31,
+            }
+        }
+
+        const monthComponents: any[] = [];
+
+        for (let i = 0; i < numMonths; ++i) {
+            const currentMonth = (month + i) % 12;
+            const currentYear = year + (month + i >= 12 ? 1 : 0);
+
+            // @ts-ignore
+            const monthInfo = monthData[currentMonth];
+            if (monthInfo.name === "February") {
+                if (currentYear % 4 === 0) {
+                    monthInfo.days = 29;
+                } else {
+                    monthInfo.days = 28;
+                }
+            }
+
+            const monthRows = [];
+            const firstDayOfMonth = new Date(currentYear, currentMonth, 1).getDay();
+
+            // First week
+            let days = new Array(7).fill(null);
+            for (let i = firstDayOfMonth; i < days.length; ++i) {
+                days[i] = 1 + i - firstDayOfMonth;
+            }
+            monthRows.push(
+                <div className="flex justify-between w-full mt-2">
+                    {days.map((dayNum: number) => <div className="w-6 text-center">{dayNum === null ? "" : dayNum}</div>)}
+                </div>
+            );
+
+            let currDay = 8 - firstDayOfMonth;
+            let flag = false;
+            while (true) {
+                days = new Array(7).fill(null);
+
+                for (let i = 0; i < days.length; ++i) {
+                    days[i] = currDay;
+                    currDay++;
+
+                    if (currDay > monthInfo.days) {
+                        currDay = 1;
+                        flag = true;
+                        break;
+                    }
+                }
+
+                monthRows.push(
+                    <div className="flex justify-between w-full mt-2">
+                        {days.map((dayNum: number) => <div className="w-6 text-center">{dayNum === null ? "" : dayNum}</div>)}
+                    </div>
+                );
+
+                if (flag) {
+                    break;
+                }
+            }
+
+            monthComponents.push(
+                <div className="m-4 ml-8 mr-10 font-outfit text-sm">
+                    <div className="font-bold text-xl mb-2">
+                        {monthInfo.name}
+                    </div>
+                    <div className="flex justify-between w-full">
+                        <div className="w-6">Sun</div>
+                        <div className="w-6">Mon</div>
+                        <div className="w-6">Tue</div>
+                        <div className="w-6">Wed</div>
+                        <div className="w-6">Thu</div>
+                        <div className="w-6">Fri</div>
+                        <div className="w-6">Sat</div>
+                    </div>
+
+                    {monthRows}
+
+                    {i !== numMonths - 1 && <Image src={Line} alt={"Dividing line"} className="mt-4 mb-4"/>}
+                </div>
+            );
+        }
 
         return (
             <div className="h-[80%] overflow-y-scroll mb-40">
-                {monthDataa.map((monthData, index) =>
-                    <div className="m-4 ml-8 mr-10 font-outfit text-sm">
-                        <div className="font-bold text-xl mb-2">
-                            {monthData[0]} {monthData[0] === "January" ? 2025 : 2024}
-                        </div>
-                        <div className="flex justify-between w-full">
-                            <div className="w-6">Sun</div>
-                            <div className="w-6">Mon</div>
-                            <div className="w-6">Tue</div>
-                            <div className="w-6">Wed</div>
-                            <div className="w-6">Thu</div>
-                            <div className="w-6">Fri</div>
-                            <div className="w-6">Sat</div>
-                        </div>
-                        {getCalendarRow(monthData[1], monthData[3])}
-                        {getCalendarRow((monthData[1] + 7) % monthData[3], monthData[2])}
-                        {getCalendarRow((monthData[1] + 14) % monthData[3], monthData[2])}
-                        {getCalendarRow((monthData[1] + 21) % monthData[3], monthData[2])}
-                        {getCalendarRow((monthData[1] + 28) % monthData[3], monthData[2])}
-
-                        <Image src={Line} alt={"Dividing line"} className="mt-4 mb-4"/>
-                    </div>
-                )}
-                {numMonths < 12 &&
-                    <div
-                        className="rounded-2xl bg-[#FF4251] p-2 text-center text-white text-xl ml-20 mr-20"
-                        onClick={() => setNumMonths(numMonths + 3)}
-                    >
-                        More months
-                    </div>
-                }
+                {monthComponents}
             </div>
         );
     }
@@ -120,6 +206,15 @@ const BookingDates = () => {
             </div>
 
             {renderMonths()}
+
+            {numMonths < 12 &&
+                <div
+                    className="rounded-2xl bg-[#FF4251] p-2 text-center text-white text-xl ml-20 mr-20"
+                    onClick={() => setNumMonths(numMonths + 3)}
+                >
+                    More months
+                </div>
+            }
         </div>
     );
 }
