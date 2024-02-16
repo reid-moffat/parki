@@ -46,7 +46,7 @@ const SpotsPage = () => {
                                 backgroundSize: "cover"
                             }}
                         />
-                        <div className="flex flex-col">
+                        <div className="flex flex-col text-left">
                             <div className="text-md font-bold">{listing.location}</div>
                             <div className="text-sm">{listing.city}</div>
                         </div>
