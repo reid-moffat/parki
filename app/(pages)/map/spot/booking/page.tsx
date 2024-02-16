@@ -23,7 +23,7 @@ const Booking = () => {
             <div className="ml-6 mb-2 font-bold">
                 Select Vehicle
             </div>
-            <div className="flex border-solid border-black border-2 rounded-2xl m-2 ml-6 mr-6">
+            <Link href="/map/spot/booking/addVehicle" className="flex border-solid border-black border-2 rounded-2xl m-2 ml-6 mr-6">
                 <Image src={Car} alt={"Car"} className="w-12 h-8 m-4"/>
                 <div className="flex-col m-2">
                     <div className="font-bold">
@@ -34,7 +34,7 @@ const Booking = () => {
                 <div className="ml-auto mr-8 mt-4 text-blue-500 underline">
                     Change
                 </div>
-            </div>
+            </Link>
 
             <div className="ml-6 mb-2 font-bold">
                 Select Date
