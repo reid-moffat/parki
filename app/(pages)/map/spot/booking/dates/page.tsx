@@ -37,7 +37,26 @@ const BookingDates = () => {
 
     const renderMonths = () => {
 
-        const months: [string, number, number, number][] = [
+        const months: string[] = [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"
+        ];
+
+        const year = new Date().getFullYear();
+        const month = new Date().getMonth();
+        const day = new Date().getDate();
+
+        const monthDataa: [string, number, number, number][] = [
             ["February", 28, 29, 31],
             ["March", 25, 31, 29],
             ["April", 31, 30, 31],
@@ -54,7 +73,7 @@ const BookingDates = () => {
 
         return (
             <div className="h-[80%] overflow-y-scroll mb-40">
-                {months.map((monthData, index) =>
+                {monthDataa.map((monthData, index) =>
                     <div className="m-4 ml-8 mr-10 font-outfit text-sm">
                         <div className="font-bold text-xl mb-2">
                             {monthData[0]} {monthData[0] === "January" ? 2025 : 2024}
