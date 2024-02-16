@@ -37,19 +37,19 @@ const BookingDates = () => {
 
     const renderMonths = () => {
 
-        const months = [
-            ["February", 28, 29],
-            ["March", 7, 31],
-            ["April", 14, 30],
-            ["May", 21, 31],
-            ["June", 28, 30],
-            ["July", 4, 31],
-            ["August", 11, 31],
-            ["September", 18, 30],
-            ["October", 25, 31],
-            ["November", 1, 30],
-            ["December", 8, 31],
-            ["January", 15, 31]
+        const months: [string, number, number, number][] = [
+            ["February", 28, 29, 31],
+            ["March", 25, 31, 29],
+            ["April", 31, 30, 31],
+            ["May", 28, 31, 20],
+            ["June", 26, 30, 31],
+            ["July", 30, 31, 30],
+            ["August", 28, 31, 31],
+            ["September", 1, 30, 31],
+            ["October", 29, 31, 30],
+            ["November", 27, 30, 31],
+            ["December", 1, 31, 30],
+            ["January", 29, 31, 31]
         ];
 
         return (
@@ -57,7 +57,7 @@ const BookingDates = () => {
                 {months.map((monthData, index) =>
                     <div className="m-4 ml-8 mr-10 font-outfit text-sm">
                         <div className="font-bold text-xl mb-2">
-                            {monthData[0]} 2024
+                            {monthData[0]} {monthData[0] === "January" ? 2025 : 2024}
                         </div>
                         <div className="flex justify-between w-full">
                             <div className="w-6">Sun</div>
@@ -68,11 +68,11 @@ const BookingDates = () => {
                             <div className="w-6">Fri</div>
                             <div className="w-6">Sat</div>
                         </div>
-                        {getCalendarRow(28, 31)}
-                        {getCalendarRow(4, 29)}
-                        {getCalendarRow(11, 29)}
-                        {getCalendarRow(18, 29)}
-                        {getCalendarRow(25, 29)}
+                        {getCalendarRow(monthData[1], monthData[3])}
+                        {getCalendarRow((monthData[1] + 7) % monthData[3], monthData[2])}
+                        {getCalendarRow((monthData[1] + 14) % monthData[3], monthData[2])}
+                        {getCalendarRow((monthData[1] + 21) % monthData[3], monthData[2])}
+                        {getCalendarRow((monthData[1] + 28) % monthData[3], monthData[2])}
 
                         <Image src={Line} alt={"Dividing line"} className="mt-4 mb-4"/>
                     </div>
