@@ -35,13 +35,15 @@ const FilterPage = () => {
             // @ts-ignore
             const isClicked = amenities[amenity.key];
 
+
+
             return (
                 <div className="flex justify-center items-center" key={amenity.key}>
                     <div
-                        className={(isClicked ? "bg-[#343632] text-white" : "bg-[#ffffff]" +
+                        className={(isClicked ? "bg-[#343632] text-[#FCF9EF]" : "bg-[#FCF9EF]" +
                                 " text-black") +
-                            " flex justify-center items-center w-3/6 rounded-full border-black border-2"}
-                        onClick={() => dispatch(updateAmenity(amenity.key))}
+                            " flex justify-center items-center w-[100vw] rounded-full border-[#343632] border-[1px] m-1 py-1 text-sm font-light"}
+                        onClick={() => {dispatch(updateAmenity(amenity.key));console.log(typeof amenity.key)}}
                     >
                         <IconContext.Provider value={{color: '#FF4251'}}>
                             {amenity}
@@ -57,15 +59,21 @@ const FilterPage = () => {
 
     return (
         <>
-            <div className="flex flex-row justify-around py-3 text-xl">
-                <Link href='/map'>
+            <div className="flex flex-row justify-left py-3 pl-10 pt-5 text-xl">
+                <Link href='/map' className='pt-5'>
                     <MdArrowBackIos/>
                 </Link>
-                <div className="flex items-center font-passion">
-                    <FaFilterCircleXmark className="mr-1"/>
-                    Filter
-                </div>
-                <MdArrowBackIos color="transparent"/>
+            </div>
+
+            <div className="flex justify-center items-center font-outfit font-bold text-2xl">
+                <FaFilterCircleXmark className="mr-1"/>
+                Filter
+            </div>
+            
+            <br/>
+
+            <div className='w-[80vw] mx-auto'>
+                <Divider/>
             </div>
 
             <div className="text-center font-bold">
@@ -76,7 +84,11 @@ const FilterPage = () => {
                     <LuClock5/> &nbsp; December 20, 2023
                 </div>
             </div>
-            <br/>
+            
+            <div className='w-[80vw] mx-auto'>
+                <Divider/>
+            </div>
+
             <div className="text-center">
                 Within <span
                 className="text-blue-500">{range * 100 < 1000 ? (range * 100) + "m" : (range === 30 ? "any distance" : (range / 10) + "km")}</span>
@@ -85,6 +97,10 @@ const FilterPage = () => {
                 <div className="w-5/6">
                     <Slider value={range} onChange={(_, newValue) => dispatch(setRange(newValue))} min={0} max={30} color="error"/>
                 </div>
+            </div>
+
+            <div className='w-[80vw] mx-auto'>
+                <Divider/>
             </div>
 
             <div className="text-center">
@@ -99,15 +115,22 @@ const FilterPage = () => {
             </div>
             <br/>
 
-            <Divider/>
+            <div className='w-[80vw] mx-auto'>
+                <Divider/>
+            </div>
 
             <br/>
-            <div className="flex justify-center items-center">
-                <div className="w-5/6 font-bold">
-                    Amenities
+            <div className='flex flex-col w-[80vw] mx-auto'>
+                <div className='text-md font-bold py-3'>Amenities</div>
+                <div className='grid grid-cols-2'>
+                        {renderAmenities()}
                 </div>
             </div>
-            {renderAmenities()}
+
+            <div className='flex flex-row justify-between w-[80vw] mx-auto'>
+                <button>Reset</button>
+                <button>Apply Filters</button>
+            </div>
             <br/>
         </>
     );
