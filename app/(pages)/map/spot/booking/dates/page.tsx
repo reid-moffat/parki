@@ -1,10 +1,13 @@
+"use client";
 import Link from "next/link";
 import { MdOutlineArrowBackIos } from "react-icons/md";
-import React from "react";
+import React, { useState } from "react";
 import Line from "@/public/Line.png";
 import Image from "next/image";
 
 const BookingDates = () => {
+
+    const [numMonths, setNumMonths] = useState(3);
 
     const getCalendarRow = (startNum: number, maxDays: number) => {
 

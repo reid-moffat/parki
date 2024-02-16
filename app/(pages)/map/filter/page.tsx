@@ -43,7 +43,7 @@ const FilterPage = () => {
                         className={(isClicked ? "bg-[#343632] text-[#FCF9EF]" : "bg-[#FCF9EF]" +
                                 " text-black") +
                             " flex justify-center items-center w-[100vw] rounded-full border-[#343632] border-[1px] m-1 py-1 text-sm font-light"}
-                        onClick={() => {dispatch(updateAmenity(amenity.key));console.log(typeof amenity.key)}}
+                        onClick={() => { dispatch(updateAmenity(amenity.key)); console.log(typeof amenity.key); }}
                     >
                         <IconContext.Provider value={{color: '#FF4251'}}>
                             {amenity}
@@ -69,7 +69,7 @@ const FilterPage = () => {
                 <FaFilterCircleXmark className="mr-1"/>
                 Filter
             </div>
-            
+
             <br/>
 
             <div className='w-[80vw] mx-auto'>
@@ -84,7 +84,7 @@ const FilterPage = () => {
                     <LuClock5/> &nbsp; December 20, 2023
                 </div>
             </div>
-            
+
             <div className='w-[80vw] mx-auto'>
                 <Divider/>
             </div>
