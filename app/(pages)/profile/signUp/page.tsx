@@ -2,17 +2,18 @@
 import React, { useState } from 'react';
 import { MdArrowBackIos } from "react-icons/md";
 import Link from "next/link";
-import { redirect } from "next/navigation";
 import { httpsCallable } from "@firebase/functions";
 import { auth, functions } from "@/config/firebase";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { Router } from 'express';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import { useDispatch } from 'react-redux';
-import { setEmail } from '@/app/GlobalRedux/Features/auth'
+import { updateEmail } from '@/app/GlobalRedux/Features/auth'
 
 const SignUp = () => {
+
+    const router = useRouter();
     const dispatch = useDispatch();
+
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -22,7 +23,7 @@ const SignUp = () => {
 
 
     const handleSignUp = async () => {
-        
+
         if (password !== passwordConfirm) {
             //alert("Password does not match!")
             setError("Password does not match");
@@ -32,9 +33,7 @@ const SignUp = () => {
         await httpsCallable(functions, 'createAccount')({email: email, password: password})
             .then((res) => {
                 alert("Successfully created new user! Please check your email and confirm your email.");
-                //redirect('/profile/signUp/confirmEmail');
-                dispatch(setEmail(email));
-                const router = useRouter();
+                dispatch(updateEmail(email));
                 router.push('/profile/signUp/confirmEmail');
             })
             .catch((err) => {
@@ -72,7 +71,7 @@ const SignUp = () => {
 
             <div className={"flex flex-col justify-center items-center w-100vw"}>
                 <div className="w-full px-10 py-6 bg-transparent flex flex-col gap-5">
-                    
+
                     <input
                             className='py-3 px-5 outline-none rounded-2xl bg-[#4472CA] bg-opacity-20'
                             value={name}
@@ -99,7 +98,7 @@ const SignUp = () => {
                             placeholder='Confirm Password'
                             onChange={(e) => setPasswordConfirm(e.target.value)}
                     />
-                    
+
                     <button onClick={handleSignUp} className='w-full bg-[#FF4251] py-3 rounded-2xl text-white p-2 font-bold font-3x1'>SIGN UP</button>
                     {error && <p className="text-red-500">{error}</p>}
 
@@ -107,7 +106,7 @@ const SignUp = () => {
                         Already have an account?&nbsp;
                         <Link href="/profile/signIn" className='text-blue-500 flex-end text-sm'>Sign in</Link>
 
-                    </div>      
+                    </div>
                     {/*<Image
                         src={'@/public/signInWithGoogle.png'}
                         onClick={handleSignUpWithGoogle}
