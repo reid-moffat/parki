@@ -1,7 +1,7 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
-import { MdOutlineAddBox } from "react-icons/md";
 
 
 const SpotsPage = () => {
@@ -21,7 +21,9 @@ const SpotsPage = () => {
         { location: "650 Princess St.", city: "Kingston, ON", days: "January 12 - 15", price: "$40.68" },
     ]
 
-    const [tab, setTab] = useState("listings");  // 'listings' or 'rentals'
+    const TEMP_IMAGE = "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Blue_Disc_Parking_Area_Markings_Blue_Paint.JPG/1200px-Blue_Disc_Parking_Area_Markings_Blue_Paint.JPG";
+
+    const [tab, setTab] = useState("rentals");  // 'listings' or 'rentals'
 
     const listingsTab = (
         <div className="flex flex-col w-full h-auto">
@@ -37,7 +39,13 @@ const SpotsPage = () => {
                         className="flex flex-row items-center p-3 border-[1px] border-[#47BB00] rounded-2xl"
                         onClick={() => alert(listing.location)}
                     >
-                        <div className="h-10 w-10 bg-gray-300 rounded-lg mr-4" />
+                        <div 
+                            className="h-10 w-10 rounded-lg mr-4" 
+                            style={{
+                                backgroundImage: "linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6) ), "+"url("+TEMP_IMAGE+")",
+                                backgroundSize: "cover"
+                            }}
+                        />
                         <div className="flex flex-col">
                             <div className="text-md font-bold">{listing.location}</div>
                             <div className="text-sm">{listing.city}</div>
@@ -54,23 +62,33 @@ const SpotsPage = () => {
             <div className="text-xl font-bold">Current & Upcoming</div>
             <div className="flex flex-col mt-6 space-y-6">
                 { TEMP_CURRENT_RENTALS.map((rental, key) => (
-                    <button 
+                    <Link 
                         key={key}
                         className="flex flex-col py-6 items-center justify-center bg-gray-700 rounded-xl text-white"
-                        onClick={() => alert(rental.location)}
+                        href="/spots/current"
+                        style={{
+                            backgroundImage: "linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6) ), "+"url("+TEMP_IMAGE+")",
+                            backgroundSize: "cover"
+                        }}
                     >
                         <div className="text-xl font-bold">{rental.location}</div>
                         <div className="text-md">{rental.city}</div>
                         <div className="mt-2 text-sm">{rental.startTime}</div>
                         <div className="text-sm">{rental.endTime}</div>
                         <div className="mt-2">{rental.price}</div>
-                    </button>
+                    </Link>
                 ))}
             </div>
             <div className="text-xl font-bold mt-8">Past</div>
             <div className="flex flex-col mt-6 space-y-6">
                 { TEMP_PAST_RENTALS.map((rental, key) => (
-                    <div className="flex flex-row py-4 px-6 items-end bg-gray-700 rounded-xl text-white">
+                    <div 
+                        className="flex flex-row py-4 px-6 items-end bg-gray-700 rounded-xl text-white"
+                        style={{
+                            backgroundImage: "linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6) ), "+"url("+TEMP_IMAGE+")",
+                            backgroundSize: "cover"
+                        }}
+                    >
                         <div className="flex flex-col">
                             <div className="text-lg">{rental.location}</div>
                             <div className="text-lg">{rental.city}</div>
