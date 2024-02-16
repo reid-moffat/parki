@@ -20,7 +20,7 @@ const PolicyPage = () => {
     return (
         <>
             <div className='flex text-3xl font-bold p-8'>
-                <Link href="/map">
+                <Link href="/map/spot">
                     <MdOutlineArrowBackIos className='w-10 h-10 mr-2'/>
                 </Link>
                 Highlighted Policy
