@@ -8,8 +8,11 @@ import { MdEmail } from "react-icons/md";
 import { FcGoogle } from "react-icons/fc";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "@/config/firebase";
+import { useRouter } from "next/navigation";
 
 const Welcome = () => {
+
+    const router = useRouter();
 
     const [isSignIn, setIsSignIn] = useState(false);
 
@@ -41,7 +44,7 @@ const Welcome = () => {
                 <div className="rounded-3xl ml-1">
                     <MdEmail className="w-full h-full"/>
                 </div>
-                <div className="pl-4">
+                <div className="pl-4" onClick={() => router.push(`/profile/${isSignIn ? "signUp" : "signIn"}`)}>
                     Sign {isSignIn ? "Up" : "In"} with Email
                 </div>
             </div>
