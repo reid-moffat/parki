@@ -6,12 +6,24 @@ import logo from "@/public/logo.png";
 import BottomBar from "@/components/helpers/BottomBar";
 import { MdEmail } from "react-icons/md";
 import { FcGoogle } from "react-icons/fc";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { auth } from "@/config/firebase";
 
 const Welcome = () => {
 
     const [isSignIn, setIsSignIn] = useState(false);
 
-    const bottomText = isSignIn ? "Sign Up" : "Sign In";
+    const signInWithGoogle = () => {
+        return signInWithPopup(auth, new GoogleAuthProvider())
+            .then((result) => {
+                const credential = GoogleAuthProvider.credentialFromResult(result);
+                const user = result.user;
+
+                console.log(`Successfully signed in: ${credential} ${user}`);
+            }).catch((error) => {
+                console.log(`Error caught: ${error}`);
+            });
+    }
 
     return (
         <div className="text-white">
@@ -21,7 +33,7 @@ const Welcome = () => {
                 <div className="rounded-3xl bg-white p-1">
                     <FcGoogle className="w-full h-full"/>
                 </div>
-                <div className="pl-4">
+                <div className="pl-4" onClick={async () => await signInWithGoogle()}>
                     Sign {isSignIn ? "Up" : "In"} with Google
                 </div>
             </div>
