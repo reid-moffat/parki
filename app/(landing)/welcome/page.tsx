@@ -11,6 +11,8 @@ const Welcome = () => {
 
     const [isSignIn, setIsSignIn] = useState(false);
 
+    const bottomText = isSignIn ? "Sign Up" : "Sign In";
+
     return (
         <div className="text-white">
             <Image src={logo} alt={"Parki Logo"} className="w-[60%] mt-52 ml-[20%]"/>
@@ -20,7 +22,7 @@ const Welcome = () => {
                     <FcGoogle className="w-full h-full"/>
                 </div>
                 <div className="pl-4">
-                    Sign Up with Google
+                    Sign {isSignIn ? "Up" : "In"} with Google
                 </div>
             </div>
             <div className="flex rounded-2xl bg-[#FF4251] p-2 pl-8 pr-8 ml-10 mr-10 mt-6 text-xl">
@@ -28,12 +30,12 @@ const Welcome = () => {
                     <MdEmail className="w-full h-full"/>
                 </div>
                 <div className="pl-4">
-                    Sign Up with Email
+                    Sign {isSignIn ? "Up" : "In"} with Email
                 </div>
             </div>
             <div className="flex justify-center items-center mt-8 text-sm">
-            Have an Account?&nbsp;
-                <div className="text-[#FBDC6C]" onClick={() => setIsSignIn(true)}>Sign In</div>
+                {isSignIn ? "Don't have an account?" : "Already have an account?"}
+                <div className="text-[#FBDC6C] ml-1" onClick={() => setIsSignIn(!isSignIn)}>Sign {isSignIn ? "Up" : "In"}</div>
             </div>
 
             <BottomBar/>
