@@ -9,98 +9,189 @@ const BookingDates = () => {
 
     const [numMonths, setNumMonths] = useState(3);
 
-    const getCalendarRow = (startNum: number, maxDays: number) => {
+    const epoch = new Date(0);
+    const currentDate = new Date();
+    currentDate.setHours(0, 0, 0, 0); // Removes time from the date - just the current day
+    const [selectedDays, setSelectedDays] = useState<[Date, Date]>([epoch, epoch]);
 
-        const overflow = (num: number) => {
-            if (num > maxDays) {
-                num = num - maxDays;
+    const daySelected = (year: number, month: number, day: number) => {
+
+        // Ignore dummy days (parts of the week before/after the month starts/ends)
+        if (day <= 0) return;
+
+        const givenDate = new Date(year, month, day);
+        if (givenDate.getTime() === selectedDays[0].getTime() || givenDate.getTime() === selectedDays[1].getTime()) {
+            return 2;
+        }
+        if (selectedDays[0].getTime() !== epoch.getTime() && selectedDays[1].getTime() !== epoch.getTime()) {
+            if (selectedDays[0].getTime() < selectedDays[1].getTime()) {
+                if (givenDate.getTime() > selectedDays[0].getTime() && givenDate.getTime() < selectedDays[1].getTime()) {
+                    return 1;
+                }
+            } else {
+                if (givenDate.getTime() < selectedDays[0].getTime() && givenDate.getTime() > selectedDays[1].getTime()) {
+                    return 1;
+                }
             }
-            if (num < 10) {
-                return <>{num}</>;
-            }
-            return num;
         }
 
-        const dayNumbers = [
-            overflow(startNum),
-            overflow(startNum + 1),
-            overflow(startNum + 2),
-            overflow(startNum + 3),
-            overflow(startNum + 4),
-            overflow(startNum + 5),
-            overflow(startNum + 6)
-        ];
+        return null;
+    }
 
-        return (
-            <div className="flex justify-between w-full mt-2">
-                {dayNumbers.map((dayNum, index) => <div className="w-6 text-center">{dayNum}</div>)}
-            </div>
-        );
+    const handleClickDay = (year: number, month: number, day: number) => {
+
+        // Ignore dummy days (parts of the week before/after the month starts/ends)
+        if (day <= 0) return;
+
+        // Don't select days before today
+        const givenDate = new Date(year, month, day);
+        if (givenDate < currentDate) return;
+
+        if (selectedDays[0].getTime() === epoch.getTime()) {
+            setSelectedDays([givenDate, selectedDays[1]]);
+        } else if (selectedDays[1].getTime() === epoch.getTime()) {
+            setSelectedDays([selectedDays[0], givenDate]);
+        }
+
+        if (selectedDays[0].getTime() !== epoch.getTime() && selectedDays[1].getTime() !== epoch.getTime()) {
+            setSelectedDays([givenDate, epoch]);
+        }
     }
 
     const renderMonths = () => {
 
-        const months: string[] = [
-            "January",
-            "February",
-            "March",
-            "April",
-            "May",
-            "June",
-            "July",
-            "August",
-            "September",
-            "October",
-            "November",
-            "December"
-        ];
+        const monthData = {
+            0: {
+                name: "January",
+                days: 31
+            },
+            1: {
+                name: "February",
+                days: 28,
+            },
+            2: {
+                name: "March",
+                days: 31,
+            },
+            3: {
+                name: "April",
+                days: 30,
+            },
+            4: {
+                name: "May",
+                days: 31,
+            },
+            5: {
+                name: "June",
+                days: 30,
+            },
+            6: {
+                name: "July",
+                days: 31,
+            },
+            7: {
+                name: "August",
+                days: 31,
+            },
+            8: {
+                name: "September",
+                days: 30,
+            },
+            9: {
+                name: "October",
+                days: 31,
+            },
+            10: {
+                name: "November",
+                days: 30,
+            },
+            11: {
+                name: "December",
+                days: 31,
+            }
+        }
 
-        const year = new Date().getFullYear();
-        const month = new Date().getMonth();
-        const day = new Date().getDate();
+        const monthComponents: any[] = [];
 
-        const monthDataa: [string, number, number, number][] = [
-            ["February", 28, 29, 31],
-            ["March", 25, 31, 29],
-            ["April", 31, 30, 31],
-            ["May", 28, 31, 20],
-            ["June", 26, 30, 31],
-            ["July", 30, 31, 30],
-            ["August", 28, 31, 31],
-            ["September", 1, 30, 31],
-            ["October", 29, 31, 30],
-            ["November", 27, 30, 31],
-            ["December", 1, 31, 30],
-            ["January", 29, 31, 31]
-        ];
+        for (let i = 0; i < numMonths; ++i) {
+            const month = (currentDate.getMonth() + i) % 12;
+            const year = currentDate.getFullYear() + (currentDate.getMonth() + i >= 12 ? 1 : 0);
 
-        return (
-            <div className="h-[80%] overflow-y-scroll mb-40">
-                {monthDataa.map((monthData, index) =>
-                    <div className="m-4 ml-8 mr-10 font-outfit text-sm">
-                        <div className="font-bold text-xl mb-2">
-                            {monthData[0]} {monthData[0] === "January" ? 2025 : 2024}
-                        </div>
-                        <div className="flex justify-between w-full">
-                            <div className="w-6">Sun</div>
-                            <div className="w-6">Mon</div>
-                            <div className="w-6">Tue</div>
-                            <div className="w-6">Wed</div>
-                            <div className="w-6">Thu</div>
-                            <div className="w-6">Fri</div>
-                            <div className="w-6">Sat</div>
-                        </div>
-                        {getCalendarRow(monthData[1], monthData[3])}
-                        {getCalendarRow((monthData[1] + 7) % monthData[3], monthData[2])}
-                        {getCalendarRow((monthData[1] + 14) % monthData[3], monthData[2])}
-                        {getCalendarRow((monthData[1] + 21) % monthData[3], monthData[2])}
-                        {getCalendarRow((monthData[1] + 28) % monthData[3], monthData[2])}
+            // @ts-ignore
+            const monthInfo = monthData[month];
 
-                        <Image src={Line} alt={"Dividing line"} className="mt-4 mb-4"/>
+            // Leap year
+            if (monthInfo.name === "February") {
+                if (new Date(year, 1, 29).getMonth() == 1) {
+                    monthInfo.days = 29;
+                } else {
+                    monthInfo.days = 28;
+                }
+            }
+
+            const monthRows = [];
+
+            let currDay = -(new Date(year, month, 1).getDay()) + 1;
+            while (true) {
+                const days = new Array(7).fill(null);
+                let flag = false;
+
+                for (let i = 0; i < days.length; ++i) {
+                    days[i] = currDay++;
+
+                    if (currDay > monthInfo.days) {
+                        flag = true;
+                        break;
+                    }
+                }
+
+                monthRows.push(
+                    <div className="flex justify-between w-full mt-2">
+                        {days.map((dayNum: number) => {
+                            const selected = daySelected(year, month, dayNum);
+                            const selectedStyle = selected === 1 ? "bg-[#FF4251A6] " : (selected === 2 ? "bg-[#FF4251] " : "");
+                            const numberStyle = (i === 0 && dayNum === currentDate.getDate())
+                                ? "text-[#FBDC6C]"
+                                : (i === 0 && dayNum < currentDate.getDate() ? "text-[#A9A9A9]" : "");
+
+                            return (
+                                <div
+                                    className={"w-8 h-8 text-center rounded-2xl pt-1 " + selectedStyle + " " + numberStyle}
+                                    onClick={() => handleClickDay(year, month, dayNum)}
+                                >
+                                    {dayNum <= 0 ? "" : dayNum}
+                                </div>
+                            );
+                        })}
                     </div>
-                )}
-            </div>
-        );
+                );
+
+                if (flag) break;
+            }
+
+            monthComponents.push(
+                <div className="m-4 ml-8 mr-10 font-outfit text-sm">
+                    <div className="font-bold text-xl mb-2">
+                        {monthInfo.name}
+                    </div>
+                    <div className="flex justify-between w-full">
+                        <div className="w-6">Sun</div>
+                        <div className="w-6">Mon</div>
+                        <div className="w-6">Tue</div>
+                        <div className="w-6">Wed</div>
+                        <div className="w-6">Thu</div>
+                        <div className="w-6">Fri</div>
+                        <div className="w-6">Sat</div>
+                    </div>
+
+                    {monthRows}
+
+                    <Image src={Line} alt={"Dividing line"} className="mt-4 mb-4"/>
+                </div>
+            );
+        }
+
+        return monthComponents;
     }
 
     return (
@@ -114,7 +205,18 @@ const BookingDates = () => {
                 </div>
             </div>
 
-            {renderMonths()}
+            <div className="h-[80%] overflow-y-scroll mb-40">
+                {renderMonths()}
+
+                {numMonths < 12 &&
+                    <div
+                        className="rounded-2xl bg-[#FF4251] p-2 text-center text-white text-xl ml-20 mr-20 mt-10"
+                        onClick={() => setNumMonths(numMonths + 3)}
+                    >
+                        More months
+                    </div>
+                }
+            </div>
         </div>
     );
 }
