@@ -37,12 +37,12 @@ const BottomBar = () => {
             case "profile":
                 icon = (
                     <Image
-                        src={path.startsWith("/profile") ? profileIconOn : profileIconOff}
+                        src={path.startsWith("/profile")  || path.startsWith('/welcome') ? profileIconOn : profileIconOff}
                         alt={"Profile icon - click to see your profile"}
                         className={"fixed bottom-3 left-[5.4rem] w-10"}
                     />
                 );
-                if (path.startsWith("/profile")  || path === "/"  || path === "/_not-found") {
+                if (path.startsWith("/profile")  || path.startsWith('/welcome') || path === "/"  || path === "/_not-found") {
                     return icon;
                 }
                 return <Link href="/profile">{icon}</Link>;

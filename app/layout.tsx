@@ -5,7 +5,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     return (
         <html lang="en">
         <body>
-        <div className="absolute h-full w-full bg-[#343632]">
+        <div className="absolute h-full w-full bg-[#343632] font-outfit">
             <Providers>
                 {children}
             </Providers>

@@ -8,7 +8,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     return (
         <div>
             <Image src={logo} alt="Parki logo" className='w-[100vw] h-[8vh] object-contain mt-3 mb-4'/>
-            <div className="ml-[2vw] h-[79.5vh] w-[96vw] rounded-xl  bg-[#FCF9EF] text-[#343632] -z-50">
+            <div className="ml-[2vw] h-[79.5vh] w-[96vw] rounded-xl bg-[#FCF9EF] text-[#343632] -z-50">
                 {children}
             </div>
             <BottomBar/>
