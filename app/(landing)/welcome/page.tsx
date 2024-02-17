@@ -18,13 +18,10 @@ const Welcome = () => {
 
     const signInWithGoogle = () => {
         return signInWithPopup(auth, new GoogleAuthProvider())
-            .then((result) => {
-                const credential = GoogleAuthProvider.credentialFromResult(result);
-                const user = result.user;
-
-                console.log(`Successfully signed in: ${credential} ${user}`);
+            .then(() => {
+                router.push("/map");
             }).catch((error) => {
-                console.log(`Error caught: ${error}`);
+                console.log(`Error signing up/in: ${error}`);
             });
     }
 

@@ -2,7 +2,6 @@
 import React, { useState } from 'react';
 import Link from "next/link";
 import { MdArrowBackIos } from "react-icons/md";
-import TextBox from "@/components/auth/TextBox";
 import { redirect } from "next/navigation";
 import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { auth } from "@/config/firebase";
@@ -80,7 +79,7 @@ const SignIn = () => {
                     </Link> */}
                     <button onClick={signin} className='w-full bg-[#FF4251] py-3 rounded-2xl text-[#FCF9EF] font-bold font-3xl'>SIGN IN
                     </button>
-                    
+
                     {/* <Image
                     src={'../../signInWithGoogle.png'}
                     onClick={signInWithGoogle}

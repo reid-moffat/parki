@@ -2,10 +2,8 @@
 import React, { useState } from 'react';
 import Link from "next/link";
 import { MdArrowBackIos } from "react-icons/md";
-import TextBox from "@/components/auth/TextBox";
 import { httpsCallable } from "@firebase/functions";
 import { functions } from "@/config/firebase";
-import { redirect } from "next/navigation";
 
 const ForgotPassword = () => {
 
