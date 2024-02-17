@@ -10,16 +10,28 @@ const BookingDates = () => {
     const [numMonths, setNumMonths] = useState(3);
 
     const epoch = new Date(0);
+    const currentDate = new Date();
     const [selectedDays, setSelectedDays] = useState<[Date, Date]>([epoch, epoch]);
 
     const daySelected = (year: number, month: number, day: number) => {
+
+        // Ignore dummy days (parts of the week before/after the month starts/ends)
+        if (day <= 0) return;
 
         const givenDate = new Date(year, month, day);
         if (givenDate.getTime() === selectedDays[0].getTime() || givenDate.getTime() === selectedDays[1].getTime()) {
             return 2;
         }
-        if (givenDate.getTime() > selectedDays[0].getTime() && givenDate.getTime() < selectedDays[1].getTime()) {
-            return 1;
+        if (selectedDays[0].getTime() !== epoch.getTime() && selectedDays[1].getTime() !== epoch.getTime()) {
+            if (selectedDays[0].getTime() < selectedDays[1].getTime()) {
+                if (givenDate.getTime() > selectedDays[0].getTime() && givenDate.getTime() < selectedDays[1].getTime()) {
+                    return 1;
+                }
+            } else {
+                if (givenDate.getTime() < selectedDays[0].getTime() && givenDate.getTime() > selectedDays[1].getTime()) {
+                    return 1;
+                }
+            }
         }
 
         return null;
@@ -27,10 +39,8 @@ const BookingDates = () => {
 
     const handleClickDay = (year: number, month: number, day: number) => {
 
-        // For dummy days (empty days to show spaces on the calendar)
-        if (day <= 0) {
-            return;
-        }
+        // Ignore dummy days (parts of the week before/after the month starts/ends)
+        if (day <= 0) return;
 
         const givenDate = new Date(year, month, day);
         if (selectedDays[0].getTime() === epoch.getTime()) {
@@ -45,10 +55,6 @@ const BookingDates = () => {
     }
 
     const renderMonths = () => {
-
-        const year = new Date().getFullYear();
-        const month = new Date().getMonth();
-        const day = new Date().getDate();
 
         const monthData = {
             0: {
@@ -104,15 +110,15 @@ const BookingDates = () => {
         const monthComponents: any[] = [];
 
         for (let i = 0; i < numMonths; ++i) {
-            const currentMonth = (month + i) % 12;
-            const currentYear = year + (month + i >= 12 ? 1 : 0);
+            const month = (currentDate.getMonth() + i) % 12;
+            const year = currentDate.getFullYear() + (currentDate.getMonth() + i >= 12 ? 1 : 0);
 
             // @ts-ignore
-            const monthInfo = monthData[currentMonth];
+            const monthInfo = monthData[month];
 
             // Leap year
             if (monthInfo.name === "February") {
-                if (new Date(currentYear, 1, 29).getMonth() == 1) {
+                if (new Date(year, 1, 29).getMonth() == 1) {
                     monthInfo.days = 29;
                 } else {
                     monthInfo.days = 28;
@@ -121,7 +127,7 @@ const BookingDates = () => {
 
             const monthRows = [];
 
-            let currDay = -(new Date(currentYear, currentMonth, 1).getDay()) + 1;
+            let currDay = -(new Date(year, month, 1).getDay()) + 1;
             while (true) {
                 const days = new Array(7).fill(null);
                 let flag = false;
@@ -138,14 +144,14 @@ const BookingDates = () => {
                 monthRows.push(
                     <div className="flex justify-between w-full mt-2">
                         {days.map((dayNum: number) => {
-                            const selected = daySelected(currentYear, currentMonth, dayNum);
+                            const selected = daySelected(year, month, dayNum);
                             const selectedStyle = selected === 2 ? "bg-[#FF4251]" : (selected === 1 ? "bg-[#FF4251A6]" : "");
 
                             return (
                                 <div
                                     className={"w-8 h-8 text-center rounded-2xl pt-1 " + selectedStyle + " " +
-                                        (i === 0 && dayNum === day ? "text-[#FBDC6C]" : (i === 0 && dayNum < day ? "text-[#A9A9A9]" : ""))}
-                                    onClick={() => handleClickDay(currentYear, currentMonth, dayNum)}
+                                        (i === 0 && dayNum === currentDate.getDate() ? "text-[#FBDC6C]" : (i === 0 && dayNum < currentDate.getDate() ? "text-[#A9A9A9]" : ""))}
+                                    onClick={() => handleClickDay(year, month, dayNum)}
                                 >
                                     {dayNum <= 0 ? "" : dayNum}
                                 </div>
