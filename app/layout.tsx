@@ -1,5 +1,4 @@
 import React from "react";
-import BottomBar from "@/components/helpers/BottomBar";
 import Providers from "@/app/GlobalRedux/provider";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
@@ -10,7 +9,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <Providers>
                 {children}
             </Providers>
-            <BottomBar/>
         </div>
         </body>
         </html>
