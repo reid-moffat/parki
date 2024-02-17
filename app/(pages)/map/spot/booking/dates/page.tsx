@@ -9,53 +9,10 @@ const BookingDates = () => {
 
     const [numMonths, setNumMonths] = useState(3);
 
-    const getCalendarRow = (startNum: number, maxDays: number) => {
-
-        const overflow = (num: number) => {
-            if (num > maxDays) {
-                num = num - maxDays;
-            }
-            return num;
-        }
-
-        const dayNumbers = [
-            overflow(startNum),
-            overflow(startNum + 1),
-            overflow(startNum + 2),
-            overflow(startNum + 3),
-            overflow(startNum + 4),
-            overflow(startNum + 5),
-            overflow(startNum + 6)
-        ];
-
-        return (
-            <div className="flex justify-between w-full mt-2">
-                {dayNumbers.map((dayNum, index) => <div className="w-6 text-center">{dayNum}</div>)}
-            </div>
-        );
-    }
-
     const renderMonths = () => {
-
-        const months: string[] = [
-            "January",
-            "February",
-            "March",
-            "April",
-            "May",
-            "June",
-            "July",
-            "August",
-            "September",
-            "October",
-            "November",
-            "December"
-        ];
 
         const year = new Date().getFullYear();
         const month = new Date().getMonth();
-        const day = new Date().getDate();
-
 
         const monthData = {
             0: {
@@ -116,8 +73,10 @@ const BookingDates = () => {
 
             // @ts-ignore
             const monthInfo = monthData[currentMonth];
+
+            // Leap year
             if (monthInfo.name === "February") {
-                if (currentYear % 4 === 0) {
+                if (new Date(currentYear, 1, 29).getMonth() == 1) {
                     monthInfo.days = 29;
                 } else {
                     monthInfo.days = 28;
@@ -125,30 +84,16 @@ const BookingDates = () => {
             }
 
             const monthRows = [];
-            const firstDayOfMonth = new Date(currentYear, currentMonth, 1).getDay();
 
-            // First week
-            let days = new Array(7).fill(null);
-            for (let i = firstDayOfMonth; i < days.length; ++i) {
-                days[i] = 1 + i - firstDayOfMonth;
-            }
-            monthRows.push(
-                <div className="flex justify-between w-full mt-2">
-                    {days.map((dayNum: number) => <div className="w-6 text-center">{dayNum === null ? "" : dayNum}</div>)}
-                </div>
-            );
-
-            let currDay = 8 - firstDayOfMonth;
-            let flag = false;
+            let currDay = -(new Date(currentYear, currentMonth, 1).getDay()) + 1;
             while (true) {
-                days = new Array(7).fill(null);
+                const days = new Array(7).fill(null);
+                let flag = false;
 
                 for (let i = 0; i < days.length; ++i) {
-                    days[i] = currDay;
-                    currDay++;
+                    days[i] = currDay++;
 
                     if (currDay > monthInfo.days) {
-                        currDay = 1;
                         flag = true;
                         break;
                     }
@@ -156,13 +101,11 @@ const BookingDates = () => {
 
                 monthRows.push(
                     <div className="flex justify-between w-full mt-2">
-                        {days.map((dayNum: number) => <div className="w-6 text-center">{dayNum === null ? "" : dayNum}</div>)}
+                        {days.map((dayNum: number) => <div className="w-6 text-center">{dayNum <= 0 ? "" : dayNum}</div>)}
                     </div>
                 );
 
-                if (flag) {
-                    break;
-                }
+                if (flag) break;
             }
 
             monthComponents.push(
