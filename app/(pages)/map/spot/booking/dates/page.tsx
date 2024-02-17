@@ -13,6 +13,7 @@ const BookingDates = () => {
 
         const year = new Date().getFullYear();
         const month = new Date().getMonth();
+        const day = new Date().getDate();
 
         const monthData = {
             0: {
@@ -101,7 +102,13 @@ const BookingDates = () => {
 
                 monthRows.push(
                     <div className="flex justify-between w-full mt-2">
-                        {days.map((dayNum: number) => <div className="w-6 text-center">{dayNum <= 0 ? "" : dayNum}</div>)}
+                        {days.map((dayNum: number) =>
+                            <div
+                                className={"w-6 text-center " + (i === 0 && dayNum === day ? "text-[#FBDC6C]" : (i === 0 && dayNum < day ? "text-[#A9A9A9]" : ""))}
+                            >
+                                {dayNum <= 0 ? "" : dayNum}
+                            </div>
+                        )}
                     </div>
                 );
 
