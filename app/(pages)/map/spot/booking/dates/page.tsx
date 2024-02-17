@@ -143,7 +143,7 @@ const BookingDates = () => {
 
                             return (
                                 <div
-                                    className={"w-6 text-center " + selectedStyle + " " +
+                                    className={"w-8 h-8 text-center rounded-2xl pt-1 " + selectedStyle + " " +
                                         (i === 0 && dayNum === day ? "text-[#FBDC6C]" : (i === 0 && dayNum < day ? "text-[#A9A9A9]" : ""))}
                                     onClick={() => handleClickDay(currentYear, currentMonth, dayNum)}
                                 >
