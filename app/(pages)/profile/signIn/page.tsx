@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import Link from "next/link";
 import { MdArrowBackIos } from "react-icons/md";
 import { redirect } from "next/navigation";
-import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "@/config/firebase";
 
 const SignIn = () => {
@@ -31,22 +31,10 @@ const SignIn = () => {
             })
     }
 
-    const signInWithGoogle = async () => {
-        await signInWithPopup(auth, new GoogleAuthProvider())
-            .then((result) => {
-                const credential = GoogleAuthProvider.credentialFromResult(result);
-                const user = result.user;
-
-                console.log(`Successfully signed in: ${credential} ${user}`);
-            }).catch((error) => {
-                console.log(`Error caught: ${error}`);
-            });
-    }
-
     return (
         <>
             <div className="flex flex-row justify-left py-3 pl-10 pt-5 text-xl">
-                <Link href='/profile' className='pt-5'>
+                <Link href='/welcome' className='pt-5'>
                     <MdArrowBackIos/>
                 </Link>
             </div>

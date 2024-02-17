@@ -4,7 +4,6 @@ import { MdArrowBackIos } from "react-icons/md";
 import Link from "next/link";
 import { httpsCallable } from "@firebase/functions";
 import { auth, functions } from "@/config/firebase";
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { useRouter } from 'next/navigation';
 import { useDispatch } from 'react-redux';
 import { updateEmail } from '@/app/GlobalRedux/Features/auth'
@@ -47,21 +46,10 @@ const SignUp = () => {
             });
     }
 
-    const handleSignUpWithGoogle = async () => {
-        await signInWithPopup(auth, new GoogleAuthProvider())
-            .then((result) => {
-                const credential = GoogleAuthProvider.credentialFromResult(result);
-                const user = result.user;
-                console.log(`Successfully signed up with Google. Credential: ${credential} User: ${user}`);
-            }).catch((error) => {
-                console.log(`Error while signing up with Google: ${error}`);
-            });
-    }
-
     return (
         <>
             <div className="flex flex-row justify-left py-3 pl-10 pt-5 text-xl">
-                <Link href='/profile' className='pt-5'>
+                <Link href='/welcome' className='pt-5'>
                     <MdArrowBackIos/>
                 </Link>
             </div>
