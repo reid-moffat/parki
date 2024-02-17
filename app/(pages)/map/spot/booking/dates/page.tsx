@@ -125,16 +125,12 @@ const BookingDates = () => {
 
                     {monthRows}
 
-                    {i !== numMonths - 1 && <Image src={Line} alt={"Dividing line"} className="mt-4 mb-4"/>}
+                    <Image src={Line} alt={"Dividing line"} className="mt-4 mb-4"/>
                 </div>
             );
         }
 
-        return (
-            <div className="h-[80%] overflow-y-scroll mb-40">
-                {monthComponents}
-            </div>
-        );
+        return monthComponents;
     }
 
     return (
@@ -148,16 +144,18 @@ const BookingDates = () => {
                 </div>
             </div>
 
-            {renderMonths()}
+            <div className="h-[80%] overflow-y-scroll mb-40">
+                {renderMonths()}
 
-            {numMonths < 12 &&
-                <div
-                    className="rounded-2xl bg-[#FF4251] p-2 text-center text-white text-xl ml-20 mr-20"
-                    onClick={() => setNumMonths(numMonths + 3)}
-                >
-                    More months
-                </div>
-            }
+                {numMonths < 12 &&
+                    <div
+                        className="rounded-2xl bg-[#FF4251] p-2 text-center text-white text-xl ml-20 mr-20 mt-10"
+                        onClick={() => setNumMonths(numMonths + 3)}
+                    >
+                        More months
+                    </div>
+                }
+            </div>
         </div>
     );
 }
