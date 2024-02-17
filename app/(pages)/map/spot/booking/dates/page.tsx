@@ -149,12 +149,14 @@ const BookingDates = () => {
                     <div className="flex justify-between w-full mt-2">
                         {days.map((dayNum: number) => {
                             const selected = daySelected(year, month, dayNum);
-                            const selectedStyle = selected === 2 ? "bg-[#FF4251]" : (selected === 1 ? "bg-[#FF4251A6]" : "");
+                            const selectedStyle = selected === 1 ? "bg-[#FF4251A6] " : (selected === 2 ? "bg-[#FF4251] " : "");
+                            const numberStyle = (i === 0 && dayNum === currentDate.getDate())
+                                ? "text-[#FBDC6C]"
+                                : (i === 0 && dayNum < currentDate.getDate() ? "text-[#A9A9A9]" : "");
 
                             return (
                                 <div
-                                    className={"w-8 h-8 text-center rounded-2xl pt-1 " + selectedStyle + " " +
-                                        (i === 0 && dayNum === currentDate.getDate() ? "text-[#FBDC6C]" : (i === 0 && dayNum < currentDate.getDate() ? "text-[#A9A9A9]" : ""))}
+                                    className={"w-8 h-8 text-center rounded-2xl pt-1 " + selectedStyle + " " + numberStyle}
                                     onClick={() => handleClickDay(year, month, dayNum)}
                                 >
                                     {dayNum <= 0 ? "" : dayNum}
