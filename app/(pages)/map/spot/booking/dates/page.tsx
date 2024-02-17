@@ -11,6 +11,7 @@ const BookingDates = () => {
 
     const epoch = new Date(0);
     const currentDate = new Date();
+    currentDate.setHours(0, 0, 0, 0); // Removes time from the date - just the current day
     const [selectedDays, setSelectedDays] = useState<[Date, Date]>([epoch, epoch]);
 
     const daySelected = (year: number, month: number, day: number) => {
@@ -42,7 +43,10 @@ const BookingDates = () => {
         // Ignore dummy days (parts of the week before/after the month starts/ends)
         if (day <= 0) return;
 
+        // Don't select days before today
         const givenDate = new Date(year, month, day);
+        if (givenDate < currentDate) return;
+
         if (selectedDays[0].getTime() === epoch.getTime()) {
             setSelectedDays([givenDate, selectedDays[1]]);
         } else if (selectedDays[1].getTime() === epoch.getTime()) {
