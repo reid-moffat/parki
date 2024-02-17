@@ -9,6 +9,41 @@ const BookingDates = () => {
 
     const [numMonths, setNumMonths] = useState(3);
 
+    const epoch = new Date(0);
+    const [selectedDays, setSelectedDays] = useState<[Date, Date]>([epoch, epoch]);
+
+    const daySelected = (year: number, month: number, day: number) => {
+
+        const givenDate = new Date(year, month, day);
+        if (givenDate.getTime() === selectedDays[0].getTime() || givenDate.getTime() === selectedDays[1].getTime()) {
+            return 2;
+        }
+        if (givenDate.getTime() > selectedDays[0].getTime() && givenDate.getTime() < selectedDays[1].getTime()) {
+            return 1;
+        }
+
+        return null;
+    }
+
+    const handleClickDay = (year: number, month: number, day: number) => {
+
+        // For dummy days (empty days to show spaces on the calendar)
+        if (day <= 0) {
+            return;
+        }
+
+        const givenDate = new Date(year, month, day);
+        if (selectedDays[0].getTime() === epoch.getTime()) {
+            setSelectedDays([givenDate, selectedDays[1]]);
+        } else if (selectedDays[1].getTime() === epoch.getTime()) {
+            setSelectedDays([selectedDays[0], givenDate]);
+        }
+
+        if (selectedDays[0].getTime() !== epoch.getTime() && selectedDays[1].getTime() !== epoch.getTime()) {
+            setSelectedDays([givenDate, epoch]);
+        }
+    }
+
     const renderMonths = () => {
 
         const year = new Date().getFullYear();
@@ -102,13 +137,20 @@ const BookingDates = () => {
 
                 monthRows.push(
                     <div className="flex justify-between w-full mt-2">
-                        {days.map((dayNum: number) =>
-                            <div
-                                className={"w-6 text-center " + (i === 0 && dayNum === day ? "text-[#FBDC6C]" : (i === 0 && dayNum < day ? "text-[#A9A9A9]" : ""))}
-                            >
-                                {dayNum <= 0 ? "" : dayNum}
-                            </div>
-                        )}
+                        {days.map((dayNum: number) => {
+                            const selected = daySelected(currentYear, currentMonth, dayNum);
+                            const selectedStyle = selected === 2 ? "bg-[#FF4251]" : (selected === 1 ? "bg-[#FF4251A6]" : "");
+
+                            return (
+                                <div
+                                    className={"w-6 text-center " + selectedStyle + " " +
+                                        (i === 0 && dayNum === day ? "text-[#FBDC6C]" : (i === 0 && dayNum < day ? "text-[#A9A9A9]" : ""))}
+                                    onClick={() => handleClickDay(currentYear, currentMonth, dayNum)}
+                                >
+                                    {dayNum <= 0 ? "" : dayNum}
+                                </div>
+                            );
+                        })}
                     </div>
                 );
 
