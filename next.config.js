@@ -7,6 +7,11 @@ const nextConfig = {
                 destination: '/map',
                 permanent: false,
             },
+            {
+                source: '/profile',
+                destination: '/welcome',
+                permanent: false,
+            }
         ];
     }
 };
