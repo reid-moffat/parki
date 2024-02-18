@@ -52,8 +52,8 @@ const SignUp = () => {
                     </div>
 
                     <div className="w-100vw justify-center items-center text-center text-md py-6 px-12 text-sm">
-                        You’ve entered <strong>{email}</strong> as the email address for your account. Please verify this email
-                        address to use Parki by clicking the button below.
+                        You’ve entered <strong>{email}</strong> as the email address for your account. Please check
+                        your email to verify it, then sign in with the button below:
                     </div>
                     <div className="flex items-center w-full">
                         <Link
