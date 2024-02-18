@@ -34,20 +34,20 @@ const Welcome = () => {
                     <FcGoogle className="w-full h-full"/>
                 </div>
                 <div className="pl-4" onClick={async () => await signInWithGoogle()}>
-                    Sign {isSignIn ? "Up" : "In"} with Google
+                    Sign {isSignIn ? "In" : "Up"} with Google
                 </div>
             </div>
             <div className="flex rounded-2xl bg-[#FF4251] p-2 pl-8 pr-8 ml-10 mr-10 mt-6 text-xl">
                 <div className="rounded-3xl ml-1">
                     <MdEmail className="w-full h-full"/>
                 </div>
-                <div className="pl-4" onClick={() => router.push(`/profile/${isSignIn ? "signUp" : "signIn"}`)}>
-                    Sign {isSignIn ? "Up" : "In"} with Email
+                <div className="pl-4" onClick={() => router.push(`/profile/${isSignIn ? "signIn" : "signUp"}`)}>
+                    Sign {isSignIn ? "In" : "Up"} with Email
                 </div>
             </div>
             <div className="flex justify-center items-center mt-8 text-sm">
                 {isSignIn ? "Don't have an account?" : "Already have an account?"}
-                <div className="text-[#FBDC6C] ml-1" onClick={() => setIsSignIn(!isSignIn)}>Sign {isSignIn ? "In" : "Up"}</div>
+                <div className="text-[#FBDC6C] ml-1" onClick={() => setIsSignIn(!isSignIn)}>Sign {isSignIn ? "Up" : "In"}</div>
             </div>
 
             <BottomBar/>

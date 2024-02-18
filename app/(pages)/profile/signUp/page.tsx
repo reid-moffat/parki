@@ -43,6 +43,14 @@ const SignUp = () => {
             });
     }
 
+    const goBack = () => {
+        if (isSignedUp) {
+            setIsSignedUp(false);
+            return;
+        }
+        router.push("/profile");
+    }
+
     const renderContent = () => {
         if (isSignedUp) {
             return (
@@ -124,9 +132,9 @@ const SignUp = () => {
     return (
         <>
             <div className="flex flex-row justify-left py-3 pl-10 pt-5 text-xl">
-                <Link href='/welcome' className='pt-5'>
+                <div onClick={goBack} className='pt-5'>
                     <MdArrowBackIos/>
-                </Link>
+                </div>
             </div>
 
             {renderContent()}
