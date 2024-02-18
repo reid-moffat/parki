@@ -60,20 +60,13 @@ const SignIn = () => {
                     />
 
                     <Link href="/profile/forgotPassword" className='w-100vw underline text-right text-sm'>Forgot password?</Link>
-                    {/* TODO onclick go to the profile page */}
-                    {/*  for future reference:
-                    <Link href="/about">
-                    <a onClick={handleClick}>About</a>
-                    </Link> */}
-                    <button onClick={signin} className='w-full bg-[#FF4251] py-3 rounded-2xl text-[#FCF9EF] font-bold font-3xl'>SIGN IN
-                    </button>
 
-                    {/* <Image
-                    src={'../../signInWithGoogle.png'}
-                    onClick={signInWithGoogle}
-                    style={{'cursor': 'pointer'}}
-                    alt={"Sign in with Google"}
-                    /> */}
+                    <button
+                        onClick={signin}
+                        className='w-full bg-[#FF4251] py-3 rounded-2xl text-[#FCF9EF] font-bold font-3xl'
+                    >
+                        SIGN IN
+                    </button>
 
                     <div className='flex justify-center items-center text-sm'>
                         Don't have an account?&nbsp;
