@@ -1,14 +1,13 @@
 "use client";
 import Link from "next/link";
 import '../../globals.css'
-import { useRouter } from "next/navigation";
 import { auth } from "@/config/firebase";
+import { redirect } from "next/navigation";
 
 const Profile = () => {
 
-    const router = useRouter();
     if (auth.currentUser === null) {
-        router.push("/welcome");
+        redirect("/welcome");
     }
 
     return (
