@@ -8,7 +8,7 @@ const Profile = () => {
 
     const router = useRouter();
     if (auth.currentUser === null) {
-        console.log("not signed in");
+        router.push("/welcome");
     }
 
     return (
