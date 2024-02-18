@@ -47,7 +47,7 @@ const Welcome = () => {
             </div>
             <div className="flex justify-center items-center mt-8 text-sm">
                 {isSignIn ? "Don't have an account?" : "Already have an account?"}
-                <div className="text-[#FBDC6C] ml-1" onClick={() => setIsSignIn(!isSignIn)}>Sign {isSignIn ? "Up" : "In"}</div>
+                <div className="text-[#FBDC6C] ml-1" onClick={() => setIsSignIn(!isSignIn)}>Sign {isSignIn ? "In" : "Up"}</div>
             </div>
 
             <BottomBar/>
