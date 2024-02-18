@@ -2,11 +2,14 @@
 import Link from "next/link";
 import '../../globals.css'
 import { useRouter } from "next/navigation";
+import { auth } from "@/config/firebase";
 
 const Profile = () => {
 
     const router = useRouter();
-    router.push("/welcome");
+    if (auth.currentUser === null) {
+        console.log("not signed in");
+    }
 
     return (
         <div>

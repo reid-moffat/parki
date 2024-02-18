@@ -6,11 +6,6 @@ const nextConfig = {
                 source: '/',
                 destination: '/map',
                 permanent: false,
-            },
-            {
-                source: '/profile',
-                destination: '/welcome',
-                permanent: false,
             }
         ];
     }
