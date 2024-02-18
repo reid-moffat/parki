@@ -1,10 +1,13 @@
-import BottomBar from "@/components/helpers/BottomBar";
+"use client";
 import Link from "next/link";
 import '../../globals.css'
-import parkilogo from '@/public/logo.png';
-import Image from 'next/image';
+import { useRouter } from "next/navigation";
 
 const Profile = () => {
+
+    const router = useRouter();
+    router.push("/welcome");
+
     return (
         <div>
             <div className='entire-conainer'>
