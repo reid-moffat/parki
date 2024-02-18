@@ -21,6 +21,22 @@ const SignUp = () => {
 
     const handleSignUp = async () => {
 
+        if (!name) {
+            setError("Name is required");
+            return;
+        }
+        if (!email) {
+            setError("Email is required");
+            return;
+        }
+        if (!password) {
+            setError("Password is required");
+            return;
+        }
+        if (!passwordConfirm) {
+            setError("Password confirmation is required");
+            return;
+        }
         if (password !== passwordConfirm) {
             setError("Password does not match");
             return;
@@ -28,19 +44,7 @@ const SignUp = () => {
 
         await httpsCallable(functions, 'createAccount')({email: email, password: password})
             .then(() => setIsSignedUp(true))
-            .catch((err) => {
-                switch (err.code) {
-                    case "functions/invalid-argument":
-                        setError("Invalid email/password");
-                        break;
-                    case "functions/already-exists":
-                        setError("Email is already registered with us");
-                        break;
-                    default:
-                        setError("Error signing up. Please try again later.");
-                        break;
-                }
-            });
+            .catch((err) => setError(err.message));
     }
 
     const goBack = () => {
@@ -117,12 +121,13 @@ const SignUp = () => {
                         >
                             SIGN UP
                         </button>
-                        {error && <p className="text-red-500">{error}</p>}
 
-                        <div className='flex justify-center items-center text-sm py-4'>
+                        <div className='flex justify-center items-center text-sm'>
                             Already have an account?&nbsp;
                             <Link href="/profile/signIn" className='text-blue-500 flex-end text-sm'>Sign in</Link>
                         </div>
+
+                        {error && <p className="text-red-500">{error}</p>}
                     </div>
                 </div>
             </>

@@ -22,7 +22,7 @@ const createAccount = onCall((request) => {
         .catch((error) => {
             if (error.code === 'auth/invalid-email') {
                 logger.warn(`Email ${request.data.email} is invalid`);
-                throw new HttpsError('invalid-argument', `Email ${request.data.email} is invalid`);
+                throw new HttpsError('invalid-argument', `Email '${request.data.email}' is invalid`);
             }
             if (error.code === 'auth/invalid-password') {
                 logger.warn(`Password ${request.data.password} is invalid`);
