@@ -1,5 +1,4 @@
 "use client";
-import Link from "next/link";
 import '../../globals.css'
 import { auth } from "@/config/firebase";
 import { redirect } from "next/navigation";
@@ -11,22 +10,31 @@ const Profile = () => {
     }
 
     return (
-        <div>
-            <div className='entire-conainer'>
-                <div className='button-container'>
-                    <button className='create-account'>Create Account</button>
-                    <Link
-                        className='sign-in'/*USED MANUAL CSS, THIS TALIWIND IS BETTER --> className="flex flex-row items-center bg-transparent w-4/5 py-2 rounded-lg mt-3 mx-auto text-[#FCF9EF] border-2 border-[#FCF9EF]"*/
-                        href={{ pathname: '/profile/signIn' }}
-                    >
-                        Sign in
-                    </Link>
+        <>
+            <div className="text-center text-4xl font-bold pt-24">
+                What do you<br/>want to do?
+            </div>
+
+            <div className="flex justify-between pt-12 px-8 text-center">
+                <div className="w-full pr-3">
+                    <div className="bg-[#FF4251] rounded-xl text-white h-44 w-18 mb-6">
+                        Find Parking
+                    </div>
+                    <div className="bg-[#992831] rounded-xl text-white h-32 w-18">
+                        Help
+                    </div>
+                </div>
+
+                <div className="w-full pl-3">
+                    <div className="bg-[#992831] rounded-xl text-white h-32 w-18 mb-6">
+                        Edit my profile
+                    </div>
+                    <div className="bg-[#FF4251] rounded-xl text-white h-44 w-18">
+                        List My Parking Spot
+                    </div>
                 </div>
             </div>
-            <h2 className='conditions-text'>
-                By continuing, you confirm you've read and agreed to our Terms and Conditions and Privacy Policy
-            </h2>
-        </div>
+        </>
     );
 }
 
