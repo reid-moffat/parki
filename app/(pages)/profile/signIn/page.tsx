@@ -37,6 +37,8 @@ const SignIn = () => {
                     setError("Invalid email");
                 } else if (error.code === 'auth/invalid-credential') {
                     setError("Invalid email/password credentials");
+                } else if (error.message.includes(`The email \\"${email}\\" has not been verified. Please check your email`)) {
+                    setError("Please verify your email");
                 } else {
                     setError("An error occurred, please try again later");
                 }
@@ -84,7 +86,7 @@ const SignIn = () => {
                         Don't have an account?&nbsp;
                         <Link href="/profile/signUp" className='text-blue-500 flex-end text-sm underline'>Sign up</Link>
                     </div>
-                    {error && <p className="text-red-500">{error}</p>}
+                    {error && <p className="text-red-500 mt-2">{error}</p>}
                 </div>
             </div>
         </>
