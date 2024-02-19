@@ -25,6 +25,10 @@ const SignIn = () => {
             setError("Password is required");
             return;
         }
+        if (password.length < 6) {
+            setError("Password must be at least 6 characters");
+            return;
+        }
 
         await signInWithEmailAndPassword(auth, email, password)
             .then(() => router.push("/map"))
