@@ -1,8 +1,7 @@
 "use client";
-
 import Link from "next/link";
 import { useState } from "react";
-
+import { CiSquarePlus } from "react-icons/ci";
 
 const SpotsPage = () => {
 
@@ -27,20 +26,19 @@ const SpotsPage = () => {
 
     const listingsTab = (
         <div className="flex flex-col w-full h-auto">
-            <div className="flex flex-row w-full">
-                <div className="text-xl font-bold">Manage your listings</div>
-                {/* TODO - implement create listing */}
-                {/* <MdOutlineAddBox size={38} className="ml-auto" /> */}
+            <div className="flex justify-between w-full">
+                <div className="text-xl font-bold mt-2">Manage your listings</div>
+                <CiSquarePlus size={40} className="mr-4" onClick={() => {}}/>
             </div>
             <div className="flex flex-col mt-6 space-y-6">
                 {TEMP_LISTINGS.map((listing, key) => (
-                    <button 
+                    <button
                         key={key}
                         className="flex flex-row items-center p-3 border-[1px] border-[#47BB00] rounded-2xl"
                         onClick={() => alert(listing.location)}
                     >
-                        <div 
-                            className="h-10 w-10 rounded-lg mr-4" 
+                        <div
+                            className="h-10 w-10 rounded-lg mr-4"
                             style={{
                                 backgroundImage: "linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6) ), "+"url("+TEMP_IMAGE+")",
                                 backgroundSize: "cover"
@@ -62,7 +60,7 @@ const SpotsPage = () => {
             <div className="text-xl font-bold">Current & Upcoming</div>
             <div className="flex flex-col mt-6 space-y-6">
                 { TEMP_CURRENT_RENTALS.map((rental, key) => (
-                    <Link 
+                    <Link
                         key={key}
                         className="flex flex-col py-6 items-center justify-center bg-gray-700 rounded-xl text-white"
                         href="/spots/current"
@@ -82,7 +80,7 @@ const SpotsPage = () => {
             <div className="text-xl font-bold mt-8">Past</div>
             <div className="flex flex-col mt-6 space-y-6">
                 { TEMP_PAST_RENTALS.map((rental, key) => (
-                    <div 
+                    <div
                         className="flex flex-row py-4 px-6 items-end bg-gray-700 rounded-xl text-white"
                         style={{
                             backgroundImage: "linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6) ), "+"url("+TEMP_IMAGE+")",
@@ -105,19 +103,19 @@ const SpotsPage = () => {
 
     return (
         <div className="flex flex-col h-full overflow-scroll">
-            
+
             <div className="text-center text-3xl font-bold pt-10 mx-6 p-6">
                 My Spots
             </div>
 
             <div className="flex flex-row border-2 mx-6 rounded-full border-black font-bold text-lg text-white">
-                <button 
+                <button
                     className={"flex items-center justify-center w-1/2 h-10 rounded-l-full " + (tab === "listings" ? "bg-[#FF4251]" : "bg-black")}
                     onClick={() => setTab("listings")}
                 >
                     My Listings
                 </button>
-                <button 
+                <button
                     className={"flex w-1/2 items-center justify-center rounded-r-full " + (tab === "rentals" ? "bg-[#FF4251]" : "bg-black")}
                     onClick={() => setTab("rentals")}
                 >
@@ -128,7 +126,7 @@ const SpotsPage = () => {
             <div className="flex w-auto h-auto mx-6 mt-6 mb-10">
                 { tab === "listings" ? listingsTab : rentalsTab }
             </div>
-            
+
         </div>
     );
 }

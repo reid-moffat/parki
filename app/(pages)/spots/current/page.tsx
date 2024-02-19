@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { MdChevronLeft } from "react-icons/md";
 
-export default function CurrentSpot({}) {
+const CurrentSpot = () => {
 
     const TEMP_SPOT = {
         time: "2:20:10:21",
@@ -22,7 +22,7 @@ export default function CurrentSpot({}) {
                 <MdChevronLeft size={42} color="transparent" />
             </div>
 
-            <div 
+            <div
                 className="mx-6 my-auto border-4 rounded-full text-center py-12 text-3xl text-white font-bold border-[#FF4251]"
                 style={{
                     backgroundImage: "linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6) ), "+"url("+TEMP_IMAGE+")",
@@ -55,12 +55,12 @@ export default function CurrentSpot({}) {
                 </div>
             </div>
 
-            <button 
+            <button
                 className="p-4 mx-6 mt-4 bg-gray-800 text-white font-bold text-xl rounded-xl"
             >
                 More Details
             </button>
-            <button 
+            <button
                 className="p-4 mx-6 mt-4 bg-[#FF4251] text-white font-bold text-xl rounded-xl"
             >
                 Extend Time
@@ -69,3 +69,5 @@ export default function CurrentSpot({}) {
         </div>
     )
 }
+
+export default CurrentSpot;
