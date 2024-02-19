@@ -110,13 +110,13 @@ const SpotsPage = () => {
 
             <div className="flex flex-row border-2 mx-6 rounded-full border-black font-bold text-lg text-white">
                 <button
-                    className={"flex items-center justify-center w-1/2 h-10 rounded-l-full " + (tab === "listings" ? "bg-[#FF4251]" : "bg-black")}
+                    className={"flex items-center justify-center w-1/2 h-10 rounded-l-full " + (tab === "listings" ? "bg-[#FF4251]" : "bg-[#343632]")}
                     onClick={() => setTab("listings")}
                 >
                     My Listings
                 </button>
                 <button
-                    className={"flex w-1/2 items-center justify-center rounded-r-full " + (tab === "rentals" ? "bg-[#FF4251]" : "bg-black")}
+                    className={"flex w-1/2 items-center justify-center rounded-r-full " + (tab === "rentals" ? "bg-[#FF4251]" : "bg-[#343632]")}
                     onClick={() => setTab("rentals")}
                 >
                     My Rentals
