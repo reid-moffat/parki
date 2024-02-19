@@ -1,13 +1,18 @@
 "use client";
 import '../../globals.css'
 import { auth } from "@/config/firebase";
-import { redirect } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
+import Image from "next/image";
+import FindParking from "@/public/profile/find_parking.png";
+import ListSpot from "@/public/profile/list_spot.png";
 
 const Profile = () => {
 
     if (auth.currentUser === null) {
         redirect("/welcome");
     }
+
+    const router = useRouter();
 
     return (
         <>
@@ -17,21 +22,27 @@ const Profile = () => {
 
             <div className="flex justify-between pt-12 px-8 text-center">
                 <div className="w-full pr-3">
-                    <div className="bg-[#FF4251] rounded-xl text-white h-44 w-18 mb-6">
-                        Find Parking
-                    </div>
-                    <div className="bg-[#992831] rounded-xl text-white h-32 w-18">
+                    <Image
+                        src={FindParking}
+                        alt={"Find Parking"}
+                        className="bg-[#FF4251] rounded-xl text-white h-44 w-18 mb-6"
+                        onClick={() => router.push("/map")}
+                    />
+                    <div className="bg-[#992831] rounded-xl text-white h-32 w-18 pt-12">
                         Help
                     </div>
                 </div>
 
                 <div className="w-full pl-3">
-                    <div className="bg-[#992831] rounded-xl text-white h-32 w-18 mb-6">
+                    <div className="bg-[#992831] rounded-xl text-white h-32 w-18 mb-6 pt-12">
                         Edit my profile
                     </div>
-                    <div className="bg-[#FF4251] rounded-xl text-white h-44 w-18">
-                        List My Parking Spot
-                    </div>
+                    <Image
+                        src={ListSpot}
+                        alt={"List my parking spot"}
+                        className="bg-[#FF4251] rounded-xl text-white h-44 w-18 mb-6"
+                        onClick={() => router.push("/spots")}
+                    />
                 </div>
             </div>
         </>
