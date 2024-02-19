@@ -41,6 +41,10 @@ const SignUp = () => {
             setError("Password does not match");
             return;
         }
+        if (password.length < 6) {
+            setError("Password must be at least 6 characters");
+            return;
+        }
 
         await httpsCallable(functions, 'createAccount')({email: email, password: password})
             .then(() => setIsSignedUp(true))
