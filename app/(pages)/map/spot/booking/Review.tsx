@@ -1,14 +1,11 @@
-import Link from "next/link";
 import { MdOutlineArrowBackIos } from "react-icons/md";
-import React from "react";
 
-const ReviewBooking = () => {
+// @ts-ignore
+const Review = ({ setPage }) => {
     return (
-        <div>
+        <>
             <div className='flex text-3xl font-bold p-8'>
-                <Link href="/map/spot/booking">
-                    <MdOutlineArrowBackIos className='w-10 h-10 mr-2'/>
-                </Link>
+                <MdOutlineArrowBackIos className='w-10 h-10 mr-2' onClick={() => setPage("yourBooking")}/>
                 <div className="pl-2">
                     Review Summary
                 </div>
@@ -92,8 +89,8 @@ const ReviewBooking = () => {
                     CONFIRM PAYMENT
                 </div>
             </div>
-        </div>
+        </>
     );
 }
 
-export default ReviewBooking;
+export default Review;

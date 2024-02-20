@@ -1,11 +1,10 @@
-"use client";
-import Link from "next/link";
-import { MdOutlineArrowBackIos } from "react-icons/md";
 import React, { useState } from "react";
-import Line from "@/public/Line.png";
 import Image from "next/image";
+import Line from "@/public/Line.png";
+import { MdOutlineArrowBackIos } from "react-icons/md";
 
-const BookingDates = () => {
+// @ts-ignore
+const SelectDates = ({ setPage }) => {
 
     const [numMonths, setNumMonths] = useState(3);
 
@@ -197,9 +196,7 @@ const BookingDates = () => {
     return (
         <div className="h-full">
             <div className='flex text-3xl font-bold p-8'>
-                <Link href="/map/spot/booking">
-                    <MdOutlineArrowBackIos className='w-10 h-10 mr-2'/>
-                </Link>
+                <MdOutlineArrowBackIos className='w-10 h-10 mr-2' onClick={() => setPage("yourBooking")}/>
                 <div className="pl-16">
                     Dates
                 </div>
@@ -221,4 +218,4 @@ const BookingDates = () => {
     );
 }
 
-export default BookingDates;
+export default SelectDates;

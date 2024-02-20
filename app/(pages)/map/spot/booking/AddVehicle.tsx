@@ -1,18 +1,12 @@
-"use client";
 import Link from "next/link";
 import { MdOutlineArrowBackIos } from "react-icons/md";
-import React from "react";
 
-const AddVehicle = () => {
-
-    const [toggle, setToggle] = React.useState(true);
-
+// @ts-ignore
+const AddVehicle = ({ setPage }) => {
     return (
-        <div>
+        <>
             <div className='flex text-3xl font-bold p-8'>
-                <Link href="/map/spot/booking">
-                    <MdOutlineArrowBackIos className='w-10 h-10 mr-2'/>
-                </Link>
+                <MdOutlineArrowBackIos className='w-10 h-10 mr-2' onClick={() => setPage("yourBooking")}/>
                 <div className="pl-2">
                     Add New Vehicle
                 </div>
@@ -36,13 +30,12 @@ const AddVehicle = () => {
                        className="bg-[#dae2f0] rounded-2xl w-full h-12 mb-4 p-2"/>
 
                 <div className='flex justify-center mt-8'>
-                    <Link href="/map/spot/booking" className={'rounded-2xl bg-[#FF4251] p-2 text-white text-xl' +
-                        ' ps-20 pe-20 mt-40 ' + (toggle ? "" : " pointer-events-none")}>
-                        ADD VEHICLE
-                    </Link>
+                    <div className={'rounded-2xl bg-[#FF4251] p-2 text-white text-xl ps-20 pe-20 mt-40'} onClick={() => setPage("yourBooking")}>
+                        ADD
+                    </div>
                 </div>
             </div>
-        </div>
+        </>
     );
 }
 
