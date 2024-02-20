@@ -155,7 +155,7 @@ const AddSpot = () => {
                 <input
                     type="text"
                     placeholder="Aditional information"
-                    className="w-full bg-[#dae2f0] rounded-xl mt-6 pt-3 pl-3 pb-32"
+                    className="w-full bg-[#dae2f0] rounded-xl mt-6 pt-3.5 pl-[18px] pb-32"
                 />
 
                 <div
