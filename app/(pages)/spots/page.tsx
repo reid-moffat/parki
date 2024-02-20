@@ -2,8 +2,11 @@
 import Link from "next/link";
 import { useState } from "react";
 import { CiSquarePlus } from "react-icons/ci";
+import { useRouter } from "next/navigation";
 
 const SpotsPage = () => {
+
+    const router = useRouter();
 
     const TEMP_LISTINGS = [
         { location: "650 Princess St.", city: "Kingston, ON", vacant: true },
@@ -28,7 +31,7 @@ const SpotsPage = () => {
         <div className="flex flex-col w-full h-auto">
             <div className="flex justify-between w-full">
                 <div className="text-xl font-bold mt-2">Manage your listings</div>
-                <CiSquarePlus size={40} className="mr-4" onClick={() => {}}/>
+                <CiSquarePlus size={40} className="mr-4" onClick={() => router.push('/spots/addSpot')}/>
             </div>
             <div className="flex flex-col mt-6 space-y-6">
                 {TEMP_LISTINGS.map((listing, key) => (
