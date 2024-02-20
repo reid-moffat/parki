@@ -1,7 +1,12 @@
+"use client";
 import Link from "next/link";
 import { MdChevronLeft } from "react-icons/md";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 const CurrentSpot = () => {
+
+    const router = useRouter();
 
     const TEMP_SPOT = {
         time: "2:20:10:21",
@@ -12,22 +17,29 @@ const CurrentSpot = () => {
         duration: "4 days"
     }
 
-    const TEMP_IMAGE = "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Blue_Disc_Parking_Area_Markings_Blue_Paint.JPG/1200px-Blue_Disc_Parking_Area_Markings_Blue_Paint.JPG";
+    const [percentDone, setPercentDone] = useState(0);
+
+    // temp code to simulate time
+    useEffect(() => {
+        if (percentDone > 1) return;
+        const interval = setInterval(() => { setPercentDone((prev) => prev + 0.001)}, 100);
+        return () => clearInterval(interval);
+    });
 
     return (
         <div className="flex flex-col h-full pb-6">
             <div className="flex flex-row items-center justify-between text-center text-3xl font-bold pt-10 p-6">
                 <Link href="/spots">
-                    <MdChevronLeft size={42} />
+                    <MdChevronLeft size={42}/>
                 </Link>
                 <div className="w-auto">Current Parking</div>
-                <MdChevronLeft size={42} color="transparent" />
+                <MdChevronLeft size={42} color="transparent"/>
             </div>
 
             <div className="flex justify-center">
                 <div
-                    className={"w-52 h-52 bg-[#FF4251] rounded-full " +
-                        "bg-[linear-gradient(180deg,transparent_50%,#343632_50%),linear-gradient(90deg,#343632_50%,transparent_50%)]"}
+                    style={{backgroundImage: `conic-gradient(#FF4251 0% ${percentDone * 100}%, #343632 ${percentDone * 100}% 100%)`}}
+                    className={"w-52 h-52 bg-[#FF4251] rounded-full"}
                 />
                 <div className="absolute mt-4 w-44 h-44 bg-[#FCF9EF] rounded-full text-center">
                     <div className="font-passion text-4xl mt-14">
@@ -72,10 +84,10 @@ const CurrentSpot = () => {
             </button>
             <button
                 className="px-4 py-3 mx-6 mt-4 bg-[#FF4251] text-white font-bold text-xl rounded-xl"
+                onClick={() => router.push("/spots/extend")}
             >
                 Extend Time
             </button>
-
         </div>
     )
 }
