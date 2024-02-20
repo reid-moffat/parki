@@ -149,20 +149,20 @@ const AddSpot = () => {
                 </div>
 
                 <div className="mt-4">
-                    Where is it?
+                    Is there anything else users may need to know? (ex. car size, parking instructions, etc)
                 </div>
 
                 <input
                     type="text"
                     placeholder="Aditional information"
-                    className="w-full bg-[#dae2f0] rounded-xl mt-6 px-32 py-24"
+                    className="w-full bg-[#dae2f0] rounded-xl mt-6 pt-3 pl-3 pb-32"
                 />
 
                 <div
                     className="absolute w-full bottom-8 bg-[#FF4251] text-center text-white text-2xl font-semibold rounded-2xl p-3"
                     onClick={() => console.log("add spot")}
                 >
-                    Confirm Info
+                    Confirm Spot
                 </div>
             </>
         )
