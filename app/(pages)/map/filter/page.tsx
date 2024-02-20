@@ -35,8 +35,6 @@ const FilterPage = () => {
             // @ts-ignore
             const isClicked = amenities[amenity.key];
 
-
-
             return (
                 <div className="flex justify-center items-center" key={amenity.key}>
                     <div
