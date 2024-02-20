@@ -127,10 +127,11 @@ const AddSpot = () => {
                     any elements that will help drivers identify the specific parking spot.
                 </div>
 
-                <div className="w-full bg-[#dae2f0] rounded-xl mt-6 px-32 py-24">
-                    <FaPlus/>
-                    <br/>
-                    Add Photo
+                <div className="w-full bg-[#dae2f0] rounded-xl text-center mt-6">
+                    <div className="px-32 py-24">
+                        <FaPlus className="ml-7 mb-1"/>
+                        Add&nbsp;Photo
+                    </div>
                 </div>
 
                 <div
