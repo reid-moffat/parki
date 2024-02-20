@@ -43,9 +43,9 @@ const AddSpot = () => {
 
             <div
                 className="absolute w-full bottom-8 bg-[#FF4251] text-center text-white text-2xl font-semibold rounded-2xl p-3"
-                onClick={() => setCurrentStep(2)}
+                onClick={() => setCurrentStep(3)}
             >
-                Let's Go!
+                Confirm
             </div>
         </>
     );
@@ -63,9 +63,9 @@ const AddSpot = () => {
 
             <div
                 className="absolute w-full bottom-8 bg-[#FF4251] text-center text-white text-2xl font-semibold rounded-2xl p-3"
-                onClick={() => setCurrentStep(2)}
+                onClick={() => setCurrentStep(4)}
             >
-                Let's Go!
+                Confirm Features
             </div>
         </>
     );
@@ -83,9 +83,9 @@ const AddSpot = () => {
 
             <div
                 className="absolute w-full bottom-8 bg-[#FF4251] text-center text-white text-2xl font-semibold rounded-2xl p-3"
-                onClick={() => setCurrentStep(2)}
+                onClick={() => setCurrentStep(5)}
             >
-                Let's Go!
+                Confirm Photos
             </div>
         </>
     );
@@ -103,9 +103,9 @@ const AddSpot = () => {
 
             <div
                 className="absolute w-full bottom-8 bg-[#FF4251] text-center text-white text-2xl font-semibold rounded-2xl p-3"
-                onClick={() => setCurrentStep(2)}
+                onClick={() => console.log("add spot")}
             >
-                Let's Go!
+                Confirm Info
             </div>
         </>
     );
@@ -113,6 +113,7 @@ const AddSpot = () => {
     const onClickBack = () => {
         if (currentStep === 1) {
             router.push('/spots');
+            return;
         }
         setCurrentStep(currentStep - 1);
     }
