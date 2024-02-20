@@ -72,7 +72,7 @@ const AddSpot = () => {
                     What features does it have?
                 </div>
 
-                <div className="mt-4">
+                <div className="mt-4 mb-6">
                     Please select all the features your parking spot offers:
                 </div>
 
@@ -85,9 +85,9 @@ const AddSpot = () => {
                         return (
                             <div className="flex justify-center items-center" key={amenity.key}>
                                 <div
-                                    className={(isClicked ? "bg-[#343632] text-[#FCF9EF]" : "bg-[#FCF9EF]" +
-                                            " text-black") +
-                                        " flex justify-center items-center w-[100vw] rounded-full border-[#343632] border-[1px] m-1 py-1 text-sm font-light"}
+                                    className={(isClicked ? "bg-[#343632] text-[#FCF9EF]" : "bg-[#FCF9EF] text-black") +
+                                        " flex justify-center items-center w-full rounded-full border-[#343632]" +
+                                        " border-[1px] mx-2 my-2 py-1 text-sm font-light"}
                                     onClick={() => {
                                         // @ts-ignore
                                         setAmenities({...amenities, [amenity.key]: !isClicked});
@@ -99,7 +99,6 @@ const AddSpot = () => {
                                     &nbsp;
                                     {amenity.key as string}
                                 </div>
-                                <br/><br/>
                             </div>
                         )
                     })
