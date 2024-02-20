@@ -36,7 +36,7 @@ const CurrentSpot = () => {
                 <MdChevronLeft size={42} color="transparent"/>
             </div>
 
-            <div className="flex justify-center">
+            <div className="relative flex justify-center">
                 <div
                     style={{backgroundImage: `conic-gradient(#FF4251 0% ${percentDone * 100}%, #343632 ${percentDone * 100}% 100%)`}}
                     className={"w-52 h-52 bg-[#FF4251] rounded-full"}
@@ -52,6 +52,13 @@ const CurrentSpot = () => {
                         <div className="">seconds</div>
                     </div>
                 </div>
+                <a
+                    href={"https://www.google.com.sa/maps/search/44.2301366957068,-76.49587512239601"}
+                    target="_blank"
+                    className="absolute -bottom-4 right-5 underline text-sm"
+                >
+                    Directions
+                </a>
             </div>
 
             <div className="mt-auto mx-6 px-4 py-2 space-y-1 border-2 border-gray-500 rounded-xl text-lg">
