@@ -57,7 +57,7 @@ const FilterPage = () => {
 
     return (
         <>
-            <div className="flex flex-row justify-left py-3 pl-10 pt-5 text-xl">
+            <div className="flex flex-row justify-left py-0 pl-10 pt-5 text-xl">
                 <Link href='/map' className='pt-5'>
                     <MdArrowBackIos/>
                 </Link>
@@ -70,15 +70,11 @@ const FilterPage = () => {
 
             <br/>
 
-            <div className='w-[80vw] mx-auto'>
-                <Divider/>
-            </div>
-
-            <div className="text-center font-bold">
-                Parking Ending On
+            <div className='flex flex-row w-[80vw] mx-auto'>
+                <div className='text-md font-bold py-3 pt-0'>Available Starting: </div>
             </div>
             <div className="flex justify-center items-center">
-                <div className="flex justify-center items-center w-3/6 rounded-full text-white bg-[#343632]">
+                <div className="flex justify-center items-center mb-3 w-3/6 rounded-full text-white bg-[#343632]">
                     <LuClock5/> &nbsp; December 20, 2023
                 </div>
             </div>
@@ -87,9 +83,10 @@ const FilterPage = () => {
                 <Divider/>
             </div>
 
-            <div className="text-center">
-                Within <span
-                className="text-blue-500">{range * 100 < 1000 ? (range * 100) + "m" : (range === 30 ? "any distance" : (range / 10) + "km")}</span>
+            <div className='flex flex-row w-[80vw] mx-auto'>
+                <div className='text-md font-bold py-3'>Distance (km): </div>
+                <span
+                className="text-[#FF4251] text-md py-3 px-2">{range * 100 < 1000 ? (range * 100) + "m" : (range === 30 ? "any distance" : (range / 10) + "km")}</span>
             </div>
             <div className="flex justify-center items-center">
                 <div className="w-5/6">
@@ -101,10 +98,12 @@ const FilterPage = () => {
                 <Divider/>
             </div>
 
-            <div className="text-center">
-                Price Range:<p/>
-                $<span className="text-blue-500">{price[0]}</span> to $<span
-                className="text-blue-500">{price[1] < 200 ? price[1] : "Infinite"}</span>
+            <div className='flex flex-row w-[80vw] mx-auto'>
+                <div className='text-md font-bold py-3'>Price (CAD):</div>
+                <div className="text-md py-3 px-2">
+                    $<span className="text-[#FF4251]">{price[0]}</span> to $<span
+                    className="text-[#FF4251]">{price[1] < 200 ? price[1] : "Infinite"}</span>
+                </div>
             </div>
             <div className="flex justify-center items-center">
                 <div className="w-5/6">
@@ -119,15 +118,15 @@ const FilterPage = () => {
 
             <br/>
             <div className='flex flex-col w-[80vw] mx-auto'>
-                <div className='text-md font-bold py-3'>Amenities</div>
+                <div className='text-md font-bold py-3 pt-0'>Amenities</div>
                 <div className='grid grid-cols-2'>
                         {renderAmenities()}
                 </div>
             </div>
 
-            <div className='flex flex-row justify-between w-[80vw] mx-auto'>
-                <button>Reset</button>
-                <button>Apply Filters</button>
+            <div className='flex flex-row justify-between w-[80vw] mx-auto pt-2'>
+                <button className='w-[30vw] mt-1 text-center py-3 mr-3 outline-none rounded-2xl border-2 border-[#343632] text-[#343632] font-bold font-3xl'>Reset</button>
+                <button className='w-[50vw] mt-1 text-center py-3 outline-none rounded-2xl bg-[#FF4251] text-[#FCF9EF] font-bold font-3xl'>Apply Filters</button>
             </div>
             <br/>
         </>
