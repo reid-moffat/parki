@@ -7,6 +7,8 @@ import Link from "next/link";
 
 const EditProfile = () => {
 
+
+
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
@@ -22,7 +24,6 @@ const EditProfile = () => {
                     Edit Profile
                 </div>
             </div>
-
 
             <Image
                 src={DummyPFP}
