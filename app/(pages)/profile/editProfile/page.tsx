@@ -6,8 +6,11 @@ import { MdArrowBackIos } from "react-icons/md";
 import Link from "next/link";
 import { httpsCallable } from "@firebase/functions";
 import { functions } from "@/config/firebase";
+import { useRouter } from "next/navigation";
 
 const EditProfile = () => {
+
+    const router = useRouter();
 
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
@@ -44,20 +47,19 @@ const EditProfile = () => {
     }
 
     const renderPhone = (number: string) => {
-        const numberCopy = number.slice();
-        if (numberCopy.length <= 3) {
-            return numberCopy;
-        } else if (numberCopy.length <= 6) {
-            return `(${numberCopy.substring(0, 3)})-${numberCopy.substring(3, 6)}`;
+        if (number.length <= 3) {
+            return number;
+        } else if (number.length <= 6) {
+            return `(${number.substring(0, 3)})-${number.substring(3, 6)}`;
         } else {
-            return `(${numberCopy.substring(0, 3)})-${numberCopy.substring(3, 6)}-${numberCopy.substring(6, 10)}`;
+            return `(${number.substring(0, 3)})-${number.substring(3, 6)}-${number.substring(6, 10)}`;
         }
     }
 
     const handleUpdate = async () => {
         const data = {
             name: name,
-            phone: phone,
+            phone: phone.replace(/[^0-9]/g, ''),
             etransfer: etransfer
         };
 
@@ -69,9 +71,7 @@ const EditProfile = () => {
     return (
         <div className="mx-10">
             <div className="flex py-3 pt-5 text-xl">
-                <Link href='/profile' className='pt-6'>
-                    <MdArrowBackIos size={30}/>
-                </Link>
+                <MdArrowBackIos size={30} className="mt-6" onClick={() => router.push("/profile")}/>
                 <div className="text-center text-4xl font-bold pt-6 pl-6">
                     Edit Profile
                 </div>
@@ -111,7 +111,7 @@ const EditProfile = () => {
             />
 
             <div className="flex justify-between mt-8">
-                <div className="underline font-bold">
+                <div className="underline font-bold" onClick={() => router.push("/profile")}>
                     Cancel
                 </div>
                 <div
