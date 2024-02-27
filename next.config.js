@@ -4,7 +4,7 @@ const nextConfig = {
         return [
             {
                 source: '/',
-                destination: '/map',
+                destination: '/profile',
                 permanent: false,
             }
         ];
