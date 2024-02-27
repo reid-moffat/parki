@@ -1,7 +1,7 @@
 import { HttpsError, onCall } from "firebase-functions/v2/https";
 import { auth } from "../helpers/setup";
 import { logger } from "firebase-functions";
-import { getCollection, sendEmail } from "../helpers/helperFunctions";
+import { sendEmail } from "../helpers/helperFunctions";
 
 /**
  * Users must create their accounts through our API (more control & security), calling it from the client is disabled
