@@ -4,10 +4,9 @@ import DummyPFP from '@/public/profile/dummyPfp.png';
 import React, { useState } from "react";
 import { MdArrowBackIos } from "react-icons/md";
 import Link from "next/link";
+import { useAsync } from 'react-async-hook';
 
 const EditProfile = () => {
-
-
 
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");

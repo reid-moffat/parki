@@ -5,7 +5,7 @@
  */
 
 import { beforeCreate, beforeSignIn, onUserDelete, onUserSignup } from './triggers/auth';
-import { createAccount, resetPassword } from './callable/auth';
+import { createAccount, resetPassword, getProfile } from './callable/auth';
 import { purgeExpiredEmails, purgeUnverifiedUsers } from './triggers/cron';
 
 export {
@@ -13,6 +13,7 @@ export {
     beforeCreate,
     onUserSignup,
     resetPassword,
+    getProfile,
     beforeSignIn,
     onUserDelete,
     purgeUnverifiedUsers,
