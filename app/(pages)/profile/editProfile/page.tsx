@@ -1,10 +1,11 @@
 "use client";
 import Image from 'next/image';
 import DummyPFP from '@/public/profile/dummyPfp.png';
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { MdArrowBackIos } from "react-icons/md";
 import Link from "next/link";
-import { useAsync } from 'react-async-hook';
+import { httpsCallable } from "@firebase/functions";
+import { functions } from "@/config/firebase";
 
 const EditProfile = () => {
 
@@ -12,6 +13,24 @@ const EditProfile = () => {
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
     const [etransfer, setEtransfer] = useState("");
+
+    useEffect(() => {
+        if (email !== "") {
+            return;
+        }
+
+        httpsCallable(functions, "getProfile")()
+            .then((response) => {
+                console.log(`Profile info: ${JSON.stringify(response.data, null, 4)}`);
+
+                // @ts-ignore
+                setName(response.data.name); // @ts-ignore
+                setEmail(response.data.email); // @ts-ignore
+                setPhone(response.data.phone); // @ts-ignore
+                setEtransfer(response.data.etransfer);
+            })
+            .catch((err) => console.log(`Error fetching profile info: ${err}`));
+    });
 
     return (
         <div className="mx-10">
@@ -32,32 +51,30 @@ const EditProfile = () => {
 
             <div>Name</div>
             <input
-                className='w-full py-3 px-10 mb-1 outline-none rounded-2xl bg-[#4472CA] bg-opacity-20'
+                className='w-full py-3 px-5 mb-1 outline-none rounded-2xl bg-[#4472CA] bg-opacity-20'
                 value={name}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => setName(e.target.value)}
             />
 
             <div>Email</div>
-            <input
+            <div
                 className='w-full py-3 px-5 mb-1 outline-none rounded-2xl bg-[#4472CA] bg-opacity-20'
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-            />
+            >
+                {email}
+            </div>
 
             <div>Phone number</div>
             <input
                 className='w-full py-3 px-5 mb-1 outline-none rounded-2xl bg-[#4472CA] bg-opacity-20'
                 value={phone}
-                placeholder='Email'
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => setPhone(e.target.value)}
             />
 
             <div>E-Transfer address</div>
             <input
                 className='w-full py-3 px-5 outline-none rounded-2xl bg-[#4472CA] bg-opacity-20'
                 value={etransfer}
-                placeholder='Email'
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => setEtransfer(e.target.value)}
             />
 
             <div className="flex justify-between mt-8">
