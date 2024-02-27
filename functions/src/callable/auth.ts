@@ -61,12 +61,15 @@ const resetPassword = onCall(async (request) => {
     return sendEmail(emailAddress, 'Parki password reset', emailHtml, 'password reset');
 });
 
+/**
+ * Gets user profile info (name, email, phone # & e-transfer address)
+ */
 const getProfile = onCall(async (request) => {
 
     verifyIsAuthenticated(request);
 
     // @ts-ignore
-    return getDoc('users', request.auth.uid)
+    return getDoc(`/users/${request.auth.uid}/`)
         .get()
         .then((doc) => doc.data())
         .catch((error) => {
@@ -76,4 +79,40 @@ const getProfile = onCall(async (request) => {
         });
 });
 
-export { createAccount, resetPassword, getProfile };
+/**
+ * Updates user profile info (name, phone # & e-transfer address)
+ */
+const updateProfile = onCall(async (request) => {
+
+    verifyIsAuthenticated(request);
+
+    if (!request.data.name && !request.data.phone && !request.data.etransfer) {
+        throw new HttpsError('invalid-argument', `Either a name, phone # or e-transfer address are required`);
+    }
+
+    const updateData = {};
+    if (request.data.name) {
+        // @ts-ignore
+        updateData['name'] = request.data.name;
+    }
+    if (request.data.phone) {
+        // @ts-ignore
+        updateData['phone'] = request.data.phone;
+    }
+    if (request.data.etransfer) {
+        // @ts-ignore
+        updateData['etransfer'] = request.data.etransfer;
+    }
+
+    // @ts-ignore
+    return getDoc(`/users/${request.auth.uid}/`)
+        .update(updateData)
+        .then(() => `Profile updated`)
+        .catch((error) => {
+            // @ts-ignore
+            logger.error(`Error updating user profile for user ${request.auth.uid}: ${error.message}`);
+            throw new HttpsError('internal', `Error updating profile - please try again later`);
+        });
+});
+
+export { createAccount, resetPassword, getProfile, updateProfile };
