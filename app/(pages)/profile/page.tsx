@@ -14,9 +14,15 @@ const Profile = () => {
 
     const router = useRouter();
 
+    const handleSignout = async () => {
+        await auth.signOut()
+            .then(() => router.push("/welcome"))
+            .catch((error) => console.log(`Error signing out: ${error}`));
+    }
+
     return (
         <>
-            <div className="text-center text-4xl font-bold pt-24">
+            <div className="text-center text-4xl font-bold pt-20">
                 What do you<br/>want to do?
             </div>
 
@@ -44,6 +50,13 @@ const Profile = () => {
                         onClick={() => router.push("/spots")}
                     />
                 </div>
+            </div>
+
+            <div
+                className="rounded-2xl bg-[#FF4251] text-white text-lg text-center mx-28 my-8 py-1"
+                onClick={async () => await handleSignout()}
+            >
+                Sign out
             </div>
         </>
     );
