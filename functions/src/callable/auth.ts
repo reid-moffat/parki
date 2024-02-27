@@ -1,7 +1,7 @@
 import { HttpsError, onCall } from "firebase-functions/v2/https";
 import { auth } from "../helpers/setup";
 import { logger } from "firebase-functions";
-import { getCollection } from "../helpers/helperFunctions";
+import { getCollection, sendEmail } from "../helpers/helperFunctions";
 
 /**
  * Users must create their accounts through our API (more control & security), calling it from the client is disabled
@@ -44,31 +44,20 @@ const createAccount = onCall((request) => {
  */
 const resetPassword = onCall(async (request) => {
 
+    if (!request.data.email) {
+        throw new HttpsError('invalid-argument', `Email is required`);
+    }
+
     const emailAddress: string = request.data.email;
     const link: string = await auth.generatePasswordResetLink(emailAddress);
 
-    const email = {
-        to: emailAddress,
-        message: {
-            subject: 'Parki password reset',
-            html: `<p style="font-size: 16px;">A password reset request was made for your account</p>
-                   <p style="font-size: 16px;">Reset your password here: ${link}</p>
-                   <p style="font-size: 12px;">If you didn't request this, you can safely disregard this email</p>
-                   <p style="font-size: 12px;">Best Regards,</p>
-                   <p style="font-size: 12px;">-The Parki Team</p>`,
-        }
-    };
+    const emailHtml = `<p style="font-size: 16px;">A password reset request was made for your account</p>
+           <p style="font-size: 16px;">Reset your password here: ${link}</p>
+           <p style="font-size: 12px;">If you didn't request this, you can safely disregard this email</p>
+           <p style="font-size: 12px;">Best Regards,</p>
+           <p style="font-size: 12px;">-The Parki Team</p>`;
 
-    return getCollection('/emails/')
-        .add(email)
-        .then(() => {
-            logger.log(`Password reset email created for ${emailAddress}`);
-            return `Password reset email created for ${emailAddress}`;
-        })
-        .catch((err) => {
-            logger.log(`Error creating password reset email for ${emailAddress}`);
-            return `Error creating password reset email for ${emailAddress}`;
-        });
+    return sendEmail(emailAddress, 'Parki password reset', emailHtml, 'password reset');
 });
 
 export { createAccount, resetPassword };
