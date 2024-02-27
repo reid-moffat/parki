@@ -19,7 +19,7 @@ const Welcome = () => {
     const signInWithGoogle = () => {
         return signInWithPopup(auth, new GoogleAuthProvider())
             .then(() => {
-                router.push("/map");
+                router.push("/profile");
             }).catch((error) => {
                 console.log(`Error signing up/in: ${error}`);
             });
