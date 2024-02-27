@@ -31,7 +31,7 @@ const Profile = () => {
                     <Image
                         src={FindParking}
                         alt={"Find Parking"}
-                        className="bg-[#FF4251] rounded-xl text-white h-44 w-18 mb-6"
+                        className="rounded-xl h-44 w-18 mb-6"
                         onClick={() => router.push("/map")}
                     />
                     <div
@@ -52,7 +52,7 @@ const Profile = () => {
                     <Image
                         src={ListSpot}
                         alt={"List my parking spot"}
-                        className="bg-[#FF4251] rounded-xl text-white h-44 w-18 mb-6"
+                        className="rounded-xl h-44 w-18 mb-6"
                         onClick={() => router.push("/spots")}
                     />
                 </div>
