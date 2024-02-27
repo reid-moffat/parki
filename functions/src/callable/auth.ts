@@ -14,6 +14,7 @@ const createAccount = onCall((request) => {
             emailVerified: false,
             password: request.data.password,
             disabled: false,
+            displayName: request.data.name,
         })
         .then((user) => {
             logger.log(`Successfully created new user ${user.uid} (${request.data.email})`);

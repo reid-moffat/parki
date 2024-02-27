@@ -46,7 +46,7 @@ const SignUp = () => {
             return;
         }
 
-        await httpsCallable(functions, 'createAccount')({email: email, password: password})
+        await httpsCallable(functions, 'createAccount')({email: email, password: password, name: name})
             .then(() => setIsSignedUp(true))
             .catch((err) => setError(err.message));
     }

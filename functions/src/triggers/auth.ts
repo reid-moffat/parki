@@ -27,6 +27,7 @@ const onUserSignup = functions.auth.user().onCreate(async (user) => {
     // Create a default db document for the user
     const defaultDoc = {
         email: user.email,
+        name: user.displayName,
     };
     await getDoc(`/users/${user.uid}/`)
         .set(defaultDoc)
