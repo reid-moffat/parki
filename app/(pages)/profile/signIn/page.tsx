@@ -31,7 +31,7 @@ const SignIn = () => {
         }
 
         await signInWithEmailAndPassword(auth, email, password)
-            .then(() => router.push("/map"))
+            .then(() => router.push("/profile"))
             .catch((error) => {
                 if (error.code === 'auth/invalid-email') {
                     setError("Invalid email");
