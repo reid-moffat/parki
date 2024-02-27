@@ -51,7 +51,7 @@ const onUserSignup = functions.auth.user().onCreate(async (user) => {
             <p style="font-size: 12px;">Best Regards,</p>
             <p style="font-size: 12px;">-The Parki Team</p>`;
 
-    return sendEmail(user.email, 'Verify your email for qtma-2023-2024', emailHtml, 'email address verification');
+    return sendEmail(user.email, 'Parki email verification', emailHtml, 'email address verification');
 });
 
 /**
