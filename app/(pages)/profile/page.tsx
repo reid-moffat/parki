@@ -34,13 +34,19 @@ const Profile = () => {
                         className="bg-[#FF4251] rounded-xl text-white h-44 w-18 mb-6"
                         onClick={() => router.push("/map")}
                     />
-                    <div className="bg-[#992831] rounded-xl text-white h-32 w-18 pt-12">
+                    <div
+                        className="bg-[#992831] rounded-xl text-white h-32 w-18 pt-12"
+                        onClick={() => router.push("/profile/help")}
+                    >
                         Help
                     </div>
                 </div>
 
                 <div className="w-full pl-3">
-                    <div className="bg-[#992831] rounded-xl text-white h-32 w-18 mb-6 pt-12">
+                    <div
+                        className="bg-[#992831] rounded-xl text-white h-32 w-18 mb-6 pt-12"
+                        onClick={() => router.push("/profile/editProfile")}
+                    >
                         Edit my profile
                     </div>
                     <Image
