@@ -2,6 +2,8 @@
 import Image from 'next/image';
 import DummyPFP from '@/public/profile/dummyPfp.png';
 import React, { useState } from "react";
+import { MdArrowBackIos } from "react-icons/md";
+import Link from "next/link";
 
 const EditProfile = () => {
 
@@ -12,9 +14,15 @@ const EditProfile = () => {
 
     return (
         <div className="mx-10">
-            <div className="text-center text-4xl font-bold pt-10">
-                Edit Profile
+            <div className="flex py-3 pt-5 text-xl">
+                <Link href='/profile' className='pt-6'>
+                    <MdArrowBackIos size={30}/>
+                </Link>
+                <div className="text-center text-4xl font-bold pt-6 pl-6">
+                    Edit Profile
+                </div>
             </div>
+
 
             <Image
                 src={DummyPFP}
@@ -52,7 +60,7 @@ const EditProfile = () => {
                 onChange={(e) => setEmail(e.target.value)}
             />
 
-            <div className="flex justify-between mt-6">
+            <div className="flex justify-between mt-8">
                 <div className="underline font-bold">
                     Cancel
                 </div>
