@@ -4,8 +4,14 @@ import { MdChevronLeft } from "react-icons/md";
 import Slider from '@mui/material/Slider';
 import { setRange } from "@/app/GlobalRedux/Features/filters";
 import React, { useState } from "react";
+import { auth } from "@/config/firebase";
+import { redirect } from "next/navigation";
 
 const Extend = () => {
+
+    if (auth.currentUser === null) {
+        redirect("/welcome");
+    }
 
     const [daysToExtend, setDaysToExtend] = useState(0);
 

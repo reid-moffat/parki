@@ -3,10 +3,14 @@ import Image from 'next/image';
 import DummyPFP from '@/public/profile/dummyPfp.png';
 import React, { useEffect, useState } from "react";
 import { MdArrowBackIos } from "react-icons/md";
-import { callApi } from "@/config/firebase";
-import { useRouter } from "next/navigation";
+import { auth, callApi } from "@/config/firebase";
+import { redirect, useRouter } from "next/navigation";
 
 const EditProfile = () => {
+
+    if (auth.currentUser === null) {
+        redirect("/welcome");
+    }
 
     const router = useRouter();
 

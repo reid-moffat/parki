@@ -1,7 +1,7 @@
 "use client";
 import { MdChevronLeft, MdLocalParking } from "react-icons/md";
 import React, { useState } from "react";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import Image from "next/image";
 import DummyMap from "@/public/spot/dummy_map.png";
 import { FaWheelchair } from "react-icons/fa";
@@ -10,8 +10,13 @@ import { FaCarTunnel } from "react-icons/fa6";
 import { IoSnowSharp } from "react-icons/io5";
 import { FaPlus } from "react-icons/fa";
 import { IconContext } from "react-icons";
+import { auth } from "@/config/firebase";
 
 const AddSpot = () => {
+
+    if (auth.currentUser === null) {
+        redirect("/welcome");
+    }
 
     const router = useRouter();
 

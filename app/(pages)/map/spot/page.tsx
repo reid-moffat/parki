@@ -14,6 +14,8 @@ import Link from "next/link";
 import { useSelector } from "react-redux";
 import { getSpot } from "@/app/GlobalRedux/Features/currentSpot";
 import dynamic from "next/dynamic";
+import { auth } from "@/config/firebase";
+import { redirect } from "next/navigation";
 
 const MiniMap = dynamic(() => import('@/components/map/MiniMap'), {ssr: false});
 
@@ -83,7 +85,7 @@ const DetailsPage = () => {
                 <div className='w-[80vw] mx-auto'>
                     <Divider/>
                 </div>
-                
+
 
                 <div className='flex flex-col w-[80vw] mx-auto'>
                     <div className='text-md font-bold py-3'>Amenities</div>
@@ -91,7 +93,7 @@ const DetailsPage = () => {
                          {renderAmenities()}
                     </div>
                 </div>
-                
+
                 <br/>
 
                 <div className='w-[80vw] mx-auto'>
@@ -133,8 +135,12 @@ const DetailsPage = () => {
                 className='absolute w-[96vw] pl-[5%] pr-[5%] bottom-[20vw] flex flex-row h-[8%] bg-[#ff4251] rounded-b-xl justify-between items-center z-10'
             >
                 <div className='text-[#FCF9EF] text-[1.75rem] font-normal'>${currentSpot.price}/month</div>
-                <Link href='/map/spot/policy'
-                      className='text-white text-xl bg-[#343632] p-2 rounded-xl ps-8 pe-8'>RESERVE</Link>
+                <Link
+                    href={auth.currentUser === null ? "/welcome" : '/map/spot/policy'}
+                    className={'text-white bg-[#343632] p-2 rounded-xl ps-8 pe-8 ' + (auth.currentUser === null ? 'text-sm' : 'text-xl')}
+                >
+                    {auth.currentUser === null ? "Login to reserve" : "RESERVE"}
+                </Link>
             </div>
         </div>
     )

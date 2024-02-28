@@ -1,10 +1,15 @@
 "use client";
 import Link from "next/link";
 import { MdChevronLeft } from "react-icons/md";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { auth } from "@/config/firebase";
 
 const CurrentSpot = () => {
+
+    if (auth.currentUser === null) {
+        redirect("/welcome");
+    }
 
     const router = useRouter();
 

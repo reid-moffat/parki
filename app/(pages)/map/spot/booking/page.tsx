@@ -6,8 +6,14 @@ import AddVehicle from "@/app/(pages)/map/spot/booking/AddVehicle";
 import SelectDates from "@/app/(pages)/map/spot/booking/Dates";
 import VehicleSelect from "@/app/(pages)/map/spot/booking/VehicleSelect";
 import Confirmation from "@/app/(pages)/map/spot/booking/Confirmation";
+import { auth } from "@/config/firebase";
+import { redirect } from "next/navigation";
 
 const Booking = () => {
+
+    if (auth.currentUser === null) {
+        redirect("/welcome");
+    }
 
     const epoch = new Date(0);
     const [dates, setDates] = useState<[Date, Date]>([epoch, epoch]);

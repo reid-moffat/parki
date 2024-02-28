@@ -2,9 +2,14 @@
 import Link from "next/link";
 import { useState } from "react";
 import { CiSquarePlus } from "react-icons/ci";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
+import { auth } from "@/config/firebase";
 
 const SpotsPage = () => {
+
+    if (auth.currentUser === null) {
+        redirect("/welcome");
+    }
 
     const router = useRouter();
 

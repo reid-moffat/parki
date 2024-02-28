@@ -6,8 +6,14 @@ import Duration from "@/public/spot/duration.png";
 import Link from "next/link";
 import { MdOutlineArrowBackIos } from "react-icons/md";
 import { FaToggleOff, FaToggleOn } from "react-icons/fa";
+import { auth } from "@/config/firebase";
+import { redirect } from "next/navigation";
 
 const PolicyPage = () => {
+
+    if (auth.currentUser === null) {
+        redirect("/welcome");
+    }
 
     const [toggle, setToggle] = React.useState(false);
 
