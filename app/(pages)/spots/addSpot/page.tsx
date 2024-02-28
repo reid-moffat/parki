@@ -1,6 +1,6 @@
 "use client";
 import { MdChevronLeft, MdLocalParking } from "react-icons/md";
-import React, { useState } from "react";
+import { ChangeEvent, useRef, useState } from 'react';
 import { redirect, useRouter } from "next/navigation";
 import Image from "next/image";
 import DummyMap from "@/public/spot/dummy_map.png";
@@ -11,8 +11,6 @@ import { IoSnowSharp } from "react-icons/io5";
 import { FaPlus } from "react-icons/fa";
 import { IconContext } from "react-icons";
 import { auth } from "@/config/firebase";
-import { useRef } from 'react';
-import { ChangeEvent } from 'react'; // Added ChangeEvent import
 
 const AddSpot = () => {
 
@@ -34,25 +32,27 @@ const AddSpot = () => {
 
     // this is for the photo upload
 
-    const fileInputRef = useRef<HTMLInputElement | null>(null);
-
-    const [selectedFile, setSelectedFile] = useState<File | null>(null);
+    const [selectedFiles, setSelectedFiles] = useState<FileList | null>(null);
+    const fileInputRef = useRef<HTMLInputElement>(null);
 
     const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
         if (event.target.files && event.target.files.length > 0) {
-            setSelectedFile(event.target.files[0]);
+            setSelectedFiles(event.target.files);
         }
     };
 
     const handleDivClick = () => {
         // Triggering click event of file input
-        fileInputRef.current?.click();
+        if (fileInputRef.current) {
+            fileInputRef.current.click();
+        }
     };
 
     const handleConfirmPhotos = () => {
         // Logic to handle when the user confirms the photos
         setCurrentStep(5); // Assuming setCurrentStep is a function to update the current step
     };
+
 
     const steps = {
         1: (
@@ -142,10 +142,8 @@ const AddSpot = () => {
             </>
         ),
         4: (
-
-
-            <>
-                <div className="text-3xl font-bold mt-8">
+            <div className="border border-gray-400 p-4 rounded-xl">
+                <div className="text-3xl font-bold">
                     Upload photos
                 </div>
 
@@ -153,43 +151,47 @@ const AddSpot = () => {
                     Hold and drag to rearrange photos!
                 </div>
 
-                <div className="text-[#343632B2]">
+                <div className="text-gray-600">
                     <u>Photo Tips:</u> Take the photo during the day with plenty of natural light! Make sure to include
                     any elements that will help drivers identify the specific parking spot.
                 </div>
-                
-                {selectedFile ? (
-                    <div>
-                        <img src={URL.createObjectURL(selectedFile)} alt="Uploaded" className="w-full rounded-xl mt-6" />
-                        <div
-                            className="absolute w-full bottom-8 bg-[#FF4251] text-center text-white text-2xl font-semibold rounded-2xl p-3 cursor-pointer"
-                            onClick={handleConfirmPhotos}
-                        >
-                            Confirm Photos
-                        </div>
+
+                <div className="border border-gray-400 p-4 rounded-xl mt-6" onClick={handleDivClick}>
+                    <div className="flex justify-center items-center h-32 border-dashed border-4 border-gray-400 rounded-xl">
+                        {selectedFiles ? (
+                            Array.from(selectedFiles).map((file, index) => (
+                                <div key={index} className="relative w-24 h-24 mr-4">
+                                    <img
+                                        src={URL.createObjectURL(file)}
+                                        alt={`Uploaded ${index + 1}`}
+                                        className="w-full h-full object-cover rounded-md border border-gray-400"
+                                    />
+                                </div>
+                            ))
+                        ) : (
+                            <div className="text-center">
+                                <FaPlus className="text-5xl mb-1" />
+                                Add Photo
+                            </div>
+                        )}
                     </div>
-                ) : (
-                    <div className="w-full bg-[#dae2f0] rounded-xl text-center mt-6" onClick={handleDivClick}>
-                        <div className="px-32 py-24">
-                            <FaPlus className="ml-7 mb-1" />
-                            Add&nbsp;Photo
-                        </div>
-                        <input
-                            ref={fileInputRef}
-                            type="file"
-                            style={{ display: "none" }}
-                            onChange={handleFileChange}
-                        />
-                    </div>
-                )}
+                </div>
+
+                <input
+                    ref={fileInputRef}
+                    type="file"
+                    style={{ display: "none" }}
+                    onChange={handleFileChange}
+                    multiple
+                />
 
                 <div
-                    className="absolute w-full bottom-8 bg-[#FF4251] text-center text-white text-2xl font-semibold rounded-2xl p-3"
-                    onClick={() => setCurrentStep(5)}
+                    className="mt-6 bg-red-500 text-white text-center py-2 rounded-xl cursor-pointer"
+                    onClick={handleConfirmPhotos}
                 >
                     Confirm Photos
                 </div>
-            </>
+            </div>
         ),
         5: (
             <>
