@@ -79,7 +79,7 @@ const Help = () => {
                 </div>
             </div>
 
-            <div className="flex rounded-2xl border-black border-solid border-[1.5px] shadow-2xl p-2 mt-4">
+            <div className="flex rounded-3xl border-black border-solid border-[1.5px] shadow-2xl p-2 mt-4">
                 <Image src={SearchIcon} alt={"Search Icon"} width={30} height={20}/>
                 <input
                     className="pl-2 text-lg bg-transparent border-transparent"
