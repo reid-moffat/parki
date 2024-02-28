@@ -6,11 +6,13 @@ import { useAsync } from "react-async-hook";
 import { callApi } from "@/config/firebase";
 import Image from "next/image";
 import Car from "@/public/spot/car.png";
+import { CiClock2 } from "react-icons/ci";
 
 // @ts-ignore
 const YourBooking = ({ setPage, dates }) => {
 
     const defaultVehicle = useAsync(callApi('getDefaultVehicle'), []);
+    const epoch = new Date(0);
 
     const renderVehicle = () => {
         if (defaultVehicle.result && defaultVehicle.result.data !== null) {
@@ -50,6 +52,44 @@ const YourBooking = ({ setPage, dates }) => {
         );
     }
 
+    const renderDates = () => {
+        // Check if dates are selected (both required)
+        if (dates[0].getTime() !== epoch.getTime() && dates[1].getTime() !== epoch.getTime()) {
+
+            const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+            const getDatePeriod = () => {
+                const startMonth = monthNames[dates[0].getMonth()];
+                const endMonth = monthNames[dates[1].getMonth()];
+
+                return startMonth + " " + dates[0].getDate() + " - " + (endMonth !== startMonth ? endMonth + " " : "") + dates[1].getDate();
+            }
+
+            return (
+                <div className="flex border-solid border-black border-2 rounded-2xl m-2 ml-6 mr-6"
+                     onClick={() => setPage("selectDates")}>
+                    <CiClock2 className="my-6 mx-4" size={30}/>
+                    <div className="my-4">
+                        <div className="font-bold">
+                            {getDatePeriod()}
+                        </div>
+                        {Math.round((dates[1].getTime() - dates[0].getTime()) / 1000 / 3600 / 24 + 1)} days
+                    </div>
+                </div>
+            );
+        }
+
+        return (
+            <div className="flex border-solid border-black border-2 rounded-2xl m-2 ml-6 mr-6"
+                 onClick={() => setPage("selectDates")}>
+                <CiSquarePlus className="m-4" size={30}/>
+                <div className="font-bold m-4 ml-16">
+                    Add Day(s)
+                </div>
+            </div>
+        );
+    }
+
     return (
         <>
             <div className='flex text-3xl font-bold p-8'>
@@ -66,14 +106,9 @@ const YourBooking = ({ setPage, dates }) => {
             {renderVehicle()}
 
             <div className="ml-6 mb-2 font-bold">
-                Select Date
+                Select Dates
             </div>
-            <div className="flex border-solid border-black border-2 rounded-2xl m-2 ml-6 mr-6" onClick={() => setPage("selectDates")}>
-                <CiSquarePlus className="m-4" size={30}/>
-                <div className="font-bold m-4 ml-16">
-                    Add Day(s)
-                </div>
-            </div>
+            {renderDates()}
 
             <div className='flex justify-center mt-8'>
                 <div

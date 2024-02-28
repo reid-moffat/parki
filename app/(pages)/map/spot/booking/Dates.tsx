@@ -4,14 +4,13 @@ import Line from "@/public/Line.png";
 import { MdOutlineArrowBackIos } from "react-icons/md";
 
 // @ts-ignore
-const SelectDates = ({ setPage }) => {
+const SelectDates = ({ setPage, dates, setDates }) => {
 
     const [numMonths, setNumMonths] = useState(3);
 
     const epoch = new Date(0);
     const currentDate = new Date();
     currentDate.setHours(0, 0, 0, 0); // Removes time from the date - just the current day
-    const [selectedDays, setSelectedDays] = useState<[Date, Date]>([epoch, epoch]);
 
     const daySelected = (year: number, month: number, day: number) => {
 
@@ -19,16 +18,16 @@ const SelectDates = ({ setPage }) => {
         if (day <= 0) return;
 
         const givenDate = new Date(year, month, day);
-        if (givenDate.getTime() === selectedDays[0].getTime() || givenDate.getTime() === selectedDays[1].getTime()) {
+        if (givenDate.getTime() === dates[0].getTime() || givenDate.getTime() === dates[1].getTime()) {
             return 2;
         }
-        if (selectedDays[0].getTime() !== epoch.getTime() && selectedDays[1].getTime() !== epoch.getTime()) {
-            if (selectedDays[0].getTime() < selectedDays[1].getTime()) {
-                if (givenDate.getTime() > selectedDays[0].getTime() && givenDate.getTime() < selectedDays[1].getTime()) {
+        if (dates[0].getTime() !== epoch.getTime() && dates[1].getTime() !== epoch.getTime()) {
+            if (dates[0].getTime() < dates[1].getTime()) {
+                if (givenDate.getTime() > dates[0].getTime() && givenDate.getTime() < dates[1].getTime()) {
                     return 1;
                 }
             } else {
-                if (givenDate.getTime() < selectedDays[0].getTime() && givenDate.getTime() > selectedDays[1].getTime()) {
+                if (givenDate.getTime() < dates[0].getTime() && givenDate.getTime() > dates[1].getTime()) {
                     return 1;
                 }
             }
@@ -46,14 +45,14 @@ const SelectDates = ({ setPage }) => {
         const givenDate = new Date(year, month, day);
         if (givenDate < currentDate) return;
 
-        if (selectedDays[0].getTime() === epoch.getTime()) {
-            setSelectedDays([givenDate, selectedDays[1]]);
-        } else if (selectedDays[1].getTime() === epoch.getTime()) {
-            setSelectedDays([selectedDays[0], givenDate]);
+        if (dates[0].getTime() === epoch.getTime()) {
+            setDates([givenDate, dates[1]]);
+        } else if (dates[1].getTime() === epoch.getTime()) {
+            setDates([dates[0], givenDate]);
         }
 
-        if (selectedDays[0].getTime() !== epoch.getTime() && selectedDays[1].getTime() !== epoch.getTime()) {
-            setSelectedDays([givenDate, epoch]);
+        if (dates[0].getTime() !== epoch.getTime() && dates[1].getTime() !== epoch.getTime()) {
+            setDates([givenDate, epoch]);
         }
     }
 

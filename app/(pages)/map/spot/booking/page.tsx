@@ -8,20 +8,21 @@ import VehicleSelect from "@/app/(pages)/map/spot/booking/VehicleSelect";
 
 const Booking = () => {
 
-    const [toggle, setToggle] = useState(true);
+    const epoch = new Date(0);
+    const [dates, setDates] = useState<[Date, Date]>([epoch, epoch]);
 
     const [page, setPage] = useState("yourBooking");
 
     const renderPage = () => {
         switch (page) {
             case "yourBooking":
-                return <YourBooking setPage={setPage}/>;
+                return <YourBooking setPage={setPage} dates={dates}/>;
             case "vehicleSelect":
                 return <VehicleSelect setPage={setPage}/>;
             case "addVehicle":
                 return <AddVehicle setPage={setPage}/>;
             case "selectDates":
-                return <SelectDates setPage={setPage}/>;
+                return <SelectDates setPage={setPage} dates={dates} setDates={setDates}/>;
             case "review":
                 return <Review setPage={setPage}/>;
             default:
