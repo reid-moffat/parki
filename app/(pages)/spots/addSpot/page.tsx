@@ -36,10 +36,12 @@ const AddSpot = () => {
 
     const fileInputRef = useRef<HTMLInputElement | null>(null);
 
-    const [selectedFile, setSelectedFile] = useState(null);
+    const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
-    const handleFileChange = (event: { target: { files: React.SetStateAction<null>[]; }; }) => {
-        setSelectedFile(event.target.files[0]);
+    const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
+        if (event.target.files && event.target.files.length > 0) {
+            setSelectedFile(event.target.files[0]);
+        }
     };
 
     const handleDivClick = () => {
