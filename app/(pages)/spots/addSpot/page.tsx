@@ -12,6 +12,7 @@ import { FaPlus } from "react-icons/fa";
 import { IconContext } from "react-icons";
 import { auth } from "@/config/firebase";
 import { useRef } from 'react';
+import { ChangeEvent } from 'react'; // Added ChangeEvent import
 
 const AddSpot = () => {
 
@@ -33,16 +34,17 @@ const AddSpot = () => {
 
     // this is for the photo upload
 
-    const fileInputRef = useRef(null);
+    const fileInputRef = useRef<HTMLInputElement | null>(null);
+
     const [selectedFile, setSelectedFile] = useState(null);
 
-    const handleFileChange = (event) => {
+    const handleFileChange = (event: { target: { files: React.SetStateAction<null>[]; }; }) => {
         setSelectedFile(event.target.files[0]);
     };
 
     const handleDivClick = () => {
         // Triggering click event of file input
-        fileInputRef.current.click();
+        fileInputRef.current?.click();
     };
 
     const handleConfirmPhotos = () => {
