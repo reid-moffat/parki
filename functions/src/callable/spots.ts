@@ -7,7 +7,7 @@ import { getCollection, getDoc } from "../helpers/helperFunctions";
 const getSpots = onCall((request) => {
     return getCollection('/spots/')
         .get()
-        .then((docs) => docs.docs.map((doc) => doc.data()))
+        .then((docs) => docs.docs.map((doc) => ({ id: doc.id, ...doc.data() })))
         .catch((error) => {
             console.error(`Error getting parking spots: ${error.message}`);
             throw new HttpsError('internal', 'Error getting parking spots');
@@ -25,7 +25,7 @@ const getSpot = onCall((request) => {
 
     return getDoc(`/spots/${request.data.spotId}/`)
         .get()
-        .then((doc) => doc.data())
+        .then((doc) => ({ id: doc.id, ...doc.data() }))
         .catch((error) => {
             console.error(`Error getting parking spot: ${error.message}`);
             throw new HttpsError('internal', 'Error getting parking spot');
