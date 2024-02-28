@@ -6,7 +6,8 @@ import { CiSquarePlus } from "react-icons/ci";
 
 // @ts-ignore
 const YourBooking = ({ setPage }) => {
-    var valid = 0;
+    let valid = 0;
+
     return (
         <>
             <div className='flex text-3xl font-bold p-8'>
@@ -20,7 +21,8 @@ const YourBooking = ({ setPage }) => {
             <div className="ml-6 mb-2 font-bold">
                 Select Vehicle
             </div>
-            <div className="flex border-solid border-black border-2 rounded-2xl m-2 ml-6 mr-6" onClick={() => {setPage("addVehicle")
+            <div className="flex border-solid border-black border-2 rounded-2xl m-2 ml-6 mr-6" onClick={() => {
+                    setPage("vehicleSelect");
                     valid += 1;
                 }}>
 

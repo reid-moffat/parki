@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { MdOutlineArrowBackIos } from "react-icons/md";
 
 // @ts-ignore
@@ -6,7 +5,7 @@ const AddVehicle = ({ setPage }) => {
     return (
         <>
             <div className='flex text-3xl font-bold p-8'>
-                <MdOutlineArrowBackIos className='w-10 h-10 mr-2' onClick={() => setPage("yourBooking")}/>
+                <MdOutlineArrowBackIos className='w-10 h-10 mr-2' onClick={() => setPage("vehicleSelect")}/>
                 <div className="pl-2">
                     Add New Vehicle
                 </div>
