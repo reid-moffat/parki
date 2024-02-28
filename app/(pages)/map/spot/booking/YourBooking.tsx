@@ -16,8 +16,12 @@ const YourBooking = ({ setPage }) => {
     const renderVehicle = () => {
         if (defaultVehicle.result && defaultVehicle.result.data !== null) {
             const vehicle = defaultVehicle.result.data;
+
             return (
-                <>
+                <div
+                    className="flex border-solid border-black border-2 rounded-2xl m-2 ml-6 mr-6"
+                    onClick={() => setPage("vehicleSelect")}
+                >
                     <Image src={Car} alt={"Car"} className="w-12 h-8 m-4"/>
                     <div className="flex-col m-2">
                         <div className="font-bold">
@@ -30,17 +34,20 @@ const YourBooking = ({ setPage }) => {
                     <div className="ml-auto mr-8 mt-4 text-blue-500 underline">
                         Change
                     </div>
-                </>
+                </div>
             );
         }
 
         return (
-            <>
+            <div
+                className="flex border-solid border-black border-2 rounded-2xl m-2 ml-6 mr-6"
+                onClick={() => setPage("addVehicle")}
+            >
                 <CiSquarePlus className="m-4" size={30}/>
                 <div className="font-bold m-4 ml-16">
                     Select Vehicle
                 </div>
-            </>
+            </div>
         );
     }
 
@@ -57,9 +64,7 @@ const YourBooking = ({ setPage }) => {
             <div className="ml-6 mb-2 font-bold">
                 Select Vehicle
             </div>
-            <div className="flex border-solid border-black border-2 rounded-2xl m-2 ml-6 mr-6" onClick={() => setPage("vehicleSelect")}>
-                {renderVehicle()}
-            </div>
+            {renderVehicle()}
 
             <div className="ml-6 mb-2 font-bold">
                 Select Date
