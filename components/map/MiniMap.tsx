@@ -3,7 +3,6 @@ import React, { useRef } from 'react'
 import { MapContainer, TileLayer } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 import CustomMarker from './CustomMarker';
-import dummyData from "@/config/dummyData";
 import { useDispatch, useSelector } from "react-redux";
 import { getRange, getPrice, getAmenities } from "@/app/GlobalRedux/Features/filters";
 import { getSpot, updateSpot, clearSpot } from "@/app/GlobalRedux/Features/currentSpot";
@@ -11,7 +10,7 @@ import { useAsync } from "react-async-hook";
 import { callApi } from '@/config/firebase';
 
 // @ts-ignore
-function Maps({lat, lng}) {
+function MiniMaps({lat, lng}) {
     const center = { lat, lng };
     const ZOOM_LEVEL = 14.5;
     const mapRef = useRef();
@@ -26,18 +25,6 @@ function Maps({lat, lng}) {
 
     const spots = useAsync(callApi('getSpots'), []);
 
-    const handleMarkerClick = (address: string) => {
-        // @ts-ignore
-        const spotData = spots.result.data.find((spot) => spot.address === address);
-
-        // Closes the map marker if the current spot is clicked, or opens/updates it if a new spot is clicked
-        if (spotData && spotData.address === currentSpot?.address) {
-            dispatch(clearSpot());
-        } else if (spotData) {
-            dispatch(updateSpot(spotData));
-        }
-    }
-
     const renderPins = () => {
         if (!spots.result) return;
 
@@ -51,7 +38,7 @@ function Maps({lat, lng}) {
             .map((data: any, index: any) => {
                 return (
                     <CustomMarker key={index} lat={data.latitude} long={data.longitude}
-                              address={data.address} price={data.price} onClick={handleMarkerClick}/>
+                              address={data.address} price={data.price} onClick={()=>{}}/>
                 );
             });
     }
@@ -79,4 +66,4 @@ function Maps({lat, lng}) {
     )
 }
 
-export default Maps;
+export default MiniMaps;
