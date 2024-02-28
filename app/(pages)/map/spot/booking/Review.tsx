@@ -125,7 +125,10 @@ const Review = ({ setPage, dates }) => {
                     Once payment is received, your spot will be <text className="text-green-500">confirmed</text>.
                 </div>
 
-                <div className="w-full rounded-2xl bg-[#FF4251] p-2 text-center text-white text-lg mt-6">
+                <div
+                    className="w-full rounded-2xl bg-[#FF4251] p-2 text-center text-white text-lg mt-6"
+                    onClick={() => setPage("confirmation")}
+                >
                     CONFIRM BOOKING
                 </div>
             </div>

@@ -5,6 +5,7 @@ import Review from "@/app/(pages)/map/spot/booking/Review";
 import AddVehicle from "@/app/(pages)/map/spot/booking/AddVehicle";
 import SelectDates from "@/app/(pages)/map/spot/booking/Dates";
 import VehicleSelect from "@/app/(pages)/map/spot/booking/VehicleSelect";
+import Confirmation from "@/app/(pages)/map/spot/booking/Confirmation";
 
 const Booking = () => {
 
@@ -25,6 +26,8 @@ const Booking = () => {
                 return <SelectDates setPage={setPage} dates={dates} setDates={setDates}/>;
             case "review":
                 return <Review setPage={setPage} dates={dates}/>;
+            case "confirmation":
+                return <Confirmation/>;
             default:
                 throw new Error(`Invalid page state: ${page}`);
         }
