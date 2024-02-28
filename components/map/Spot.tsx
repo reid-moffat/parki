@@ -24,11 +24,11 @@ const Spot = () => {
                     </div>
                     <div className="ml-auto">
                         <div className="text-3xl font-bold">${currentSpot.price}</div>
-                        <div className="text-sm">{currentSpot.period}</div>
+                        <div className="text-sm">per {currentSpot.period}</div>
                     </div>
                 </div>
                 <div className="flex flex-row mt-[8vh]">
-                    <div className="text-xs">{currentSpot.distance}m</div>
+                    <div className="text-xs">{Math.round(currentSpot.distance)}m away</div>
                     <div className="flex ml-auto space-x-2 items-center">
                         {currentSpot.amenities.map((amenity, key) => (
                             <div key={key} className="text-[10px] border-[1px] border-block rounded-full px-2">{amenity}</div>

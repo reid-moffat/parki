@@ -29,8 +29,6 @@ function Maps() {
         // @ts-ignore
         const spotData = spots.result.data.find((spot) => spot.address === address);
 
-        console.log(JSON.stringify(spotData, null, 4));
-
         // Closes the map marker if the current spot is clicked, or opens/updates it if a new spot is clicked
         if (spotData && spotData.address === currentSpot?.address) {
             dispatch(clearSpot());

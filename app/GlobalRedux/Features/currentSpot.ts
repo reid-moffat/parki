@@ -10,9 +10,11 @@ export interface CurrentSpotState {
         longitude: number,
         description: string,
         price: number,
+        period: string,
 
         amenities: string[],
         rating: number,
+        distance: number,
     }
 }
 
@@ -25,9 +27,11 @@ const initialState: CurrentSpotState = {
         longitude: 0,
         description: "",
         price: 0,
+        period: "",
 
         amenities: [],
         rating: 0,
+        distance: 0
     }
 }
 
