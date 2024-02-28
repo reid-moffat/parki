@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "@firebase/auth";
-import { getFunctions } from "@firebase/functions";
+import { getFunctions, httpsCallable } from "@firebase/functions";
 
 // Firebase configuration (API key is non-sensitive, just an identifier so can be public)
 const firebaseConfig = {
@@ -19,4 +19,6 @@ const app = initializeApp(firebaseConfig);
 const functions = getFunctions(app);
 const auth = getAuth(app);
 
-export { auth, functions };
+const callApi = (name: string) => httpsCallable(functions, 'getSpots');
+
+export { auth, callApi };
