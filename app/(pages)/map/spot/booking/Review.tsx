@@ -41,8 +41,8 @@ const Review = ({ setPage, dates }) => {
         }
 
         return (
-            <>
-                <div className="rounded-xl border-2 border-black mt-4 ml-10 mr-10 pt-4 pb-4 pl-4 pr-4 font-outfit">
+            <div className="mx-12">
+                <div className="rounded-xl border-2 border-black mt-2 pt-4 pb-4 pl-4 pr-4 font-outfit">
                     <div className="flex justify-between">
                         <div>
                             Address
@@ -87,7 +87,7 @@ const Review = ({ setPage, dates }) => {
                     </div>
                 </div>
 
-                <div className="rounded-xl border-2 border-black mt-4 ml-10 mr-10 pt-4 pb-4 pl-4 pr-4 font-outfit">
+                <div className="rounded-xl border-2 border-black mt-4 pt-4 pb-4 pl-4 pr-4 font-outfit">
                     <div className="flex justify-between">
                         <div>
                             Price/period ({currentSpot.period})
@@ -115,14 +115,20 @@ const Review = ({ setPage, dates }) => {
                     </div>
                 </div>
 
-                <div className="flex justify-center mt-8">
-                    <div
-                        className="rounded-2xl bg-[#FF4251] p-2 text-center text-white text-xl pl-14 pr-14 mt-10"
-                    >
-                        CONFIRM PAYMENT
-                    </div>
+                <div className="mt-4">
+                    Once confirmed, you must send <text className="font-bold">${getPrice()[1]}</text> to:
                 </div>
-            </>
+                <div className="rounded-2xl bg-[#4472CA33] p-3 pl-4">
+                    18rem8@queensu.ca{/*<text className="italic">(payment WIP)</text>*/}
+                </div>
+                <div>
+                    Once payment is received, your spot will be <text className="text-green-500">confirmed</text>.
+                </div>
+
+                <div className="w-full rounded-2xl bg-[#FF4251] p-2 text-center text-white text-lg mt-6">
+                    CONFIRM BOOKING
+                </div>
+            </div>
         );
     }
 
