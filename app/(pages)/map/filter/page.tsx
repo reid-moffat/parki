@@ -125,8 +125,8 @@ const FilterPage = () => {
             </div>
 
             <div className='flex flex-row justify-between w-[80vw] mx-auto pt-2'>
-                <button className='w-[30vw] mt-1 text-center py-3 mr-3 outline-none rounded-2xl border-2 border-[#343632] text-[#343632] font-bold font-3xl'>Reset</button>
-                <button className='w-[50vw] mt-1 text-center py-3 outline-none rounded-2xl bg-[#FF4251] text-[#FCF9EF] font-bold font-3xl'>Apply Filters</button>
+                <button className='w-[30vw] mt-1 text-center py-3 mr-3 outline-none rounded-2xl border-2 border-[#343632] text-[#343632] font-bold font-3xl' onClick={()=>{dispatch(setRange(30)); dispatch(setPrice([0,200]));}}>Reset</button>
+                <Link href="/map" className='w-[50vw] mt-1 text-center py-3 outline-none rounded-2xl bg-[#FF4251] text-[#FCF9EF] font-bold font-3xl'>Apply Filters</Link>
             </div>
             <br/>
         </>
