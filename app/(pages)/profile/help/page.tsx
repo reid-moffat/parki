@@ -16,6 +16,19 @@ const questions = [
     {
         question: "Help! Someone’s in my spot!",
         answer: "We’re sorry to hear that! Please contact us immediately and we will help resolve the situation."
+    },
+    {
+        question: "Can I rent out my parking spot?",
+        answer: "Yes! You can list your parking spot for rent on our app; click the road icon on the bottom right."
+    },
+    {
+        question: "I need to use my own spot!",
+        answer: "You can disable your parking spot from the spot menu. Note that any existing rentals will not be" +
+            " affected, so if someone is using it currently you won't be able to."
+    },
+    {
+        question: "How can I update my spot?",
+        answer: "You can edit your parking spot from the spot menu. Click the road icon on the bottom right."
     }
 ];
 
@@ -23,13 +36,15 @@ const Help = () => {
 
     const router = useRouter();
 
+    const [search, setSearch] = useState("");
     const [currQuestion, setCurrQuestion] = useState("");
 
     const renderQuestions = () => {
 
         return (
             <div>
-                {questions.map((q, index) => {
+                {questions.filter((q) => q.question.toLowerCase().includes(search.toLowerCase()))
+                    .map((q, index) => {
                     return (
                         <div key={index} className="pt-5">
                             <div className="flex justify-between bg-[#992831] rounded-xl p-2">
@@ -64,9 +79,14 @@ const Help = () => {
                 </div>
             </div>
 
-            <div className="flex rounded-2xl border-black border-solid border-[1.5px] shadow-2xl p-2">
+            <div className="flex rounded-2xl border-black border-solid border-[1.5px] shadow-2xl p-2 mt-4">
                 <Image src={SearchIcon} alt={"Search Icon"} width={30} height={20}/>
-                <div className="pl-2 text-lg">Search</div>
+                <input
+                    className="pl-2 text-lg bg-transparent border-transparent"
+                    placeholder="Search"
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                />
             </div>
 
             {renderQuestions()}
