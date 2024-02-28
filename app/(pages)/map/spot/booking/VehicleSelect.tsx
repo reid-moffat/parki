@@ -7,29 +7,28 @@ import { FaRegCircle } from "react-icons/fa";
 import { FaRegDotCircle } from "react-icons/fa";
 import { useState } from "react";
 import { callApi } from "@/config/firebase";
+import { useAsync } from "react-async-hook";
 
 // @ts-ignore
 const VehicleSelect = ({ setPage }) => {
 
+    const vehicles = useAsync(callApi('getVehicles'), []);
+
     const [selected, setSelected] = useState<null|{ make: string, model: string, license: string }>(null);
 
     const renderVehicles = () => {
-        const vehicles = [
-            {
-                make: "Toyota",
-                model: "Corolla",
-                license: "CFXO 392"
-            },
-            {
-                make: "Honda",
-                model: "Civic",
-                license: "HYAN 041"
-            }
-        ];
+        if (!vehicles.result) {
+            return;
+        }
+        // @ts-ignore
+        if (vehicles.result.data.length === 0) {
+            setPage("addVehicle");
+        }
 
         return (
             <>
-                {vehicles.map((vehicle, index) => (
+                { /* @ts-ignore */ }
+                {vehicles.result.data.map((vehicle, index) => (
                     <div className="flex border-solid border-black border-2 rounded-2xl my-2" onClick={() => setSelected(vehicle)}>
                         <Image src={selected && selected.license === vehicle.license ? Car : CarUnselected} alt={"Car"} className="w-12 h-8 m-4"/>
                         <div className="flex-col m-2">
