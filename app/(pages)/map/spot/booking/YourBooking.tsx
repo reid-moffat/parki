@@ -112,7 +112,9 @@ const YourBooking = ({ setPage, dates }) => {
 
             <div className='flex justify-center mt-8'>
                 <div
-                    className={'rounded-2xl bg-[#FF4251] p-2 text-white text-xl ps-20 pe-20 mt-60 ' + ((defaultVehicle.result?.data && dates) ? "bg-[#FF4251]" : "bg-[#FF8D94] pointer-events-none")}
+                    className={'rounded-2xl bg-[#FF4251] p-2 text-white text-xl ps-20 pe-20 mt-60 ' +
+                        ((defaultVehicle.result?.data && dates[0].getTime() !== epoch.getTime() && dates[1].getTime() !== epoch.getTime())
+                            ? "bg-[#FF4251]" : "bg-[#FF8D94] pointer-events-none")}
                     onClick={() => setPage("review")}>
                     CONFIRM
                 </div>
