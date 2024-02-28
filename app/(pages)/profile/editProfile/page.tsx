@@ -87,6 +87,7 @@ const EditProfile = () => {
             <input
                 className='w-full py-3 px-5 mb-1 outline-none rounded-2xl bg-[#4472CA] bg-opacity-20'
                 value={name}
+                disabled={email === ""}
                 onChange={(e) => setName(e.target.value)}
             />
 
@@ -100,6 +101,7 @@ const EditProfile = () => {
             <input
                 className='w-full py-3 px-5 mb-1 outline-none rounded-2xl bg-[#4472CA] bg-opacity-20'
                 value={renderPhone(phone)}
+                disabled={email === ""}
                 onChange={(e) => updatePhone(e.target.value)}
             />
 
@@ -107,6 +109,7 @@ const EditProfile = () => {
             <input
                 className='w-full py-3 px-5 outline-none rounded-2xl bg-[#4472CA] bg-opacity-20'
                 value={etransfer}
+                disabled={email === ""}
                 onChange={(e) => setEtransfer(e.target.value)}
             />
 
