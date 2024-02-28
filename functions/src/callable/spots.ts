@@ -1,5 +1,6 @@
 import { HttpsError, onCall } from "firebase-functions/v2/https";
 import { getCollection, getDoc } from "../helpers/helperFunctions";
+import { logger } from "firebase-functions";
 
 /**
  * Gets all parking spots from the db
@@ -19,7 +20,7 @@ const getSpots = onCall((request) => {
             });
         })
         .catch((error) => {
-            console.error(`Error getting parking spots: ${error.message}`);
+            logger.error(`Error getting parking spots: ${error.message}`);
             throw new HttpsError('internal', 'Error getting parking spots');
         });
 });
@@ -37,7 +38,7 @@ const getSpot = onCall((request) => {
         .get()
         .then((doc) => ({ id: doc.id, ...doc.data() }))
         .catch((error) => {
-            console.error(`Error getting parking spot: ${error.message}`);
+            logger.error(`Error getting parking spot: ${error.message}`);
             throw new HttpsError('internal', 'Error getting parking spot');
         });
 });
