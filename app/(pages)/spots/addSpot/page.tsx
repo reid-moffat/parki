@@ -11,7 +11,7 @@ import { IoSnowSharp } from "react-icons/io5";
 import { FaPlus } from "react-icons/fa";
 import { IconContext } from "react-icons";
 import { auth } from "@/config/firebase";
-import { useRef} from 'react';
+import { useRef } from 'react';
 
 const AddSpot = () => {
 
@@ -30,7 +30,7 @@ const AddSpot = () => {
         "On-Site Staff": false,
         "Shovelling Included": false,
     });
-    
+
     // this is for the photo upload
 
     const fileInputRef = useRef(null);
@@ -61,7 +61,7 @@ const AddSpot = () => {
                     Where is it?
                 </div>
 
-                <input type="text" placeholder="Address" className="w-full bg-[#4472CA33] rounded-xl mt-6 px-6 py-3"/>
+                <input type="text" placeholder="Address" className="w-full bg-[#4472CA33] rounded-xl mt-6 px-6 py-3" />
 
                 <div
                     className="absolute w-full bottom-8 bg-[#FF4251] text-center text-white text-2xl font-semibold rounded-2xl p-3"
@@ -81,7 +81,7 @@ const AddSpot = () => {
                     Adjust map to the exact location
                 </div>
 
-                <Image src={DummyMap} alt={"Map"} className="mt-4 mb-4"/>
+                <Image src={DummyMap} alt={"Map"} className="mt-4 mb-4" />
 
                 <div
                     className="absolute w-full bottom-8 bg-[#FF4251] text-center text-white text-2xl font-semibold rounded-2xl p-3"
@@ -101,8 +101,8 @@ const AddSpot = () => {
                     Please select all the features your parking spot offers:
                 </div>
 
-                {[<FaWheelchair key={"Accessible"}/>, <MdLocalParking key={"Self-Park"}/>, <RiBattery2ChargeLine key={"EV Charging"}/>,
-                    <FaCarTunnel key={"Covered"}/>, <FaWheelchair key={"On-Site Staff"}/>, <IoSnowSharp key={"Shovelling Included"}/>]
+                {[<FaWheelchair key={"Accessible"} />, <MdLocalParking key={"Self-Park"} />, <RiBattery2ChargeLine key={"EV Charging"} />,
+                <FaCarTunnel key={"Covered"} />, <FaWheelchair key={"On-Site Staff"} />, <IoSnowSharp key={"Shovelling Included"} />]
                     .map((amenity) => {
                         // @ts-ignore
                         const isClicked = amenities[amenity.key];
@@ -115,10 +115,10 @@ const AddSpot = () => {
                                         " border-[1px] mx-2 my-2 py-1 text-sm font-light"}
                                     onClick={() => {
                                         // @ts-ignore
-                                        setAmenities({...amenities, [amenity.key]: !isClicked});
+                                        setAmenities({ ...amenities, [amenity.key]: !isClicked });
                                     }}
                                 >
-                                    <IconContext.Provider value={{color: '#FF4251'}}>
+                                    <IconContext.Provider value={{ color: '#FF4251' }}>
                                         {amenity}
                                     </IconContext.Provider>
                                     &nbsp;
@@ -138,8 +138,8 @@ const AddSpot = () => {
             </>
         ),
         4: (
-            
-            
+
+
             <>
                 <div className="text-3xl font-bold mt-8">
                     Upload photos
@@ -153,21 +153,31 @@ const AddSpot = () => {
                     <u>Photo Tips:</u> Take the photo during the day with plenty of natural light! Make sure to include
                     any elements that will help drivers identify the specific parking spot.
                 </div>
-
-                <div className="w-full bg-[#dae2f0] rounded-xl text-center mt-6" onClick={handleDivClick}>
-
-
-                    <div className="px-32 py-24">
-                        <FaPlus className="ml-7 mb-1"/>
-                        Add&nbsp;Photo
+                
+                {selectedFile ? (
+                    <div>
+                        <img src={URL.createObjectURL(selectedFile)} alt="Uploaded" className="w-full rounded-xl mt-6" />
+                        <div
+                            className="absolute w-full bottom-8 bg-[#FF4251] text-center text-white text-2xl font-semibold rounded-2xl p-3 cursor-pointer"
+                            onClick={handleConfirmPhotos}
+                        >
+                            Confirm Photos
+                        </div>
                     </div>
-                    <input 
-                    ref={fileInputRef} 
-                    type="file" 
-                    style={{ display: "none" }} 
-                    onChange={handleFileChange} 
-                />
-                </div>
+                ) : (
+                    <div className="w-full bg-[#dae2f0] rounded-xl text-center mt-6" onClick={handleDivClick}>
+                        <div className="px-32 py-24">
+                            <FaPlus className="ml-7 mb-1" />
+                            Add&nbsp;Photo
+                        </div>
+                        <input
+                            ref={fileInputRef}
+                            type="file"
+                            style={{ display: "none" }}
+                            onChange={handleFileChange}
+                        />
+                    </div>
+                )}
 
                 <div
                     className="absolute w-full bottom-8 bg-[#FF4251] text-center text-white text-2xl font-semibold rounded-2xl p-3"
@@ -214,10 +224,10 @@ const AddSpot = () => {
     return (
         <div className="relative h-full mx-6">
             <div className="pt-10">
-                <MdChevronLeft size={42} onClick={onClickBack}/>
+                <MdChevronLeft size={42} onClick={onClickBack} />
             </div>
 
-            { /* @ts-ignore */ }
+            { /* @ts-ignore */}
             {steps[currentStep]}
         </div>
     );
