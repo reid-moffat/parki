@@ -195,10 +195,17 @@ const SelectDates = ({ setPage, dates, setDates }) => {
     return (
         <div className="h-full">
             <div className='flex text-3xl font-bold p-8'>
-                <MdOutlineArrowBackIos className='w-10 h-10 mr-2' onClick={() => setPage("yourBooking")}/>
+                <MdOutlineArrowBackIos className='w-10 h-10 mr-2' onClick={() => { setDates([epoch, epoch]); setPage("yourBooking");}}/>
                 <div className="pl-16">
                     Dates
                 </div>
+            </div>
+
+            <div
+                className="absolute rounded-2xl bg-[#FF4251] text-center text-white text-xl bottom-[14vh] left-[15vw] w-[70vw] p-2"
+                onClick={() => setPage("yourBooking")}
+            >
+                Select Date(s)
             </div>
 
             <div className="h-[80%] overflow-y-scroll mb-40">
@@ -206,7 +213,7 @@ const SelectDates = ({ setPage, dates, setDates }) => {
 
                 {numMonths < 12 &&
                     <div
-                        className="rounded-2xl bg-[#FF4251] p-2 text-center text-white text-xl ml-20 mr-20 mt-10"
+                        className="rounded-2xl bg-[#FF4251] p-2 text-center text-white text-xl mx-20 mt-10 mb-20"
                         onClick={() => setNumMonths(numMonths + 3)}
                     >
                         More months
