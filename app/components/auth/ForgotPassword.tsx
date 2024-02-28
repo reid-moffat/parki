@@ -1,14 +1,13 @@
 "use client";
 import React, { useState } from 'react'
 import TextBox from './TextBox'
-import { httpsCallable } from "@firebase/functions";
-import { functions } from '@/app/config/firebase'
+import { callApi } from '@/config/firebase'
 
 const ForgotPasswordPage = () => {
     const [email, setEmail] = useState("");
 
     const handleSendResetEmail = async () => {
-        await httpsCallable(functions, 'resetPassword')({email: email})
+        await callApi('resetPassword')({email: email})
             .then((res) => {
                 alert("Password reset email sent! Please check your email");
             })

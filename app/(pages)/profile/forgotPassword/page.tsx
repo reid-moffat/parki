@@ -2,9 +2,7 @@
 import React, { useState } from 'react';
 import Link from "next/link";
 import { MdArrowBackIos } from "react-icons/md";
-import { httpsCallable } from "@firebase/functions";
-import { functions } from "@/config/firebase";
-import { useRouter } from "next/navigation";
+import { callApi } from "@/config/firebase";
 
 const ForgotPassword = () => {
 
@@ -12,7 +10,7 @@ const ForgotPassword = () => {
     const [isEmailSent, setIsEmailSent] = useState(false);
 
     const handleSendResetEmail = async () => {
-        await httpsCallable(functions, 'resetPassword')({email: email})
+        await callApi('resetPassword')({email: email})
             .then(() => setIsEmailSent(true))
             .catch((err) => console.log(err));
     }

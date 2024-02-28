@@ -2,8 +2,7 @@
 import React, { useState } from 'react';
 import { MdArrowBackIos } from "react-icons/md";
 import Link from "next/link";
-import { httpsCallable } from "@firebase/functions";
-import { functions } from "@/config/firebase";
+import { callApi } from "@/config/firebase";
 import { useRouter } from 'next/navigation';
 
 const SignUp = () => {
@@ -46,7 +45,7 @@ const SignUp = () => {
             return;
         }
 
-        await httpsCallable(functions, 'createAccount')({email: email, password: password, name: name})
+        await callApi('createAccount')({email: email, password: password, name: name})
             .then(() => setIsSignedUp(true))
             .catch((err) => setError(err.message));
     }

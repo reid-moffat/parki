@@ -3,9 +3,7 @@ import Image from 'next/image';
 import DummyPFP from '@/public/profile/dummyPfp.png';
 import React, { useEffect, useState } from "react";
 import { MdArrowBackIos } from "react-icons/md";
-import Link from "next/link";
-import { httpsCallable } from "@firebase/functions";
-import { functions } from "@/config/firebase";
+import { callApi } from "@/config/firebase";
 import { useRouter } from "next/navigation";
 
 const EditProfile = () => {
@@ -22,7 +20,7 @@ const EditProfile = () => {
             return;
         }
 
-        httpsCallable(functions, "getProfile")()
+        callApi("getProfile")()
             .then((response) => {
                 console.log(`Profile info: ${JSON.stringify(response.data, null, 4)}`);
 
@@ -63,7 +61,7 @@ const EditProfile = () => {
             etransfer: etransfer
         };
 
-        httpsCallable(functions, "updateProfile")(data)
+        callApi("updateProfile")(data)
             .then((response) => console.log(`Profile updated: ${response.data}`))
             .catch((err) => console.log(`Error updating profile: ${err}`));
     }

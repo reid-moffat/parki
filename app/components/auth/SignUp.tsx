@@ -1,8 +1,7 @@
 "use client";
 import React, { useState } from 'react'
 import TextBox from '@/app/components/auth/TextBox'
-import { httpsCallable } from "@firebase/functions";
-import { auth, functions } from '@/app/config/firebase'
+import { auth, callApi } from '@/config/firebase'
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { useRouter } from "next/navigation";
 import Image from 'next/image'
@@ -20,7 +19,7 @@ const SignUpPage = () => {
             return;
         }
 
-        await httpsCallable(functions, 'createAccount')({email: email, password: password})
+        await callApi('createAccount')({email: email, password: password})
             .then((res) => {
                 alert("Successfully created new user! Please check your email and confirm your email.");
                 router.push('/pages/auth/signIn');
