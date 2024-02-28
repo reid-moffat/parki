@@ -1,12 +1,48 @@
 import Link from "next/link";
 import { MdOutlineArrowBackIos } from "react-icons/md";
+import { CiSquarePlus } from "react-icons/ci";
+import { useAsync } from "react-async-hook";
+import { callApi } from "@/config/firebase";
 import Image from "next/image";
 import Car from "@/public/spot/car.png";
-import { CiSquarePlus } from "react-icons/ci";
 
 // @ts-ignore
 const YourBooking = ({ setPage }) => {
+
+    const defaultVehicle = useAsync(callApi('getDefaultVehicle'), []);
+
     let valid = 0;
+
+    const renderVehicle = () => {
+        if (defaultVehicle.result && defaultVehicle.result.data !== null) {
+            const vehicle = defaultVehicle.result.data;
+            return (
+                <>
+                    <Image src={Car} alt={"Car"} className="w-12 h-8 m-4"/>
+                    <div className="flex-col m-2">
+                        <div className="font-bold">
+                            { /* @ts-ignore */ }
+                            {vehicle.make + " " + vehicle.model}
+                        </div>
+                        { /* @ts-ignore */ }
+                        {vehicle.license}
+                    </div>
+                    <div className="ml-auto mr-8 mt-4 text-blue-500 underline">
+                        Change
+                    </div>
+                </>
+            );
+        }
+
+        return (
+            <>
+                <CiSquarePlus className="m-4" size={30}/>
+                <div className="font-bold m-4 ml-16">
+                    Select Vehicle
+                </div>
+            </>
+        );
+    }
 
     return (
         <>
@@ -21,29 +57,17 @@ const YourBooking = ({ setPage }) => {
             <div className="ml-6 mb-2 font-bold">
                 Select Vehicle
             </div>
-            <div className="flex border-solid border-black border-2 rounded-2xl m-2 ml-6 mr-6" onClick={() => {
-                    setPage("vehicleSelect");
-                    valid += 1;
-                }}>
-
-                <Image src={Car} alt={"Car"} className="w-12 h-8 m-4"/>
-                <div className="flex-col m-2">
-                    <div className="font-bold">
-                        Honda civic
-                    </div>
-                    HYAN 041
-                </div>
-                <div className="ml-auto mr-8 mt-4 text-blue-500 underline">
-                    Change
-                </div>
+            <div className="flex border-solid border-black border-2 rounded-2xl m-2 ml-6 mr-6" onClick={() => setPage("vehicleSelect")}>
+                {renderVehicle()}
             </div>
 
             <div className="ml-6 mb-2 font-bold">
                 Select Date
             </div>
-            <div className="flex border-solid border-black border-2 rounded-2xl m-2 ml-6 mr-6" onClick={() => {setPage("selectDates")
-                    valid += 1;
-                }}>
+            <div className="flex border-solid border-black border-2 rounded-2xl m-2 ml-6 mr-6" onClick={() => {
+                setPage("selectDates")
+                valid += 1;
+            }}>
 
                 <CiSquarePlus className="m-4" size={30}/>
                 <div className="font-bold m-4 ml-16">
@@ -52,7 +76,9 @@ const YourBooking = ({ setPage }) => {
             </div>
 
             <div className='flex justify-center mt-8'>
-                <div className={'rounded-2xl bg-[#FF4251] p-2 text-white text-xl ps-20 pe-20 mt-60' + (valid >= 2 ? "bg-[#ff8d94]" : "bg-[#FF4251]")} onClick={() => setPage("review")}>
+                <div
+                    className={'rounded-2xl bg-[#FF4251] p-2 text-white text-xl ps-20 pe-20 mt-60' + (valid >= 2 ? "bg-[#ff8d94]" : "bg-[#FF4251]")}
+                    onClick={() => setPage("review")}>
                     CONFIRM
                 </div>
             </div>

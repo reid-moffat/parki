@@ -50,13 +50,27 @@ const setDefaultVehicle = onCall((request) => {
 
         return getDoc(`/users/${uid}/`)
             .get()
-            .then((doc) => {
+            .then(async (doc) => {
                 const data = doc.data();
                 if (!doc.exists || !data) {
                     throw new HttpsError("not-found", "User not found");
                 }
 
-                return doc.ref.update({ defaultVehicle: request.data.id });
+                const vehicleData = await getDoc(`/vehicles/${request.data.id}/`)
+                    .get()
+                    .then((vehicle) => vehicle.data() as { make: string, model: string, license: string })
+                    .catch((error) => {
+                        logger.error(`Error getting vehicle data: ${error}`);
+                        throw new HttpsError("internal", "Error getting vehicle data");
+                    });
+
+                const defaultDoc = {
+                    id: request.data.id,
+                    make: vehicleData.make,
+                    model: vehicleData.model,
+                    license: vehicleData.license
+                };
+                return doc.ref.update({ defaultVehicle: defaultDoc });
             })
             .catch((error) => {
                 logger.error(`Error setting default vehicle: ${error}`);

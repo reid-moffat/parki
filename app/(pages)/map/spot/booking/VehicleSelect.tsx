@@ -6,11 +6,12 @@ import CarUnselected from "@/public/spot/car_unselected.png";
 import { FaRegCircle } from "react-icons/fa";
 import { FaRegDotCircle } from "react-icons/fa";
 import { useState } from "react";
+import { callApi } from "@/config/firebase";
 
 // @ts-ignore
 const VehicleSelect = ({ setPage }) => {
 
-    const [selected, setSelected] = useState("");
+    const [selected, setSelected] = useState<null|{ make: string, model: string, license: string }>(null);
 
     const renderVehicles = () => {
         const vehicles = [
@@ -29,21 +30,31 @@ const VehicleSelect = ({ setPage }) => {
         return (
             <>
                 {vehicles.map((vehicle, index) => (
-                    <div className="flex border-solid border-black border-2 rounded-2xl my-2" onClick={() => setSelected(vehicle.license)}>
-                        <Image src={selected === vehicle.license ? Car : CarUnselected} alt={"Car"} className="w-12 h-8 m-4"/>
+                    <div className="flex border-solid border-black border-2 rounded-2xl my-2" onClick={() => setSelected(vehicle)}>
+                        <Image src={selected && selected.license === vehicle.license ? Car : CarUnselected} alt={"Car"} className="w-12 h-8 m-4"/>
                         <div className="flex-col m-2">
                             <div className="font-bold">
                                 {vehicle.make + " " + vehicle.model}
                             </div>
                             {vehicle.license}
                         </div>
-                        {selected === vehicle.license
+                        {selected && selected.license === vehicle.license
                             ? <FaRegDotCircle size={20} className="ml-auto mr-6 mt-5 text-blue-500"/>
                             : <FaRegCircle size={20} className="ml-auto mr-6 mt-5 text-blue-500"/>}
                     </div>
                 ))}
             </>
         );
+    }
+
+    const handleConfirm = async () => {
+
+        if (!selected) return;
+
+        await callApi('setDefaultVehicle')({ make: selected.make, model: selected.model, license: selected.license})
+            .catch((error) => console.log(`Error adding default vehicle: ${error}`));
+
+        setPage("yourBooking");
     }
 
     return (
@@ -58,7 +69,7 @@ const VehicleSelect = ({ setPage }) => {
             {renderVehicles()}
 
             <div className='rounded-2xl bg-[#FF4251] p-2 text-white text-xl text-center mt-4'
-                 onClick={() => setPage("yourBooking")}>
+                 onClick={async () => await handleConfirm()}>
                 CONFIRM VEHICLE
             </div>
 
