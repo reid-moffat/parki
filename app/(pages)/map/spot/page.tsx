@@ -13,6 +13,9 @@ import Divider from "@/components/helpers/Divider";
 import Link from "next/link";
 import { useSelector } from "react-redux";
 import { getSpot } from "@/app/GlobalRedux/Features/currentSpot";
+import dynamic from "next/dynamic";
+
+const MiniMap = dynamic(() => import('@/components/map/MiniMap'), {ssr: false});
 
 const DetailsPage = () => {
 
@@ -96,6 +99,9 @@ const DetailsPage = () => {
                 </div>
 
                 <div className='flex flex-col w-[80vw] mx-auto py-3'>
+                    <div className='w-[80vw] h-[20vh] border-0 rounded-xl overflow-hidden mb-3 relative z-1'>
+                        <MiniMap lat={currentSpot.latitude} lng={currentSpot.longitude}/>
+                    </div>
                     <button
                         className='flex flex-row border-[1px] border-[#343632] w-[100%] rounded-[2.5rem] h-[5%] items-center justify-center font-normal py-1'>
                         Availability
@@ -124,7 +130,7 @@ const DetailsPage = () => {
                 <br/><br/><br/><br/>
             </div>
             <div
-                className='absolute w-[96vw] pl-[5%] pr-[5%] bottom-[20vw] flex flex-row h-[8%] bg-[#ff4251] rounded-b-xl justify-between items-center'
+                className='absolute w-[96vw] pl-[5%] pr-[5%] bottom-[20vw] flex flex-row h-[8%] bg-[#ff4251] rounded-b-xl justify-between items-center z-10'
             >
                 <div className='text-[#FCF9EF] text-[1.75rem] font-normal'>${currentSpot.price}/month</div>
                 <Link href='/map/spot/policy'
