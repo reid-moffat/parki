@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import { MdOutlineArrowBackIos } from "react-icons/md";
 import { CiSquarePlus } from "react-icons/ci";
@@ -7,11 +8,9 @@ import Image from "next/image";
 import Car from "@/public/spot/car.png";
 
 // @ts-ignore
-const YourBooking = ({ setPage }) => {
+const YourBooking = ({ setPage, dates }) => {
 
     const defaultVehicle = useAsync(callApi('getDefaultVehicle'), []);
-
-    let valid = 0;
 
     const renderVehicle = () => {
         if (defaultVehicle.result && defaultVehicle.result.data !== null) {
@@ -69,11 +68,7 @@ const YourBooking = ({ setPage }) => {
             <div className="ml-6 mb-2 font-bold">
                 Select Date
             </div>
-            <div className="flex border-solid border-black border-2 rounded-2xl m-2 ml-6 mr-6" onClick={() => {
-                setPage("selectDates")
-                valid += 1;
-            }}>
-
+            <div className="flex border-solid border-black border-2 rounded-2xl m-2 ml-6 mr-6" onClick={() => setPage("selectDates")}>
                 <CiSquarePlus className="m-4" size={30}/>
                 <div className="font-bold m-4 ml-16">
                     Add Day(s)
@@ -82,7 +77,7 @@ const YourBooking = ({ setPage }) => {
 
             <div className='flex justify-center mt-8'>
                 <div
-                    className={'rounded-2xl bg-[#FF4251] p-2 text-white text-xl ps-20 pe-20 mt-60' + (valid >= 2 ? "bg-[#ff8d94]" : "bg-[#FF4251]")}
+                    className={'rounded-2xl bg-[#FF4251] p-2 text-white text-xl ps-20 pe-20 mt-60 ' + ((defaultVehicle.result?.data && dates) ? "bg-[#FF4251]" : "bg-[#FF8D94] pointer-events-none")}
                     onClick={() => setPage("review")}>
                     CONFIRM
                 </div>
