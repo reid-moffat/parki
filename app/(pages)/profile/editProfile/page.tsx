@@ -15,9 +15,15 @@ const EditProfile = () => {
     const router = useRouter();
 
     const [name, setName] = useState("");
+    const [originalName, setOriginalName] = useState("");
+
     const [email, setEmail] = useState("");
+
     const [phone, setPhone] = useState("");
+    const [originalPhone, setOriginalPhone] = useState("");
+
     const [etransfer, setEtransfer] = useState("");
+    const [originalEtransfer, setOriginalEtransfer] = useState("");
 
     useEffect(() => {
         if (email !== "") {
@@ -26,13 +32,19 @@ const EditProfile = () => {
 
         callApi("getProfile")()
             .then((response) => {
-                console.log(`Profile info: ${JSON.stringify(response.data, null, 4)}`);
 
                 // @ts-ignore
                 setName(response.data.name ?? ""); // @ts-ignore
                 setEmail(response.data.email ?? ""); // @ts-ignore
                 setPhone(response.data.phone ?? ""); // @ts-ignore
                 setEtransfer(response.data.etransfer ?? "");
+
+                if (response.data && originalName === "" && originalPhone === "" && originalEtransfer === "") {
+                    // @ts-ignore
+                    setOriginalName(response.data.name); // @ts-ignore
+                    setOriginalPhone(response.data.phone); // @ts-ignore
+                    setOriginalEtransfer(response.data.etransfer);
+                }
             })
             .catch((err) => console.log(`Error fetching profile info: ${err}`));
     });
@@ -59,11 +71,16 @@ const EditProfile = () => {
     }
 
     const handleUpdate = async () => {
-        const data = {
-            name: name,
-            phone: phone.replace(/[^0-9]/g, ''),
-            etransfer: etransfer
-        };
+        const data = {};
+        if (originalName !== name) { // @ts-ignore
+            data.name = name;
+        }
+        if (originalPhone !== phone) { // @ts-ignore
+            data.phone = phone.replace(/[^0-9]/g, '');
+        }
+        if (originalEtransfer !== etransfer) { // @ts-ignore
+            data.etransfer = etransfer;
+        }
 
         callApi("updateProfile")(data)
             .then((response) => console.log(`Profile updated: ${response.data}`))
@@ -87,21 +104,22 @@ const EditProfile = () => {
 
             <div>Name</div>
             <input
-                className='w-full py-3 px-5 mb-1 outline-none rounded-2xl bg-[#4472CA] bg-opacity-20'
+                className={'w-full py-3 px-5 mb-1 outline-none rounded-2xl bg-[#4472CA] bg-opacity-20 ' + (originalName !== name ? 'text-red-600' : 'text-black')}
                 value={name}
                 disabled={email === ""}
                 onChange={(e) => setName(e.target.value)}
             />
 
             <div>Email</div>
-            <input
+            <div
                 className='w-full py-3 px-5 mb-1 outline-none rounded-2xl bg-[#4472CA] bg-opacity-20'
-                value={email}
-            />
+            >
+                {email}
+            </div>
 
             <div>Phone number</div>
             <input
-                className='w-full py-3 px-5 mb-1 outline-none rounded-2xl bg-[#4472CA] bg-opacity-20'
+                className={'w-full py-3 px-5 mb-1 outline-none rounded-2xl bg-[#4472CA] bg-opacity-20 ' + (originalPhone !== phone ? 'text-red-600' : 'text-black')}
                 value={renderPhone(phone)}
                 disabled={email === ""}
                 onChange={(e) => updatePhone(e.target.value)}
@@ -109,7 +127,7 @@ const EditProfile = () => {
 
             <div>E-Transfer address</div>
             <input
-                className='w-full py-3 px-5 outline-none rounded-2xl bg-[#4472CA] bg-opacity-20'
+                className={'w-full py-3 px-5 outline-none rounded-2xl bg-[#4472CA] bg-opacity-20 ' + (originalEtransfer !== etransfer ? 'text-red-600' : 'text-black')}
                 value={etransfer}
                 disabled={email === ""}
                 onChange={(e) => setEtransfer(e.target.value)}
@@ -120,7 +138,8 @@ const EditProfile = () => {
                     Cancel
                 </div>
                 <div
-                    className="text-center text-white text-lg font-bold rounded-xl bg-[#FF4251] py-1 px-12"
+                    className={"text-center text-white text-lg font-bold rounded-xl py-1 px-12 " +
+                        (originalName === name && originalPhone === phone && originalEtransfer === etransfer ? "bg-[#FF8D94] pointer-events-none" : "bg-[#FF4251]")}
                     onClick={async () => await handleUpdate()}
                 >
                     Update
