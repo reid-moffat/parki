@@ -1,5 +1,5 @@
 import { HttpsError, onCall } from "firebase-functions/v2/https";
-import { getCollection } from "../helpers/helperFunctions";
+import { getCollection, getDoc } from "../helpers/helperFunctions";
 import { verifyIsAuthenticated } from "../helpers/verification";
 import { logger } from "firebase-functions";
 
@@ -37,4 +37,30 @@ const addVehicle = onCall((request) => {
         });
 });
 
-export { getVehicles, addVehicle };
+const getDefaultVehicle = onCall((request) => {
+
+        verifyIsAuthenticated(request);
+
+        // @ts-ignore
+        const uid: string = request.auth.uid;
+
+        return getDoc(`/users/${uid}/`)
+            .get()
+            .then((doc) => {
+                const data = doc.data();
+                if (!doc.exists || !data) {
+                    throw new HttpsError("not-found", "User not found");
+                }
+
+                if (!data.defaultVehicle) {
+                    return null;
+                }
+                return data.defaultVehicle;
+            })
+            .catch((error) => {
+                logger.error(`Error getting default vehicle: ${error}`);
+                throw new HttpsError("internal", "Error getting default vehicle");
+            });
+});
+
+export { getVehicles, addVehicle, getDefaultVehicle };
