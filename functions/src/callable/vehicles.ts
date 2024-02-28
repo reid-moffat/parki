@@ -37,6 +37,33 @@ const addVehicle = onCall((request) => {
         });
 });
 
+const setDefaultVehicle = onCall((request) => {
+
+        verifyIsAuthenticated(request);
+
+        if (!request.data.id) {
+            throw new HttpsError("invalid-argument", "Vehicle id is required");
+        }
+
+        // @ts-ignore
+        const uid: string = request.auth.uid;
+
+        return getDoc(`/users/${uid}/`)
+            .get()
+            .then((doc) => {
+                const data = doc.data();
+                if (!doc.exists || !data) {
+                    throw new HttpsError("not-found", "User not found");
+                }
+
+                return doc.ref.update({ defaultVehicle: request.data.id });
+            })
+            .catch((error) => {
+                logger.error(`Error setting default vehicle: ${error}`);
+                throw new HttpsError("internal", "Error setting default vehicle");
+            });
+});
+
 const getDefaultVehicle = onCall((request) => {
 
         verifyIsAuthenticated(request);
@@ -63,4 +90,4 @@ const getDefaultVehicle = onCall((request) => {
             });
 });
 
-export { getVehicles, addVehicle, getDefaultVehicle };
+export { getVehicles, addVehicle, setDefaultVehicle, getDefaultVehicle };
