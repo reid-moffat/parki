@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import SearchIcon from "@/public/profile/Search_alt.png";
 import Image from "next/image";
+import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
 
 const questions = [
     {
@@ -22,7 +23,7 @@ const Help = () => {
 
     const router = useRouter();
 
-    const [currQuestion, setCurrQuestion] = useState(0);
+    const [currQuestion, setCurrQuestion] = useState("");
 
     const renderQuestions = () => {
 
@@ -31,8 +32,22 @@ const Help = () => {
                 {questions.map((q, index) => {
                     return (
                         <div key={index} className="pt-5">
-                            <div className="text-xl font-bold">{q.question}</div>
-                            <div className="pt-2">{q.answer}</div>
+                            <div className="flex justify-between bg-[#992831] rounded-xl p-2">
+                                <div
+                                    className="text-base text-white ml-4"
+                                    onClick={() => currQuestion === q.question ? setCurrQuestion("") : setCurrQuestion(q.question)}
+                                >
+                                    {q.question}
+                                </div>
+                                {currQuestion === q.question
+                                    ? <IoIosArrowDown size={20} className="text-white mr-2"/>
+                                    : <IoIosArrowUp size={20} className="text-white mr-2"/>}
+                            </div>
+
+                            {currQuestion === q.question &&
+                                <div className="p-2 bg-[#FFCD1C33] rounded-xl">
+                                    {q.answer}
+                                </div>}
                         </div>
                     );
                 })}
