@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { getSpot } from "@/app/GlobalRedux/Features/currentSpot";
 
 // @ts-ignore
-const Review = ({ setPage }) => {
+const Review = ({ setPage, dates }) => {
 
     const defaultVehicle = useAsync(callApi('getDefaultVehicle'), []);
 
@@ -14,10 +14,19 @@ const Review = ({ setPage }) => {
     const renderDetails = () => {
         if (!defaultVehicle.result) {
             return (
-                <>
+                <div className="rounded-xl border-2 border-black mt-4 ml-10 mr-10 pt-4 pb-4 pl-4 pr-4 font-outfit">
                     Loading...
-                </>
-            )
+                </div>
+            );
+        }
+
+        const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+        const getDatePeriod = () => {
+            const startMonth = monthNames[dates[0].getMonth()];
+            const endMonth = monthNames[dates[1].getMonth()];
+
+            return startMonth + " " + dates[0].getDate() + " - " + (endMonth !== startMonth ? endMonth + " " : "") + dates[1].getDate();
         }
 
         return (
@@ -36,7 +45,8 @@ const Review = ({ setPage }) => {
                             Vehicle Make
                         </div>
                         <div className="font-bold">
-                            Honda Civic
+                            { /* @ts-ignore */ }
+                            {defaultVehicle.result.data.make + " " + defaultVehicle.result.data.model}
                         </div>
                     </div>
                     <div className="flex justify-between">
@@ -44,7 +54,8 @@ const Review = ({ setPage }) => {
                             License
                         </div>
                         <div className="font-bold">
-                            HYAN 041
+                            { /* @ts-ignore */ }
+                            {defaultVehicle.result.data.license}
                         </div>
                     </div>
                     <div className="flex justify-between">
@@ -52,7 +63,7 @@ const Review = ({ setPage }) => {
                             Date
                         </div>
                         <div className="font-bold">
-                            December 12-15
+                            {getDatePeriod()}
                         </div>
                     </div>
                     <div className="flex justify-between">
@@ -60,7 +71,7 @@ const Review = ({ setPage }) => {
                             Duration
                         </div>
                         <div className="font-bold">
-                            4 days
+                            {Math.round((dates[1].getTime() - dates[0].getTime()) / 1000 / 3600 / 24 + 1)} days
                         </div>
                     </div>
                 </div>

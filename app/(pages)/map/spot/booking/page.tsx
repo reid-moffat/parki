@@ -24,7 +24,7 @@ const Booking = () => {
             case "selectDates":
                 return <SelectDates setPage={setPage} dates={dates} setDates={setDates}/>;
             case "review":
-                return <Review setPage={setPage}/>;
+                return <Review setPage={setPage} dates={dates}/>;
             default:
                 throw new Error(`Invalid page state: ${page}`);
         }
