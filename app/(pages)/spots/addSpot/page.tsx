@@ -11,6 +11,7 @@ import { IoSnowSharp } from "react-icons/io5";
 import { FaPlus } from "react-icons/fa";
 import { IconContext } from "react-icons";
 import { auth } from "@/config/firebase";
+import { useRef} from 'react';
 
 const AddSpot = () => {
 
@@ -29,6 +30,25 @@ const AddSpot = () => {
         "On-Site Staff": false,
         "Shovelling Included": false,
     });
+    
+    // this is for the photo upload
+
+    const fileInputRef = useRef(null);
+    const [selectedFile, setSelectedFile] = useState(null);
+
+    const handleFileChange = (event) => {
+        setSelectedFile(event.target.files[0]);
+    };
+
+    const handleDivClick = () => {
+        // Triggering click event of file input
+        fileInputRef.current.click();
+    };
+
+    const handleConfirmPhotos = () => {
+        // Logic to handle when the user confirms the photos
+        setCurrentStep(5); // Assuming setCurrentStep is a function to update the current step
+    };
 
     const steps = {
         1: (
@@ -118,6 +138,8 @@ const AddSpot = () => {
             </>
         ),
         4: (
+            
+            
             <>
                 <div className="text-3xl font-bold mt-8">
                     Upload photos
@@ -132,11 +154,19 @@ const AddSpot = () => {
                     any elements that will help drivers identify the specific parking spot.
                 </div>
 
-                <div className="w-full bg-[#dae2f0] rounded-xl text-center mt-6">
+                <div className="w-full bg-[#dae2f0] rounded-xl text-center mt-6" onClick={handleDivClick}>
+
+
                     <div className="px-32 py-24">
                         <FaPlus className="ml-7 mb-1"/>
                         Add&nbsp;Photo
                     </div>
+                    <input 
+                    ref={fileInputRef} 
+                    type="file" 
+                    style={{ display: "none" }} 
+                    onChange={handleFileChange} 
+                />
                 </div>
 
                 <div
