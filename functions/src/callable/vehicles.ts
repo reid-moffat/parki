@@ -25,11 +25,11 @@ const addVehicle = onCall((request) => {
     if (!request.data.make || !request.data.model || !request.data.license) {
         throw new HttpsError("invalid-argument", "Make, model, and license are required");
     }
-    const { make, model, license } = request.data;
+    const { make, model, license, color } = request.data;
 
     return getCollection("/vehicles/")
         // @ts-ignore
-        .add({ make, model, license, uid: request.auth.uid })
+        .add({ make, model, license, color, uid: request.auth.uid })
         .then((doc) => ({ id: doc.id, ...request.data }))
         .catch((error) => {
             logger.error(`Error adding vehicle: ${error}`);
@@ -58,7 +58,7 @@ const setDefaultVehicle = onCall((request) => {
 
                 const vehicleData = await getDoc(`/vehicles/${request.data.id}/`)
                     .get()
-                    .then((vehicle) => vehicle.data() as { make: string, model: string, license: string })
+                    .then((vehicle) => vehicle.data() as { make: string, model: string, license: string, color: string })
                     .catch((error) => {
                         logger.error(`Error getting vehicle data: ${error}`);
                         throw new HttpsError("internal", "Error getting vehicle data");
@@ -68,7 +68,8 @@ const setDefaultVehicle = onCall((request) => {
                     id: request.data.id,
                     make: vehicleData.make,
                     model: vehicleData.model,
-                    license: vehicleData.license
+                    license: vehicleData.license,
+                    color: vehicleData.color,
                 };
                 return doc.ref.update({ defaultVehicle: defaultDoc });
             })
