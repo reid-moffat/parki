@@ -25,8 +25,10 @@ const EditProfile = () => {
     const [etransfer, setEtransfer] = useState("");
     const [originalEtransfer, setOriginalEtransfer] = useState("");
 
+    const [updating, setUpdating] = useState(false);
+
     useEffect(() => {
-        if (email !== "") {
+        if (email !== "" && !updating) {
             return;
         }
 
@@ -39,12 +41,14 @@ const EditProfile = () => {
                 setPhone(response.data.phone ?? ""); // @ts-ignore
                 setEtransfer(response.data.etransfer ?? "");
 
-                if (response.data && originalName === "" && originalPhone === "" && originalEtransfer === "") {
+                if (response.data && (originalName === "" && originalPhone === "" && originalEtransfer === "") || updating) {
                     // @ts-ignore
                     setOriginalName(response.data.name); // @ts-ignore
                     setOriginalPhone(response.data.phone); // @ts-ignore
                     setOriginalEtransfer(response.data.etransfer);
                 }
+
+                setUpdating(false);
             })
             .catch((err) => console.log(`Error fetching profile info: ${err}`));
     });
@@ -82,9 +86,11 @@ const EditProfile = () => {
             data.etransfer = etransfer;
         }
 
-        callApi("updateProfile")(data)
+        await callApi("updateProfile")(data)
             .then((response) => console.log(`Profile updated: ${response.data}`))
             .catch((err) => console.log(`Error updating profile: ${err}`));
+
+        setUpdating(true);
     }
 
     return (
@@ -106,7 +112,7 @@ const EditProfile = () => {
             <input
                 className={'w-full py-3 px-5 mb-1 outline-none rounded-2xl bg-[#4472CA] bg-opacity-20 ' + (originalName !== name ? 'text-red-600' : 'text-black')}
                 value={name}
-                disabled={email === ""}
+                disabled={email === "" || updating}
                 onChange={(e) => setName(e.target.value)}
             />
 
@@ -121,7 +127,7 @@ const EditProfile = () => {
             <input
                 className={'w-full py-3 px-5 mb-1 outline-none rounded-2xl bg-[#4472CA] bg-opacity-20 ' + (originalPhone !== phone ? 'text-red-600' : 'text-black')}
                 value={renderPhone(phone)}
-                disabled={email === ""}
+                disabled={email === "" || updating}
                 onChange={(e) => updatePhone(e.target.value)}
             />
 
@@ -129,7 +135,7 @@ const EditProfile = () => {
             <input
                 className={'w-full py-3 px-5 outline-none rounded-2xl bg-[#4472CA] bg-opacity-20 ' + (originalEtransfer !== etransfer ? 'text-red-600' : 'text-black')}
                 value={etransfer}
-                disabled={email === ""}
+                disabled={email === "" || updating}
                 onChange={(e) => setEtransfer(e.target.value)}
             />
 
