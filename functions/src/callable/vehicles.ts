@@ -18,4 +18,23 @@ const getVehicles = onCall((request) => {
         });
 });
 
-export { getVehicles };
+const addVehicle = onCall((request) => {
+
+    verifyIsAuthenticated(request);
+
+    if (!request.data.make || !request.data.model || !request.data.license) {
+        throw new HttpsError("invalid-argument", "Make, model, and license are required");
+    }
+    const { make, model, license } = request.data;
+
+    return getCollection("/vehicles/")
+        // @ts-ignore
+        .add({ make, model, license, uid: request.auth.uid })
+        .then((doc) => ({ id: doc.id, ...request.data }))
+        .catch((error) => {
+            logger.error(`Error adding vehicle: ${error}`);
+            throw new HttpsError("internal", "Error adding vehicle");
+        });
+});
+
+export { getVehicles, addVehicle };
