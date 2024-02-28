@@ -29,6 +29,17 @@ const Review = ({ setPage, dates }) => {
             return startMonth + " " + dates[0].getDate() + " - " + (endMonth !== startMonth ? endMonth + " " : "") + dates[1].getDate();
         }
 
+        const getPrice = (): [number, string] => {
+            const numDays: number = Math.round((dates[1].getTime() - dates[0].getTime()) / 1000 / 3600 / 24 + 1);
+            const numPeriods: number = currentSpot.period === "day"
+                ? numDays
+                : currentSpot.period === "week"
+                    ? numDays / 7
+                    : numDays / 30;
+
+            return [numPeriods, (Math.round(100 * currentSpot.price * numPeriods) / 100).toFixed(2)];
+        }
+
         return (
             <>
                 <div className="rounded-xl border-2 border-black mt-4 ml-10 mr-10 pt-4 pb-4 pl-4 pr-4 font-outfit">
@@ -79,18 +90,18 @@ const Review = ({ setPage, dates }) => {
                 <div className="rounded-xl border-2 border-black mt-4 ml-10 mr-10 pt-4 pb-4 pl-4 pr-4 font-outfit">
                     <div className="flex justify-between">
                         <div>
-                            Amount
+                            Price/period ({currentSpot.period})
                         </div>
                         <div className="font-bold">
-                            $36.00
+                            ${currentSpot.price.toFixed(2)}
                         </div>
                     </div>
                     <div className="flex justify-between">
                         <div>
-                            Taxes (13% HST)
+                            Number of {currentSpot.period}s
                         </div>
                         <div className="font-bold">
-                            $4.68
+                            {getPrice()[0].toFixed(2)}
                         </div>
                     </div>
                     <div className="bg-black h-[0.5px] mt-2 mb-2"/>
@@ -99,7 +110,7 @@ const Review = ({ setPage, dates }) => {
                             Total
                         </div>
                         <div className="font-bold">
-                            $40.68
+                            ${getPrice()[1]}
                         </div>
                     </div>
                 </div>
