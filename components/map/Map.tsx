@@ -3,12 +3,14 @@ import React, { useRef } from 'react'
 import { MapContainer, TileLayer } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 import CustomMarker from './CustomMarker';
-import dummyData from "@/config/dummyData";
 import { useDispatch, useSelector } from "react-redux";
 import { getRange, getPrice, getAmenities } from "@/app/GlobalRedux/Features/filters";
 import { getSpot, updateSpot, clearSpot } from "@/app/GlobalRedux/Features/currentSpot";
+import { useAsync } from "react-async-hook";
+import { callApi } from '@/config/firebase';
 
 function Maps() {
+
     const center = { lat: 44.236524, lng: -76.495791 };
     const ZOOM_LEVEL = 14.5;
     const mapRef = useRef();
@@ -21,8 +23,13 @@ function Maps() {
     const dispatch = useDispatch();
     const currentSpot = useSelector(getSpot);
 
+    const spots = useAsync(callApi('getSpots'), []);
+
     const handleMarkerClick = (address: string) => {
-        const spotData = dummyData.find((spot) => spot.address === address);
+        // @ts-ignore
+        const spotData = spots.result.data.find((spot) => spot.address === address);
+
+        console.log(JSON.stringify(spotData, null, 4));
 
         // Closes the map marker if the current spot is clicked, or opens/updates it if a new spot is clicked
         if (spotData && spotData.address === currentSpot?.address) {
@@ -33,16 +40,19 @@ function Maps() {
     }
 
     const renderPins = () => {
-        return dummyData
-            .filter((item) => {
+        if (!spots.result) return;
+
+        // @ts-ignore
+        return spots.result.data
+            .filter((item: any) => {
                 return (range === 30 || item.distance <= range * 100) &&
                     (price[1] === 200 || (item.price >= price[0] && item.price <= price[1])) &&
                     Object.entries(amenities).every((amenity: [string, boolean]) => !amenity[1] || item.amenities.includes(amenity[0]));
             })
-            .map((data, index) => {
+            .map((data: any, index: any) => {
                 return (
                     <CustomMarker key={index} lat={data.latitude} long={data.longitude}
-                              address={data.address} price={data.price} period={data.period} onClick={handleMarkerClick}/>
+                              address={data.address} price={data.price} onClick={handleMarkerClick}/>
                 );
             });
     }

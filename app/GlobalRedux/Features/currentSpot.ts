@@ -3,13 +3,14 @@ import { createSlice } from '@reduxjs/toolkit';
 
 export interface CurrentSpotState {
     spot: {
+        id: string,
+
         address: string,
         latitude: number,
         longitude: number,
         description: string,
         price: number,
-        distance: number,
-        period: string,
+
         amenities: string[],
         rating: number,
     }
@@ -17,13 +18,14 @@ export interface CurrentSpotState {
 
 const initialState: CurrentSpotState = {
     spot: {
+        id: "",
+
         address: "",
         latitude: 0,
         longitude: 0,
         description: "",
         price: 0,
-        distance: 0,
-        period: "",
+
         amenities: [],
         rating: 0,
     }
