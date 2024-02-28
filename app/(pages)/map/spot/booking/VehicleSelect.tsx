@@ -14,7 +14,7 @@ const VehicleSelect = ({ setPage }) => {
 
     const vehicles = useAsync(callApi('getVehicles'), []);
 
-    const [selected, setSelected] = useState<null|{ make: string, model: string, license: string }>(null);
+    const [selected, setSelected] = useState<null|{ id: string, make: string, model: string, license: string }>(null);
 
     const renderVehicles = () => {
         if (!vehicles.result) {
@@ -50,7 +50,7 @@ const VehicleSelect = ({ setPage }) => {
 
         if (!selected) return;
 
-        await callApi('setDefaultVehicle')({ make: selected.make, model: selected.model, license: selected.license})
+        await callApi('setDefaultVehicle')({ id: selected.id, make: selected.make, model: selected.model, license: selected.license})
             .catch((error) => console.log(`Error adding default vehicle: ${error}`));
 
         setPage("yourBooking");
