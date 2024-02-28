@@ -22,15 +22,34 @@ const addVehicle = onCall((request) => {
 
     verifyIsAuthenticated(request);
 
+    // @ts-ignore
+    const uid: string = request.auth.uid;
+
     if (!request.data.make || !request.data.model || !request.data.license) {
         throw new HttpsError("invalid-argument", "Make, model, and license are required");
     }
     const { make, model, license, color } = request.data;
 
     return getCollection("/vehicles/")
-        // @ts-ignore
-        .add({ make, model, license, color, uid: request.auth.uid })
-        .then((doc) => ({ id: doc.id, ...request.data }))
+        .add({ make, model, license, color, uid: uid })
+        .then(async (doc) => {
+            const defaultDoc = {
+                id: doc.id,
+                make,
+                model,
+                license,
+                color,
+            };
+
+            await getDoc(`/users/${uid}/`)
+                .update({ defaultVehicle: defaultDoc })
+                .catch((error) => {
+                    logger.error(`Error setting default vehicle: ${error}`);
+                    throw new HttpsError("internal", "Error setting default vehicle");
+                });
+
+            return { id: doc.id, ...request.data };
+        })
         .catch((error) => {
             logger.error(`Error adding vehicle: ${error}`);
             throw new HttpsError("internal", "Error adding vehicle");
