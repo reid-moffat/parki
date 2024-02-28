@@ -77,7 +77,7 @@ const SignIn = () => {
 
                     <button
                         onClick={async () => await signin()}
-                        className='w-full bg-[#FF4251] py-3 rounded-2xl text-[#FCF9EF] font-bold font-3xl'
+                        className={'w-full py-3 rounded-2xl text-[#FCF9EF] font-bold font-3xl' + (email && password ? " bg-[#FF4251]" : " bg-[#ff8d94] pointer-events-none")}
                     >
                         SIGN IN
                     </button>
