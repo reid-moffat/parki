@@ -8,6 +8,7 @@ import { beforeCreate, beforeSignIn, onUserDelete, onUserSignup } from './trigge
 import { createAccount, resetPassword, getProfile, updateProfile } from './callable/auth';
 import { getSpots, getSpot } from './callable/spots';
 import { getVehicles, addVehicle, setDefaultVehicle, getDefaultVehicle } from './callable/vehicles';
+import { getLatLngFromAddress } from './callable/geocoding';
 import { purgeExpiredEmails, purgeUnverifiedUsers } from './triggers/cron';
 
 export {
@@ -28,6 +29,8 @@ export {
     addVehicle,
     setDefaultVehicle,
     getDefaultVehicle,
+
+    getLatLngFromAddress,
 
     purgeUnverifiedUsers,
     purgeExpiredEmails

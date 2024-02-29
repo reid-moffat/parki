@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setLocation, getLocation } from "@/app/GlobalRedux/Features/search";
 import { fromAddress, OutputFormat, setDefaults } from "react-geocode";
 import { useRouter } from "next/navigation";
+import { callApi } from "@/config/firebase";
 
 const Search = () => {
 
@@ -72,9 +73,10 @@ const Search = () => {
             outputFormat: OutputFormat.JSON,
         });
 
-        const coords = await fromAddress(street + ", " + city)
-            .then(({ results }) => results[0].geometry.location)
-            .catch((err) => console.log(err));
+        const coords: { lat: number, lng: number } = await callApi("getLatLngFromAddress")({ address: `${street}, ${city}` })
+            .then((result) => result.data as { lat: number, lng: number });
+
+        console.log(JSON.stringify(coords, null, 4));
 
         dispatch(setLocation({ lat: coords.lat, lng: coords.lng, street, city }));
 
