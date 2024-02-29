@@ -1,27 +1,34 @@
 'use client';
 import { createSlice } from '@reduxjs/toolkit';
 
-export interface SearchState {
-    value: string
+export interface Location {
+    address: string
+    lat: number
+    lng: number
 }
 
-const initialState: SearchState = {
-    value: ""
+const initialState: Location = {
+    address: "",
+    lat: 0,
+    lng: 0,
 }
 
 export const Search = createSlice({
     name: 'search',
     initialState,
     reducers: {
-        set: (state, action) => { state.value = action.payload },
-        clear: (state) => { state.value = "" },
+        setLocation: (state, action) => {
+            state.address = action.payload.address;
+            state.lat = action.payload.lat;
+            state.lng = action.payload.lng;
+        },
     },
     selectors: {
-        getValue: (state) => state.value,
+        getLocation: (state) => state,
     }
 })
 
-export const { set, clear } = Search.actions;
-export const { getValue } = Search.selectors;
+export const { setLocation } = Search.actions;
+export const { getLocation } = Search.selectors;
 
 export default Search.reducer;

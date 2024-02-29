@@ -1,5 +1,5 @@
 "use client";
-import React from 'react';
+import React, { useState } from 'react';
 import Image from "next/image";
 import X from "@/public/search/x.png";
 import Back from "@/public/search/back.png";
@@ -8,12 +8,18 @@ import Arrow from "@/public/search/arrow.png";
 import Line from "@/public/Line.png";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
-import { set, clear, getValue } from "@/app/GlobalRedux/Features/search";
+import { setLocation, getLocation } from "@/app/GlobalRedux/Features/search";
+import { fromAddress, OutputFormat, setDefaults } from "react-geocode";
+import { useRouter } from "next/navigation";
 
 const Search = () => {
 
     const dispatch = useDispatch();
-    const query = useSelector(getValue);
+    const location = useSelector(getLocation);
+
+    const [search, setSearch] = useState(location.address ?? "");
+
+    const router = useRouter();
 
     const adresses: { street: string, city: string }[] = [
         {
@@ -58,6 +64,27 @@ const Search = () => {
         },
     ];
 
+    const handleSelect = async (address: string) => {
+        setDefaults({
+            key: "",
+            language: "en",
+            region: "ca",
+            outputFormat: OutputFormat.JSON,
+        });
+
+        const coords = await fromAddress(address)
+            .then(({ results }) => results[0].geometry.location)
+            .catch((err) => console.log(err));
+
+        console.log(JSON.stringify(coords, null, 4));
+
+        dispatch(setLocation({ lat: coords.lat, lng: coords.lng, address }));
+
+        console.log(JSON.stringify(location, null, 4));
+
+        router.push("/map");
+    }
+
     return (
         <>
             <div
@@ -69,21 +96,24 @@ const Search = () => {
                     type="text"
                     className={"w-[55vw] ml-[8vw] mt-[1vh] mb-[1vh] bg-[#FCF9EF] outline-none"}
                     placeholder={"Search..."}
-                    value={query}
-                    onChange={(e) => dispatch(set(e.target.value))}
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
                 />
-                <Image src={X} alt={"Clear search query"} className={"w-[4vw] h-[4vw] mt-[2vh] ml-[7vw]"}
-                       onClick={() => dispatch(clear())}/>
+                <Image
+                    src={X} alt={"Clear search query"}
+                    className={"w-[4vw] h-[4vw] mt-[2vh] ml-[7vw]"}
+                    onClick={() => setSearch("")}
+                />
             </div>
 
             <div className="h-[65vh] overflow-y-scroll font-mono">
                 {adresses
                     .filter((address) =>
-                        address.street.toLowerCase().includes(query.toLowerCase()) || address.city.toLowerCase().includes(query.toLowerCase())
+                        address.street.toLowerCase().includes(search.toLowerCase()) || address.city.toLowerCase().includes(search.toLowerCase())
                     )
                     .map((address) =>
                         <>
-                            <div className={"inline-flex mt-[1vh]"}>
+                            <div className={"inline-flex mt-[1vh]"} onClick={async () => await handleSelect(address.street + ", " + address.city)}>
                                 <Image
                                     src={Map}
                                     alt={"Clock icon"}
