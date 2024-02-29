@@ -9,11 +9,11 @@ import { IconContext } from 'react-icons';
 import { RiBattery2ChargeLine } from "react-icons/ri";
 import { IoSnowSharp } from "react-icons/io5";
 import Divider from "@/components/helpers/Divider";
-import Link from 'next/link';
 import { useDispatch, useSelector } from "react-redux";
 import { getRange, setRange, getPrice, setPrice, getAmenities, updateAmenity } from "@/app/GlobalRedux/Features/filters";
 
-const FilterPage = () => {
+// @ts-ignore
+const Filter = ({ setPageState }) => {
 
     const dispatch = useDispatch();
 
@@ -57,18 +57,13 @@ const FilterPage = () => {
 
     return (
         <>
-            <div className="flex flex-row justify-left py-0 pl-10 pt-5 text-xl">
-                <Link href='/map' className='pt-5'>
-                    <MdArrowBackIos/>
-                </Link>
+            <div className="flex font-bold text-2xl pt-6 mb-6">
+                <MdArrowBackIos className='ml-10' size={25} onClick={() => setPageState("map")}/>
+                <div className="flex pl-[4.5rem]">
+                    <FaFilterCircleXmark className="mr-2"/>
+                    Filter
+                </div>
             </div>
-
-            <div className="flex justify-center items-center font-outfit font-bold text-2xl">
-                <FaFilterCircleXmark className="mr-1"/>
-                Filter
-            </div>
-
-            <br/>
 
             <div className='flex flex-row w-[80vw] mx-auto'>
                 <div className='text-md font-bold py-3 pt-0'>Available Starting: </div>
@@ -125,12 +120,22 @@ const FilterPage = () => {
             </div>
 
             <div className='flex flex-row justify-between w-[80vw] mx-auto pt-2'>
-                <button className='w-[30vw] mt-1 text-center py-3 mr-3 outline-none rounded-2xl border-2 border-[#343632] text-[#343632] font-bold font-3xl' onClick={()=>{dispatch(setRange(30)); dispatch(setPrice([0,200]));}}>Reset</button>
-                <Link href="/map" className='w-[50vw] mt-1 text-center py-3 outline-none rounded-2xl bg-[#FF4251] text-[#FCF9EF] font-bold font-3xl'>Apply Filters</Link>
+                <button
+                    className='w-[30vw] mt-1 text-center py-3 mr-3 outline-none rounded-2xl border-2 border-[#343632] text-[#343632] font-bold font-3xl'
+                    onClick={()=>{ dispatch(setRange(30)); dispatch(setPrice([0,200])); }}
+                >
+                    Reset
+                </button>
+                <div
+                    onClick={() => setPageState("map")}
+                    className='w-full mt-1 text-center py-3 outline-none rounded-2xl bg-[#FF4251] text-[#FCF9EF] font-bold font-3xl'
+                >
+                    Apply Filters
+                </div>
             </div>
             <br/>
         </>
     );
 }
 
-export default FilterPage;
+export default Filter;

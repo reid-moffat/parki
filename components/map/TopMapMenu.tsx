@@ -1,7 +1,6 @@
 import React from 'react';
 import { MdSearch } from "react-icons/md";
 import { FaFilterCircleXmark } from "react-icons/fa6";
-import Link from "next/link";
 
 // @ts-ignore
 const TopMapMenu = ({ setPageState, location }) => {
@@ -17,12 +16,12 @@ const TopMapMenu = ({ setPageState, location }) => {
                 </div>
             </div>
 
-            <Link
+            <div
                 className="flex flex-row w-min h-min items-center bg-[#FF4251] p-[0.7rem] rounded-full mx-auto text-[#FCF9EF] active:opacity-50 duration-75 shadow-xl"
-                href='/map/filter'
+                onClick={() => setPageState("filter")}
             >
                 <FaFilterCircleXmark size={22} title={"Filter spots"}/>
-            </Link>
+            </div>
         </div>
     );
 }
