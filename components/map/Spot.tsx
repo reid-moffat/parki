@@ -9,7 +9,7 @@ const Spot = () => {
     const TEMP_IMAGE = "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Blue_Disc_Parking_Area_Markings_Blue_Paint.JPG/1200px-Blue_Disc_Parking_Area_Markings_Blue_Paint.JPG";
 
     return (
-        <div className="absolute bg-[#FCF9EF] p-6 rounded-2xl shadow-xl mx-[2vw] mt-[33vh] z-50">
+        <div className="absolute w-[92.5vw] bottom-24 bg-[#FCF9EF] p-6 rounded-2xl shadow-xl mx-[2vw] mt-[33vh] z-50">
             <div
                 className="h-[20vh] p-4 rounded-xl border-2 text-white"
                 style={{
@@ -37,7 +37,7 @@ const Spot = () => {
                 </div>
             </div>
             <div className="text-md mt-2 mb-2">
-                Here is my parking spot. Just a two minute walk from Goodes Hall. Here is an important thing to know...
+                {currentSpot.description}
             </div>
             <Link
                 className="flex justify-center bg-[#FF4251] py-3 text-2xl font-passion font-medium text-[#FCF9EF] text-center shadow-xl rounded-2xl active:opacity-50 duration-75"
