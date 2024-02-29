@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import { MapContainer, TileLayer } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 import CustomMarker from './CustomMarker';
@@ -9,9 +9,9 @@ import { getSpot, updateSpot, clearSpot } from "@/app/GlobalRedux/Features/curre
 import { useAsync } from "react-async-hook";
 import { callApi } from '@/config/firebase';
 
-function Maps() {
+// @ts-ignore
+const Maps = ({ center }) => {
 
-    const center = { lat: 44.236524, lng: -76.495791 };
     const ZOOM_LEVEL = 14.5;
     const mapRef = useRef();
 

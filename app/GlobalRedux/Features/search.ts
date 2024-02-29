@@ -2,13 +2,15 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 export interface Location {
-    address: string
+    street: string
+    city: string
     lat: number
     lng: number
 }
 
 const initialState: Location = {
-    address: "",
+    street: "",
+    city: "",
     lat: 0,
     lng: 0,
 }
@@ -18,7 +20,8 @@ export const Search = createSlice({
     initialState,
     reducers: {
         setLocation: (state, action) => {
-            state.address = action.payload.address;
+            state.street = action.payload.street;
+            state.city = action.payload.city;
             state.lat = action.payload.lat;
             state.lng = action.payload.lng;
         },

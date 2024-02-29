@@ -2,8 +2,13 @@ import React from 'react';
 import { MdSearch } from "react-icons/md";
 import { FaFilterCircleXmark } from "react-icons/fa6";
 import Link from "next/link";
+import { useSelector } from "react-redux";
+import { getLocation } from "@/app/GlobalRedux/Features/search";
 
 const TopMapMenu = () => {
+
+    const location = useSelector(getLocation);
+
     return (
         <div className="absolute flex items-center pt-4 px-6 space-x-4 z-20">
             <Link
@@ -12,7 +17,7 @@ const TopMapMenu = () => {
             >
                 <div className="flex flex-row items-center">
                     <MdSearch size={24} color="#FF4251" className="mr-2"/>
-                    Queen's University
+                    {location ? location.street + ", " + location.city : "Queen's University"}
                 </div>
             </Link>
 

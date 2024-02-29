@@ -17,7 +17,7 @@ const Search = () => {
     const dispatch = useDispatch();
     const location = useSelector(getLocation);
 
-    const [search, setSearch] = useState(location.address ?? "");
+    const [search, setSearch] = useState(location.street ?? "");
 
     const router = useRouter();
 
@@ -64,7 +64,7 @@ const Search = () => {
         },
     ];
 
-    const handleSelect = async (address: string) => {
+    const handleSelect = async (street: string, city: string) => {
         setDefaults({
             key: "",
             language: "en",
@@ -72,15 +72,11 @@ const Search = () => {
             outputFormat: OutputFormat.JSON,
         });
 
-        const coords = await fromAddress(address)
+        const coords = await fromAddress(street + ", " + city)
             .then(({ results }) => results[0].geometry.location)
             .catch((err) => console.log(err));
 
-        console.log(JSON.stringify(coords, null, 4));
-
-        dispatch(setLocation({ lat: coords.lat, lng: coords.lng, address }));
-
-        console.log(JSON.stringify(location, null, 4));
+        dispatch(setLocation({ lat: coords.lat, lng: coords.lng, street, city }));
 
         router.push("/map");
     }
@@ -113,7 +109,7 @@ const Search = () => {
                     )
                     .map((address) =>
                         <>
-                            <div className={"inline-flex mt-[1vh]"} onClick={async () => await handleSelect(address.street + ", " + address.city)}>
+                            <div className={"inline-flex mt-[1vh]"} onClick={async () => await handleSelect(address.street, address.city)}>
                                 <Image
                                     src={Map}
                                     alt={"Clock icon"}

@@ -1,5 +1,5 @@
 "use client";
-import React from 'react'
+import React, { useState } from 'react'
 import dynamic from "next/dynamic";
 import TopMapMenu from '@/components/map/TopMapMenu';
 import Spot from '@/components/map/Spot';
@@ -15,11 +15,12 @@ const MapPage = () => {
     const currentSpotSelected = useSelector(currentSpotExists);
 
     const location = useSelector(getLocation);
-    console.log(JSON.stringify(location, null, 4));
+
+    const [center, setCenter] = useState({lat: location.lat ?? 44.236524, lng: location.lng ?? -76.495791 });
 
     return (
         <>
-            <Map/>
+            <Map center={center}/>
             <TopMapMenu/>
             {currentSpotSelected && <Spot/>}
         </>
