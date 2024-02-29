@@ -14,7 +14,7 @@ function CustomMarker({ lat, long, address, price, onClick }) {
 
     return (
         <Marker
-            position={[lat, long]}
+            position={[lat * 1.000002, long]}
             icon={customMarkerIcon}
             eventHandlers={{
                 click: (e) => {
