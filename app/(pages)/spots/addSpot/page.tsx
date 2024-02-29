@@ -16,12 +16,14 @@ const AddSpot = () => {
 
     const [currentStep, setCurrentStep] = useState("getAddress");
 
+    const [address, setAddress] = useState("");
+
     const renderPage = () => {
         switch (currentStep) {
             case "getAddress":
-                return <GetAddress setStep={setCurrentStep}/>;
+                return <GetAddress setStep={setCurrentStep} address={address} setAddress={setAddress}/>;
             case "confirmLocation":
-                return <ConfirmLocation setStep={setCurrentStep}/>;
+                return <ConfirmLocation setStep={setCurrentStep} address={address}/>;
             case "confirmFeatures":
                 return <ConfirmFeatures setStep={setCurrentStep}/>;
             case "uploadPhotos":

@@ -3,7 +3,7 @@ import React from 'react'
 import Image from 'next/image';
 import car from "@/public/parked_car.jpg";
 import locationIcon from "@/public/pins/OtherSpot.png";
-import { MdArrowBackIos, MdArrowForwardIos, MdChevronLeft, MdLocalParking } from "react-icons/md";
+import { MdArrowForwardIos, MdChevronLeft, MdLocalParking } from "react-icons/md";
 import { FaWheelchair } from "react-icons/fa";
 import { RiBattery2ChargeLine } from "react-icons/ri";
 import { FaCarTunnel } from "react-icons/fa6";
@@ -22,7 +22,10 @@ const MiniMap = dynamic(() => import('@/components/map/MiniMap'), { ssr: false }
 const DetailsPage = () => {
 
     const currentSpot = useSelector(getSpot);
-    const TEMP_IMAGE = "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Blue_Disc_Parking_Area_Markings_Blue_Paint.JPG/1200px-Blue_Disc_Parking_Area_Markings_Blue_Paint.JPG";
+
+    if (currentSpot.id === '') {
+        redirect("/map");
+    }
 
     const renderAmenities = () => {
         const allAmenities = [

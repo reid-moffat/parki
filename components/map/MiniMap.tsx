@@ -11,6 +11,7 @@ import { callApi } from '@/config/firebase';
 
 // @ts-ignore
 function MiniMaps({lat, lng}) {
+
     const center = { lat, lng };
     const ZOOM_LEVEL = 14.5;
     const mapRef = useRef();

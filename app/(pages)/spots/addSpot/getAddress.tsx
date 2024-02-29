@@ -1,14 +1,11 @@
 "use client";
-import { useState } from "react";
 import { MdChevronLeft } from "react-icons/md";
 import { useRouter } from "next/navigation";
 
 // @ts-ignore
-const GetAddress = ({ setStep }) => {
+const GetAddress = ({ setStep, address, setAddress }) => {
 
     const router = useRouter();
-
-    const [address, setAddress] = useState("");
 
     return (
         <>
