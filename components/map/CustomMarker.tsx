@@ -1,5 +1,5 @@
 import L from "leaflet";
-import { Marker, Popup } from "react-leaflet";
+import { Marker } from "react-leaflet";
 
 // @ts-ignore
 function CustomMarker({ lat, long, address, price, onClick }) {
@@ -14,7 +14,7 @@ function CustomMarker({ lat, long, address, price, onClick }) {
 
     return (
         <Marker
-            position={[lat * 1.000002, long]}
+            position={[lat, long]}
             icon={customMarkerIcon}
             eventHandlers={{
                 click: (e) => {

@@ -1,55 +1,23 @@
 "use client";
-import React, { useRef } from 'react'
+import React from 'react'
 import { MapContainer, TileLayer } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 import CustomMarker from './CustomMarker';
-import { useDispatch, useSelector } from "react-redux";
-import { getRange, getPrice, getAmenities } from "@/app/GlobalRedux/Features/filters";
-import { getSpot, updateSpot, clearSpot } from "@/app/GlobalRedux/Features/currentSpot";
-import { useAsync } from "react-async-hook";
-import { callApi } from '@/config/firebase';
 
 // @ts-ignore
 function MiniMaps({lat, lng}) {
 
     const center = { lat, lng };
     const ZOOM_LEVEL = 14.5;
-    const mapRef = useRef();
-
-    // Filters
-    const range = useSelector(getRange);
-    const price = useSelector(getPrice);
-    const amenities = useSelector(getAmenities);
-
-    const dispatch = useDispatch();
-    const currentSpot = useSelector(getSpot);
-
-    const spots = useAsync(callApi('getSpots'), []);
-
-    const renderPins = () => {
-        if (!spots.result) return;
-
-        // @ts-ignore
-        return spots.result.data
-            .filter((item: any) => {
-                return (range === 30 || item.distance <= range * 100) &&
-                    (price[1] === 200 || (item.price >= price[0] && item.price <= price[1])) &&
-                    Object.entries(amenities).every((amenity: [string, boolean]) => !amenity[1] || item.amenities.includes(amenity[0]));
-            })
-            .map((data: any, index: any) => {
-                return (
-                    <CustomMarker key={index} lat={data.latitude} long={data.longitude}
-                              address={data.address} price={data.price} onClick={()=>{}}/>
-                );
-            });
-    }
 
     return (
         <MapContainer
-            className="relative h-[79.5vh] w-[96vw] rounded-xl z-0"
+            className="w-full h-[110%] rounded-xl z-0"
             center={center}
             zoom={ZOOM_LEVEL}
             zoomControl={false}
+            scrollWheelZoom={false}
+            keyboard={false}
         >
             <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -62,7 +30,14 @@ function MiniMaps({lat, lng}) {
                 // url='https://tiles.stadiamaps.com/tiles/osm_bright/{z}/{x}/{y}.png'
             />
 
-            {renderPins()}
+            <CustomMarker
+                key={1}
+                lat={center.lat}
+                long={center.lng}
+                address={null}
+                price={null}
+                onClick={()=>{}}
+            />
         </MapContainer>
     )
 }
