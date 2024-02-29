@@ -51,7 +51,7 @@ const autocompleteAddress = onCall({ secrets: ["MAPS_API_KEY"] },(request) => {
     logger.info("Input & API key validation passed, setting up geocoding values...");
 
     return new Client({})
-        .placeAutocomplete({ params: { input: request.data.search, key: process.env.MAPS_API_KEY, location: [44.22802285684974, -76.49571953014758] } })
+        .placeAutocomplete({ params: { input: request.data.search, key: process.env.MAPS_API_KEY, location: [44.22802285684974, -76.49571953014758], radius: 1_000_000 } })
         .then((response) => response.data.predictions.map((prediction) => {
             return { street: prediction.structured_formatting.main_text, city: prediction.structured_formatting.secondary_text };
         }))
