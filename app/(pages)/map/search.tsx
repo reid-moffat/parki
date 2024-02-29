@@ -2,13 +2,14 @@
 import React, { useState } from 'react';
 import Image from "next/image";
 import X from "@/public/search/x.png";
-import Back from "@/public/search/back.png";
 import Map from "@/public/search/map.png";
 import Arrow from "@/public/search/arrow.png";
 import Line from "@/public/Line.png";
 import { useRouter } from "next/navigation";
 import { callApi } from "@/config/firebase";
 import { MdChevronLeft } from 'react-icons/md';
+import { useDispatch } from "react-redux";
+import { clearSpot } from "@/app/GlobalRedux/Features/currentSpot";
 
 // @ts-ignore
 const Search = ({ setPageState, location, setLocation }) => {
@@ -16,6 +17,7 @@ const Search = ({ setPageState, location, setLocation }) => {
     const [search, setSearch] = useState(location ? location.street + ", " + location.city : "");
 
     const router = useRouter();
+    const dispatch = useDispatch();
 
     const adresses: { street: string, city: string }[] = [
         {
@@ -67,6 +69,8 @@ const Search = ({ setPageState, location, setLocation }) => {
 
         await setLocation({ lat: coords.lat, lng: coords.lng, street, city });
 
+        dispatch(clearSpot());
+
         setPageState("map");
     }
 
@@ -77,7 +81,7 @@ const Search = ({ setPageState, location, setLocation }) => {
             >
 
                 {/* <Image src={Back} alt={"Go back"} className={"w-[3vw] h-[3vh] ml-[6vw] mt-[1.5vh]"} onClick={() => setPageState("map")} /> */}
-                
+
                 <div className="pt-1">
                     <MdChevronLeft size={42} onClick={() => setPageState("map")} />
                 </div>
