@@ -7,7 +7,7 @@ const TopMapMenu = ({ setPageState, location }) => {
     return (
         <div className="absolute flex items-center pt-4 px-6 space-x-4 z-20">
             <div
-                className="h-min w-[70vw] bg-white rounded-full px-3 py-2 shadow-xl text-[#343632] cursor-pointer"
+                className="h-min w-[70vw] bg-white rounded-full px-3 py-2 shadow-xl text-[#343632] text-sm cursor-pointer"
                 onClick={() => setPageState("search")}
             >
                 <div className="flex flex-row items-center">
