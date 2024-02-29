@@ -15,7 +15,7 @@ const Maps = ({ search }) => {
     const ZOOM_LEVEL = 14.5;
     const mapRef = useRef();
 
-    const center = { lat: search ? search.lat : 44.227977053098535, lng: search ? search.lng : -76.4956520569699 };
+    const center = { lat: search ? search.lat : 44.23157991593114, lng: search ? search.lng : -76.49582380801647 };
 
     // Filters
     const range = useSelector(getRange);
