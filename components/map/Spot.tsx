@@ -28,7 +28,7 @@ const Spot = () => {
                     </div>
                 </div>
                 <div className="flex flex-row mt-[8vh]">
-                    <div className="text-xs">{Math.round(currentSpot.distance)}m away</div>
+                    <div className="text-xs">{Math.round(currentSpot.distance) >= 1000 ? Math.round(currentSpot.distance / 100) / 10 + "km" : Math.round(currentSpot.distance) + "m"} away</div>
                     <div className="flex ml-auto space-x-2 items-center">
                         {currentSpot.amenities.map((amenity, key) => (
                             <div key={key} className="text-[10px] border-[1px] border-block rounded-full px-2">{amenity}</div>
