@@ -1,4 +1,4 @@
-import { MdOutlineArrowBackIos } from "react-icons/md";
+import { MdChevronLeft, MdOutlineArrowBackIos } from "react-icons/md";
 import { useAsync } from "react-async-hook";
 import { callApi } from "@/config/firebase";
 import { useSelector } from "react-redux";
@@ -56,7 +56,7 @@ const Review = ({ setPage, dates }) => {
                             Vehicle Make
                         </div>
                         <div className="font-bold">
-                            { /* @ts-ignore */ }
+                            { /* @ts-ignore */}
                             {defaultVehicle.result.data.make + " " + defaultVehicle.result.data.model}
                         </div>
                     </div>
@@ -65,7 +65,7 @@ const Review = ({ setPage, dates }) => {
                             License
                         </div>
                         <div className="font-bold">
-                            { /* @ts-ignore */ }
+                            { /* @ts-ignore */}
                             {defaultVehicle.result.data.license}
                         </div>
                     </div>
@@ -104,7 +104,7 @@ const Review = ({ setPage, dates }) => {
                             {getPrice()[0].toFixed(2)}
                         </div>
                     </div>
-                    <div className="bg-black h-[0.5px] mt-2 mb-2"/>
+                    <div className="bg-black h-[0.5px] mt-2 mb-2" />
                     <div className="flex justify-between">
                         <div>
                             Total
@@ -138,7 +138,7 @@ const Review = ({ setPage, dates }) => {
     return (
         <>
             <div className='flex text-3xl font-bold p-8'>
-                <MdOutlineArrowBackIos className='w-10 h-10 mr-2' onClick={() => setPage("yourBooking")}/>
+                <MdChevronLeft size={55} className='-ml-3 pr-4 -mt-2' onClick={() => setPage("yourBooking")}/>
                 <div className="pl-2">
                     Review Summary
                 </div>

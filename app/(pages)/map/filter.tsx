@@ -1,6 +1,6 @@
 "use client";
 import React from 'react';
-import { MdArrowBackIos, MdLocalParking } from "react-icons/md";
+import { MdArrowBackIos, MdChevronLeft, MdLocalParking } from "react-icons/md";
 import { FaCarTunnel, FaFilterCircleXmark } from "react-icons/fa6";
 import { LuClock5 } from "react-icons/lu";
 import Slider from '@mui/material/Slider';
@@ -58,9 +58,12 @@ const Filter = ({ setPageState }) => {
     return (
         <>
             <div className="flex font-bold text-2xl pt-6 mb-6">
-                <MdArrowBackIos className='ml-10' size={25} onClick={() => setPageState("map")}/>
-                <div className="flex pl-[4.5rem]">
-                    <FaFilterCircleXmark className="mr-2"/>
+                <div className="ml-2">
+                    <MdChevronLeft size={45} onClick={() => setPageState("map")} />
+                </div>
+                
+                <div className="flex pl-[5.5rem] mt-2">
+                    <FaFilterCircleXmark className="mr-2 mt-1"/>
                     Filter
                 </div>
             </div>

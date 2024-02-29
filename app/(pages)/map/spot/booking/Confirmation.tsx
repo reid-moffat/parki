@@ -1,5 +1,5 @@
 "use client";
-import { MdOutlineArrowBackIos } from "react-icons/md";
+import { MdChevronLeft, MdOutlineArrowBackIos } from "react-icons/md";
 import { useRouter } from "next/navigation";
 
 const Confirmation = () => {
@@ -9,7 +9,7 @@ const Confirmation = () => {
     return (
         <div className="mx-10">
             <div className="pt-6">
-                <MdOutlineArrowBackIos className='w-10 h-10' onClick={() => router.push("/map/spot")}/>
+                <MdChevronLeft size={55} className='-ml-3 pr-4 -mt-2' onClick={() => router.push("/map/spot")}/>
             </div>
 
             <div className="text-center pt-20 text-3xl font-bold">

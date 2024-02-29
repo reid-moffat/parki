@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from 'react';
-import { MdArrowBackIos } from "react-icons/md";
+import { MdArrowBackIos, MdChevronLeft } from "react-icons/md";
 import Link from "next/link";
 import { callApi } from "@/config/firebase";
 import { useRouter } from 'next/navigation';
@@ -45,7 +45,7 @@ const SignUp = () => {
             return;
         }
 
-        await callApi('createAccount')({email: email, password: password, name: name})
+        await callApi('createAccount')({ email: email, password: password, name: name })
             .then(() => setIsSignedUp(true))
             .catch((err) => setError(err.message));
     }
@@ -141,7 +141,7 @@ const SignUp = () => {
         <>
             <div className="flex flex-row justify-left py-3 pl-10 pt-5 text-xl">
                 <div onClick={goBack} className='pt-5'>
-                    <MdArrowBackIos/>
+                    <MdChevronLeft size={55} className='-ml-3 pr-4' />
                 </div>
             </div>
 

@@ -1,5 +1,5 @@
 "use client";
-import { MdOutlineArrowBackIos } from "react-icons/md";
+import { MdChevronLeft, MdOutlineArrowBackIos } from "react-icons/md";
 import { callApi } from "@/config/firebase";
 import { useState } from "react";
 
@@ -23,9 +23,9 @@ const AddVehicle = ({ setPage }) => {
 
     return (
         <>
-            <div className='flex text-3xl font-bold p-8'>
-                <MdOutlineArrowBackIos className='w-10 h-10 mr-2' onClick={() => setPage("yourBooking")}/>
-                <div className="pl-2">
+            <div className='flex text-3xl font-bold p-8 text-center'>
+                <MdChevronLeft size={45} className='-ml-3' onClick={() => setPage("yourBooking")} />
+                <div className="pl-5 pt-1">
                     Add New Vehicle
                 </div>
             </div>
@@ -70,7 +70,7 @@ const AddVehicle = ({ setPage }) => {
 
                 <div className='flex justify-center mt-8'>
                     <div className={'rounded-2xl bg-[#FF4251] p-2 text-white text-xl ps-20 pe-20 mt-24'}
-                         onClick={async () => handleAdd()}>
+                        onClick={async () => handleAdd()}>
                         ADD
                     </div>
                 </div>

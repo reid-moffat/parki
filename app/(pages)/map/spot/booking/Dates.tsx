@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Line from "@/public/Line.png";
-import { MdOutlineArrowBackIos } from "react-icons/md";
+import { MdChevronLeft, MdOutlineArrowBackIos } from "react-icons/md";
 
 // @ts-ignore
 const SelectDates = ({ setPage, dates, setDates }) => {
@@ -195,7 +195,8 @@ const SelectDates = ({ setPage, dates, setDates }) => {
     return (
         <div className="h-full">
             <div className='flex text-3xl font-bold p-8'>
-                <MdOutlineArrowBackIos className='w-10 h-10 mr-2' onClick={() => { setDates([epoch, epoch]); setPage("yourBooking");}}/>
+                {/* <MdOutlineArrowBackIos className='w-10 h-10 mr-2' /> */}
+                <MdChevronLeft size={55} className='-ml-3 pr-4 -mt-2' onClick={() => { setDates([epoch, epoch]); setPage("yourBooking");}}/>
                 <div className="pl-16">
                     Dates
                 </div>

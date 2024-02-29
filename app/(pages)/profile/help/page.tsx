@@ -1,5 +1,5 @@
 "use client";
-import { MdArrowBackIos } from "react-icons/md";
+import { MdArrowBackIos, MdChevronLeft } from "react-icons/md";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import SearchIcon from "@/public/profile/Search_alt.png";
@@ -73,7 +73,7 @@ const Help = () => {
     return (
         <div className="mx-10">
             <div className="flex py-3 pt-5 text-xl">
-                <MdArrowBackIos size={30} className="mt-6" onClick={() => router.push("/profile")}/>
+                <MdChevronLeft size={55} className='-ml-3 pr-4 mt-4' onClick={() => router.push("/profile")} />
                 <div className="text-center text-4xl font-bold pt-6 pl-20">
                     Help
                 </div>

@@ -4,7 +4,7 @@ import React from "react";
 import Respect from "@/public/spot/respect.png";
 import Duration from "@/public/spot/duration.png";
 import Link from "next/link";
-import { MdOutlineArrowBackIos } from "react-icons/md";
+import { MdChevronLeft, MdOutlineArrowBackIos } from "react-icons/md";
 import { FaToggleOff, FaToggleOn } from "react-icons/fa";
 import { auth } from "@/config/firebase";
 import { redirect } from "next/navigation";
@@ -19,21 +19,21 @@ const PolicyPage = () => {
 
     const getToggle = () => {
         return toggle
-            ? <FaToggleOn size={100} className={'ml-4'} onClick={() => setToggle(false)}/>
-            : <FaToggleOff size={100} className={'ml-4'} onClick={() => setToggle(true)}/>;
+            ? <FaToggleOn size={100} className={'ml-4'} onClick={() => setToggle(false)} />
+            : <FaToggleOff size={100} className={'ml-4'} onClick={() => setToggle(true)} />;
     }
 
     return (
         <>
             <div className='flex text-3xl font-bold p-8'>
                 <Link href="/map/spot">
-                    <MdOutlineArrowBackIos className='w-10 h-10 mr-2'/>
+                    <MdChevronLeft size={60} className='-ml-3 pr-4 -mt-2' />
                 </Link>
                 Highlighted Policy
             </div>
 
             <div className="flex mt-6">
-                <Image src={Respect} alt="Respect" className='w-24 m-4 ml-8'/>
+                <Image src={Respect} alt="Respect" className='w-24 m-4 ml-8' />
                 <div className='mr-8'>
                     <div className='text-2xl font-bold'>
                         Respect
@@ -45,7 +45,7 @@ const PolicyPage = () => {
             </div>
 
             <div className='flex mt-8'>
-                <Image src={Duration} alt="Duration" className='w-24 m-4 ml-8'/>
+                <Image src={Duration} alt="Duration" className='w-24 m-4 ml-8' />
                 <div className='mr-8'>
                     <div className='text-2xl font-bold'>
                         Booking Duration

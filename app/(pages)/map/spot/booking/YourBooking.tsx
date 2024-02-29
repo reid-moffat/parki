@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { MdOutlineArrowBackIos } from "react-icons/md";
+import { MdChevronLeft, MdOutlineArrowBackIos } from "react-icons/md";
 import { CiSquarePlus } from "react-icons/ci";
 import { useAsync } from "react-async-hook";
 import { callApi } from "@/config/firebase";
@@ -94,7 +94,8 @@ const YourBooking = ({ setPage, dates }) => {
         <>
             <div className='flex text-3xl font-bold p-8'>
                 <Link href="/map/spot">
-                    <MdOutlineArrowBackIos className='w-10 h-10 mr-2'/>
+                    {/* <MdOutlineArrowBackIos className='w-10 h-10 mr-2'/> */}
+                    <MdChevronLeft size={55} className='-ml-3 pr-4 -mt-2'/>
                 </Link>
                 <div className="pl-6">
                     Your Booking

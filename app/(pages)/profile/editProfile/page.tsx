@@ -2,7 +2,7 @@
 import Image from 'next/image';
 import DummyPFP from '@/public/profile/dummyPfp.png';
 import React, { useEffect, useState } from "react";
-import { MdArrowBackIos } from "react-icons/md";
+import { MdArrowBackIos, MdChevronLeft } from "react-icons/md";
 import { auth, callApi } from "@/config/firebase";
 import { redirect, useRouter } from "next/navigation";
 
@@ -96,7 +96,7 @@ const EditProfile = () => {
     return (
         <div className="mx-10">
             <div className="flex py-3 pt-5 text-xl">
-                <MdArrowBackIos size={30} className="mt-6" onClick={() => router.push("/profile")}/>
+                <MdChevronLeft size={55} className='-ml-3 pr-4 mt-4' onClick={() => router.push("/profile")} />
                 <div className="text-center text-4xl font-bold pt-6 pl-6">
                     Edit Profile
                 </div>

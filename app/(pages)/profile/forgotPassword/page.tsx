@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from 'react';
 import Link from "next/link";
-import { MdArrowBackIos } from "react-icons/md";
+import { MdArrowBackIos, MdChevronLeft } from "react-icons/md";
 import { callApi } from "@/config/firebase";
 
 const ForgotPassword = () => {
@@ -75,7 +75,8 @@ const ForgotPassword = () => {
         <>
             <div className="flex flex-row justify-left py-3 pl-10 pt-5 text-xl">
                 <Link href='/profile/signIn' className='pt-5'>
-                    <MdArrowBackIos/>
+                    <MdChevronLeft size={55} className='-ml-3 pr-4'/>
+
                 </Link>
             </div>
 

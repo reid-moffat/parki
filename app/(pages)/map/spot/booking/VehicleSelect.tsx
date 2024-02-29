@@ -1,5 +1,5 @@
 "use client";
-import { MdOutlineArrowBackIos } from "react-icons/md";
+import { MdChevronLeft, MdOutlineArrowBackIos } from "react-icons/md";
 import Image from "next/image";
 import Car from "@/public/spot/car.png";
 import CarUnselected from "@/public/spot/car_unselected.png";
@@ -59,7 +59,7 @@ const VehicleSelect = ({ setPage }) => {
     return (
         <div className="px-6">
             <div className='flex text-3xl font-bold py-8'>
-                <MdOutlineArrowBackIos className='w-10 h-10 mr-2' onClick={() => setPage("yourBooking")}/>
+                <MdChevronLeft size={55} className='-ml-3 pr-4 -mt-2 mr-1' onClick={() => setPage("yourBooking")}/>
                 <div className="pl-6">
                     Select Vehicle
                 </div>

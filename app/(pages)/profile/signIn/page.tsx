@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from 'react';
 import Link from "next/link";
-import { MdArrowBackIos } from "react-icons/md";
+import { MdArrowBackIos, MdChevronLeft } from "react-icons/md";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "@/config/firebase";
 import { useRouter } from "next/navigation";
@@ -49,7 +49,7 @@ const SignIn = () => {
         <>
             <div className="flex flex-row justify-left py-3 pl-10 pt-5 text-xl">
                 <Link href='/welcome' className='pt-5'>
-                    <MdArrowBackIos/>
+                    <MdChevronLeft size={55} className='-ml-3 pr-4' />
                 </Link>
             </div>
 

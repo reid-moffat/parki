@@ -3,7 +3,7 @@ import React from 'react'
 import Image from 'next/image';
 import car from "@/public/parked_car.jpg";
 import locationIcon from "@/public/pins/OtherSpot.png";
-import { MdArrowBackIos, MdArrowForwardIos, MdLocalParking } from "react-icons/md";
+import { MdArrowBackIos, MdArrowForwardIos, MdChevronLeft, MdLocalParking } from "react-icons/md";
 import { FaWheelchair } from "react-icons/fa";
 import { RiBattery2ChargeLine } from "react-icons/ri";
 import { FaCarTunnel } from "react-icons/fa6";
@@ -17,7 +17,7 @@ import dynamic from "next/dynamic";
 import { auth } from "@/config/firebase";
 import { redirect } from "next/navigation";
 
-const MiniMap = dynamic(() => import('@/components/map/MiniMap'), {ssr: false});
+const MiniMap = dynamic(() => import('@/components/map/MiniMap'), { ssr: false });
 
 const DetailsPage = () => {
 
@@ -26,12 +26,12 @@ const DetailsPage = () => {
 
     const renderAmenities = () => {
         const allAmenities = [
-            <FaWheelchair key={"Accessible"}/>,
-            <MdLocalParking key={"Self-Park"}/>,
-            <RiBattery2ChargeLine key={"EV Charging"}/>,
-            <FaCarTunnel key={"Covered"}/>,
-            <FaWheelchair key={"On-Site Staff"}/>,
-            <IoSnowSharp key={"Shovelling Included"}/>,
+            <FaWheelchair key={"Accessible"} />,
+            <MdLocalParking key={"Self-Park"} />,
+            <RiBattery2ChargeLine key={"EV Charging"} />,
+            <FaCarTunnel key={"Covered"} />,
+            <FaWheelchair key={"On-Site Staff"} />,
+            <IoSnowSharp key={"Shovelling Included"} />,
         ];
 
         // @ts-ignore
@@ -42,7 +42,7 @@ const DetailsPage = () => {
                         <div
                             className={"bg-[#343632] text-white text-sm font-light flex justify-center items-center w-[100vw] rounded-full m-1 py-1"}
                         >
-                            <IconContext.Provider value={{color: '#FF4251'}}>
+                            <IconContext.Provider value={{ color: '#FF4251' }}>
                                 {amenity}
                             </IconContext.Provider>
                             &nbsp;
@@ -59,22 +59,23 @@ const DetailsPage = () => {
 
                 <div className="flex flex-row justify-left py-3 pl-10 pt-5 text-xl">
                     <Link href='/map' className='pt-5'>
-                        <MdArrowBackIos/>
+                        <MdChevronLeft size={55} className='-ml-3 pr-4 -mt-2' />
                     </Link>
+                    <div className="text-center text-3xl font-bold pl-2 pt-5">
+                        Parking Details
+                    </div>
                 </div>
 
-                <div className="text-center text-3xl font-bold">
-                Parking Details
-                </div>
+
 
                 <div className='flex flex-row items-center justify-center py-2'>
-                    <Image src={car} alt={"Parking_Lot_pic"} className='w-[80vw] h-[20vh] border-0 rounded-xl overflow-hidden'/>
+                    <Image src={car} alt={"Parking_Lot_pic"} className='w-[80vw] h-[20vh] border-0 rounded-xl overflow-hidden' />
                 </div>
 
                 <div className='flex flex-col w-[80vw] mx-auto '>
                     <div className='text-2xl font-bold'>{currentSpot.address}</div>
                     <div className='flex flex-row w-[100%] items-center'>
-                        <Image src={locationIcon} alt={"Location_Icon"} className='w-[5%] h-[5%] mr-1'/>
+                        <Image src={locationIcon} alt={"Location_Icon"} className='w-[5%] h-[5%] mr-1' />
                         <div className='text-md'>Kingston, ON</div>
                     </div>
                     <div className='text-sm my-1 mb-2'>
@@ -83,36 +84,36 @@ const DetailsPage = () => {
                 </div>
 
                 <div className='w-[80vw] mx-auto'>
-                    <Divider/>
+                    <Divider />
                 </div>
 
 
                 <div className='flex flex-col w-[80vw] mx-auto'>
                     <div className='text-md font-bold py-3'>Amenities</div>
                     <div className='grid grid-cols-2'>
-                         {renderAmenities()}
+                        {renderAmenities()}
                     </div>
                 </div>
 
-                <br/>
+                <br />
 
                 <div className='w-[80vw] mx-auto'>
-                    <Divider/>
+                    <Divider />
                 </div>
 
                 <div className='flex flex-col w-[80vw] mx-auto py-3'>
                     <div className='w-[80vw] h-[20vh] border-0 rounded-xl overflow-hidden mb-3 relative z-1'>
-                        <MiniMap lat={currentSpot.latitude} lng={currentSpot.longitude}/>
+                        <MiniMap lat={currentSpot.latitude} lng={currentSpot.longitude} />
                     </div>
                     <button
                         className='flex flex-row border-[1px] border-[#343632] w-[100%] rounded-[2.5rem] h-[5%] items-center justify-center font-normal py-1'>
                         Availability
-                        <MdArrowForwardIos className='w-[4%] h-[4%] ml-2'/>
+                        <MdArrowForwardIos className='w-[4%] h-[4%] ml-2' />
                     </button>
                 </div>
 
                 <div className='w-[80vw] mx-auto'>
-                    <Divider/>
+                    <Divider />
                 </div>
 
                 <div className='flex flex-col w-[80vw] mx-auto'>
@@ -126,10 +127,10 @@ const DetailsPage = () => {
                     <button
                         className='flex flex-row border-[1px] border-[#343632] w-[100%] rounded-[2.5rem] h-[5%] items-center justify-center font-normal py-1'>
                         Show all {Math.floor(Math.random() * 20)} reviews
-                        <MdArrowForwardIos className='w-[4%] h-[4%] ml-2'/>
+                        <MdArrowForwardIos className='w-[4%] h-[4%] ml-2' />
                     </button>
                 </div>
-                <br/><br/><br/><br/>
+                <br /><br /><br /><br />
             </div>
             <div
                 className='absolute w-[96vw] pl-[5%] pr-[5%] bottom-[20vw] flex flex-row h-[8%] bg-[#ff4251] rounded-b-xl justify-between items-center z-10'
