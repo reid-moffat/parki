@@ -68,29 +68,31 @@ const Search = ({ setPageState, location, setLocation }) => {
             </div>
 
             <div className="h-[65vh] overflow-y-scroll font-mono">
-                {recommendations
-                    .map((address) =>
-                        <>
-                            <div className={"inline-flex mt-[1vh]"} onClick={async () => await handleSelect(address.street, address.city)}>
-                                <Image
-                                    src={Map}
-                                    alt={"Clock icon"}
-                                    className={"w-[8vw] h-[9vw] mt-[2vh] ml-[8vw] mb-[2vh]"}
-                                />
-                                <div className={"w-[50vw] ml-[10vw] mt-[1vh]"}>
-                                    {address.street}
-                                    <br />
-                                    {address.city}
+                {!search.length
+                    ? <div className="italic text-center pt-6">Please enter a search query...</div>
+                    : recommendations
+                        .map((address) =>
+                            <>
+                                <div className={"inline-flex mt-[1vh]"} onClick={async () => await handleSelect(address.street, address.city)}>
+                                    <Image
+                                        src={Map}
+                                        alt={"Clock icon"}
+                                        className={"w-[8vw] h-[9vw] mt-[2vh] ml-[8vw] mb-[2vh]"}
+                                    />
+                                    <div className={"w-[50vw] ml-[10vw] mt-[1vh]"}>
+                                        {address.street}
+                                        <br />
+                                        {address.city}
+                                    </div>
+                                    <Image
+                                        src={Arrow}
+                                        alt={"Select this address"}
+                                        className={"w-[7vw] h-[7vw] mt-[2vh] ml-[6vw]"}
+                                    />
                                 </div>
-                                <Image
-                                    src={Arrow}
-                                    alt={"Select this address"}
-                                    className={"w-[7vw] h-[7vw] mt-[2vh] ml-[6vw]"}
-                                />
-                            </div>
-                            <Image src={Line} alt={"Line icon"} className={"w-[80vw] ml-[8vw]"} />
-                        </>
-                    )}
+                                <Image src={Line} alt={"Line icon"} className={"w-[80vw] ml-[8vw]"} />
+                            </>
+                        )}
             </div>
         </>
     );
