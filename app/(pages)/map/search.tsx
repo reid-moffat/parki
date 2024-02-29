@@ -1,11 +1,10 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from "next/image";
 import X from "@/public/search/x.png";
 import Map from "@/public/search/map.png";
 import Arrow from "@/public/search/arrow.png";
 import Line from "@/public/Line.png";
-import { useRouter } from "next/navigation";
 import { callApi } from "@/config/firebase";
 import { MdChevronLeft } from 'react-icons/md';
 import { useDispatch } from "react-redux";
@@ -16,51 +15,17 @@ const Search = ({ setPageState, location, setLocation }) => {
 
     const [search, setSearch] = useState(location ? location.street + ", " + location.city : "");
 
-    const router = useRouter();
+    const [recommendations, setRecommendations] = useState([] as { street: string, city: string }[]);
+
     const dispatch = useDispatch();
 
-    const adresses: { street: string, city: string }[] = [
-        {
-            street: '1 Queen St',
-            city: 'Kingston, ON',
-        },
-        {
-            street: '1 Queen St',
-            city: 'Toronto, ON',
-        },
-        {
-            street: '3 Queen St',
-            city: 'Ottawa, ON',
-        },
-        {
-            street: '5 Queen St',
-            city: 'Montreal, QC',
-        },
-        {
-            street: '7 Queen St',
-            city: 'Vancouver, BC',
-        },
-        {
-            street: '23 Union street',
-            city: 'London, ON',
-        },
-        {
-            street: '21 Westside street',
-            city: 'London, ON',
-        },
-        {
-            street: '26 Eastside street',
-            city: 'Milton, ON',
-        },
-        {
-            street: '22 Southside street',
-            city: 'Orillia, ON',
-        },
-        {
-            street: '25 Northside street',
-            city: 'Huntsville, ON',
-        },
-    ];
+    useEffect(() => {
+        if (search === "") return;
+
+        callApi("autocompleteAddress")({ search } )
+            .then((result) => setRecommendations(result.data as { street: string, city: string }[]))
+            .catch((err) => console.log(`Error calling autocomplete API: ${err}`));
+    }, [search]);
 
     const handleSelect = async (street: string, city: string) => {
 
@@ -102,10 +67,7 @@ const Search = ({ setPageState, location, setLocation }) => {
             </div>
 
             <div className="h-[65vh] overflow-y-scroll font-mono">
-                {adresses
-                    .filter((address) =>
-                        address.street.toLowerCase().includes(search.toLowerCase()) || address.city.toLowerCase().includes(search.toLowerCase())
-                    )
+                {recommendations
                     .map((address) =>
                         <>
                             <div className={"inline-flex mt-[1vh]"} onClick={async () => await handleSelect(address.street, address.city)}>
