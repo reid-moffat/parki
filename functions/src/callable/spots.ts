@@ -6,15 +6,21 @@ import { logger } from "firebase-functions";
  * Gets all parking spots from the db
  */
 const getSpots = onCall((request) => {
+
+    logger.info(`Entering getSpots with data: ${JSON.stringify(request.data)}`);
+
+    if (!request.data.lat || !request.data.lng) {
+        throw new HttpsError('invalid-argument', 'No coordinates provided');
+    }
+
     return getCollection('/spots/')
         .get()
         .then((docs) => {
             return docs.docs.map((doc) => {
                 const data = doc.data();
-                // Distance is to Queen's (Stauff)
                 return {
                     id: doc.id,
-                    distance: distanceBetweenPoints(data.latitude, data.longitude, 44.22792130161299, -76.49555772305563),
+                    distance: distanceBetweenPoints(data.latitude, data.longitude, request.data.lat, request.data.lng),
                     ...doc.data()
                 };
             });

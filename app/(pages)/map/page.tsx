@@ -18,8 +18,6 @@ const MapPage = () => {
     const [pageState, setPageState] = useState("map");
     const [search, setSearch] = useState(null);
 
-    console.log(pageState);
-
     const renderPage = () => {
         switch (pageState) {
             case "map":
