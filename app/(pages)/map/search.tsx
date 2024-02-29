@@ -47,7 +47,7 @@ const Search = ({ setPageState, location, setLocation }) => {
 
                 {/* <Image src={Back} alt={"Go back"} className={"w-[3vw] h-[3vh] ml-[6vw] mt-[1.5vh]"} onClick={() => setPageState("map")} /> */}
 
-                <div className="pt-1">
+                <div className="pt-1 pl-2">
                     <MdChevronLeft size={42} onClick={() => setPageState("map")} />
                 </div>
 
@@ -60,8 +60,9 @@ const Search = ({ setPageState, location, setLocation }) => {
                     onChange={(e) => setSearch(e.target.value)}
                 />
                 <Image
-                    src={X} alt={"Clear search query"}
-                    className={"w-[4vw] h-[4vw] mt-[2vh] ml-[7vw]"}
+                    src={X}
+                    alt={"Clear search query"}
+                    className="w-5 h-5 ml-1 mt-[14px]"
                     onClick={() => setSearch("")}
                 />
             </div>
