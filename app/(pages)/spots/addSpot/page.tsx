@@ -170,7 +170,7 @@ const AddSpot = () => {
                         ))
                     ) : (
                         <div className="text-center">
-                            <FaPlus className="text-5xl mb-1" />
+                            <FaPlus className="text-5xl mb-1 ml-4" />
                             Add Photo
                         </div>
                     )}

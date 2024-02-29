@@ -12,7 +12,6 @@ import { setLocation, getLocation } from "@/app/GlobalRedux/Features/search";
 import { fromAddress, OutputFormat, setDefaults } from "react-geocode";
 import { useRouter } from "next/navigation";
 import { callApi } from "@/config/firebase";
-import { MdChevronLeft } from 'react-icons/md';
 
 const Search = () => {
 
@@ -89,9 +88,7 @@ const Search = () => {
             <div
                 className="ml-[4vw] mt-6 h-[6vh] w-[88vw] rounded-[2rem] border-black border-solid border-[1px] inline-flex font-mono">
                 <Link href="/map">
-                    <div className="pt-1">
-                        <MdChevronLeft size={42}/>
-                    </div>
+                    <Image src={Back} alt={"Go back"} className={"w-[3vw] h-[3vh] ml-[6vw] mt-[1.5vh]"}/>
                 </Link>
                 <input
                     type="text"
@@ -122,7 +119,7 @@ const Search = () => {
                                 />
                                 <div className={"w-[50vw] ml-[10vw] mt-[1vh]"}>
                                     {address.street}
-                                    <br />
+                                    <br/>
                                     {address.city}
                                 </div>
                                 <Link href="/map">
@@ -133,7 +130,7 @@ const Search = () => {
                                     />
                                 </Link>
                             </div>
-                            <Image src={Line} alt={"Line icon"} className={"w-[80vw] ml-[8vw]"} />
+                            <Image src={Line} alt={"Line icon"} className={"w-[80vw] ml-[8vw]"}/>
                         </>
                     )}
             </div>
