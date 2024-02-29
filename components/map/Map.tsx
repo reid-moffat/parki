@@ -10,10 +10,12 @@ import { useAsync } from "react-async-hook";
 import { callApi } from '@/config/firebase';
 
 // @ts-ignore
-const Maps = ({ center }) => {
+const Maps = ({ search }) => {
 
     const ZOOM_LEVEL = 14.5;
     const mapRef = useRef();
+
+    const center = { lat: search ? search.lat : 44.227977053098535, lng: search ? search.lng : -76.4956520569699 };
 
     // Filters
     const range = useSelector(getRange);

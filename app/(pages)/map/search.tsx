@@ -6,19 +6,13 @@ import Back from "@/public/search/back.png";
 import Map from "@/public/search/map.png";
 import Arrow from "@/public/search/arrow.png";
 import Line from "@/public/Line.png";
-import Link from "next/link";
-import { useDispatch, useSelector } from "react-redux";
-import { setLocation, getLocation } from "@/app/GlobalRedux/Features/search";
-import { fromAddress, OutputFormat, setDefaults } from "react-geocode";
 import { useRouter } from "next/navigation";
 import { callApi } from "@/config/firebase";
 
-const Search = () => {
+// @ts-ignore
+const Search = ({ setPageState, location, setLocation }) => {
 
-    const dispatch = useDispatch();
-    const location = useSelector(getLocation);
-
-    const [search, setSearch] = useState(location.street ?? "");
+    const [search, setSearch] = useState(location ? location.street + ", " + location.city : "");
 
     const router = useRouter();
 
@@ -66,30 +60,21 @@ const Search = () => {
     ];
 
     const handleSelect = async (street: string, city: string) => {
-        setDefaults({
-            key: "",
-            language: "en",
-            region: "ca",
-            outputFormat: OutputFormat.JSON,
-        });
 
         const coords: { lat: number, lng: number } = await callApi("getLatLngFromAddress")({ address: `${street}, ${city}` })
             .then((result) => result.data as { lat: number, lng: number });
 
-        console.log(JSON.stringify(coords, null, 4));
+        await setLocation({ lat: coords.lat, lng: coords.lng, street, city });
 
-        dispatch(setLocation({ lat: coords.lat, lng: coords.lng, street, city }));
-
-        router.push("/map");
+        setPageState("map");
     }
 
     return (
         <>
             <div
-                className="ml-[4vw] mt-6 h-[6vh] w-[88vw] rounded-[2rem] border-black border-solid border-[1px] inline-flex font-mono">
-                <Link href="/map">
-                    <Image src={Back} alt={"Go back"} className={"w-[3vw] h-[3vh] ml-[6vw] mt-[1.5vh]"}/>
-                </Link>
+                className="ml-[4vw] mt-6 h-[6vh] w-[88vw] rounded-[2rem] border-black border-solid border-[1px] inline-flex font-mono"
+            >
+                <Image src={Back} alt={"Go back"} className={"w-[3vw] h-[3vh] ml-[6vw] mt-[1.5vh]"} onClick={() => setPageState("map")}/>
                 <input
                     type="text"
                     className={"w-[55vw] ml-[8vw] mt-[1vh] mb-[1vh] bg-[#FCF9EF] outline-none"}
@@ -122,13 +107,11 @@ const Search = () => {
                                     <br/>
                                     {address.city}
                                 </div>
-                                <Link href="/map">
-                                    <Image
-                                        src={Arrow}
-                                        alt={"Select this address"}
-                                        className={"w-[7vw] h-[7vw] mt-[2vh] ml-[6vw]"}
-                                    />
-                                </Link>
+                                <Image
+                                    src={Arrow}
+                                    alt={"Select this address"}
+                                    className={"w-[7vw] h-[7vw] mt-[2vh] ml-[6vw]"}
+                                />
                             </div>
                             <Image src={Line} alt={"Line icon"} className={"w-[80vw] ml-[8vw]"}/>
                         </>

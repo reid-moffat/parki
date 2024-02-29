@@ -5,7 +5,7 @@ import TopMapMenu from '@/components/map/TopMapMenu';
 import Spot from '@/components/map/Spot';
 import { useSelector } from "react-redux";
 import { currentSpotExists } from "@/app/GlobalRedux/Features/currentSpot";
-import { getLocation } from "@/app/GlobalRedux/Features/search";
+import Search from "@/app/(pages)/map/search";
 
 
 const Map = dynamic(() => import('@/components/map/Map'), {ssr: false});
@@ -14,17 +14,27 @@ const MapPage = () => {
 
     const currentSpotSelected = useSelector(currentSpotExists);
 
-    const location = useSelector(getLocation);
+    const [pageState, setPageState] = useState("map");
+    const [search, setSearch] = useState(null);
 
-    const [center, setCenter] = useState({lat: location.lat ?? 44.236524, lng: location.lng ?? -76.495791 });
+    const renderPage = () => {
+        switch (pageState) {
+            case "map":
+                return (
+                    <>
+                        <Map search={search}/>
+                        <TopMapMenu setPageState={setPageState} location={search}/>
+                        {currentSpotSelected && <Spot/>}
+                    </>
+                );
+            case "search":
+                return <Search setPageState={setPageState} location={search} setLocation={setSearch}/>;
+            default:
+                throw new Error("Invalid page state in map/page.tsx");
+        }
+    }
 
-    return (
-        <>
-            <Map center={center}/>
-            <TopMapMenu/>
-            {currentSpotSelected && <Spot/>}
-        </>
-    );
+    return renderPage();
 }
 
 export default MapPage;
