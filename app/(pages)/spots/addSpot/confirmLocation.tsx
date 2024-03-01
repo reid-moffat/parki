@@ -3,6 +3,10 @@ import { useAsync } from "react-async-hook";
 import { callApi } from "@/config/firebase";
 import { MapContainer, TileLayer } from "react-leaflet";
 import React from "react";
+import CustomMarker from "@/components/map/CustomMarker";
+import dynamic from "next/dynamic";
+
+const MiniMap = dynamic(() => import('@/components/map/MiniMap'), { ssr: false });
 
 // @ts-ignore
 const ConfirmLocation = ({ setStep, address }) => {
@@ -26,19 +30,7 @@ const ConfirmLocation = ({ setStep, address }) => {
 
         return (
             <div className='w-[80vw] h-[40vh] border-0 rounded-xl overflow-hidden mb-3 relative z-1'>
-                <MapContainer
-                    className="relative h-[79.5vh] w-[96vw] rounded-xl z-0"
-                    center={{ lat, lng }}
-                    zoom={15}
-                    zoomControl={false}
-                >
-                    <TileLayer
-                        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                        url='https://tiles.stadiamaps.com/tiles/osm_bright/{z}/{x}/{y}.png'
-                        minZoom={15}
-                        maxZoom={15}
-                    />
-                </MapContainer>
+                <MiniMap lat={lat} lng={lng}/>
             </div>
         );
     }

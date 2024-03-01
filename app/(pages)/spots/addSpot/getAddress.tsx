@@ -50,7 +50,10 @@ const GetAddress = ({ setStep, address, setAddress }) => {
                     : places
                         .map((address, index) =>
                             <div className="w-full">
-                                <div className={"inline-flex mt-1"} onClick={() => setStep("confirmLocation")}>
+                                <div
+                                    className={"inline-flex mt-1"}
+                                    onClick={() => { setAddress(address.street + ", " + address.city); setStep("confirmLocation"); }}
+                                >
                                     <Image
                                         src={Map}
                                         alt={"Clock icon"}
