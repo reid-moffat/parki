@@ -16,14 +16,9 @@ function CustomMarker({ lat, long, address, price, onClick }) {
         <Marker
             position={[lat, long]}
             icon={customMarkerIcon}
-            eventHandlers={{
-                click: (e) => {
-                    // TODO - indicate that this pin is selected
-                    onClick(address)
-                },
-            }}
+            eventHandlers={{ click: () => onClick(address) }}
         />
     )
 }
 
-export default CustomMarker
+export default CustomMarker;

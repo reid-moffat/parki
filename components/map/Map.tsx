@@ -51,8 +51,14 @@ const Maps = ({ search }) => {
             })
             .map((data: any, index: any) => {
                 return (
-                    <CustomMarker key={index} lat={data.latitude} long={data.longitude}
-                              address={data.address} price={data.price} onClick={handleMarkerClick}/>
+                    <CustomMarker
+                        key={index}
+                        lat={data.latitude}
+                        long={data.longitude}
+                        address={data.address}
+                        price={data.price}
+                        onClick={handleMarkerClick}
+                    />
                 );
             });
     }
