@@ -2,7 +2,7 @@
 import React from 'react'
 import { MapContainer, TileLayer } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
-import CustomMarker from './MiniMarker';
+import CustomMarker from './CustomMarker';
 
 // @ts-ignore
 function MiniMaps({lat, lng}) {
