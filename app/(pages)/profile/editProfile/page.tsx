@@ -117,11 +117,11 @@ const EditProfile = () => {
             />
 
             <div>Email</div>
-            <div
-                className='w-full py-3 px-5 mb-1 outline-none rounded-2xl bg-[#4472CA] bg-opacity-20'
-            >
-                {email}
-            </div>
+            <input
+                className='w-full py-3 px-5 mb-1 outline-none rounded-2xl bg-[#4472CA] text-[#707070] bg-opacity-20'
+                value={email}
+                disabled={true}
+            />
 
             <div>Phone number</div>
             <input
