@@ -27,6 +27,7 @@ const onUserSignup = functions.auth.user().onCreate(async (user) => {
     // Create a default db document for the user
     const defaultDoc = {
         email: user.email,
+        name: user.displayName,
     };
     await getDoc(`/users/${user.uid}/`)
         .set(defaultDoc)
@@ -44,13 +45,13 @@ const onUserSignup = functions.auth.user().onCreate(async (user) => {
         });
 
     const emailHtml =
-        `<p style="font-size: 16px;">Thanks for signing up!</p>
+        `<p style="font-size: 16px;">Thanks for signing up for <a href="https://parki.ca/">Parki</a>!</p>
             <p style="font-size: 16px;">Verify your account here: ${verifyLink}</p>
             <p style="font-size: 12px;">If you didn't sign up, please disregard this email</p>
             <p style="font-size: 12px;">Best Regards,</p>
-            <p style="font-size: 12px;">-The qtma-2023-2024 Team</p>`;
+            <p style="font-size: 12px;">-The Parki Team</p>`;
 
-    return sendEmail(user.email, 'Verify your email for qtma-2023-2024', emailHtml, 'email address verification');
+    return sendEmail(user.email, 'Parki email verification', emailHtml, 'email address verification');
 });
 
 /**

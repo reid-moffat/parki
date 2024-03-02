@@ -1,17 +1,15 @@
-import './globals.css'
-import { Inter } from 'next/font/google'
 import React from "react";
-import Navigator from "@/app/pages/nav/page";
+import Providers from "@/app/GlobalRedux/provider";
 
-const inter = Inter({subsets: ['latin']})
-
-export default function RootLayout() {
+export default function Layout({ children }: { children: React.ReactNode }) {
     return (
         <html lang="en">
-        <body className={inter.className}>
-        <main className='app'>
-            <Navigator/>
-        </main>
+        <body>
+        <div className="absolute h-full w-full bg-[#343632] font-outfit">
+            <Providers>
+                {children}
+            </Providers>
+        </div>
         </body>
         </html>
     )

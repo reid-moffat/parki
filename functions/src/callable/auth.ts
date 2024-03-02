@@ -1,7 +1,8 @@
 import { HttpsError, onCall } from "firebase-functions/v2/https";
 import { auth } from "../helpers/setup";
 import { logger } from "firebase-functions";
-import { getCollection } from "../helpers/helperFunctions";
+import { getDoc, sendEmail } from "../helpers/helperFunctions";
+import { verifyIsAuthenticated } from "../helpers/verification";
 
 /**
  * Users must create their accounts through our API (more control & security), calling it from the client is disabled
@@ -14,6 +15,7 @@ const createAccount = onCall((request) => {
             emailVerified: false,
             password: request.data.password,
             disabled: false,
+            displayName: request.data.name,
         })
         .then((user) => {
             logger.log(`Successfully created new user ${user.uid} (${request.data.email})`);
@@ -22,7 +24,7 @@ const createAccount = onCall((request) => {
         .catch((error) => {
             if (error.code === 'auth/invalid-email') {
                 logger.warn(`Email ${request.data.email} is invalid`);
-                throw new HttpsError('invalid-argument', `Email ${request.data.email} is invalid`);
+                throw new HttpsError('invalid-argument', `Email '${request.data.email}' is invalid`);
             }
             if (error.code === 'auth/invalid-password') {
                 logger.warn(`Password ${request.data.password} is invalid`);
@@ -43,31 +45,74 @@ const createAccount = onCall((request) => {
  */
 const resetPassword = onCall(async (request) => {
 
+    if (!request.data.email) {
+        throw new HttpsError('invalid-argument', `Email is required`);
+    }
+
     const emailAddress: string = request.data.email;
     const link: string = await auth.generatePasswordResetLink(emailAddress);
 
-    const email = {
-        to: emailAddress,
-        message: {
-            subject: 'Reset your password for qtma-2023-2024',
-            html: `<p style="font-size: 16px;">A password reset request was made for your account</p>
-                   <p style="font-size: 16px;">Reset your password here: ${link}</p>
-                   <p style="font-size: 12px;">If you didn't request this, you can safely disregard this email</p>
-                   <p style="font-size: 12px;">Best Regards,</p>
-                   <p style="font-size: 12px;">-The qtma-2023-2024 Team</p>`,
-        }
-    };
+    const emailHtml = `<p style="font-size: 16px;">A password reset request was made for your account</p>
+           <p style="font-size: 16px;">Reset your password here: ${link}</p>
+           <p style="font-size: 12px;">If you didn't request this, you can safely disregard this email</p>
+           <p style="font-size: 12px;">Best Regards,</p>
+           <p style="font-size: 12px;">-The Parki Team</p>`;
 
-    return getCollection('/emails/')
-        .add(email)
-        .then(() => {
-            logger.log(`Password reset email created for ${emailAddress}`);
-            return `Password reset email created for ${emailAddress}`;
-        })
-        .catch((err) => {
-            logger.log(`Error creating password reset email for ${emailAddress}`);
-            return `Error creating password reset email for ${emailAddress}`;
+    return sendEmail(emailAddress, 'Parki password reset', emailHtml, 'password reset');
+});
+
+/**
+ * Gets user profile info (name, email, phone # & e-transfer address)
+ */
+const getProfile = onCall(async (request) => {
+
+    verifyIsAuthenticated(request);
+
+    // @ts-ignore
+    return getDoc(`/users/${request.auth.uid}/`)
+        .get()
+        .then((doc) => doc.data())
+        .catch((error) => {
+            // @ts-ignore
+            logger.error(`Error getting user profile for user ${request.auth.uid}: ${error.message}`);
+            throw new HttpsError('internal', `Error getting profile - please try again later`);
         });
 });
 
-export { createAccount, resetPassword };
+/**
+ * Updates user profile info (name, phone # & e-transfer address)
+ */
+const updateProfile = onCall(async (request) => {
+
+    verifyIsAuthenticated(request);
+
+    if (!request.data.name && !request.data.phone && !request.data.etransfer) {
+        throw new HttpsError('invalid-argument', `Either a name, phone # or e-transfer address are required`);
+    }
+
+    const updateData = {};
+    if (request.data.name) {
+        // @ts-ignore
+        updateData['name'] = request.data.name;
+    }
+    if (request.data.phone) {
+        // @ts-ignore
+        updateData['phone'] = request.data.phone;
+    }
+    if (request.data.etransfer) {
+        // @ts-ignore
+        updateData['etransfer'] = request.data.etransfer;
+    }
+
+    // @ts-ignore
+    return getDoc(`/users/${request.auth.uid}/`)
+        .update(updateData)
+        .then(() => `Profile updated`)
+        .catch((error) => {
+            // @ts-ignore
+            logger.error(`Error updating user profile for user ${request.auth.uid}: ${error.message}`);
+            throw new HttpsError('internal', `Error updating profile - please try again later`);
+        });
+});
+
+export { createAccount, resetPassword, getProfile, updateProfile };
