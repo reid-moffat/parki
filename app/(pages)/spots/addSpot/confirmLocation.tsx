@@ -23,8 +23,6 @@ const ConfirmLocation = ({ setStep, address }) => {
             return <div>Error loading map</div>;
         }
 
-        console.log(`Data: ${JSON.stringify(latLng.result.data, null, 4)}`);
-
         // @ts-ignore
         const { lat, lng } = latLng.result.data;
 

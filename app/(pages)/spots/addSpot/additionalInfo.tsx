@@ -1,7 +1,11 @@
 import { MdChevronLeft } from "react-icons/md";
+import { useRouter } from "next/navigation";
 
 // @ts-ignore
 const AdditionalInfo = ({ setStep }) => {
+
+    const router = useRouter();
+
     return (
         <>
             <div className="pt-10">
@@ -23,7 +27,7 @@ const AdditionalInfo = ({ setStep }) => {
 
             <div
                 className="absolute w-full bottom-8 bg-[#FF4251] text-center text-white text-2xl font-semibold rounded-2xl p-3"
-                onClick={() => console.log("add spot")}
+                onClick={() => router.push('/spots')}
             >
                 Confirm Spot
             </div>
