@@ -3,6 +3,7 @@
     "version": "0.1.0",
     "private": true,
     "scripts": {
+        "preinstall": "npx only-allow pnpm",
         "dev": "next dev",
         "build": "next build",
         "start": "next start",
@@ -30,6 +31,8 @@
     },
     "devDependencies": {
         "@types/leaflet": "^1.9.8",
+        "@types/node": "22.0.0",
+        "@types/react": "18.3.3",
         "typescript": "^5.3.3"
     }
 }
