@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
-import { getAuth } from "@firebase/auth";
-import { getFunctions, httpsCallable } from "@firebase/functions";
+import { getAuth } from "firebase/auth";
+import { getFunctions, httpsCallable } from "firebase/functions";
 
 // Firebase configuration (API key is non-sensitive, just an identifier so can be public)
 const firebaseConfig = {
